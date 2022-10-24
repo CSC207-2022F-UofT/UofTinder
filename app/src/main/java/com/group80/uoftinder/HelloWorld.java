@@ -1,23 +1,14 @@
-package tutorial;
+package com.group80.uoftinder;
 
-public class HelloWorld {
+import androidx.appcompat.app.AppCompatActivity;
 
-    public static void main(String[] args) {
-        for (int i = 1; i <= 100; i++) {
-            System.out.println(convert(i));
-        }
-    }
+import android.os.Bundle;
 
-    public static String convert(int decide) {
-        if (decide % 15 == 0) {
-            return "tutorial.HelloWorld";
-        }
-        if (decide % 3 == 0) {
-            return "Hello";
-        }
-        if (decide % 5 == 0) {
-            return "World";
-        }
-        return String.valueOf(decide);
+public class HelloWorld extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.hello_world);
     }
 }

@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.group80.uotftinder", appContext.getPackageName());
+        assertEquals("com.group80.uoftinder", appContext.getPackageName());
     }
 }
