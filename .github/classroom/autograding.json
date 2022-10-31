@@ -3,7 +3,7 @@
     {
       "name": "Default Test Runner",
       "setup": "",
-      "run": "gradle testRelease --tests \"*.*\"",
+      "run": "gradle -p app testRelease --tests \"*.*\"",
       "input": "",
       "output": "",
       "comparison": "included",
