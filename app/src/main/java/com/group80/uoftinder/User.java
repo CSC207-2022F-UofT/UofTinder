@@ -1,39 +1,35 @@
 package com.group80.uoftinder;
 
-public class User {
+import android.net.Uri;
 
-    private final String email;
-    private final String username;
-    private final String password;
-    private final String userType;
+import java.util.ArrayList;
+
+public class User{
+
+    private String email;
+    private String uid;
+    private String password;
+
+    private String userType; // make this final later idk
 
     private int score;
 
-    private String firstName;
-    private String lastName;
+    // this information is displayed on profile
+    private String displayName; // last name and first name displayed on profile
+    private Uri photoUrl;
     private int age;
     private String gender;
-    private String pronouns;
 
+    private ArrayList answers;
 
-
-    User(String email, String username, String password, String type){
+    User(String email, String password){
         this.email = email;
-        this.username = username;
         this.password = password;
-        this.userType = type;
     }
+
 
     public String getEmail() {
         return email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public String getUserType(){
@@ -45,13 +41,6 @@ public class User {
     }
     public int getScore() {
         return score;
-    }
-
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
-    }
-    public String getFirstName() {
-        return firstName;
     }
 
     public void setAge(int age) {
@@ -68,18 +57,31 @@ public class User {
         return gender;
     }
 
-    public void setPronouns(String pronouns) {
-        this.pronouns = pronouns;
-    }
-    public String getPronouns() {
-        return pronouns;
+    public Uri getPhotoUrl() {
+        return photoUrl;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setPhotoUrl(Uri photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public ArrayList getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(ArrayList answers) {
+        this.answers = answers;
     }
 }
