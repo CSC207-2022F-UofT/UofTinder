@@ -15,6 +15,8 @@ public class User {
     private String gender;
     private String pronouns;
 
+
+
     User(String email, String username, String password, String type){
         this.email = email;
         this.username = username;
