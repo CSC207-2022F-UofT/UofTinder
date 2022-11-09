@@ -18,4 +18,10 @@ public class ctStorageController {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         return imageUploader.upload(bitmap, uid + "/img/" + fileName);
     }
+
+    public Bitmap downloadImage(StorageDbDownloadable<byte[]> listener, String downloadUrl) {
+        ucImageDownloader imageDownloader = new ucImageDownloader();
+        imageDownloader.addListener(listener);
+        return imageDownloader.download(downloadUrl);
+    }
 }
