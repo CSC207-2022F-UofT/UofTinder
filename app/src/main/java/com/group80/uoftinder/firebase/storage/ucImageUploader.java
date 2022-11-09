@@ -1,4 +1,4 @@
-package com.group80.uoftinder.firebase;
+package com.group80.uoftinder.firebase.storage;
 
 import android.graphics.Bitmap;
 
@@ -9,6 +9,9 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 
+/**
+ * A uploader to upload bitmap images to the firebase cloud storage
+ */
 public class ucImageUploader extends ucUploader<Bitmap> {
     /**
      * Upload a byte array (Bitmap image) to the Firebase Storage Database

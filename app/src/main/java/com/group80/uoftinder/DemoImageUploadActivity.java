@@ -22,8 +22,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.UploadTask;
-import com.group80.uoftinder.firebase.StorageDbUploadable;
-import com.group80.uoftinder.firebase.ctStorageController;
+import com.group80.uoftinder.firebase.storage.StorageDbUploadable;
+import com.group80.uoftinder.firebase.storage.ctStorageController;
 
 import java.io.IOException;
 
