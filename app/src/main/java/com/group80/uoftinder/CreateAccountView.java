@@ -1,5 +1,7 @@
 package com.group80.uoftinder;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,29 +9,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashMap;
 
 public class CreateAccountView extends AppCompatActivity {
-    //very rough class right now, just using this to store questions and store answers into User
     HashMap<String, String> basicInfo = new HashMap<String, String>();
-    private final String email = "";
+    private String email = "";
     private String password1 = "", password2 = "";
-    private boolean accountCreated = false;
 
+    public void createAccountView() {
+//        setContentView(R.layout.createaccountview);
 
-    public boolean checkPasswords(String password1, String password2) {
-        return password1.compareTo(password2) == 0;
-    }
+        UserAccountController control = new UserAccountController();
+        CreateAccountPresenter proceed = new CreateAccountPresenter();
 
-    public boolean checkEmail(String email) {
-        //firebase stuff
-        //if email hasn't already been used in firebase
-        return true;
-        //if email is already in use
-        //return false;
+        Button enter =findViewById(R.id.accountEnter);
+        enter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                email = findViewById(R.id.email).toString();
+                password1 = findViewById(R.id.password1).toString();
+                password2 = findViewById(R.id.password2).toString();
+                control.newAccount(email, password1, password2);
 
-    }
+            }
+        });
 
-    public boolean getCreated() {
-//        if (checkEmail(password1,password2) && checkPasswords(email))
-//            accountCreated = true;
-        return accountCreated;
     }
 }

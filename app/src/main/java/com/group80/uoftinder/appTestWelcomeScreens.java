@@ -23,6 +23,13 @@ public class appTestWelcomeScreens extends AppCompatActivity {
 
     public void showCreateAccountView(View view) {
         setContentView(R.layout.createaccountview);
+
+//        Intent intent = new Intent(appTestWelcomeScreens.this, CreateAccountView.class);
+//        Intent
+
+//        startActivity(new Intent(this, CreateAccountView.class));
+        CreateAccountView v = new CreateAccountView();
+        v.createAccountView();
     }
 
     public void showLoginView(View view) {
