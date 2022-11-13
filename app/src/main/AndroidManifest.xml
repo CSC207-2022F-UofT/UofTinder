@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UofTinder"
         tools:targetApi="31">
+        <activity android:name=".CreateAccountView"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Login"
             android:exported="false">

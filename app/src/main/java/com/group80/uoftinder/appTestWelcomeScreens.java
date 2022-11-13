@@ -1,5 +1,6 @@
 package com.group80.uoftinder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -11,22 +12,12 @@ public class appTestWelcomeScreens extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginview);
-
-
-        }
+    }
 
     public void showCreateAccountView(View view) {
-        setContentView(R.layout.createaccountview);
-
-//        Intent intent = new Intent(appTestWelcomeScreens.this, CreateAccountView.class);
-//        Intent
-
-//        startActivity(new Intent(this, CreateAccountView.class));
-//        CreateAccountView v = new CreateAccountView();
-//        v.createAccountView();
+        Intent intent = new Intent(appTestWelcomeScreens.this, CreateAccountView.class);
+        startActivity(intent);
+        finish();
     }
 
-    public void showLoginView(View view) {
-        setContentView(R.layout.loginview);
-    }
 }
