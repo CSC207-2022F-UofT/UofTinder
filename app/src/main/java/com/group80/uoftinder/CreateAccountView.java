@@ -1,23 +1,35 @@
 package com.group80.uoftinder;
 
+import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.HashMap;
 
-public class CreateAccountView {
+public class CreateAccountView extends AppCompatActivity {
     //very rough class right now, just using this to store questions and store answers into User
-    //    String[] BasicQuestions = {"Name", "Age", "Type", "Gender"};
     HashMap<String, String> basicInfo = new HashMap<String, String>();
-//    String name = "Milena Mijuskovic";
-//
-    //UI
-    // example
-    String email = "milena.mijuskovic@somegmail.com"; //entry field
-
-    String age = "19"; //entry field
-    String type = "academic"; //choose from academic, romantic, friendship
-    String gender = "Female"; //choose from female, male, non-binary, prefer not to answer/other
+    private final String email = "";
+    private String password1 = "", password2 = "";
+    private boolean accountCreated = false;
 
 
+    public boolean checkPasswords(String password1, String password2) {
+        return password1.compareTo(password2) == 0;
+    }
 
+    public boolean checkEmail(String email) {
+        //firebase stuff
+        //if email hasn't already been used in firebase
+        return true;
+        //if email is already in use
+        //return false;
 
+    }
 
+    public boolean getCreated() {
+//        if (checkEmail(password1,password2) && checkPasswords(email))
+//            accountCreated = true;
+        return accountCreated;
+    }
 }
