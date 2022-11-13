@@ -1,6 +1,7 @@
 package com.group80.uoftinder;
 
 import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
+import com.group80.uoftinder.login_use_case.LoginInteractor;
 
 public class UserAccountController {
 
@@ -11,6 +12,11 @@ public class UserAccountController {
         boolean new_email = interactor.checkEmail(email);
 
         return checked_passwords && new_email;
+    }
+
+    public boolean loginAccount(String email, String password) {
+        LoginInteractor interactor = new LoginInteractor();
+        // check if user is in the database
     }
 
 }
