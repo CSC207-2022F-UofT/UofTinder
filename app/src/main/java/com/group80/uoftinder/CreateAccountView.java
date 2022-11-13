@@ -1,4 +1,4 @@
-package com.group80.uoftinder.create_account_use_case;
+package com.group80.uoftinder;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.group80.uoftinder.R;
-import com.group80.uoftinder.UserAccountController;
 import com.group80.uoftinder.create_account_use_case.CreateAccountPresenter;
 
 import java.util.HashMap;
