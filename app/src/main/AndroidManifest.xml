@@ -13,7 +13,21 @@
         android:theme="@style/Theme.UofTinder"
         tools:targetApi="31">
         <activity
-            android:name=".appTestWelcomeScreens"
+            android:name=".Login"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.login.LoginActivityExample"
+            android:exported="false"
+            android:label="@string/title_activity_login_example" />
+        <activity
+            android:name=".ui.login.appTestWelcomeScreens"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
