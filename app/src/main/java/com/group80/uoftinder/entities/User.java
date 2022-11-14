@@ -2,15 +2,13 @@ package com.group80.uoftinder.entities;
 
 import android.net.Uri;
 
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 
-public class User{
+public class User {
 
-    private String email;
     private String uid;
-    private String password;
 
     private String userType; // make this final later idk
 
@@ -27,12 +25,10 @@ public class User{
     private List liked;
     private List matches;
 
-    public User(String email, String password){
-        this.email = email;
-        this.password = password;
-        this.liked = new LinkedList();
-        this.viewed = new LinkedList();
-        this.matches = new LinkedList();
+    public User(){
+        this.liked = new ArrayList();
+        this.viewed = new ArrayList();
+        this.matches = new ArrayList();
     }
 
     public String getUserType(){
