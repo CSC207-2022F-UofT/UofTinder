@@ -32,7 +32,8 @@ public class RecommendationProfileDisplayTest {
     }
     @Test
     public void goesToNoNewRecommendationScreen() {
-        
+
+
     }
 
 }

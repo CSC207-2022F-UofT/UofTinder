@@ -14,7 +14,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/nameAge"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:layout_weight="0.25"
@@ -23,19 +23,20 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/location"
+        android:id="@+id/gender"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="76dp"
         android:layout_weight="0.25"
         android:text="TextView"
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/bio"
+        android:id="@+id/age"
         android:layout_width="match_parent"
-        android:layout_height="77dp"
+        android:layout_height="71dp"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="14sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
