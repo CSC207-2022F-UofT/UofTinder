@@ -3,6 +3,8 @@ package com.group80.uoftinder.entities;
 import android.net.Uri;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 
 public class User{
 
@@ -21,10 +23,16 @@ public class User{
     private String gender;
 
     private HashSet<Integer>[] answers;
+    private List viewed;
+    private List liked;
+    private List matches;
 
     public User(String email, String password){
         this.email = email;
         this.password = password;
+        this.liked = new LinkedList();
+        this.viewed = new LinkedList();
+        this.matches = new LinkedList();
     }
 
     public String getUserType(){
@@ -78,5 +86,29 @@ public class User{
 
     public void setAnswers(HashSet<Integer>[] answers) {
         this.answers = answers;
+    }
+
+    public List getViewed() {
+        return viewed;
+    }
+
+    public void setViewed(List viewed) {
+        this.viewed = viewed;
+    }
+
+    public List getLiked() {
+        return liked;
+    }
+
+    public void setLiked(List liked) {
+        this.liked = liked;
+    }
+
+    public List getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List matches) {
+        this.matches = matches;
     }
 }
