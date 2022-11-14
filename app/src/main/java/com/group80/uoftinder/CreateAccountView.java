@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,8 +14,6 @@ import java.util.HashMap;
 
 public class CreateAccountView extends AppCompatActivity {
     HashMap<String, String> basicInfo = new HashMap<String, String>();
-    private String email = "";
-    private String password1 = "", password2 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +42,9 @@ public class CreateAccountView extends AppCompatActivity {
         UserAccountController control = new UserAccountController();
         CreateAccountPresenter proceed = new CreateAccountPresenter();
 
-        String email = findViewById(R.id.email).toString();
-        String password1 = findViewById(R.id.password1).toString();
-        String password2 = findViewById(R.id.password2).toString();
+        String email = ((EditText) findViewById(R.id.email)).getText().toString().trim();
+        String password1 = ((EditText)findViewById(R.id.password1)).getText().toString().trim();
+        String password2 = ((EditText)findViewById(R.id.password2)).getText().toString().trim();
         control.newAccount(email, password1, password2);
     }
 
