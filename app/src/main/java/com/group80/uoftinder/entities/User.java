@@ -2,7 +2,7 @@ package com.group80.uoftinder.entities;
 
 import android.net.Uri;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class User{
 
@@ -20,7 +20,7 @@ public class User{
     private int age;
     private String gender;
 
-    private ArrayList answers;
+    private HashSet<Integer>[] answers;
 
     public User(String email, String password){
         this.email = email;
@@ -72,11 +72,11 @@ public class User{
         return uid;
     }
 
-    public ArrayList getAnswers() {
+    public HashSet<Integer>[] getAnswers() {
         return answers;
     }
 
-    public void setAnswers(ArrayList answers) {
+    public void setAnswers(HashSet<Integer>[] answers) {
         this.answers = answers;
     }
 }
