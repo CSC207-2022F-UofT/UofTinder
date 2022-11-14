@@ -3,12 +3,12 @@ package com.group80.uoftinder.entities;
 import android.net.Uri;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
-public class User{
+public class User {
 
-    private String email;
     private String uid;
-    private String password;
 
     private String userType; // make this final later idk
 
@@ -20,11 +20,15 @@ public class User{
     private int age;
     private String gender;
 
-    private ArrayList answers;
+    private HashSet<Integer>[] answers;
+    private List viewed;
+    private List liked;
+    private List matches;
 
-    public User(String email, String password){
-        this.email = email;
-        this.password = password;
+    public User(){
+        this.liked = new ArrayList();
+        this.viewed = new ArrayList();
+        this.matches = new ArrayList();
     }
 
     public String getUserType(){
@@ -72,11 +76,35 @@ public class User{
         return uid;
     }
 
-    public ArrayList getAnswers() {
+    public HashSet<Integer>[] getAnswers() {
         return answers;
     }
 
-    public void setAnswers(ArrayList answers) {
+    public void setAnswers(HashSet<Integer>[] answers) {
         this.answers = answers;
+    }
+
+    public List getViewed() {
+        return viewed;
+    }
+
+    public void setViewed(List viewed) {
+        this.viewed = viewed;
+    }
+
+    public List getLiked() {
+        return liked;
+    }
+
+    public void setLiked(List liked) {
+        this.liked = liked;
+    }
+
+    public List getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List matches) {
+        this.matches = matches;
     }
 }
