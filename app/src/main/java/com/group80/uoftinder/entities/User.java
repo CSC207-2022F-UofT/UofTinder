@@ -25,7 +25,7 @@ public class User {
     private List liked;
     private List matches;
 
-    public User(){
+    public User() {
         this.liked = new ArrayList();
         this.viewed = new ArrayList();
         this.matches = new ArrayList();
