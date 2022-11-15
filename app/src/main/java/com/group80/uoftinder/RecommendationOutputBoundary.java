@@ -2,5 +2,5 @@ package com.group80.uoftinder;
 import java.util.ArrayList;
 
 public interface RecOutputBoundary {
-    void displayCompatibleUsers(ArrayList<User> compatibilityList);
+    void displayCompatibleUsers(ArrayList<String> compatibilityList);
 }
