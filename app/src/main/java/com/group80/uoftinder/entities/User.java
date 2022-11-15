@@ -17,6 +17,7 @@ public class User {
     // this information is displayed on profile
     private String displayName; // last name and first name displayed on profile
     private Uri photoUrl;
+    private String name;
     private int age;
     private String gender;
 
@@ -40,6 +41,14 @@ public class User {
     }
     public int getScore() {
         return score;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setAge(int age) {
