@@ -52,8 +52,28 @@ public class GenerateCompatibilityList {
 
     public ArrayList<Integer> calculateCompatibilityScores(List<User> users) {
         ArrayList<Integer> compScores = new ArrayList<>();
+        int curUserScore = curUser.getScore();
         for (User user : users) {
-            compScores.add(user.getScore() & curUser.getScore());
+            int userScore = user.getScore();
+
+            compScores.add(curUserScore & userScore);
+
+//            String compatibilityScore = "";
+//
+//            int bitDiff = userScore1.length() - userScore2.length();
+//
+//            if (bitDiff > 0) {
+//                userScore2 = "0".repeat(bitDiff) + userScore2;
+//            } else if (bitDiff < 0) {
+//                int bitExtend = -1 * bitDiff;
+//                userScore1 = "0".repeat(bitExtend) + userScore1;
+//            }
+//
+//            for (int i = 0; i < userScore1.length(); i++) {
+//                compatibilityScore = compatibilityScore +
+//                        (userScore1.substring(i,i+1) & userScore2.substring(i,i+1));
+//            }
+//            compScores.add(user.getScore() & curUser.getScore());
         }
 
         return compScores;
