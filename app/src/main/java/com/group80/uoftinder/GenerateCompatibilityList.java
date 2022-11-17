@@ -10,9 +10,11 @@ import java.util.List;
 
 public class GenerateCompatibilityList {
     private User curUser;
+    private int curUserScore;
     private ArrayList<String> compatibilityList;
     private RecOutputBoundary recOutputBoundary;
     private List<User> users;
+    private UserScoreFacade usf;
 
     //TODO: use API
     // Navigate all users
@@ -23,6 +25,8 @@ public class GenerateCompatibilityList {
     public GenerateCompatibilityList() {
         RealtimeDbController realtimeDbController = ...;
         List<User> users = realtimeDbController.getAllUsers(Void unused, type=curUser.getUserType());
+        usf = new UserScoreFacade(curUser, new CreateAccountInteractor()) // may need to change 2nd param
+        int curUserScore = curUser.getScore();
     }
 
     public void generateCompatibilityList() {
@@ -52,15 +56,15 @@ public class GenerateCompatibilityList {
         Map<String, Integer> compScores = new Hashtable<>();
         int curUserScore = curUser.getScore();
         for (User user : users) {
-            calculateCompatibiltyScore(compScores, user, curUserScore);
+            calculateCompatibiltyScore(compScores, user);
         }
         return compScores;
     }
 
-    public void calculateCompatibiltyScore(Map<String, Integer> compScores, User compUser,
-                                           int curUserScore) {
+    public void calculateCompatibiltyScore(Map<String, Integer> compScores, User compUser) {
         int userScore = compUser.getScore();
-        compScores.put(compUser.getUid(), curUserScore & userScore);
+        int compScore = usf.compare(curUserScore, userScore);
+        compScores.put(compUser.getUid(), compScore);
     }
 
     public void update() {
