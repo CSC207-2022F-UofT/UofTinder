@@ -1,51 +1,43 @@
 package com.group80.uoftinder;
 
-import com.group80.uoftinder.entities.User;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class UserScoreCalculator {
-    private User currentUser; // user.getAnswers(), user.getAnswerSchema()
-    private int answerLen;
-    private HashSet<Integer>[] userAnswers; // [{0, 2, 3}, {1, 3}, ...]
-    private int[] answerSchema; // [5, 7, 2, 4]
+    private ArrayList<HashSet<Integer>> userAnswers;
+    private final boolean[] isMultiSelect;
+    private final int[] answerBitLengths;
+    private final int answerLen;
 
-    public UserScoreCalculator(User currentUser, CreateAccountInteractor cai) {
-        this.currentUser = currentUser;
-        this.userAnswers = this.currentUser.getAnswers();
-        this.answerLen = this.userAnswers.length;
-        this.answerSchema = cai.getAnswerSchema();
+    public UserScoreCalculator(ArrayList<HashSet<Integer>> userAnswers, boolean[] isMultiSelect, int[] answerBitLengths) {
+        this.userAnswers = userAnswers;
+        this.isMultiSelect = isMultiSelect;
+        this.answerBitLengths = answerBitLengths;
+        this.answerLen = isMultiSelect.length;
     }
-
-    public boolean[] getIsMultiSelectArray() {
-        boolean[] isMultiSelect = new boolean[answerLen];
-        for (int i = 0; i < answerLen; i ++) {
-            isMultiSelect[i] = userAnswers[i].size() > 1;
-        }
-        return isMultiSelect;
-    }
-
-    public int[] getAnswerSchema() {
-        return answerSchema;
-    }
-    // order questions by importance?
-
 
     public int generateCompatibilityScore() {
         StringBuilder binaryScore = new StringBuilder();
-        for (int i = 0; i < userAnswers.length; i++) {
-            String bundledBinary = answerSetToBinary(userAnswers[i], answerSchema[i]);
+        StringBuilder binaryScoreSeparated = new StringBuilder();
+        for (int i = 0; i < this.answerLen; i++) {
+            String bundledBinary = answerSetToBinary(i);
             binaryScore.append(bundledBinary);
+            if (this.isMultiSelect[i]) {
+                binaryScoreSeparated.append(bundledBinary).append("*");
+            } else{
+                binaryScoreSeparated.append(bundledBinary).append("-");
+            }
         }
-        System.out.println("binaryScore: " + binaryScore.toString());
+        System.out.println("binaryScore: " + binaryScoreSeparated.toString());
         return Integer.parseInt(binaryScore.toString(), 2);
     }
 
-    private String answerSetToBinary(HashSet<Integer> currentSet, int numOptions) {
+    private String answerSetToBinary(int currIndex) {
         StringBuilder binarySection = new StringBuilder();
-        if (currentSet.size() > 1) {
+        if (this.isMultiSelect[currIndex]) {
             // length of binary section equals number of options
-            for (int curr = 0; curr < numOptions; curr++) {
-                if (currentSet.contains(curr)) {
+            for (int curr = 0; curr < this.answerBitLengths[currIndex]; curr++) {
+                if (this.userAnswers.get(currIndex).contains(curr)) {
                     binarySection.append("1");
                 } else {
                     binarySection.append("0");
@@ -53,17 +45,10 @@ public class UserScoreCalculator {
             }
             return binarySection.toString();
         } else {
-            // length of binary section equals number of options (in binary)
-            int binarySectionLen = Integer.toBinaryString(numOptions - 1).length();
-            int optionSelected = (int) currentSet.toArray()[0];
+            // retrieve the only value in HashSet since there is only one answer
+            int optionSelected = (int) this.userAnswers.get(currIndex).toArray()[0];
             String binaryRepresentation = Integer.toBinaryString(optionSelected);
-            String binarySectionString = String.format("%0" + binarySectionLen + "d", Integer.parseInt(binaryRepresentation));
-            return binarySectionString;
+            return String.format("%0" + this.answerBitLengths[currIndex] + "d", Integer.parseInt(binaryRepresentation));
         }
     }
-
-    // for userAnswers:
-    // would like to know the number of options for each
-    // would like to know selected options
-    // would like each answer as a set of integers
 }
