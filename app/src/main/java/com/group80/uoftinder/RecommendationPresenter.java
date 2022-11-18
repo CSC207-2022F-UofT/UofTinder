@@ -1,15 +1,27 @@
 package com.group80.uoftinder;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class RecommendationPresenter implements RecOutputBoundary{
+public class RecommendationPresenter implements RecPresenterInterface{
+    private GenerateCompatibilityList genCompatibilityList;
 
-    public void displayCompatibleUsers(ArrayList<String> compatibilityList) {
-        if (compatibilityList.size() > 0) {
-            // display compatibilityList.get(0) and pop
-        }
-        else {
-            // display No Compatible User Error Message
-        }
+    public RecommendationPresenter() {
+        genCompatibilityList = new GenerateCompatibilityList(this);
+    }
+
+    public void displayNextUser(User user) {
+        genCompatibilityList.update();
+    }
+
+    public void displayUser(User user) {
+        RecViewInterface.showUser(user);
+    }
+
+    public void displayNoCompatibleUser() {
+        RecViewInterface.noCompatibleUser();
+    }
+
+    public void regenerate() {
+        genCompatibilityList.generateCompatibilityList();
     }
 }
