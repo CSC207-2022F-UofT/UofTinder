@@ -24,11 +24,13 @@ public class User {
     private List viewed;
     private List liked;
     private List matches;
+    private List compatibilityList;
 
-    public User() {
-        this.liked = new ArrayList();
-        this.viewed = new ArrayList();
-        this.matches = new ArrayList();
+    public User(){
+        this.liked = new ArrayList<String>();
+        this.viewed = new ArrayList<String>();
+        this.matches = new ArrayList<String>();
+        this.compatibilityList = new ArrayList<String>();
     }
 
     public String getUserType(){
@@ -106,5 +108,13 @@ public class User {
 
     public void setMatches(List matches) {
         this.matches = matches;
+    }
+
+    public List getCompatibilityList() {
+        return compatibilityList;
+    }
+
+    public void setCompatibilityList(List compatibilityList) {
+        this.compatibilityList = compatibilityList;
     }
 }
