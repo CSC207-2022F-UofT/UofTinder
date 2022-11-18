@@ -46,6 +46,11 @@ public abstract class ucDownloader<T> {
             listener.onStorageDownloadSuccess(data);
     }
 
+    /**
+     * Notifies the listeners for a fail download
+     *
+     * @param e the error that caused the download to fail
+     */
     protected void notifyFailure(@NonNull Exception e) {
         for (StorageDbDownloadable<T> listener : this.listeners)
             listener.onStorageDownloadFailure(e);

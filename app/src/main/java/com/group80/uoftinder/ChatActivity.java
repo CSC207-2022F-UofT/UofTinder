@@ -32,8 +32,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class ChatActivity extends AppCompatActivity implements RealtimeDbValueObserver {
-    private String currentTime;
+/**
+ * The chat window to a specific contact
+ */
+public class ChatActivity extends AppCompatActivity {
     private Calendar calendar;
     private SimpleDateFormat simpleDateFormat;
 
@@ -80,7 +82,20 @@ public class ChatActivity extends AppCompatActivity implements RealtimeDbValueOb
         //******************************************************************************************
 
         String chatRoom = selfUid.compareTo(contactUid) < 0 ? selfUid + contactUid : contactUid + selfUid;
-        ucChatMessageWriter chatMessageWriter = new ucChatMessageWriter(this, chatRoom);
+        ucChatMessageWriter chatMessageWriter = new ucChatMessageWriter(new RealtimeDbValueObserver() {
+            @Override
+            public void onRealtimeDbDataChange(@NonNull DataSnapshot snapshot) {
+                messageList.clear();
+                for (DataSnapshot childSnapshot : snapshot.getChildren())
+                    messageList.add(childSnapshot.getValue(Message.class));
+                messageAdapter.notifyItemInserted(messageAdapter.getItemCount() - 1);
+            }
+
+            @Override
+            public void onRealtimeDbCancelled(@NonNull DatabaseError error) {
+                // TODO: handle error
+            }
+        }, chatRoom);
 
         calendar = Calendar.getInstance();
         simpleDateFormat = new SimpleDateFormat("hh:mm a", Locale.CANADA);
@@ -136,18 +151,5 @@ public class ChatActivity extends AppCompatActivity implements RealtimeDbValueOb
         super.onStop();
         if (messageAdapter != null)
             messageAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onRealtimeDbDataChange(@NonNull DataSnapshot snapshot) {
-        messageList.clear();
-        for (DataSnapshot childSnapshot : snapshot.getChildren())
-            this.messageList.add(childSnapshot.getValue(Message.class));
-        messageAdapter.notifyItemInserted(messageAdapter.getItemCount() - 1);
-    }
-
-    @Override
-    public void onRealtimeDbCancelled(@NonNull DatabaseError error) {
-        // TODO: handle error
     }
 }

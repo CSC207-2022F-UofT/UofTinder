@@ -18,6 +18,11 @@ public class ucImageDownloader extends ucDownloader<byte[]> {
         imageReference.getBytes(5120 * 5120).addOnSuccessListener(this::notifySuccess).addOnFailureListener(this::notifyFailure);
     }
 
+    /**
+     * Downloads an byte array from the firebase storage, then convert it to an bitmap image
+     *
+     * @param path the path of the image in the storage database
+     */
     public void download(String[] path) {
         StorageReference imageReference = storageReference;
         for (String subDir : path)

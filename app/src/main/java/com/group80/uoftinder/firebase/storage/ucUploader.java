@@ -9,6 +9,11 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An uploader to upload data to the firebase cloud storage
+ *
+ * @param <T> the type of data to be uploaded
+ */
 public abstract class ucUploader<T> {
     protected final StorageReference storageReference;
     protected List<StorageDbUploadable> listeners;

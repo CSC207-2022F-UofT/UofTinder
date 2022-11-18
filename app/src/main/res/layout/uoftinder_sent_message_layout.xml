@@ -2,34 +2,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="50dp"
     android:padding="2dp">
 
     <RelativeLayout
-        android:id="@+id/uoftinder_other_layout"
+        android:id="@+id/uoftinder_self_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/uoftinder_other_bubble">
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/uoftinder_sent_message_bubble">
 
         <TextView
-            android:id="@+id/uoftinder_other_message_text"
+            android:id="@+id/uoftinder_self_message_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="7dp"
             android:paddingTop="7dp"
             android:paddingEnd="40dp"
             android:paddingBottom="7dp"
-            android:text="Other's Chat Message"
+            android:text="Sender's Chat Message"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/uoftinder_other_message_time"
+            android:id="@+id/uoftinder_self_message_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/uoftinder_other_message_text"
+            android:layout_alignBottom="@+id/uoftinder_self_message_text"
             android:layout_marginStart="-40dp"
-            android:layout_toEndOf="@+id/uoftinder_other_message_text"
+            android:layout_toEndOf="@+id/uoftinder_self_message_text"
             android:padding="7dp"
             android:text="00:00"
             android:textColor="#434343"
