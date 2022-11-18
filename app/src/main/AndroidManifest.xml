@@ -20,7 +20,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RecommendationProfileDisplay"
+            android:name=".RecommendationView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/profilePicture"
-        android:layout_width="match_parent"
-        android:layout_height="325dp"
+        android:layout_width="444dp"
+        android:layout_height="462dp"
         android:layout_weight="1"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -52,8 +52,7 @@
             android:background="#F44336"
             android:text="No"
             app:cornerRadius="20dp"
-            app:icon="@android:drawable/ic_delete"
-            app:rippleColor="#009688" />
+            app:icon="@android:drawable/ic_delete" />
 
         <Button
             android:id="@+id/yesButton"

@@ -35,8 +35,8 @@ public class RecommendationView extends AppCompatActivity implements Recommendat
         yesButton = findViewById(R.id.yesButton);
 
         // initialize first user
-        RecControllerPresenter recControllerPresenter = new RecControllerPresenter();
-        User displayedUser = recControllerPresenter.displayNextUser();
+        RecommendationPresenter recPresenter = new RecommendationPresenter();
+        User displayedUser = recPresenter.displayNextUser();
 
         // yes button click listener
         yesButton.setOnClickListener(view -> {
@@ -54,8 +54,8 @@ public class RecommendationView extends AppCompatActivity implements Recommendat
         // add displayed User to viewed/liked list
         current.addToList(displayedUser, liked);
         // displays next user
-        RecControllerPresenter recControllerPresenter = new RecControllerPresenter();
-        recControllerPresenter.displayNextUser();
+        RecommendationPresenter recPresenter = new RecommendationPresenter();
+        recPresenter.displayNextUser();
 
     }
     // set information on screen to the displayed User's information
