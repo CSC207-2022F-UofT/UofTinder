@@ -1,6 +1,5 @@
 package com.group80.uoftinder;
 
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -10,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,12 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.group80.uoftinder.chat.Message;
 import com.group80.uoftinder.chat.MessageAdapter;
 import com.group80.uoftinder.firebase.realtime.RealtimeDbValueObserver;
 import com.group80.uoftinder.firebase.realtime.ucChatMessageWriter;
+import com.group80.uoftinder.firebase.storage.ImageStorageDbFacade;
+import com.group80.uoftinder.firebase.storage.StorageDbDownloadable;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,7 +41,6 @@ public class ChatActivity extends AppCompatActivity implements RealtimeDbValueOb
     private List<Message> messageList;
     private String inputMessage;
 
-    //    private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -87,34 +86,39 @@ public class ChatActivity extends AppCompatActivity implements RealtimeDbValueOb
         simpleDateFormat = new SimpleDateFormat("hh:mm a", Locale.CANADA);
 
         backButton.setOnClickListener(view -> {
-            // TODO: wrap-up firebaseAuth
-//            FirebaseAuth.getInstance().signOut();
             finish();
         });
 
         contactName.setText(contactNameStr);
-        // TODO: wrap-up the image showing process
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference imgRef = storage.getReference().child(contactUid).child("img").child("_profile_img.jpg");
-        imgRef.getBytes(5120 * 5120).addOnCompleteListener(task -> {
-            byte[] imageData = task.getResult();
-            Bitmap profileImage = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
-            contactProfilePic.setImageBitmap(profileImage);
-        });
+        ImageStorageDbFacade.downloadImage(new String[]{contactUid, "img", "_profile_img.jpg"},
+                new StorageDbDownloadable<byte[]>() {
+                    @Override
+                    public void onStorageDownloadSuccess(byte[] data) {
+                        contactProfilePic.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
+                    }
+
+                    @Override
+                    public void onStorageDownloadFailure(@NonNull Exception exception) {
+                        // Set to a default profile image
+                        contactProfilePic.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_account_circle_24));
+                    }
+                });
 
         sendMessageButton.setOnClickListener(view -> {
             inputMessage = messageEditText.getText().toString();
             if (inputMessage.isEmpty()) return;
 
-            // TODO: simplify this
-            Date date = new Date();
-            currentTime = simpleDateFormat.format(calendar.getTime());
             // TODO: wrap-up firebaseAuth
-            Message message = new Message(inputMessage, firebaseAuth.getUid(), date.getTime(), currentTime);
+            Message message = new Message(inputMessage,
+                    firebaseAuth.getCurrentUser().getUid(),
+                    new Date().getTime(),
+                    simpleDateFormat.format(calendar.getTime())
+            );
             chatMessageWriter.write(message);
             messageEditText.setText(null);
         });
 
+        // When keyboard is up / down, scroll the message list to the bottom for better display
         messagesRecyclerView.addOnLayoutChangeListener((view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
             if (messagesRecyclerView.getAdapter() != null && messagesRecyclerView.getAdapter().getItemCount() > 0)
                 messagesRecyclerView.smoothScrollToPosition(messagesRecyclerView.getAdapter().getItemCount() - 1);
