@@ -1,112 +1,297 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/maxAgeText"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="8dp"
-        android:text="Maximum Age"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/maxAgePicker"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/filterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="76dp"
-        android:layout_marginBottom="68dp"
-        android:text="Filter"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/resetButton" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
-    <Button
-        android:id="@+id/resetButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="68dp"
-        android:text="Reset"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="20dp">
 
-    <NumberPicker
-        android:id="@+id/minAgePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toStartOf="@+id/maxAgeText"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toEndOf="@+id/minAgeText"
-        app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:orientation="vertical"
+                android:paddingTop="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
 
-    <TextView
-        android:id="@+id/minAgeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="112dp"
-        android:text="Minimum Age"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:baselineAligned="false">
 
-    <NumberPicker
-        android:id="@+id/maxAgePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
 
-    <NumberPicker
-        android:id="@+id/programOfStudyPicker"
-        android:layout_width="129dp"
-        android:layout_height="175dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/minAgePicker" />
+                        <TextView
+                            android:id="@+id/minAgeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:text="@string/minimum_age"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-    <NumberPicker
-        android:id="@+id/yearOfStudyPicker"
-        android:layout_width="84dp"
-        android:layout_height="172dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.339"
-        app:layout_constraintStart_toEndOf="@+id/programOfStudyPicker"
-        app:layout_constraintTop_toBottomOf="@+id/maxAgePicker" />
+                        <NumberPicker
+                            android:id="@+id/minAgePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            app:layout_constraintEnd_toStartOf="@+id/maxAgeText"
+                            app:layout_constraintHorizontal_bias="0.115"
+                            app:layout_constraintStart_toEndOf="@+id/minAgeText"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </LinearLayout>
 
-    <TextView
-        android:id="@+id/majorText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Program of Study"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/programOfStudyPicker"
-        app:layout_constraintEnd_toEndOf="@+id/programOfStudyPicker"
-        app:layout_constraintStart_toStartOf="@+id/programOfStudyPicker"
-        app:layout_constraintTop_toBottomOf="@+id/minAgePicker"
-        app:layout_constraintVertical_bias="1.0" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
 
-    <TextView
-        android:id="@+id/yearText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Year of Study"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/yearOfStudyPicker"
-        app:layout_constraintEnd_toEndOf="@+id/yearOfStudyPicker"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/yearOfStudyPicker" />
+                        <TextView
+                            android:id="@+id/maxAgeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:text="@string/maximum_age"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@+id/maxAgePicker"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <NumberPicker
+                            android:id="@+id/maxAgePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="286dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/majorText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:text="@string/program_of_study"
+                            android:textStyle="bold"
+                            app:layout_constraintTop_toBottomOf="@+id/minAgePicker"
+                            tools:layout_editor_absoluteX="32dp" />
+
+                        <CheckBox
+                            android:id="@+id/computerScienceBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/computer_science"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/majorText" />
+
+                        <CheckBox
+                            android:id="@+id/mathematicalPhysicalSciencesBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/mathematical_physical_sciences"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <CheckBox
+                            android:id="@+id/lifeSciencesBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/life_sciences"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <CheckBox
+                            android:id="@+id/socialSciencesBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/social_sciences"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <CheckBox
+                            android:id="@+id/rotmanBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/rotman"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <CheckBox
+                            android:id="@+id/otherStudyBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/other"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/yearText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:text="@string/year_of_study"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/yearOfStudyPicker"
+                            app:layout_constraintEnd_toEndOf="@+id/yearOfStudyPicker"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/yearOfStudyPicker" />
+
+                        <CheckBox
+                            android:id="@+id/firstYearBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/first_year"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <CheckBox
+                            android:id="@+id/secondYearBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/second_year"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <CheckBox
+                            android:id="@+id/thirdYearBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/third_year"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <CheckBox
+                            android:id="@+id/fourthYearBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/fourth_year"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <CheckBox
+                            android:id="@+id/graduateBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/graduate"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <CheckBox
+                            android:id="@+id/coopYearBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/co_op"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp">
+
+            <Button
+                android:id="@+id/filterButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="serif"
+                android:text="@string/filter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/resetButton" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
+
+            <Button
+                android:id="@+id/resetButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="serif"
+                android:text="@string/reset"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
