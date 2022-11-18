@@ -14,6 +14,8 @@ import java.util.HashMap;
 
 public class CreateAccountView extends AppCompatActivity {
     HashMap<String, String> basicInfo = new HashMap<String, String>();
+    private final UserAccountController control = new UserAccountController();
+    private final CreateAccountPresenter proceed = new CreateAccountPresenter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +40,39 @@ public class CreateAccountView extends AppCompatActivity {
     }
 
     public void createAccountView() {
-
-        UserAccountController control = new UserAccountController();
-        CreateAccountPresenter proceed = new CreateAccountPresenter();
-
         String email = ((EditText) findViewById(R.id.email)).getText().toString().trim();
         String password1 = ((EditText)findViewById(R.id.password1)).getText().toString().trim();
         String password2 = ((EditText)findViewById(R.id.password2)).getText().toString().trim();
-        control.newAccount(email, password1, password2);
+        boolean move_on = control.newAccount(email, password1, password2);
+        if (move_on) {
+            createBasicInfoView();
+        }
+        else {
+            String text = proceed.account_error(email, password1, password2);
+            //use text to set error message in UI
+        }
+    }
+
+    private void createBasicInfoView() {
+        setContentView(R.layout.basicinfoview);
+        String userName = ((EditText) findViewById(R.id.name)).getText().toString().trim();
+        String userAge = ((EditText) findViewById(R.id.age)).getText().toString();
+//        String password2 = ((EditText)findViewById(R.id.password2)).getText().toString().trim();
+//        get all attributes and pass type to createQuestionnaireView
+//        String type = get type from boxes and createQuestionnaireView(type)
+
+    }
+
+    private void createQuestionnaireView(String type) {
+        if(type.compareTo("Romantic")==0) {
+//            romantic questionnaire view
+        }
+        else if(type.compareTo("Friendship")==0) {
+//           friendship questionnaire view
+        }
+        else if(type.compareTo("Academic")==0) {
+//            academic questionnaire view
+        }
     }
 
     private void showLoginView(View view) {
