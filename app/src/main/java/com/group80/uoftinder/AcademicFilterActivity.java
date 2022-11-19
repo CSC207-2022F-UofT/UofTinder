@@ -107,6 +107,8 @@ public class AcademicFilterActivity extends AppCompatActivity {
                     uncheckBox(checkBox);
                 for(CheckBox checkBox: yearOfStudyBoxes)
                     uncheckBox(checkBox);
+                for(CheckBox checkBox: campusBoxes)
+                    uncheckBox(checkBox);
             }
         });
     }
