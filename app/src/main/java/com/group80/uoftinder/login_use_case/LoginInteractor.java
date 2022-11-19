@@ -11,8 +11,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.concurrent.Executor;
-
 public class LoginInteractor extends AppCompatActivity implements LoginInput{
 
     final LoginPresenter loginPresenter;
@@ -39,7 +37,7 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
 
         else { // user == null, signing in with email and password
             mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             // LoginInteractor checks
