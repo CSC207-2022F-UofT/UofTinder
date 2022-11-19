@@ -8,7 +8,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 /**
- * A use case that generates a list of compatible users for the current user
+ * A use case class that generates a list of compatible users for the current user
  */
 public class GenerateCompatibilityList {
     private User curUser;
@@ -24,7 +24,7 @@ public class GenerateCompatibilityList {
      */
     public GenerateCompatibilityList(RecPresenterInterface recPresenterInterface) {
         List<User> allUsers = UserRealtimeDbFacade.getAllUsers(curUser.getUserType());
-        usf = new UserScoreFacade(curUser, new CreateAccountInteractor()); // may need to change 2nd param
+        usf = new UserScoreFacade(curUser);
         User curUser = UserRealtimeDbFacade.getCurrentUser();
         int curUserScore = curUser.getScore();
         this.recPresenterInterface = recPresenterInterface;
@@ -76,7 +76,7 @@ public class GenerateCompatibilityList {
     private Map<String, Integer> calculateCompatibilityScores(List<User> users) {
         Map<String, Integer> compScores = new Hashtable<>();
         for (User user : users) {
-            calculateCompatibiltyScore(compScores, user);
+            calculateCompatibilityScore(compScores, user);
         }
         return compScores;
     }
@@ -87,41 +87,64 @@ public class GenerateCompatibilityList {
      * @param compScores: a map of user IDs to their compatibility score with curUser
      * @param compUser: the user to compare with curUser
      */
-    private void calculateCompatibiltyScore(Map<String, Integer> compScores, User compUser) {
+    private void calculateCompatibilityScore(Map<String, Integer> compScores, User compUser) {
         int userScore = compUser.getScore();
         int compScore = usf.compare(curUserScore, userScore);
         compScores.put(compUser.getUid(), compScore);
     }
 
     /**
-     * Removes the most compatible user (the first element) from compatibilityList and send it to
+     * Get the most compatible user (the first element) from compatibilityList and send it to
      * the recPresenterInterface to display it
      */
-    public void update() {
+    public void showMostCompUser() {
         if (compatibilityList.size() > 0) {
-            String nextUserId = compatibilityList.get(0);
-            User nextUser = UserRealtimeDbFacade.getUser(nextUserId);
-            this.compatibilityList.remove(0);
-            curUser.setCompatibilityList(compatibilityList);
-            recPresenterInterface.displayUser(nextUser);
+            String displayUserId = compatibilityList.get(0);
+            User displayUser = UserRealtimeDbFacade.getUser(displayUserId);
+            recPresenterInterface.displayUser(displayUser);
         }
         else {
             recPresenterInterface.displayNoCompatibleUser();
         }
     }
 
+    /**
+     * Remove the most compatible user (the first element) from compatibilityList and update the
+     * User object's compatibilityList
+     */
+    public void removeMostCompUser() {
+        this.compatibilityList.remove(0);
+        curUser.setCompatibilityList(compatibilityList);
+    }
+
+    /**
+     * Set curUser to newUser
+     * @param newUser: what to set curUser to
+     */
     public void setCurUser(User newUser) {
         this.curUser = newUser;
     }
 
+    /**
+     * Set allUsers list to usersList
+     * @param usersList: what to set allUsers to
+     */
     public void setAllUsers(List<User> usersList) {
         this.allUsers = usersList;
     }
 
+    /**
+     * Set curUserScore to newScore
+     * @param newScore: what to set curUserScore to
+     */
     public void setCurUserScore(int newScore) {
         this.curUserScore = newScore;
     }
 
+    /**
+     * Get compatibilityList
+     * @return the compatibilityList attribute
+     */
     public List<String> getCompatibilityList() {
         return this.compatibilityList;
     }

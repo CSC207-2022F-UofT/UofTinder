@@ -34,8 +34,8 @@ public class GenerateCompatibilityListTest {
         curUser.setUid("curUser");
         user2.setUid("user2");
         user3.setUid("user3");
-        List<User> allUsers = new ArrayList<User>(Arrays.asList(user2, user3));
-        List<String> expectedCompList = new ArrayList<String>(Arrays.asList("user3", "user2"));
+        List<User> allUsers = new ArrayList<>(Arrays.asList(user2, user3));
+        List<String> expectedCompList = new ArrayList<>(Arrays.asList("user3", "user2"));
         // user 3 compScore = 4
         // user 2 compScore = 3
         generateCompatibilityList.setAllUsers(allUsers);

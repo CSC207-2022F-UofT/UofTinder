@@ -1,6 +1,8 @@
 package com.group80.uoftinder;
-import java.util.List;
 
+/**
+ * An interface that is implemented by the RecommendationPresenter
+ */
 public interface RecPresenterInterface {
     void displayUser(User user);
     void displayNoCompatibleUser();
