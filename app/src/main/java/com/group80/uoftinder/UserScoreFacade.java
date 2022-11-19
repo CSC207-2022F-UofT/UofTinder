@@ -5,83 +5,74 @@ import com.group80.uoftinder.entities.User;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/**
+ * Facade class that contains methods to calculate user score and compare two user scores
+ */
 public class UserScoreFacade {  // using Facade Design Principle to delegate tasks
-    private final UserScoreCalculator usCalc;
-    private final UserScoreComparator usComp;
-    private ArrayList<HashSet<Integer>> userAnswers; // [{0, 2, 3}, {1, 3}, ...]
-    private final int[] answerSchema;
-    private final boolean[] isMultiSelect;
-    private final int answerLen;
+    private final UserScoreCalculator usCalc; // instance of class designed for calculating user scores
+    private final UserScoreComparator usComp; // instance of class designed for comparing user scores
+    private ArrayList<HashSet<Integer>> userAnswers; // ArrayList of HashSets, where index i is a
+    // HashSet representing the indices of the answers selected by the currentUser for question i
+    private final int[] answerSchema; // array where index i tells us the number of options for
+    // question i
+    private final boolean[] isMultiSelect; // array where index i tells us whether question i can
+    // have multiple answers selected or just one
+    private final int answerLen; // helper int for the number of questions
 
-    public UserScoreFacade(User currentUser, CreateAccountInteractor cai) {  // using Dependency Injection Design Principle
+    /**
+     * Constructor for the UserScoreFacade class
+     * @param currentUser is the user whose score needs to be calculated
+     */
+    public UserScoreFacade(User currentUser) {  // using Dependency Injection Design Principle
         this.userAnswers = currentUser.getAnswers();
-        this.answerSchema = cai.getAnswerSchema();
-        this.isMultiSelect = cai.getIsMultiSelect();
+        this.answerSchema = CreateAccountInteractor.getAnswerSchema(); // static method that returns number of options for each question
+        this.isMultiSelect = CreateAccountInteractor.getIsMultiSelect(); // static method that returns whether each question is multi-select
         this.answerLen = this.userAnswers.size();
-        int[] answerBitLengths = getAnswerBitLengths();
-
-//        this.answerLen = 10;
-//        this.answerSchema = new int[] {3, 4, 4, 5, 4, 3, 5, 3, 4, 3};
-//        this.isMultiSelect = new boolean[] {false, true, true, false, false, true, false, true, true, false};
-//        initializeAnswers();
+        int[] answerBitLengths = getAnswerBitLengths(); // array where index i tells us the number of bits
+        // allocated for question i in the user score
 
         this.usCalc = new UserScoreCalculator(this.userAnswers, this.isMultiSelect, answerBitLengths);
         this.usComp = new UserScoreComparator(this.isMultiSelect, answerBitLengths);
     }
 
+    /**
+     * Function that uses the UserScoreCalculator instance to compute the compatibility score
+     *
+     * @return the generated compatibility score
+     */
     public int generateCompatibilityScore() {
         return this.usCalc.generateCompatibilityScore();
     }
 
+    /**
+     * @param score1 is the score of the first user
+     * @param score2 is the score of the second user
+     *
+     * @return an integer that represents the similarity of the two scores (higher value signals higher similarity)
+     */
     public int compare(int score1, int score2) {
         return this.usComp.compare(score1, score2);
     }
 
-    // for testing
-    public void initializeAnswers() {
-        this.userAnswers = new ArrayList<>();
-//        System.out.println("answerLen: " + this.answerLen);
-        for (int i = 0; i < this.answerLen; i++) {
-            int optionLen = this.answerSchema[i];
-            int numRandSelected;
-            if (this.isMultiSelect[i]) {
-                numRandSelected = (int) (Math.random() * (optionLen - 1) + 2);
-            } else {
-                numRandSelected = 1;
-            }
-            HashSet<Integer> answers = new HashSet<>();
-//            System.out.println("numRandSelected: " + numRandSelected);
-            for (int j = 0; j < numRandSelected; j++) {
-                answers.add((int) (Math.random() * optionLen));
-            }
-            this.userAnswers.add(answers);
-        }
-//        for (int j = 0; j < answerLen; j++) {
-//            System.out.println("userAnswers: " + Arrays.toString(this.userAnswers[j].toArray()));
-//            System.out.println("Total number of options: " + this.answerSchema[j] + "\n");
-//        }
-    }
-
+    /**
+     * Function that returns an array containing the number of bits for each question in the binary
+     * representation of the user score. Each index i of the returned array dictates how many bits
+     * to analyze for question i when comparing two scores.
+     *
+     * @return the array of answer bit lengths
+     */
     private int[] getAnswerBitLengths() {
         int[] answerBitLengths = new int[this.answerLen];
         for (int i = 0; i < this.answerLen; i++) {
             if (this.isMultiSelect[i]) {
-                answerBitLengths[i] = this.answerSchema[i];
+                answerBitLengths[i] = this.answerSchema[i]; // for multi-select questions, each bit
+                // represents an option selection
             } else {
                 answerBitLengths[i] = Integer.toBinaryString((this.answerSchema[i] - 1)).length();
+                // for single-select questions, the number of bits is equal to the number of
+                // options in binary
             }
         }
         return answerBitLengths;
     }
-
-    // for testing
-//    public static void main(String[] args) {
-//        UserScoreFacade usf1 = new UserScoreFacade(new User(), new CreateAccountInteractor());
-//        int score1 = usf1.generateCompatibilityScore();
-//        System.out.println("User1 score: " + score1);
-//        UserScoreFacade usf2 = new UserScoreFacade(new User(), new CreateAccountInteractor());
-//        int score2 = usf2.generateCompatibilityScore();
-//        System.out.println("User2 score: " + score2);
-//        System.out.println("Compatibility score: " + usf1.compare(score1, score2));
-//    }
 }
