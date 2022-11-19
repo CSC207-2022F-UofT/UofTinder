@@ -59,7 +59,7 @@ public class RecommendationView extends AppCompatActivity implements Recommendat
 
     }
     // set information on screen to the displayed User's information
-    public void displayUser(User displayedUser) {
+    public void showUser(User displayedUser) {
         profilePicture.setImageURI(displayedUser.getPhotoUrl());
         name.setText(displayedUser.getDisplayName());
         age.setText(Integer.toString(displayedUser.getAge()));
