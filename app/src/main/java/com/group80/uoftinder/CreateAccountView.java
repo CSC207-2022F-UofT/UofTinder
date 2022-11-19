@@ -42,7 +42,7 @@ public class CreateAccountView extends AppCompatActivity {
         UserAccountController control = new UserAccountController();
         CreateAccountPresenter proceed = new CreateAccountPresenter();
 
-        String email = ((EditText) findViewById(R.id.email)).getText().toString().trim();
+        String email = ((EditText) findViewById(R.id.loginEmail)).getText().toString().trim();
         String password1 = ((EditText)findViewById(R.id.password1)).getText().toString().trim();
         String password2 = ((EditText)findViewById(R.id.password2)).getText().toString().trim();
         control.newAccount(email, password1, password2);
