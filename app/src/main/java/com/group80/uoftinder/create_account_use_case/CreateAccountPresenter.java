@@ -12,6 +12,5 @@ public class CreateAccountPresenter {
         if(!(interactor.checkEmail(email)))
             return "This email already has an account";
         return "Sorry something is wrong, please try again later :(";
-
     }
 }

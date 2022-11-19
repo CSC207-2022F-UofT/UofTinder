@@ -63,7 +63,6 @@ public class CreateAccountView extends AppCompatActivity {
             String text = proceed.account_error(email, password1, password2);
             TextView error = findViewById(R.id.errormessage);
             error.setText(text);
-            System.out.println(error.getText().toString());
         }
     }
 
@@ -74,7 +73,7 @@ public class CreateAccountView extends AppCompatActivity {
         enter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String userName = ((EditText) findViewById(R.id.name)).getText().toString().trim();
-                int userAge = Integer.parseInt(((EditText) findViewById(R.id.age)).getText().toString());
+                String userAge = ((EditText) findViewById(R.id.age)).getText().toString();
 
                 ChipGroup identity_group = findViewById(R.id.identityGroup);
                 int identity_count = identity_group.getChildCount();
@@ -99,14 +98,16 @@ public class CreateAccountView extends AppCompatActivity {
                 boolean move_on = control.newAccount(userName, userAge, identity, type);
                 if(move_on) {
                     currentUser.setName(userName);
-                    currentUser.setAge(userAge);
+                    currentUser.setAge(Integer.parseInt(userAge));
                     currentUser.setGender(identity);
                     currentUser.setUserType(type);
 
                     createQuestionnaireView("Academic");
                 }
                 else {
-                    //display text message error
+                    String text = "Please enter your information correctly";
+                    TextView error = findViewById(R.id.error_basicinfo);
+                    error.setText(text);
                 }
 
             }
@@ -134,7 +135,7 @@ public class CreateAccountView extends AppCompatActivity {
             public void onClick(View v) {
                 ChipGroup year_group = findViewById(R.id.yeargroup);
                 int year_count = year_group.getChildCount();
-                int year = 0;
+                int year = -1;
                 for(int i = 0; i<year_count; i++) {
                     Chip chip  = (Chip) year_group.getChildAt(i);
                     if(chip.isChecked()) {
@@ -153,8 +154,8 @@ public class CreateAccountView extends AppCompatActivity {
                 }
 
                 ChipGroup campus_group = findViewById(R.id.campusgroup);
-                int campus_count = major_group.getChildCount();
-                int campus = 0;
+                int campus_count = campus_group.getChildCount();
+                int campus = -1;
                 for(int i = 0; i<campus_count; i++) {
                     Chip chip  = (Chip) campus_group.getChildAt(i);
                     if(chip.isChecked()) {
@@ -170,10 +171,15 @@ public class CreateAccountView extends AppCompatActivity {
                     answers.add(new HashSet<>(campus));
                     currentUser.setAnswers((answers));
                     //store User into database
+//                    UserRealtimeDbFacade.uploadUser(currentUser);
                     //go onto recommendation feed
+//                    setContentView(recommendation_profile_display.xml);
                 }
                 else {
-                    //display text message error
+                    System.out.println("DID NOT WORKKK");
+                    String text = "Please enter your information correctly";
+                    TextView error = findViewById(R.id.error_questionnaire);
+                    error.setText(text);
                 }
             }
         });

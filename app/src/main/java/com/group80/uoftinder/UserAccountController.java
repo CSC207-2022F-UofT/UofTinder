@@ -13,17 +13,19 @@ public class UserAccountController {
 
         return checked_passwords && new_email;
     }
-    public boolean newAccount(String name, int age, String identity, String type) {
+    public boolean newAccount(String name, String age, String identity, String type) {
         boolean checkName = name.compareTo("")!=0;
-        boolean checkAge = (age >= 13) && (age <= 100);
+        boolean checkAge = age.compareTo("")!=0;
         boolean checkIdentity = identity.compareTo("")!=0;
         boolean checkType = type.compareTo("")!=0;
         return checkName && checkAge && checkIdentity && checkType;
     }
     public boolean finalAccount(int year, HashSet<Integer> majors, int campus) {
-        boolean checkYear = year != 0;
+        boolean checkYear = year != -1;
+        System.out.println(year);
         boolean checkMajors = !(majors.isEmpty());
-        boolean checkCampus = campus != 0;
+        System.out.println(campus);
+        boolean checkCampus = campus != -1;
         return checkYear && checkMajors && checkCampus;
     }
 }
