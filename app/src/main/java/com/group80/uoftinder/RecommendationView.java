@@ -8,9 +8,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Public class that extends AppCompatActivity and implements RecViewInterface.
+ * This class displays the most compatible users to currentUser.
+ */
+public class RecommendationView extends AppCompatActivity implements RecViewInterface {
+    private final User currentUser;
+    private final RecommendationPresenter recPresenter;
+    private User displayedUser;
 
-public class RecommendationView extends AppCompatActivity implements RecommendationViewInterface {
-    private User current;
+    /**
+     * Initialize an instance of RecommendationView by passing the currentUser.
+     * @param currentUser is the current user.
+     */
+    public RecommendationView(User currentUser) {
+        this.currentUser = currentUser;
+        this.recPresenter = new RecommendationPresenter(this);
+        this.displayedUser = null;
+    }
+
 
     // create variables for all elements that are displayed
     ImageView profilePicture;
@@ -35,13 +51,13 @@ public class RecommendationView extends AppCompatActivity implements Recommendat
         yesButton = findViewById(R.id.yesButton);
 
         // initialize first user
-        RecommendationPresenter recPresenter = new RecommendationPresenter();
-        User displayedUser = recPresenter.displayNextUser();
+        User displayedUser = (User) currentUser.getCompatibilityList().get(0);
 
         // yes button click listener
         yesButton.setOnClickListener(view -> {
             buttonClick(displayedUser, true);
         });
+
 
         // no button click listener
         noButton.setOnClickListener(view -> {
@@ -50,24 +66,45 @@ public class RecommendationView extends AppCompatActivity implements Recommendat
         });
     }
 
+    /**
+     * Initializes displayedUser to the first User in currentUser's most compatible list.
+     * @param displayedUser is the user displayed currently to currentUser.
+     */
+    public void setDisplayedUser(User displayedUser) {
+        this.displayedUser = displayedUser;
+    }
+
+
+    /**
+     * helper method for onClickListener method that listens
+     * when the 'Yes' and 'No' button is clicked
+     * @param displayedUser is the user displayed currently to currentUser
+     * @param liked If true, currentUser 'likes' displayedUser, false otherwise
+     */
     private void buttonClick(User displayedUser, boolean liked) {
+        UpdateList update = new UpdateList(currentUser, displayedUser, liked);
         // add displayed User to viewed/liked list
-        current.addToList(displayedUser, liked);
+        update.addToList(displayedUser, liked);
         // displays next user
-        RecommendationPresenter recPresenter = new RecommendationPresenter();
         recPresenter.displayNextUser();
 
     }
-    // set information on screen to the displayed User's information
+
+    /**
+     * Set the information on screen to the displayedUser's information
+     * @param displayedUser is the user displayed currently to currentUser
+     */
     public void showUser(User displayedUser) {
         profilePicture.setImageURI(displayedUser.getPhotoUrl());
-        name.setText(displayedUser.getDisplayName());
+        name.setText(displayedUser.getName());
         age.setText(Integer.toString(displayedUser.getAge()));
         gender.setText(displayedUser.getGender());
     }
 
+    /**
+     * displays a screen that tells currentUsers that there are no more compatible users.
+     */
     public void noCompatibleUser() {
-        // display a new screen that says no more users left!
         final Context context = this;
         Intent intent = new Intent(context, NoNewRecommendation.class);
         startActivity(intent);
