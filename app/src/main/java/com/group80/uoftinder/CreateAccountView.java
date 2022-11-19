@@ -48,7 +48,10 @@ public class CreateAccountView extends AppCompatActivity {
             }
         });
     }
-
+    /*
+     * Creates the createaccountview.xml and gets inputs, proceeds to next page if information is
+     * entered correctly
+     */
     public void createAccountView() {
         String email = ((EditText) findViewById(R.id.email)).getText().toString().trim();
         String password1 = ((EditText)findViewById(R.id.password1)).getText().toString().trim();
@@ -65,7 +68,10 @@ public class CreateAccountView extends AppCompatActivity {
             error.setText(text);
         }
     }
-
+    /*
+     * Creates the basicinfoview.xml and gets inputs, proceeds to next page if information is
+     * entered correctly
+     */
     private void createBasicInfoView() {
         setContentView(R.layout.basicinfoview);
 
@@ -79,12 +85,16 @@ public class CreateAccountView extends AppCompatActivity {
                 int identity_count = identity_group.getChildCount();
                 String identity = "";
 
+                //loops through all chips(answers) of identity answers and finds which chip was
+                //selected
                 for(int i = 0; i<identity_count; i++) {
                     Chip chip  = (Chip) identity_group.getChildAt(i);
                     if(chip.isChecked()) {
                         identity = chip.getText().toString();
                     }
                 }
+                //loops through all chips(answers) of type answers and finds which chip was
+                //selected
                 ChipGroup type_group = findViewById(R.id.typeGroup);
                 int type_count = type_group.getChildCount();
                 String type = "";
@@ -95,8 +105,10 @@ public class CreateAccountView extends AppCompatActivity {
                     }
                 }
 
+                //checks if all information was entered correctly
                 boolean move_on = control.newAccount(userName, userAge, identity, type);
                 if(move_on) {
+                    //sets information for the currentUser
                     currentUser.setName(userName);
                     currentUser.setAge(Integer.parseInt(userAge));
                     currentUser.setGender(identity);
@@ -115,6 +127,11 @@ public class CreateAccountView extends AppCompatActivity {
 
     }
 
+    /*
+     * Creates questionnaire view for the correct type
+     * @param type      a string representing the type of user that the user selected (only
+     *                  "academic" for now)
+     */
     private void createQuestionnaireView(String type) {
         if(type.compareTo("Academic")==0) {
             createAcademicQuestionnaire();
@@ -127,6 +144,10 @@ public class CreateAccountView extends AppCompatActivity {
 //        }
     }
 
+    /*
+     * Creates the academic_questionnaire.xml and gets inputs, proceeds to recommendation page if
+     * information is entered correctly
+     */
     private void createAcademicQuestionnaire() {
         setContentView(R.layout.academic_questionnaire);
 
@@ -135,14 +156,17 @@ public class CreateAccountView extends AppCompatActivity {
             public void onClick(View v) {
                 ChipGroup year_group = findViewById(R.id.yeargroup);
                 int year_count = year_group.getChildCount();
-                int year = -1;
+                int year = -1; //sets year to -1 (user did not select a chip)
+                //loops through all chips(answers) of year answers and finds which chip was
+                //selected
                 for(int i = 0; i<year_count; i++) {
                     Chip chip  = (Chip) year_group.getChildAt(i);
                     if(chip.isChecked()) {
                         year = i;
                     }
                 }
-
+                //loops through all chips(answers) of majors answers and finds the chips that were
+                //selected
                 ChipGroup major_group = findViewById(R.id.majorgroup);
                 int major_count = major_group.getChildCount();
                 HashSet<Integer> majors = new HashSet<>();
@@ -153,6 +177,8 @@ public class CreateAccountView extends AppCompatActivity {
                     }
                 }
 
+                //loops through all chips(answers) of campus answers and finds which chip was
+                //selected
                 ChipGroup campus_group = findViewById(R.id.campusgroup);
                 int campus_count = campus_group.getChildCount();
                 int campus = -1;
@@ -163,20 +189,22 @@ public class CreateAccountView extends AppCompatActivity {
                     }
                 }
 
+                //checks all questions have an answer
                 boolean move_on = control.finalAccount(year, majors, campus);
 
                 if (move_on) {
+                    //adds answers user selected to answers
                     answers.add(new HashSet<>(year));
                     answers.add(majors);
                     answers.add(new HashSet<>(campus));
                     currentUser.setAnswers((answers));
                     //store User into database
 //                    UserRealtimeDbFacade.uploadUser(currentUser);
-                    //go onto recommendation feed
+
+                    //proceed into recommendation view
 //                    setContentView(recommendation_profile_display.xml);
                 }
                 else {
-                    System.out.println("DID NOT WORKKK");
                     String text = "Please enter your information correctly";
                     TextView error = findViewById(R.id.error_questionnaire);
                     error.setText(text);
