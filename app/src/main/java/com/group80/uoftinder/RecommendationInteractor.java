@@ -57,10 +57,6 @@ public class RecommendationInteractor {
 //        currentUser.setCompatibilityList(compatibilityList);
     }
 
-    public void addToCompatbilityList(User user) {
-        this.compatibilityList.add(user);
-    }
-
     public void setCompatibilityList(List<User> compatibilityList) {
         this.compatibilityList = compatibilityList;
     }
@@ -69,6 +65,10 @@ public class RecommendationInteractor {
         return compatibilityList;
     }
 
+//    public void addToCompatbilityList(User user) {
+//        this.compatibilityList.add(user);
+//    }
+//
 //    public void populateCompatibilityList(List<String> userIds) {
 //        for(String userId: userIds) {
 //            UserRealtimeDbFacade.getUserById(userId, new UserCallback() {
@@ -78,47 +78,5 @@ public class RecommendationInteractor {
 //                }
 //            });
 //        }
-//    }
-//
-//    /**
-//     * Mutates the instance variable compatibilityList based on criteria given by
-//     * filters parameter and minimum/maximum age values. Also updates compatibilityList
-//     * of currentUser, beyond just mutating the instance variable compatibilityList.
-//     *
-//     * @param filters   A list of sets of integers that represents the wanted criteria.
-//     *                  Each set in the list corresponds to a filtering question.
-//     *                  For academic users, filters.size() should be 3 (program of study,
-//     *                  year of study, and campus). Each integer represents a selected choice.
-//     *                  {0, 3, 5} means the first, fourth, and sixth choices were checked.
-//     * @param minAge    The minimum age, inclusive
-//     * @param maxAge    The maximum age, inclusive
-//     */
-//    public void filterCompatibilityList(List<Set<Integer>> filters, int minAge, int maxAge) {
-//        for(int j = 0; j < compatibilityList.size(); j++) {
-//            String userId = compatibilityList.get(j);
-//            UserRealtimeDbFacade.getUserById(userId, new UserCallback() {
-//                @Override
-//                public void onUser(User user) {
-//                    // answers are formatted in the same way as filters, explained above
-//                    addToCompatbilityList(user);
-//                    List<Set<Integer>> answers = user.getAnswers();
-//                    for(int i = 0; i < answers.size(); i++) {
-//                        Set<Integer> currentFilter = filters.get(i);
-//                        Set<Integer> currentAnswers = answers.get(i);
-//                        if(currentFilter.size() == 0)
-//                            break;
-//                        boolean shouldRemove = true;
-//                        for(Integer filterVal: currentFilter) {
-//                            if(currentAnswers.contains(filterVal))
-//                                shouldRemove = false;
-//                        }
-//                        if(shouldRemove || minAge > user.getAge() || user.getAge() > maxAge) {
-//                            compatibilityList.remove(j);
-//                        }
-//                    }
-//                }
-//            });
-//        }
-//        currentUser.setCompatibilityList(compatibilityList);
 //    }
 }
