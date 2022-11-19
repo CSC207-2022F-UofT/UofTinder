@@ -15,6 +15,7 @@ public class HelloWorld extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hello_world);
 
+        // For testing the filter functionality
         Button testButton = findViewById(R.id.testButton);
         testButton.setOnClickListener(new View.OnClickListener() {
               @Override
@@ -22,6 +23,7 @@ public class HelloWorld extends AppCompatActivity {
                   startActivity(new Intent(HelloWorld.this, AcademicFilterActivity.class));
               }
         });
+
         Button button = findViewById(R.id.helloWorldEnterChatButton);
         button.setOnClickListener(view -> {
             Intent intent = new Intent(HelloWorld.this, ChatActivity.class);

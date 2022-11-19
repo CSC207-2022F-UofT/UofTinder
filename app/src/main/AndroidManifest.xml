@@ -13,13 +13,16 @@
         android:theme="@style/Theme.UofTinder"
         tools:targetApi="31">
         <activity
+            android:name=".AcademicFilterActivity"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".ChatActivity"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -32,7 +35,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
