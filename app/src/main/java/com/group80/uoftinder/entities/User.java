@@ -15,7 +15,7 @@ public class User {
     private int score;
 
     // this information is displayed on profile
-    private String displayName; // last name and first name displayed on profile
+    private String name; // last name and first name displayed on profile
     private Uri photoUrl;
     private int age;
     private String gender;
@@ -67,12 +67,12 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public String getName() {
+        return name;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUid() {
