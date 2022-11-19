@@ -1,10 +1,9 @@
 package com.group80.uoftinder;
 
-import static android.content.ContentValues.TAG;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,13 +14,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     EditText loginEmail;
     EditText loginPassword;
+    Button enterLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,57 +31,56 @@ public class Login extends AppCompatActivity {
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.password);
 
+        enterLogin = findViewById(R.id.EnterLogin);
+        enterLogin.setOnClickListener(view -> loginUser());
+
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+//    private void showHelloWorldView() {
+//        Intent intent = new Intent(Login.this, HelloWorld.class);
+//        startActivity(intent);
+//        finish();
+//    }
 
+
+    public void loginUser() {
+        System.out.println("HI IM HEREEEE");
         String email = loginEmail.getText().toString().trim();
         String password = loginPassword.getText().toString().trim();
-        // Check if user is signed in (non-null) and update UI accordingly.
 
-        FirebaseUser currentUser = mAuth.getCurrentUser(); // this is not null ONLY if you have logged in
         /* To log-in, use the following
          * mAuth.signInWithEmailAndPassword("demo@email.com", "password");
          * To get user uid, after you have signed in, do the following
          * mAuth.getCurrentUser().getUid();
          */
-        if(currentUser != null){ // this means the user is logged in
-            currentUser.reload();
-        }
-        else if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email)) { // no email input, user == null
             loginEmail.setError("Email is required!");
             loginEmail.requestFocus();
+            System.out.println("email needed");
         }
-        else if (TextUtils.isEmpty(password)){
+        else if (TextUtils.isEmpty(password)){ // no password input, user == null
             loginPassword.setError("Password is required!");
             loginPassword.requestFocus();
+            System.out.println("password needed");
         }
-        else {
+        else { // user == null, signing in with email and password
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "signInWithEmail:success");
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                // updateUI(user);
-                                user.getUid();
-                                // getUserById()
+                                Toast.makeText(Login.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(Login.this, HelloWorld.class));
 
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(Login.this, "Authentication failed.",
+                                Toast.makeText(Login.this,
+                                        "Login Failed :(" + task.getException().getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-            }
-
-
         }
-
     }
+}
