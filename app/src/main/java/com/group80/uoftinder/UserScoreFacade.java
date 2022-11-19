@@ -70,7 +70,7 @@ public class UserScoreFacade {  // using Facade Design Principle to delegate tas
             } else {
                 answerBitLengths[i] = Integer.toBinaryString((this.answerSchema[i] - 1)).length();
                 // for single-select questions, the number of bits is equal to the number of
-                // options in binary
+                // options - 1 in binary
             }
         }
         return answerBitLengths;

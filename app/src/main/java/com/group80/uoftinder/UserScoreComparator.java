@@ -1,7 +1,7 @@
 package com.group80.uoftinder;
 import java.util.Comparator;
 
-public class UserScoreComparator implements Comparator<Integer> {
+public class UserScoreComparator {
     private final int answerLen;
     private final boolean[] isMultiSelect;
     private final int[] answerBitLengths;
@@ -41,10 +41,10 @@ public class UserScoreComparator implements Comparator<Integer> {
      *
      * @return an integer that represents the similarity of the two scores (higher value signals higher similarity)
      */
-    @Override
     public int compare(Integer score1, Integer score2) {
         String score1Binary = String.format("%" + this.scoreLength + "s", Integer.toBinaryString(score1)).replace(' ', '0'); // convert score1 and score2
-        // to binary, filling in leading zeroes as necessary padding zeroes may be needed since Integer.parseInt(binaryNum) removes this data
+        // to binary, filling in leading zeroes as necessary
+        // padding zeroes may be needed since Integer.parseInt(binaryNum) removes this data
         String score2Binary = String.format("%" + this.scoreLength + "s", Integer.toBinaryString(score2)).replace(' ', '0');
 
         int compatibilityScore = 0;
@@ -52,7 +52,7 @@ public class UserScoreComparator implements Comparator<Integer> {
         for (int i = 0; i < this.answerLen; i++) { // iterate through all bits
             String score1BinaryStringSection = score1Binary.substring(currentBit, currentBit + this.answerBitLengths[i]); // get current bit of score1
             String score2BinaryStringSection = score2Binary.substring(currentBit, currentBit + this.answerBitLengths[i]); // get current bit of score2
-            if (this.isMultiSelect[i]) { // if multi-select, add 1 to compatibilityScore for each option that matches
+            if (this.isMultiSelect[i]) { // if multi-select, add 1 to compatibilityScore for each selected option that matches
                 for (int j = 0; j < this.answerBitLengths[i]; j++) {
                     char score1Char = score1BinaryStringSection.charAt(j);
                     char score2Char = score2BinaryStringSection.charAt(j);
