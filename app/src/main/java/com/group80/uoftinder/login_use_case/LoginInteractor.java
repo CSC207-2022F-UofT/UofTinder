@@ -9,14 +9,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.group80.uoftinder.Login;
 
 import java.util.concurrent.Executor;
 
 public class LoginInteractor implements LoginInput{
 
     final LoginPresenter loginPresenter;
-    Login login;
 
     public LoginInteractor(LoginPresenter loginPresenter) {
         this.loginPresenter = loginPresenter;
