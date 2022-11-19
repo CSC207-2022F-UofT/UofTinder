@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-<<<<<<< Updated upstream
-=======
     xmlns:app="http://schemas.android.com/apk/res-auto"
->>>>>>> Stashed changes
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,33 +9,12 @@
         android:id="@+id/editTextTextPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
-=======
         android:layout_marginStart="16dp"
-        android:layout_marginTop="89dp"
-        android:layout_marginEnd="185dp"
-        android:layout_marginBottom="597dp"
->>>>>>> Stashed changes
+        android:layout_marginTop="88dp"
         android:ems="10"
         android:focusable="false"
         android:inputType="textPersonName"
         android:text="What is your name?"
-<<<<<<< Updated upstream
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="89dp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Basic Information"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        tools:layout_editor_absoluteX="118dp"
-        tools:layout_editor_absoluteY="16dp" />
-=======
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,44 +34,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
->>>>>>> Stashed changes
 
     <EditText
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="134dp" />
-=======
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="134dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="133dp"
         android:layout_marginEnd="185dp"
-        android:layout_marginBottom="552dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
->>>>>>> Stashed changes
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editTextTextPersonName8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="How old are you?"
-        android:focusable="false"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="201dp" />
-=======
         android:layout_marginStart="16dp"
         android:layout_marginTop="201dp"
         android:layout_marginEnd="185dp"
@@ -106,57 +66,23 @@
         android:text="How old are you?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
->>>>>>> Stashed changes
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="246dp" />
-
-    <Spinner
-        android:id="@+id/identityspinner"
-        android:layout_width="209dp"
-        android:layout_height="32dp"
-        android:spinnerMode="dropdown"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="350dp" />
-
-    <Spinner
-        android:id="@+id/identityspinner2"
-        android:layout_width="209dp"
-        android:layout_height="32dp"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="450dp" />
-
-    <EditText
-        android:id="@+id/typespinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="How do you identify?"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="305dp" />
-=======
         android:layout_marginStart="16dp"
         android:layout_marginTop="246dp"
-        android:layout_marginEnd="185dp"
-        android:layout_marginBottom="440dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/typetext"
@@ -167,36 +93,32 @@
         android:layout_marginEnd="185dp"
         android:layout_marginBottom="381dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
         android:text="How do you identify?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
->>>>>>> Stashed changes
 
     <EditText
         android:id="@+id/editTextTextPersonName11"
         android:layout_width="236dp"
         android:layout_height="43dp"
-<<<<<<< Updated upstream
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Choose your account Type!"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="407dp" />
-=======
         android:layout_marginStart="12dp"
         android:layout_marginTop="407dp"
         android:layout_marginEnd="163dp"
         android:layout_marginBottom="281dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
         android:text="Choose your account Type!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="407dp" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -310,5 +232,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
->>>>>>> Stashed changes
 </androidx.constraintlayout.widget.ConstraintLayout>

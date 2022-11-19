@@ -1,6 +1,8 @@
 package com.group80.uoftinder.create_account_use_case;
 
 public class CreateAccountInteractor {
+    private static int[] answerSchema;
+    private static boolean[] isMultiSelect;
 
     public boolean checkPasswords(String password1, String password2) {
         return password1.compareTo(password2) == 0;
@@ -18,11 +20,21 @@ public class CreateAccountInteractor {
 
     }
 
+    //purely for testing purposes
+    public static void setAnswerSchema(int[] aS) {
+        answerSchema = aS;
+    }
+
+    //purely for testing purposes ANSWERSCHEMA AND GETISMULTISELECT SHOULD NOT BE CHANGED OTHERWISE
+    public static void setIsMultiSelect(boolean[] iMS) {
+        isMultiSelect = iMS;
+    }
+
     public static int[] getAnswerSchema() {
-        return new int[]{5, 6, 3};
+        return answerSchema;
     }
 
     public static boolean[] getIsMultiSelect() {
-        return new boolean[]{false, true, false};
+        return isMultiSelect;
     }
 }

@@ -34,6 +34,10 @@ public class User {
         this.compatibilityList = new ArrayList<String>();
     }
 
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
     public String getUserType(){
         return userType;
     }
