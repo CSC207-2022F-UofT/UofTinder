@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
 
 
     public void loginUser() {
-        System.out.println("HI IM HEREEEE");
+        // UserAccountController
         String email = loginEmail.getText().toString().trim();
         String password = loginPassword.getText().toString().trim();
 
@@ -53,6 +53,7 @@ public class Login extends AppCompatActivity {
          * To get user uid, after you have signed in, do the following
          * mAuth.getCurrentUser().getUid();
          */
+        // LoginInteractor
         if (TextUtils.isEmpty(email)) { // no email input, user == null
             loginEmail.setError("Email is required!");
             loginEmail.requestFocus();
@@ -68,15 +69,18 @@ public class Login extends AppCompatActivity {
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            // LoginInteractor checks
+                            // boolean success = task.isSuccessful()
+
+                            // Login Presenter
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
                                 Toast.makeText(Login.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(Login.this, HelloWorld.class));
 
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Toast.makeText(Login.this,
-                                        "Login Failed :(" + task.getException().getMessage(),
+                                        "Login Failed :(",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
