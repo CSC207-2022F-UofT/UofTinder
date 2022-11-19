@@ -15,23 +15,27 @@ public class User {
     private int score;
 
     // this information is displayed on profile
-    private String displayName; // last name and first name displayed on profile
+    private String name; // last name and first name displayed on profile
     private Uri photoUrl;
-    private String name;
     private int age;
     private String gender;
 
-    private HashSet<Integer>[] answers;
+    private ArrayList<HashSet<Integer>> answers;
     private List viewed;
     private List liked;
     private List matches;
     private List compatibilityList;
+
 
     public User(){
         this.liked = new ArrayList<String>();
         this.viewed = new ArrayList<String>();
         this.matches = new ArrayList<String>();
         this.compatibilityList = new ArrayList<String>();
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public String getUserType(){
@@ -43,14 +47,6 @@ public class User {
     }
     public int getScore() {
         return score;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setAge(int age) {
@@ -75,23 +71,23 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public String getName() {
+        return name;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUid() {
         return uid;
     }
 
-    public HashSet<Integer>[] getAnswers() {
+    public ArrayList<HashSet<Integer>> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(HashSet<Integer>[] answers) {
+    public void setAnswers(ArrayList<HashSet<Integer>> answers) {
         this.answers = answers;
     }
 
