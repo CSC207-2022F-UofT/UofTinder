@@ -53,7 +53,6 @@ public class GenerateCompatibilityList {
      * @return the key that corresponds to the max value in userScore
      */
     private String getMaxKey(Map<String, Integer> userScore) {
-        // TODO: change this to get key of max value
         int maxValue = 0;
         String maxKey = "";
         for (String key : userScore.keySet()) {
@@ -109,5 +108,21 @@ public class GenerateCompatibilityList {
         else {
             recPresenterInterface.displayNoCompatibleUser();
         }
+    }
+
+    public void setCurUser(User newUser) {
+        this.curUser = newUser;
+    }
+
+    public void setAllUsers(List<User> usersList) {
+        this.allUsers = usersList;
+    }
+
+    public void setCurUserScore(int newScore) {
+        this.curUserScore = newScore;
+    }
+
+    public List<String> getCompatibilityList() {
+        return this.compatibilityList;
     }
 }

@@ -4,21 +4,25 @@ import java.util.List;
 
 public class RecommendationPresenter implements RecPresenterInterface{
     private GenerateCompatibilityList genCompatibilityList;
+    private RecViewInterface recViewInterface;
 
-    public RecommendationPresenter() {
-        genCompatibilityList = new GenerateCompatibilityList(this);
+    public RecommendationPresenter(RecViewInterface recViewInterface) {
+        this.genCompatibilityList = new GenerateCompatibilityList(this);
+        this.recViewInterface = recViewInterface;
     }
 
-    public void displayNextUser(User user) {
+    public void displayNextUser() {
         genCompatibilityList.update();
     }
 
     public void displayUser(User user) {
-        RecViewInterface.showUser(user);
+        recViewInterface.setDisplayedUser(user);
+        recViewInterface.showUser(user);
     }
 
     public void displayNoCompatibleUser() {
-        RecViewInterface.noCompatibleUser();
+        recViewInterface.setDisplayedUser(null);
+        recViewInterface.noCompatibleUser();
     }
 
     public void regenerate() {
