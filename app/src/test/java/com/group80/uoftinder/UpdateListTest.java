@@ -33,7 +33,7 @@ public class UpdateListTest {
         expectedLikedList.add(displayedUser);
         List expectedVisitedList = new ArrayList();
         expectedVisitedList.add(displayedUser);
-        
+
         assert expectedLikedList.equals(currentUser.getLiked());
         assert expectedVisitedList.equals(currentUser.getViewed());
     }
