@@ -188,11 +188,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="serif"
                             android:text="@string/year_of_study"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/yearOfStudyPicker"
-                            app:layout_constraintEnd_toEndOf="@+id/yearOfStudyPicker"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/yearOfStudyPicker" />
+                            android:textStyle="bold"/>
 
                         <CheckBox
                             android:id="@+id/firstYearBox"
@@ -243,16 +239,51 @@
                             android:text="@string/graduate"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="parent"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/campusText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:text="@string/campus"
+                            android:textStyle="bold"/>
 
                         <CheckBox
-                            android:id="@+id/coopYearBox"
+                            android:id="@+id/stGeorgeBox"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:fontFamily="serif"
-                            android:text="@string/co_op"
+                            android:text="@string/st_george"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"/>
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <CheckBox
+                            android:id="@+id/mississaugaBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/mississauga"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <CheckBox
+                            android:id="@+id/scarboroughBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:text="@string/scarborough"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
