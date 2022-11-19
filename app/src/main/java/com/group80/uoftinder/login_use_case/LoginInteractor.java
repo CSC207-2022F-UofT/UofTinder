@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -12,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.concurrent.Executor;
 
-public class LoginInteractor implements LoginInput{
+public class LoginInteractor extends AppCompatActivity implements LoginInput{
 
     final LoginPresenter loginPresenter;
 
@@ -30,12 +31,10 @@ public class LoginInteractor implements LoginInput{
          * mAuth.getCurrentUser().getUid();
          */
         if (TextUtils.isEmpty(email)) { // no email input, user == null
-            loginEmail.setError("Email is required!");
-            loginEmail.requestFocus();
+            loginPresenter.prepareFailureView(loginEmail, "Email is required!");
         }
         else if (TextUtils.isEmpty(password)){ // no password input, user == null
-            loginPassword.setError("Password is required!");
-            loginPassword.requestFocus();
+            loginPresenter.prepareFailureView(loginPassword, "Password is required!");
         }
 
         else { // user == null, signing in with email and password
@@ -47,11 +46,11 @@ public class LoginInteractor implements LoginInput{
 
                             // Login Presenter?
                             if (task.isSuccessful()) {
-                                loginPresenter.prepareSuccessView(mAuth.getCurrentUser());
+                                loginPresenter.prepareSuccessView(task, mAuth.getCurrentUser());
 
                             } else {
                                 // If sign in fails, display a message to the user.
-                                loginPresenter.prepareFailureView("Login failure :(");
+                                loginPresenter.prepareFailureViewLogin("Login Unsuccessful :(");
                             }
                         }
                     });

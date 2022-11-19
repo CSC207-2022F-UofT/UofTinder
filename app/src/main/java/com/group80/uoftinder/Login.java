@@ -7,7 +7,6 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.login_use_case.LoginController;
 import com.group80.uoftinder.login_use_case.LoginInput;
 import com.group80.uoftinder.login_use_case.LoginInteractor;
@@ -29,13 +28,12 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.loginview);
 
         mAuth = FirebaseAuth.getInstance(); // initialize the Firebase Auth
-        FirebaseUser currentUser = mAuth.getCurrentUser();
 
         // UserAccountController
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.password);
 
-        LoginPresenter loginPresenter = new LoginPresenterFormatter();
+        LoginPresenter loginPresenter = new LoginPresenterFormatter(Login.this, HelloWorld.class);
         LoginInput loginInteractor = new LoginInteractor(loginPresenter);
         LoginController loginController = new LoginController(loginInteractor);
 
