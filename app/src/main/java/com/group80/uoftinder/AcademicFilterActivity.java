@@ -115,8 +115,8 @@ public class AcademicFilterActivity extends AppCompatActivity {
                 int minAge = minAgePicker.getValue();
                 int maxAge = maxAgePicker.getValue();
                 List<Set<Integer>> filters = new ArrayList<>();
-                filters.add(populateCheckboxValues(programOfStudyBoxes));
                 filters.add(populateCheckboxValues(yearOfStudyBoxes));
+                filters.add(populateCheckboxValues(programOfStudyBoxes));
                 filters.add(populateCheckboxValues(campusBoxes));
                 recommendationInteractor.filterCompatibilityList(filters, minAge, maxAge);
                 // TODO: change to RecommendationFeed class later
