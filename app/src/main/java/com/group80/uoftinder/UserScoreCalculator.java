@@ -1,10 +1,10 @@
 package com.group80.uoftinder;
 
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class UserScoreCalculator {
-    private ArrayList<HashSet<Integer>> userAnswers; // ArrayList of HashSets, where index i is a
+    private List<HashSet<Integer>> userAnswers; // List of HashSets, where index i is a
     // HashSet representing the indices of the answers selected by the currentUser for question i
     private final boolean[] isMultiSelect; // array where index i tells us whether question i can
     // have multiple answers selected or just one
@@ -16,14 +16,14 @@ public class UserScoreCalculator {
     /**
      * Constructor for the UserScoreCalculator class
      *
-     * @param userAnswers is an ArrayList of HashSets, where index i is a HashSet representing the
+     * @param userAnswers is an List of HashSets, where index i is a HashSet representing the
      *                    indices of the answers selected by the currentUser for question i
      * @param isMultiSelect is an array where index i tells us whether question i can
      *                      have multiple answers selected or just one
      * @param answerBitLengths array where index i tells us the number of bits
      *                         allocated for question i in the user score
      */
-    public UserScoreCalculator(ArrayList<HashSet<Integer>> userAnswers, boolean[] isMultiSelect, int[] answerBitLengths) {
+    public UserScoreCalculator(List<HashSet<Integer>> userAnswers, boolean[] isMultiSelect, int[] answerBitLengths) {
         this.userAnswers = userAnswers;
         this.isMultiSelect = isMultiSelect;
         this.answerBitLengths = answerBitLengths;

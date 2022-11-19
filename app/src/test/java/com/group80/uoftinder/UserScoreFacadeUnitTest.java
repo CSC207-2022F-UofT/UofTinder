@@ -32,6 +32,7 @@ public class UserScoreFacadeUnitTest {
         int userScore = usf.generateCompatibilityScore();
         // binary: 010110110100010
         // decimal: 11682
+
         assert userScore == 11682;
     }
 
