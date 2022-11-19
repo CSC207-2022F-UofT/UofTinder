@@ -14,10 +14,17 @@
         android:layout_marginEnd="185dp"
         android:layout_marginBottom="670dp"
         android:ems="10"
+<<<<<<< Updated upstream
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Create An Account:"
         android:focusable="false"
+=======
+        android:focusable="false"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Create An Account:"
+>>>>>>> Stashed changes
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,10 +56,17 @@
         android:layout_marginEnd="185dp"
         android:layout_marginBottom="364dp"
         android:ems="10"
+<<<<<<< Updated upstream
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Re-enter Password:"
         android:focusable="false"
+=======
+        android:focusable="false"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Re-enter Password:"
+>>>>>>> Stashed changes
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,10 +97,17 @@
         android:layout_marginEnd="185dp"
         android:layout_marginBottom="468dp"
         android:ems="10"
+<<<<<<< Updated upstream
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Password:"
         android:focusable="false"
+=======
+        android:focusable="false"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Password:"
+>>>>>>> Stashed changes
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -144,13 +165,35 @@
         android:layout_marginEnd="185dp"
         android:layout_marginBottom="569dp"
         android:ems="10"
+<<<<<<< Updated upstream
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Email:"
         android:focusable="false"
+=======
+        android:focusable="false"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Email:"
+>>>>>>> Stashed changes
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<<<<<<< Updated upstream
+=======
+    <TextView
+        android:id="@+id/errormessage"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="84dp"
+        android:text=""
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+>>>>>>> Stashed changes
 </androidx.constraintlayout.widget.ConstraintLayout>

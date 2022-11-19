@@ -2,6 +2,11 @@ package com.group80.uoftinder;
 
 import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
 
+<<<<<<< Updated upstream
+=======
+import java.util.HashSet;
+
+>>>>>>> Stashed changes
 public class UserAccountController {
 
     public boolean newAccount(String email, String password1, String password2) {
@@ -12,7 +17,23 @@ public class UserAccountController {
 
         return checked_passwords && new_email;
     }
+<<<<<<< Updated upstream
 
 
 
+=======
+    public boolean newAccount(String name, int age, String identity, String type) {
+        boolean checkName = name.compareTo("")!=0;
+        boolean checkAge = (age >= 13) && (age <= 100);
+        boolean checkIdentity = identity.compareTo("")!=0;
+        boolean checkType = type.compareTo("")!=0;
+        return checkName && checkAge && checkIdentity && checkType;
+    }
+    public boolean finalAccount(int year, HashSet<Integer> majors, int campus) {
+        boolean checkYear = year != 0;
+        boolean checkMajors = !(majors.isEmpty());
+        boolean checkCampus = campus != 0;
+        return checkYear && checkMajors && checkCampus;
+    }
+>>>>>>> Stashed changes
 }

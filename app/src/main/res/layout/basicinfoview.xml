@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< Updated upstream
+=======
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+>>>>>>> Stashed changes
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,10 +12,18 @@
         android:id="@+id/editTextTextPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
+=======
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="89dp"
+        android:layout_marginEnd="185dp"
+        android:layout_marginBottom="597dp"
+>>>>>>> Stashed changes
         android:ems="10"
         android:focusable="false"
         android:inputType="textPersonName"
         android:text="What is your name?"
+<<<<<<< Updated upstream
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="89dp" />
 
@@ -24,32 +36,85 @@
         android:textSize="20dp"
         tools:layout_editor_absoluteX="118dp"
         tools:layout_editor_absoluteY="16dp" />
+=======
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="135dp"
+        android:layout_marginBottom="665dp"
+        android:text="Basic Information"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+>>>>>>> Stashed changes
 
     <EditText
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="134dp" />
+=======
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="134dp"
+        android:layout_marginEnd="185dp"
+        android:layout_marginBottom="552dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+>>>>>>> Stashed changes
 
     <EditText
         android:id="@+id/editTextTextPersonName8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
         android:ems="10"
         android:inputType="textPersonName"
         android:text="How old are you?"
         android:focusable="false"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="201dp" />
+=======
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="201dp"
+        android:layout_marginEnd="185dp"
+        android:layout_marginBottom="485dp"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="textPersonName"
+        android:text="How old are you?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+>>>>>>> Stashed changes
 
     <EditText
         android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
@@ -80,14 +145,170 @@
         android:text="How do you identify?"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="305dp" />
+=======
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="246dp"
+        android:layout_marginEnd="185dp"
+        android:layout_marginBottom="440dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/typetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="305dp"
+        android:layout_marginEnd="185dp"
+        android:layout_marginBottom="381dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="How do you identify?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+>>>>>>> Stashed changes
 
     <EditText
         android:id="@+id/editTextTextPersonName11"
         android:layout_width="236dp"
         android:layout_height="43dp"
+<<<<<<< Updated upstream
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Choose your account Type!"
         tools:layout_editor_absoluteX="12dp"
         tools:layout_editor_absoluteY="407dp" />
+=======
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="407dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginBottom="281dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Choose your account Type!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:layout_marginBottom="333dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/identityGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Female"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Male"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Non-binary"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Other/Prefer not to answer"
+                android:textAlignment="center" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
+        android:layout_marginBottom="233dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/typeGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Academic"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Friendship"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Romantic"
+                android:textAlignment="center" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/cont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="528dp"
+        android:layout_marginEnd="151dp"
+        android:layout_marginBottom="155dp"
+        android:text="Continue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+>>>>>>> Stashed changes
 </androidx.constraintlayout.widget.ConstraintLayout>
