@@ -27,7 +27,7 @@ public class RecommendationPresenter implements RecPresenterInterface{
      * Call the use case to retrieve the most compatible user to curUser and send it to the
      * presenter
      */
-    public void displayNextUser() { // should change name of function to displayUser be more clear
+    public void displayUser() { // should change name of function to displayUser be more clear
         genCompatibilityList.showMostCompUser();
     }
 

@@ -99,7 +99,7 @@ public class GenerateCompatibilityList {
      */
     private void calculateCompatibilityScore(Map<User, Integer> compScores, User compUser) {
         int userScore = compUser.getScore();
-        int compScore = usf.compare(curUserScore, userScore); // may need to change params
+        int compScore = usf.compare(userScore);
         compScores.put(compUser, compScore);
     }
 
