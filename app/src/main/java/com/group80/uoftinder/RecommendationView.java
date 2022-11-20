@@ -52,7 +52,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         yesButton = findViewById(R.id.yesButton);
 
         // initialize first user
-        User displayedUser = recPresenter.displayUser();
+        recPresenter.displayUser();
 
 
         // yes button click listener
@@ -88,7 +88,6 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         // displays next user
         recPresenter.nextUser();
         recPresenter.displayUser();
-
     }
 
     /**

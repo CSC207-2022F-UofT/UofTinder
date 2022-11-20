@@ -16,7 +16,7 @@ public class RecommendationPresenter implements RecPresenterInterface{
      * @param recViewInterface: an instance of RecViewInterface
      */
     public RecommendationPresenter(RecViewInterface recViewInterface) {
-        this.genCompatibilityList = new GenerateCompatibilityList(this);
+        this.genCompatibilityList = new GenerateCompatibilityList();
         genCompatibilityList.orderCompatibilityList();
         this.recViewInterface = recViewInterface;
     }
@@ -26,7 +26,13 @@ public class RecommendationPresenter implements RecPresenterInterface{
      * presenter
      */
     public void displayUser() {
-        genCompatibilityList.showMostCompUser();
+        User mostCompUser = genCompatibilityList.showMostCompUser();
+        if (mostCompUser != null) {
+            displayMostCompUser(mostCompUser);
+        }
+        else {
+            displayNoCompatibleUser();
+        }
     }
 
     /**
