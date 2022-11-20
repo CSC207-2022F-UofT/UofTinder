@@ -75,12 +75,11 @@ public class UserScoreFacadeUnitTest {
         currUser.setAnswers(userAnswers);
 
         UserScoreFacade usf = new UserScoreFacade(currUser);
-        int userScore1 = usf.generateCompatibilityScore();
         // binary: 01-0110-1101-000-10
         int userScore2 = 18642;
         // binary: 10-0100-0110-100-10
 
-        int similarity = usf.compare(userScore1, userScore2);
+        int similarity = usf.compare(userScore2);
         assert similarity == 3; // 0 + 1 + 1 + 0 + 1
     }
 }

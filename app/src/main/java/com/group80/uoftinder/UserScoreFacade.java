@@ -32,7 +32,7 @@ public class UserScoreFacade {  // using Facade Design Principle to delegate tas
         // allocated for question i in the user score
 
         this.usCalc = new UserScoreCalculator(this.userAnswers, this.isMultiSelect, answerBitLengths);
-        this.usComp = new UserScoreComparator(this.isMultiSelect, answerBitLengths);
+        this.usComp = new UserScoreComparator(currentUser, this.isMultiSelect, answerBitLengths);
     }
 
     /**
@@ -45,13 +45,12 @@ public class UserScoreFacade {  // using Facade Design Principle to delegate tas
     }
 
     /**
-     * @param score1 is the score of the first user
      * @param score2 is the score of the second user
      *
      * @return an integer that represents the similarity of the two scores (higher value signals higher similarity)
      */
-    public int compare(int score1, int score2) {
-        return this.usComp.compare(score1, score2);
+    public int compare(int score2) {
+        return this.usComp.compare(score2);
     }
 
     /**

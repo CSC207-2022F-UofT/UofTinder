@@ -1,11 +1,13 @@
 package com.group80.uoftinder;
-import java.util.Comparator;
+
+import com.group80.uoftinder.entities.User;
 
 public class UserScoreComparator {
     private final int answerLen;
     private final boolean[] isMultiSelect;
     private final int[] answerBitLengths;
     private final int scoreLength;
+    private final User currentUser;
 
     /**
      * Constructor for the UserScoreComparator class
@@ -14,11 +16,12 @@ public class UserScoreComparator {
      * @param answerBitLengths is an array where index i tells us the number of options for
      *                         question i
      */
-    public UserScoreComparator(boolean[] isMultiSelect, int[] answerBitLengths) {
+    public UserScoreComparator(User currentUser, boolean[] isMultiSelect, int[] answerBitLengths) {
         this.answerLen = isMultiSelect.length;
         this.isMultiSelect = isMultiSelect;
         this.answerBitLengths = answerBitLengths;
         this.scoreLength = calculateSum(this.answerBitLengths);
+        this.currentUser = currentUser;
     }
 
     /**
@@ -36,12 +39,12 @@ public class UserScoreComparator {
     }
 
     /**
-     * @param score1 is the score of the first user
-     * @param score2 is the score of the second user
+     * @param score2 is the score of the user to compare with
      *
      * @return an integer that represents the similarity of the two scores (higher value signals higher similarity)
      */
-    public int compare(Integer score1, Integer score2) {
+    public int compare(Integer score2) {
+        int score1 = currentUser.getScore();
         String score1Binary = String.format("%" + this.scoreLength + "s", Integer.toBinaryString(score1)).replace(' ', '0'); // convert score1 and score2
         // to binary, filling in leading zeroes as necessary
         // padding zeroes may be needed since Integer.parseInt(binaryNum) removes this data
