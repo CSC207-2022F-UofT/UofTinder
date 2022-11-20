@@ -11,12 +11,11 @@ import java.util.List;
 /**
  * A downloader to download data from the firebase cloud storage
  *
- * @param <T> the type of the processed downloaded data, to be returned
- * @param <S> the type of the raw downloaded data
+ * @param <T> the type of the downloaded data
  */
-public abstract class ucDownloader<T, S> {
+public abstract class ucDownloader<T> {
     protected final StorageReference storageReference;
-    protected List<StorageDbDownloadable<S>> listeners;
+    protected List<StorageDbDownloadable<T>> listeners;
 
     /**
      * Creates a downloader for firebase
@@ -30,11 +29,10 @@ public abstract class ucDownloader<T, S> {
      * Downloads data from the firebase storage.
      *
      * @param downloadUri the url to download the data
-     * @return the data
      */
-    public abstract T download(String downloadUri);
+    public abstract void download(String downloadUri);
 
-    public void addListener(StorageDbDownloadable<S> listener) {
+    public void addListener(StorageDbDownloadable<T> listener) {
         this.listeners.add(listener);
     }
 
@@ -43,13 +41,18 @@ public abstract class ucDownloader<T, S> {
      *
      * @param data the data downloaded
      */
-    protected void notifySuccess(S data) {
-        for (StorageDbDownloadable<S> listener : this.listeners)
+    protected void notifySuccess(T data) {
+        for (StorageDbDownloadable<T> listener : this.listeners)
             listener.onStorageDownloadSuccess(data);
     }
 
+    /**
+     * Notifies the listeners for a fail download
+     *
+     * @param e the error that caused the download to fail
+     */
     protected void notifyFailure(@NonNull Exception e) {
-        for (StorageDbDownloadable<S> listener : this.listeners)
+        for (StorageDbDownloadable<T> listener : this.listeners)
             listener.onStorageDownloadFailure(e);
     }
 }
