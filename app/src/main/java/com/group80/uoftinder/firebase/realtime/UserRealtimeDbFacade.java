@@ -1,69 +1,77 @@
 package com.group80.uoftinder.firebase.realtime;
 
-import android.util.Log;
+import com.group80.uoftinder.entities.User;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.group80.uoftinder.firebase.realtime.User;
-
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A Facade for methods regrading User in realtime database. All methods are constants, and no
+ * instances of this Facade should be created.
+ */
 public class UserRealtimeDbFacade {
+    private static final String DEFAULT_USER_TYPE = "academic";
 
+    /**
+     * Upload a user to the realtime database, based on the user type and user id. The user is
+     * stored under "users" / user.userType / user.uid
+     *
+     * @param user the user to be stored in the database
+     */
     public static void uploadUser(User user) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUserType()).child(user.getUid());
-        databaseReference.setValue(user);
+        ucClassWriter<User> userWriter = new ucClassWriter<>();
+        userWriter.write(new String[]{"users", user.getUserType(), user.getUid()}, user);
     }
 
-    public static List<User> getAllUsers(String userType) {
-        List<User> listOfUsers = new ArrayList<>();
-
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(userType);
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot child : snapshot.getChildren()) {
-                    listOfUsers.add(child.getValue(User.class));
-                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        return listOfUsers;
+    /**
+     * Upload a user to the realtime database, based on the user type and user id. The user is
+     * stored under "users" / user.userType / user.uid
+     *
+     * @param user     the user to be stored in the database
+     * @param listener an interface handles behaviour of successful and failed user uploads
+     */
+    public static void uploadUser(User user, RealtimeDbWriteListener listener) {
+        ucClassWriter<User> classWriter = new ucClassWriter<>();
+        classWriter.addListener(listener);
+        classWriter.write(new String[]{"users", user.getUserType(), user.getUid()}, user);
     }
 
+    /**
+     * Returns a list of Users of the given userType.
+     *
+     * @param callBack an interface handles the value retrieved
+     */
+    public static void getAllUsers(RealtimeDbCallback<List<User>> callBack) {
+        ucUserReader.getAllUsers(DEFAULT_USER_TYPE, callBack);
+    }
+
+    /**
+     * Returns a list of Users of the given userType.
+     *
+     * @param userType the type of user
+     * @param callBack an interface handles the value retrieved
+     */
+    public static void getAllUsers(String userType, RealtimeDbCallback<List<User>> callBack) {
+        ucUserReader.getAllUsers(userType, callBack);
+    }
 
     /**
      * Search for a User entry in the realtime database with the given user ID.
-     * @param uid       the uid entry searched in the realtime database
-     * @param callback  UserCallback to handle the value retrieved since onComplete has type void
+     *
+     * @param uid      the uid entry searched in the realtime database
+     * @param callback UserCallback to handle the value retrieved since onComplete has type void
      */
-    public static void getUserById(String uid, UserCallback callback) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child("academic");
-        databaseReference.orderByChild("uid").equalTo(uid).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    for (DataSnapshot childSnapshot : task.getResult().getChildren())
-                        callback.onUser(childSnapshot.getValue(User.class));
-                }
-            }
-        });
+    public static void getUser(String uid, RealtimeDbCallback<User> callback) {
+        ucUserReader.getUser(DEFAULT_USER_TYPE, uid, callback);
+    }
+
+    /**
+     * Search for a User entry in the realtime database with the given user ID.
+     *
+     * @param userType the type of the user
+     * @param uid      the uid entry searched in the realtime database
+     * @param callback UserCallback to handle the value retrieved since onComplete has type void
+     */
+    public static void getUser(String userType, String uid, RealtimeDbCallback<User> callback) {
+        ucUserReader.getUser(userType, uid, callback);
     }
 }
