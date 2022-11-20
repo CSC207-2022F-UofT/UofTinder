@@ -10,7 +10,8 @@ public class RecommendationInteractor {
 
 //    private User currentUser;
     private List<User> compatibilityList;
-//    private List<String> compatibilityList;
+    private List<User> filteredCompatibilityList;
+    private boolean showFilteredList;
 
     public RecommendationInteractor() {
 
@@ -30,10 +31,13 @@ public class RecommendationInteractor {
      * @param maxAge    The maximum age, inclusive
      */
     public void filterCompatibilityList(List<Set<Integer>> filters, int minAge, int maxAge) {
-        for(int j = compatibilityList.size() - 1; j >= 0; j--) {
-            User user = compatibilityList.get(j);
+        filteredCompatibilityList = new ArrayList<>();
+        filteredCompatibilityList.addAll(compatibilityList);
+
+        for(int j = filteredCompatibilityList.size() - 1; j >= 0; j--) {
+            User user = filteredCompatibilityList.get(j);
             if(user.getAge() < minAge || user.getAge() > maxAge) {
-                compatibilityList.remove(j);
+                filteredCompatibilityList.remove(j);
                 continue;  // go to the next user
             }
             // answers are formatted in the same way as filters, explained above
@@ -51,12 +55,12 @@ public class RecommendationInteractor {
                         shouldRemove = false;
                 }
                 if(shouldRemove) {
-                    compatibilityList.remove(j);
+                    filteredCompatibilityList.remove(j);
                     break;  // go to the next user since user already failed 1 filter criteria
                 }
             }
         }
-//        currentUser.setCompatibilityList(compatibilityList);
+        showFilteredList = true;
     }
 
     public void setCompatibilityList(List<User> compatibilityList) {
@@ -65,6 +69,10 @@ public class RecommendationInteractor {
 
     public List<User> getCompatibilityList() {
         return compatibilityList;
+    }
+
+    public List<User> getFilteredCompatibilityList() {
+        return filteredCompatibilityList;
     }
 
 //    public void addToCompatbilityList(User user) {

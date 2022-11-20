@@ -64,7 +64,7 @@ public class RecommendationInteractorUnitTest {
         int maxAge = 100;
         recommendationInteractor.filterCompatibilityList(filters, minAge, maxAge);
 
-        List<User> filteredCompatibilityList = recommendationInteractor.getCompatibilityList();
+        List<User> filteredCompatibilityList = recommendationInteractor.getFilteredCompatibilityList();
         assert filteredCompatibilityList.size() == 1 &&
                 filteredCompatibilityList.contains(user2);
     }
@@ -115,7 +115,7 @@ public class RecommendationInteractorUnitTest {
         int maxAge = 30;
         recommendationInteractor.filterCompatibilityList(filters, minAge, maxAge);
 
-        List<User> filteredCompatibilityList = recommendationInteractor.getCompatibilityList();
+        List<User> filteredCompatibilityList = recommendationInteractor.getFilteredCompatibilityList();
         assert filteredCompatibilityList.size() == 3 &&
                 filteredCompatibilityList.contains(user1) &&
                 filteredCompatibilityList.contains(user4) &&
@@ -168,7 +168,7 @@ public class RecommendationInteractorUnitTest {
         int maxAge = 100;
         recommendationInteractor.filterCompatibilityList(filters, minAge, maxAge);
 
-        List<User> filteredCompatibilityList = recommendationInteractor.getCompatibilityList();
+        List<User> filteredCompatibilityList = recommendationInteractor.getFilteredCompatibilityList();
         assert filteredCompatibilityList.equals(copyCompatibilityList);
     }
 
@@ -220,7 +220,7 @@ public class RecommendationInteractorUnitTest {
         int maxAge = 30;
         recommendationInteractor.filterCompatibilityList(filters, minAge, maxAge);
 
-        List<User> filteredCompatibilityList = recommendationInteractor.getCompatibilityList();
+        List<User> filteredCompatibilityList = recommendationInteractor.getFilteredCompatibilityList();
         assert filteredCompatibilityList.size() == 1 &&
                 filteredCompatibilityList.contains(user1);
     }
