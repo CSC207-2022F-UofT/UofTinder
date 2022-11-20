@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".appTestWelcomeScreens"
+            android:name=".Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
@@ -51,7 +51,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Login"
+            android:name=".appTestWelcomeScreens"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -69,7 +69,10 @@
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
         </activity>
     </application>
-
 </manifest>
