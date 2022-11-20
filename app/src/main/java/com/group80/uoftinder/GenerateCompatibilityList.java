@@ -16,7 +16,6 @@ public class GenerateCompatibilityList {
     private int curUserScore;
     private List<User> compatibilityList;
     private RecPresenterInterface recPresenterInterface;
-//    private List<User> allUsers;
     private UserScoreFacade usf;
     private Map<User, Integer> compScores;
     private Comparator<User> userScoreComparator;
@@ -25,7 +24,7 @@ public class GenerateCompatibilityList {
      * Initialize the attributes of a GenerateCompatibilityList instance
      */
     public GenerateCompatibilityList(RecPresenterInterface recPresenterInterface) {
-        this.compatibilityList = UserRealtimeDbFacade.getAllUsers(curUser.getUserType());
+        getAllUsers();
         this.usf = new UserScoreFacade(curUser);
         this.curUser = UserRealtimeDbFacade.getCurrentUser();
         this.curUserScore = curUser.getScore();
@@ -36,14 +35,22 @@ public class GenerateCompatibilityList {
     }
 
     /**
+     * Get the list of all users from the database and assign compatibilityList to this list
+     */
+    private void getAllUsers() {
+        UserRealtimeDbFacade.getAllUsers(userList -> {
+            setCompatibilityList(userList);
+        });
+    }
+
+    /**
      * Order the compatibility list for curUser and update the User's compatibilityList
      * attribute.
      */
     public void orderCompatibilityList() {
         compScores = calculateCompatibilityScores(compatibilityList);
-//        Comparator<User> userScoreComparator = Comparator.comparing(user -> { compScores.get(user.getUid()) } );
         compatibilityList.sort(userScoreComparator);
-        curUser.setCompatibilityList(compatibilityList); // will need if we change it so that the Presenter first calls this method
+        curUser.setCompatibilityList(compatibilityList);
 
 //        compatibilityList = new ArrayList<>();
 //        Map<String, Integer> compScores = calculateCompatibilityScores(allUsers);
@@ -56,27 +63,27 @@ public class GenerateCompatibilityList {
 //        recPresenterInterface.showUsers(compatibilityList);
     }
 
-    /**
-     * Return the key that corresponds to the max value in userScore
-     * @param userScore: a map that maps the user ID to their compatibility score with the current
-     *                 user
-     * @return the key that corresponds to the max value in userScore
-     */
-    private String getMaxKey(Map<String, Integer> userScore) {
-        int maxValue = 0;
-        String maxKey = "";
-        for (String key : userScore.keySet()) {
-            Integer currentScore = userScore.get(key);
-            if (currentScore != null && currentScore > maxValue) {
-//                if (currentScore > maxValue) {
-                maxValue = currentScore;
-                maxKey = key;
-//                }
-            }
-
-        }
-        return maxKey;
-    }
+//    /**
+//     * Return the key that corresponds to the max value in userScore
+//     * @param userScore: a map that maps the user ID to their compatibility score with the current
+//     *                 user
+//     * @return the key that corresponds to the max value in userScore
+//     */
+//    private String getMaxKey(Map<String, Integer> userScore) {
+//        int maxValue = 0;
+//        String maxKey = "";
+//        for (String key : userScore.keySet()) {
+//            Integer currentScore = userScore.get(key);
+//            if (currentScore != null && currentScore > maxValue) {
+////                if (currentScore > maxValue) {
+//                maxValue = currentScore;
+//                maxKey = key;
+////                }
+//            }
+//
+//        }
+//        return maxKey;
+//    }
 
     /**
      * Return a map of User to the user's compatibility score with the current user
@@ -129,7 +136,7 @@ public class GenerateCompatibilityList {
     }
 
     public void recalculateCompatibilityList() {
-        compatibilityList = UserRealtimeDbFacade.getAllUsers(curUser.getUserType());
+        getAllUsers();
         orderCompatibilityList();
     }
 

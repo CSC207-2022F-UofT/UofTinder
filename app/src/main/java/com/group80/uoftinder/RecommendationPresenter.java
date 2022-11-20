@@ -17,8 +17,6 @@ public class RecommendationPresenter implements RecPresenterInterface{
      */
     public RecommendationPresenter(RecViewInterface recViewInterface) {
         this.genCompatibilityList = new GenerateCompatibilityList(this);
-        // need to discuss where orderCompatibilityList is actually initially called
-        // seems to make sense to call it here once instead of multiple times elsewhere
         genCompatibilityList.orderCompatibilityList();
         this.recViewInterface = recViewInterface;
     }
@@ -27,7 +25,7 @@ public class RecommendationPresenter implements RecPresenterInterface{
      * Call the use case to retrieve the most compatible user to curUser and send it to the
      * presenter
      */
-    public void displayUser() { // should change name of function to displayUser be more clear
+    public void displayUser() {
         genCompatibilityList.showMostCompUser();
     }
 
