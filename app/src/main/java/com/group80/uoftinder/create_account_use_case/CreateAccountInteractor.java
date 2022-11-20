@@ -10,21 +10,21 @@ public class CreateAccountInteractor {
      * @param password2        second password entered
      * @return                 returns a boolean representing if passwords are exactly the same
      */
-    public boolean checkPasswords(String password1, String password2) {
-        return password1.compareTo(password2) == 0;
-    }
-
-    public boolean checkEmail(String email) {
-        if (email.compareTo("")==0) {
-            return false;
-        }
-//        firebase stuff
-//        if email hasn't already been used in firebase
-        return true;
-//        if email is already in use
-//        return false;
-
-    }
+//    public boolean checkPasswords(String password1, String password2) {
+//        return password1.compareTo(password2) == 0;
+//    }
+//
+//    public boolean checkEmail(String email) {
+//        if (email.compareTo("")==0) {
+//            return false;
+//        }
+////        firebase stuff
+////        if email hasn't already been used in firebase
+//        return true;
+////        if email is already in use
+////        return false;
+//
+//    }
 
     //purely for testing purposes
     public static void setAnswerSchema(int[] aS) {

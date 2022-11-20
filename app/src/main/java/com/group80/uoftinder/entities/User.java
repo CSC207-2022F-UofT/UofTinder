@@ -8,7 +8,7 @@ import java.util.List;
 
 public class User {
 
-    private String uid;
+    private final String uid;
 
     private String userType; // make this final later idk
 
@@ -27,7 +27,8 @@ public class User {
     private List compatibilityList;
 
 
-    public User(){
+    public User(String uid){
+        this.uid = uid;
         this.liked = new ArrayList<String>();
         this.viewed = new ArrayList<String>();
         this.matches = new ArrayList<String>();

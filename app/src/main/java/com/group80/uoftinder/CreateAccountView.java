@@ -2,35 +2,51 @@ package com.group80.uoftinder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.create_account_use_case.CreateAccountPresenter;
 import com.group80.uoftinder.entities.User;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class CreateAccountView extends AppCompatActivity {
-    private User currentUser = new User();
+
     private ArrayList<HashSet<Integer>> answers = new ArrayList<>();
     private final UserAccountController control = new UserAccountController();
     private final CreateAccountPresenter proceed = new CreateAccountPresenter();
+
+    EditText createAccountEmail;
+    EditText createAccountPassword1;
+    EditText createAccountPassword2;
+
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.createaccountview);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        createAccountEmail = findViewById(R.id.email);
+        createAccountPassword1 = findViewById(R.id.password1);
+        createAccountPassword2 = findViewById(R.id.password2);
 
         Button buttonShowLoginView = findViewById(R.id.loginButton);
         buttonShowLoginView.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +59,7 @@ public class CreateAccountView extends AppCompatActivity {
         Button enter = findViewById(R.id.accountEnter);
         enter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                createAccountView();
+                createAccount();
 
             }
         });
@@ -52,27 +68,54 @@ public class CreateAccountView extends AppCompatActivity {
      * Creates the createaccountview.xml and gets inputs, proceeds to next page if information is
      * entered correctly
      */
-    public void createAccountView() {
-        String email = ((EditText) findViewById(R.id.email)).getText().toString().trim();
-        String password1 = ((EditText)findViewById(R.id.password1)).getText().toString().trim();
-        String password2 = ((EditText)findViewById(R.id.password2)).getText().toString().trim();
-        boolean move_on = control.newAccount(email, password1, password2);
-        if (move_on) {
-//            currentUser.setEmail(email);
-//            currentUser.setPassword(password1);
-            createBasicInfoView();
+    public void createAccount() {
+        String email = createAccountEmail.getText().toString().trim();
+        String password1 = createAccountPassword1.getText().toString().trim();
+        String password2 = createAccountPassword2.getText().toString().trim();
+
+        if (TextUtils.isEmpty(email)) {
+            createAccountEmail.setError("Email is required!");
+            createAccountEmail.requestFocus();
+        }
+        else if (TextUtils.isEmpty(password1)) {
+            createAccountPassword1.setError("Password is required!");
+            createAccountPassword1.requestFocus();
+        }
+        else if (TextUtils.isEmpty(password2)) {
+            createAccountPassword2.setError("Second password is required!");
+            createAccountPassword2.requestFocus();
+        }
+        else if (!password1.equals(password2)) {
+            createAccountPassword2.setError("Passwords do not match!");
+            createAccountPassword1.requestFocus();
+            createAccountPassword2.requestFocus();
         }
         else {
-            String text = proceed.account_error(email, password1, password2);
-            TextView error = findViewById(R.id.errormessage);
-            error.setText(text);
+            mAuth.createUserWithEmailAndPassword(email, password1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(CreateAccountView.this, "User registered Successfully!",
+                                Toast.LENGTH_SHORT).show();
+                        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                        User currentUser = new User(firebaseUser.getUid());
+
+                        createBasicInfoView(currentUser);
+                    }
+                    else {
+                        Toast.makeText(CreateAccountView.this, "Registration failed :(",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
     /*
      * Creates the basicinfoview.xml and gets inputs, proceeds to next page if information is
      * entered correctly
      */
-    private void createBasicInfoView() {
+    private void createBasicInfoView(User currentUser) {
+
         setContentView(R.layout.basicinfoview);
 
         Button enter = findViewById(R.id.cont);
@@ -114,7 +157,7 @@ public class CreateAccountView extends AppCompatActivity {
                     currentUser.setGender(identity);
                     currentUser.setUserType(type);
 
-                    createQuestionnaireView("Academic");
+                    createQuestionnaireView(currentUser, "Academic");
                 }
                 else {
                     String text = "Please enter your information correctly";
@@ -132,9 +175,9 @@ public class CreateAccountView extends AppCompatActivity {
      * @param type      a string representing the type of user that the user selected (only
      *                  "academic" for now)
      */
-    private void createQuestionnaireView(String type) {
+    private void createQuestionnaireView(User currentUser, String type) {
         if(type.compareTo("Academic")==0) {
-            createAcademicQuestionnaire();
+            createAcademicQuestionnaire(currentUser);
         }
 //        else if(type.compareTo("Friendship")==0) {
 ////           friendship questionnaire view
@@ -148,7 +191,7 @@ public class CreateAccountView extends AppCompatActivity {
      * Creates the academic_questionnaire.xml and gets inputs, proceeds to recommendation page if
      * information is entered correctly
      */
-    private void createAcademicQuestionnaire() {
+    private void createAcademicQuestionnaire(User currentUser) {
         setContentView(R.layout.academic_questionnaire);
 
         Button enter = findViewById(R.id.finish);

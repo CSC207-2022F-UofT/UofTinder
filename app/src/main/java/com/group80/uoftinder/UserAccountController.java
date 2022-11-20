@@ -1,6 +1,5 @@
 package com.group80.uoftinder;
 
-import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
 import java.util.HashSet;
 
 public class UserAccountController {
@@ -14,14 +13,18 @@ public class UserAccountController {
      * @return          returns a boolean representing whether the email is a new email and if the
      *                  passwords match
      */
-    public boolean newAccount(String email, String password1, String password2) {
-        CreateAccountInteractor interactor = new CreateAccountInteractor();
 
-        boolean checked_passwords = interactor.checkPasswords(password1, password2);
-        boolean new_email = interactor.checkEmail(email);
 
-        return checked_passwords && new_email;
-    }
+//    public boolean newAccount(String email, String password1, String password2) {
+//        CreateAccountInteractor interactor = new CreateAccountInteractor();
+//
+//        boolean checked_passwords = interactor.checkPasswords(password1, password2);
+//        boolean new_email = interactor.checkEmail(email);
+//
+//        return checked_passwords && new_email;
+//    }
+
+
     /*
      * Checks if the information entered in the basicinfoview.xml was entered correctly. Checks if
      * all the fields are non-empty.

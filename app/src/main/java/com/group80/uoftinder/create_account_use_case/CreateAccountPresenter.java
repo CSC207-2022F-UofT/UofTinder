@@ -1,7 +1,5 @@
 package com.group80.uoftinder.create_account_use_case;
 
-import java.util.LinkedHashMap;
-
 public class CreateAccountPresenter {
     /*
      * Checks that the error for the entered information in createaccountview.xml is
@@ -10,14 +8,14 @@ public class CreateAccountPresenter {
      * @param password2     a string representing the second password the user entered
      * @return              returns a string with the correct error message
      */
-    public String account_error(String email, String password1, String password2) {
-        CreateAccountInteractor interactor = new CreateAccountInteractor();
-        if(email.compareTo("")==0 || password1.compareTo("")==0)
-            return "Please enter your information";
-        if(!(interactor.checkPasswords(password1, password2)))
-            return "Your passwords do not match!";
-        if(!(interactor.checkEmail(email)))
-            return "This email already has an account";
-        return "Sorry something is wrong, please try again later :(";
-    }
+//    public String account_error(String email, String password1, String password2) {
+//        CreateAccountInteractor interactor = new CreateAccountInteractor();
+//        if(email.compareTo("")==0 || password1.compareTo("")==0)
+//            return "Please enter your information";
+//        if(!(interactor.checkPasswords(password1, password2)))
+//            return "Your passwords do not match!";
+//        if(!(interactor.checkEmail(email)))
+//            return "This email already has an account";
+//        return "Sorry something is wrong, please try again later :(";
+//    }
 }
