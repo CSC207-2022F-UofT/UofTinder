@@ -1,6 +1,7 @@
 package com.group80.uoftinder;
 
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.feed.UserScoreFacade;
 
 import org.junit.Test;
 

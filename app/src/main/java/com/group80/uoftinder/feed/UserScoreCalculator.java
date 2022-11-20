@@ -1,4 +1,4 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.feed;
 
 import java.util.HashSet;
 import java.util.List;

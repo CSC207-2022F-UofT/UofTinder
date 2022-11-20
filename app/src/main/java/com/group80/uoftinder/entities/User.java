@@ -2,12 +2,13 @@ package com.group80.uoftinder.entities;
 
 import android.net.Uri;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class User {
+public class User implements Serializable {
 
     private String uid;
 
@@ -25,14 +26,11 @@ public class User {
     private List viewed;
     private List liked;
     private List matches;
-    private List compatibilityList;
-
 
     public User(){
         this.liked = new ArrayList<String>();
         this.viewed = new ArrayList<String>();
         this.matches = new ArrayList<String>();
-        this.compatibilityList = new ArrayList<String>();
     }
 
     public String getUserType(){
@@ -110,13 +108,5 @@ public class User {
 
     public void setMatches(List matches) {
         this.matches = matches;
-    }
-
-    public List getCompatibilityList() {
-        return compatibilityList;
-    }
-
-    public void setCompatibilityList(List compatibilityList) {
-        this.compatibilityList = compatibilityList;
     }
 }

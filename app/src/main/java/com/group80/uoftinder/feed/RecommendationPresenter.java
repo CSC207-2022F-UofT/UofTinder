@@ -1,6 +1,6 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.feed;
 
-import java.util.List;
+import com.group80.uoftinder.entities.User;
 
 /**
  * A presenter class (that also acts as a controller, per the MVP design pattern) that

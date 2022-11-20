@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.NumberPicker;
 
+import com.group80.uoftinder.feed.RecommendationInteractor;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

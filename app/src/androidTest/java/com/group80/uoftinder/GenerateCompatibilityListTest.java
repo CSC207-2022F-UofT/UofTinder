@@ -5,10 +5,11 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
-import android.content.Context;
-
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.platform.app.InstrumentationRegistry;
+
+import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.feed.GenerateCompatibilityList;
+import com.group80.uoftinder.feed.RecommendationPresenter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,12 +28,12 @@ public class GenerateCompatibilityListTest {
      */
     @Test
     public void orderCompatibilityListTest() {
-        User curUser = User("curUser");
+        User curUser = new User("curUser");
         RecommendationView recommendationView = new RecommendationView(curUser);
         RecommendationPresenter recPresenter = new RecommendationPresenter(recommendationView);
         GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(recPresenter);
-        User user2 = User("user2");
-        User user3 = User("user3");
+        User user2 = new User("user2");
+        User user3 = new User("user3");
         int curUserScore = 11682;
         int user2Score = 18642;
         int user3Score = 3891;
