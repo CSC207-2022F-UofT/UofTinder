@@ -242,13 +242,15 @@ public class CreateAccountView extends AppCompatActivity {
                     answers.add(new HashSet<>(campus));
                     currentUser.setAnswers((answers));
                     //store User into database
-//                    UserRealtimeDbFacade.uploadUser(currentUser);
+                    UserRealtimeDbFacade.uploadUser(currentUser);
 
                     Toast.makeText(CreateAccountView.this, "Account created :D",
                             Toast.LENGTH_SHORT).show();
 
                     //proceed into recommendation view
-//                    setContentView(recommendation_profile_display.xml);
+                    Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
+                    startActivity(intent);
+                    finish();
                 }
                 else {
                     String text = "Please enter your information correctly";
