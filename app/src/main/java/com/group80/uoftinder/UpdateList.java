@@ -4,24 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateList extends User {
-    private User currentUser; // the current user
-    private User displayedUser; // the user that is displayed to current user
-    private boolean liked; // true if currentUser 'likes' displayedUser, false otherwise
-    private List<User> viewedList; // currentUser's viewedList
-    private List<User> likedList; // currentUser's likedList
+    private static User currentUser; // the current user
 
     /**
      * Constructor for UpdateList Class.
-     * @param displayedUser is the user that is currently being displayed to currentUser.
-     * @param liked is True when currentUser 'likes' displayedUser, False otherwise.
+     * @param currentUser is the currentUser.
      */
-    public UpdateList(User currentUser, User displayedUser, boolean liked) {
+    public UpdateList(User currentUser) {
         super();
         this.currentUser = currentUser;
-        this.displayedUser = displayedUser;
-        this.liked = liked;
-        this.viewedList = currentUser.getViewed();
-        this.likedList = currentUser.getLiked();
     }
 
     /**
@@ -29,8 +20,10 @@ public class UpdateList extends User {
      * If liked is true, also adds displayedUser to currentUser's liked list.
      * @param displayedUser is the user that is currently being displayed to currentUser.
      * @param liked is True when currentUser 'likes' displayedUser, False otherwise.
+     * @param viewedList is a list of Users that currentUser has currently viewed
+     * @param likedList is a list of Users that currentUser has currently liked
      */
-    public void addToList(User displayedUser, boolean liked) {
+    public static void addToList(User displayedUser, boolean liked, List viewedList, List likedList) {
         viewedList.add(displayedUser);
         currentUser.setViewed(viewedList);
         // push currentUser.getViewed() to firebase viewed list
