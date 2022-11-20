@@ -31,9 +31,9 @@ public class CreateAccountView extends AppCompatActivity {
     private final UserAccountController control = new UserAccountController();
     private final CreateAccountPresenter proceed = new CreateAccountPresenter();
 
-    EditText createAccountEmail;
-    EditText createAccountPassword1;
-    EditText createAccountPassword2;
+    private EditText createAccountEmail;
+    private EditText createAccountPassword1;
+    private EditText createAccountPassword2;
 
     FirebaseAuth mAuth;
 
