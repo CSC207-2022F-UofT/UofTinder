@@ -1,5 +1,6 @@
 package com.group80.uoftinder;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 
@@ -17,6 +18,10 @@ import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Consumer;
 
 /**
  * Instrumented Unit tests for UserRealtimeDbFacadeUnitTest, run on Android devices
@@ -43,8 +48,16 @@ public class UserRealtimeDbFacadeUnitTest {
             }
         });
 
-        User lisinan2 = new User("Lance", "Li", "lisinan2", "test");
-        User vgvg = new User("Vedant", "Goel", "vgvg", "test");
+        User lisinan2 = new User("lisinan2");
+        lisinan2.setName("Lance Li");
+        lisinan2.setUserType("test");
+        lisinan2.setViewed(new ArrayList<>(Arrays.asList("a", "b", "c")));
+
+        User vgvg = new User("vgvg");
+        vgvg.setName("Vedant Goel");
+        vgvg.setUserType("test");
+        vgvg.setViewed(new ArrayList<String>());
+        vgvg.setMatches(new ArrayList<>(Arrays.asList("d", "e", "f")));
 
         RealtimeDbWriteListener listener = new RealtimeDbWriteListener() {
             @Override
@@ -93,6 +106,14 @@ public class UserRealtimeDbFacadeUnitTest {
         StringBuilder namesBuilder = new StringBuilder();
         UserRealtimeDbFacade.getAllUsers("test", userList -> {
             userList.forEach(user -> namesBuilder.append(user.getUid()).append("_"));
+            // this line is equivalent to the following code chunk -- please refer to Java lambda expressions for more details
+            /* userList.forEach(new Consumer<User>() {
+             *    @Override
+             *    public void accept(User user) {
+             *        namesBuilder.append(user.getUserType()).append("_");
+             *    }
+             *});
+             */
             assertEquals("lisinan2_vgvg_", namesBuilder.toString());
         });
     }
@@ -107,10 +128,13 @@ public class UserRealtimeDbFacadeUnitTest {
         StringBuilder userInfo = new StringBuilder();
         UserRealtimeDbFacade.getUser(
                 "test", "lisinan2",
-                user -> assertEquals(
-                        "lisinan2: Lance Li (test)",
-                        userInfo.append(user.getUid()).append(": ").append(user.getFirstName()).append(" ").append(user.getLastName()).append(" (").append(user.getUserType()).append(")").toString()
-                )
+                user -> {
+                    assertEquals(
+                            "lisinan2: Lance Li (test)",
+                            userInfo.append(user.getUid()).append(": ").append(user.getName()).append(" (").append(user.getUserType()).append(")").toString()
+                    );
+                    assertArrayEquals(new String[]{"a", "b", "c"}, user.getViewed().toArray());
+                }
         );
     }
 }
