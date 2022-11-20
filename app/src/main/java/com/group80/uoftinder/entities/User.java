@@ -1,3 +1,8 @@
+/**
+ * Represents a user that is connected to their corresponding FirebaseUser account
+ * with a user id
+ */
+
 package com.group80.uoftinder.entities;
 
 import android.net.Uri;
@@ -5,6 +10,8 @@ import android.net.Uri;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
+
 
 public class User {
 
