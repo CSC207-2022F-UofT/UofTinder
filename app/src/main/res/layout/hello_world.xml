@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".HelloWorld">
 
-    <Button
-        android:id="@+id/helloWorldEnterChatButton"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Enter Chat" />
+        android:text="Hello World!" />
 </RelativeLayout>
