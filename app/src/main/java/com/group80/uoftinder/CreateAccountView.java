@@ -24,7 +24,9 @@ import com.group80.uoftinder.entities.User;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-
+/*
+ * Code for all the views that the user will go through to create a user
+ */
 public class CreateAccountView extends AppCompatActivity {
 
     private ArrayList<HashSet<Integer>> answers = new ArrayList<>();
