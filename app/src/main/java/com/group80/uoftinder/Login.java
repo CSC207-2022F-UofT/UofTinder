@@ -16,7 +16,6 @@ import com.group80.uoftinder.login_use_case.LoginPresenter;
 import com.group80.uoftinder.login_use_case.LoginPresenterFormatter;
 
 
-//is this kinda like a controller?
 public class Login extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
@@ -33,7 +32,7 @@ public class Login extends AppCompatActivity {
 
         // UserAccountController
         loginEmail = findViewById(R.id.loginEmail);
-        loginPassword = findViewById(R.id.password);
+        loginPassword = findViewById(R.id.loginPassword);
 
         LoginPresenter loginPresenter = new LoginPresenterFormatter(this, HelloWorld.class);
         LoginInput loginInteractor = new LoginInteractor(loginPresenter);
@@ -42,10 +41,10 @@ public class Login extends AppCompatActivity {
 
         enterLogin = findViewById(R.id.EnterLogin);
         enterLogin.setOnClickListener(view -> loginController.loginUser(loginEmail, loginPassword));
-
     }
 
     public void showCreateAccountView(View view) {
+        // CreateAccountView will be fine when merged with create account branch
         Intent intent = new Intent(Login.this, CreateAccountView.class);
         startActivity(intent);
         finish();

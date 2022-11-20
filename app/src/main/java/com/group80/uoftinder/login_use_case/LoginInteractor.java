@@ -1,3 +1,8 @@
+/**
+ * Interactor that will check if a correct email and password combination is input to login a user
+ * Depending on result, either error or success will be shown
+ */
+
 package com.group80.uoftinder.login_use_case;
 
 import android.text.TextUtils;
@@ -15,6 +20,14 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
         this.loginPresenter = loginPresenter;
     }
 
+    /**
+     * Uses loginEmail and loginPassword ot attempt to login a user.
+     * Error will appear if there is no email input, if there is no password input,
+     * or if incorrect email and password combination is input
+     *
+     * @param loginEmail login email input
+     * @param loginPassword login password input
+     */
     public void loginUser(EditText loginEmail, EditText loginPassword) {
         String email = loginEmail.getText().toString().trim();
         String password = loginPassword.getText().toString().trim();
