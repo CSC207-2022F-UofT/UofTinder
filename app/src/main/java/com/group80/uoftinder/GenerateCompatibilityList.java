@@ -15,7 +15,7 @@ public class GenerateCompatibilityList {
     private User curUser;
     private int curUserScore;
     private List<User> compatibilityList;
-    private RecPresenterInterface recPresenterInterface;
+//    private RecPresenterInterface recPresenterInterface;
     private UserScoreFacade usf;
     private Map<User, Integer> compScores;
     private Comparator<User> userScoreComparator;
@@ -23,15 +23,13 @@ public class GenerateCompatibilityList {
     /**
      * Initialize the attributes of a GenerateCompatibilityList instance
      */
-    public GenerateCompatibilityList(RecPresenterInterface recPresenterInterface) {
+    public GenerateCompatibilityList() {
         getAllUsers();
         this.usf = new UserScoreFacade(curUser);
         this.curUser = UserRealtimeDbFacade.getCurrentUser();
         this.curUserScore = curUser.getScore();
-        this.recPresenterInterface = recPresenterInterface;
-        this.userScoreComparator = Comparator.comparing(user -> {
-            compScores.get(user.getUid());
-        });
+//        this.recPresenterInterface = recPresenterInterface;
+        this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
     }
 
     /**
@@ -114,15 +112,15 @@ public class GenerateCompatibilityList {
      * Get the most compatible user (the first element) from compatibilityList and send it to
      * the recPresenterInterface to display it
      */
-    public void showMostCompUser() {
+    public User showMostCompUser() {
         if (compatibilityList.size() > 0) {
 //            String displayUserId = compatibilityList.get(0);
 //            User displayUser = UserRealtimeDbFacade.getUser(displayUserId);
             User displayUser = compatibilityList.get(0);
-            recPresenterInterface.displayMostCompUser(displayUser);
+            return displayUser;
         }
         else {
-            recPresenterInterface.displayNoCompatibleUser();
+            return null;
         }
     }
 
