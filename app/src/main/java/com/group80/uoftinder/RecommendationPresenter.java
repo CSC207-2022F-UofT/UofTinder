@@ -12,13 +12,14 @@ public class RecommendationPresenter implements RecPresenterInterface{
     private RecViewInterface recViewInterface;
 
     /**
-     * Initialize the RecommendationPresenter instance by creating an instance of
-     * GenerateCompatibilityList and assigning the recViewInterface attribute to the an instance of
-     * RecViewInterface
+     * Initialize the attributes of a RecommendationPresenter instance
      * @param recViewInterface: an instance of RecViewInterface
      */
     public RecommendationPresenter(RecViewInterface recViewInterface) {
         this.genCompatibilityList = new GenerateCompatibilityList(this);
+        // need to discuss where orderCompatibilityList is actually initially called
+        // seems to make sense to call it here once instead of multiple times elsewhere
+        genCompatibilityList.orderCompatibilityList();
         this.recViewInterface = recViewInterface;
     }
 
@@ -26,7 +27,7 @@ public class RecommendationPresenter implements RecPresenterInterface{
      * Call the use case to retrieve the most compatible user to curUser and send it to the
      * presenter
      */
-    public void displayNextUser() { // should change name of function to showUser be more clear
+    public void displayNextUser() { // should change name of function to displayUser be more clear
         genCompatibilityList.showMostCompUser();
     }
 
@@ -40,15 +41,17 @@ public class RecommendationPresenter implements RecPresenterInterface{
 
     /**
      * Display the most compatible user to curUser in the view, through the recViewInterface
+     * and update the displayedUser attribute
      * @param user: the most compatible user to curUser
      */
-    public void displayUser(User user) {
+    public void displayMostCompUser(User user) {
         recViewInterface.setDisplayedUser(user);
         recViewInterface.showUser(user);
     }
 
     /**
-     * Display the no compatible user message in the view, through the recViewInterface
+     * Display the no compatible user message in the view, through the recViewInterface and update
+     * the displayedUser attribute
      */
     public void displayNoCompatibleUser() {
         recViewInterface.setDisplayedUser(null);
@@ -59,6 +62,6 @@ public class RecommendationPresenter implements RecPresenterInterface{
      * Regenerate the compatibilityList to curUser so that it is up to date
      */
     public void regenerate() {
-        genCompatibilityList.generateCompatibilityList();
+        genCompatibilityList.recalculateCompatibilityList();
     }
 }
