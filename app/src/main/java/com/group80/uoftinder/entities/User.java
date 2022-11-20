@@ -21,18 +21,15 @@ public class User {
     private String gender;
 
     private ArrayList<HashSet<Integer>> answers;
-    private List viewed;
-    private List liked;
-    private List matches;
-    private List compatibilityList;
-
+    private List<String> viewed;
+    private List<String> liked;
+    private List<String> matches;
 
     public User(String uid){
         this.uid = uid;
-        this.liked = new ArrayList<String>();
-        this.viewed = new ArrayList<String>();
-        this.matches = new ArrayList<String>();
-        this.compatibilityList = new ArrayList<String>();
+        this.liked = new ArrayList<>();
+        this.viewed = new ArrayList<>();
+        this.matches = new ArrayList<>();
     }
 
     public void setUserType(String userType) {
@@ -92,35 +89,27 @@ public class User {
         this.answers = answers;
     }
 
-    public List getViewed() {
+    public List<String> getViewed() {
         return viewed;
     }
 
-    public void setViewed(List viewed) {
+    public void setViewed(List<String> viewed) {
         this.viewed = viewed;
     }
 
-    public List getLiked() {
+    public List<String> getLiked() {
         return liked;
     }
 
-    public void setLiked(List liked) {
+    public void setLiked(List<String> liked) {
         this.liked = liked;
     }
 
-    public List getMatches() {
+    public List<String> getMatches() {
         return matches;
     }
 
-    public void setMatches(List matches) {
+    public void setMatches(List<String> matches) {
         this.matches = matches;
-    }
-
-    public List getCompatibilityList() {
-        return compatibilityList;
-    }
-
-    public void setCompatibilityList(List compatibilityList) {
-        this.compatibilityList = compatibilityList;
     }
 }
