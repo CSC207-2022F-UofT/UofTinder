@@ -135,6 +135,9 @@ public class GenerateCompatibilityList {
         curUser.setCompatibilityList(compatibilityList);
     }
 
+    /**
+     * Recalculate compatibilityList
+     */
     public void recalculateCompatibilityList() {
         getAllUsers();
         orderCompatibilityList();
