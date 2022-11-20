@@ -1,25 +1,32 @@
 package com.group80.uoftinder.firebase.storage;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 /**
  * A downloader to download bitmap images from the firebase cloud storage
  */
-public class ucImageDownloader extends ucDownloader<Bitmap, byte[]> {
+public class ucImageDownloader extends ucDownloader<byte[]> {
     /**
      * Downloads an byte array from the firebase storage, then convert it to an bitmap image
      *
      * @param downloadUri the url to download the image
-     * @return the bitmap image
      */
     @Override
-    public Bitmap download(String downloadUri) {
+    public void download(String downloadUri) {
         StorageReference imageReference = FirebaseStorage.getInstance().getReferenceFromUrl(downloadUri);
-        byte[] imageData = imageReference.getBytes(5120 * 5120).addOnSuccessListener(this::notifySuccess).addOnFailureListener(this::notifyFailure).getResult();
-        return BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+        imageReference.getBytes(5120 * 5120).addOnSuccessListener(this::notifySuccess).addOnFailureListener(this::notifyFailure);
+    }
+
+    /**
+     * Downloads an byte array from the firebase storage, then convert it to an bitmap image
+     *
+     * @param path the path of the image in the storage database
+     */
+    public void download(String[] path) {
+        StorageReference imageReference = storageReference;
+        for (String subDir : path)
+            imageReference = imageReference.child(subDir);
+        imageReference.getBytes(5120 * 5120).addOnSuccessListener(this::notifySuccess).addOnFailureListener(this::notifyFailure);
     }
 }
