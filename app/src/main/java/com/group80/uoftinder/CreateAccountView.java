@@ -244,6 +244,9 @@ public class CreateAccountView extends AppCompatActivity {
                     //store User into database
 //                    UserRealtimeDbFacade.uploadUser(currentUser);
 
+                    Toast.makeText(CreateAccountView.this, "Account created :D",
+                            Toast.LENGTH_SHORT).show();
+
                     //proceed into recommendation view
 //                    setContentView(recommendation_profile_display.xml);
                 }
