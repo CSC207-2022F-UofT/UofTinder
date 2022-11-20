@@ -1,6 +1,8 @@
 package com.group80.uoftinder;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -33,14 +35,20 @@ public class Login extends AppCompatActivity {
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.password);
 
-        LoginPresenter loginPresenter = new LoginPresenterFormatter(Login.this, HelloWorld.class);
+        LoginPresenter loginPresenter = new LoginPresenterFormatter(this, HelloWorld.class);
         LoginInput loginInteractor = new LoginInteractor(loginPresenter);
         LoginController loginController = new LoginController(loginInteractor);
 
 
         enterLogin = findViewById(R.id.EnterLogin);
-        enterLogin.setOnClickListener(view -> loginController.loginUser(mAuth, loginEmail, loginPassword));
+        enterLogin.setOnClickListener(view -> loginController.loginUser(loginEmail, loginPassword));
 
+    }
+
+    public void showCreateAccountView(View view) {
+        Intent intent = new Intent(Login.this, CreateAccountView.class);
+        startActivity(intent);
+        finish();
     }
 
     // LoginInteractor

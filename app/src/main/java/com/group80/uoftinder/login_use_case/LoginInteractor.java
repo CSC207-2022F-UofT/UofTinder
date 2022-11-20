@@ -15,7 +15,7 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
         this.loginPresenter = loginPresenter;
     }
 
-    public void loginUser(FirebaseAuth mAuth, EditText loginEmail, EditText loginPassword) {
+    public void loginUser(EditText loginEmail, EditText loginPassword) {
         String email = loginEmail.getText().toString().trim();
         String password = loginPassword.getText().toString().trim();
 
@@ -27,12 +27,12 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
         }
 
         else { // user == null, signing in with email and password
-            mAuth.signInWithEmailAndPassword(email, password)
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
 
                         // Login Presenter
                         if (task.isSuccessful()) {
-                            loginPresenter.prepareSuccessView(task, mAuth.getCurrentUser());
+                            loginPresenter.prepareSuccessView(FirebaseAuth.getInstance().getCurrentUser());
 
                         } else {
                             // If sign in fails, display a message to the user.

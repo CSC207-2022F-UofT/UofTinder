@@ -2,8 +2,6 @@ package com.group80.uoftinder.login_use_case;
 
 import android.widget.EditText;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 public class LoginController {
     final LoginInput loginInput;
 
@@ -11,8 +9,7 @@ public class LoginController {
         this.loginInput = loginGateway;
     }
 
-    public void loginUser(FirebaseAuth mAuth, EditText loginEmail, EditText loginPassword) {
-        loginInput.loginUser(mAuth, loginEmail, loginPassword);
-    };
-
+    public void loginUser(EditText loginEmail, EditText loginPassword) {
+        loginInput.loginUser(loginEmail, loginPassword);
+    }
 }
