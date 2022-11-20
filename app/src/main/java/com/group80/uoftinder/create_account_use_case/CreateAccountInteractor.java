@@ -4,6 +4,7 @@ public class CreateAccountInteractor {
     private static int[] answerSchema; //should be [5, 6, 3] for now (academic answers)
     private static boolean[] isMultiSelect; //should be [false, true, false] for now (academic answers)
 
+    // TODO: implement clean architecture, shove methods into here from CreateAccountView
     /*
      * Checks if passwords entered match
      * @param password1        first password entered

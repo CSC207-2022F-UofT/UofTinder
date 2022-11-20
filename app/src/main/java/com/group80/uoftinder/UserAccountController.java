@@ -3,6 +3,7 @@ package com.group80.uoftinder;
 import java.util.HashSet;
 
 public class UserAccountController {
+    // TODO: implement clean architecture, shove methods into here from CreateAccountView
     /*
      * Checks if information entered in createaccountview.xml was entered correctly. Checks if the
      * passwords the user entered matched and if the email entered is not already taken by another

@@ -1,6 +1,7 @@
 package com.group80.uoftinder.create_account_use_case;
 
 public class CreateAccountPresenter {
+    // TODO: implement clean architecture, shove methods into here from CreateAccountView
     /*
      * Checks that the error for the entered information in createaccountview.xml is
      * @param email         a string representing the email the user entered
