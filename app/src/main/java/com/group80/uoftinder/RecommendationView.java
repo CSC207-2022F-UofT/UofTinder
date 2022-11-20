@@ -17,6 +17,14 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     private final RecommendationPresenter recPresenter;
     private User displayedUser;
 
+    // create variables for all elements that are displayed
+    private ImageView profilePicture;
+    private TextView name;
+    private TextView gender;
+    private TextView age;
+    private Button noButton;
+    private Button yesButton;
+
     /**
      * Initialize an instance of RecommendationView by passing the currentUser.
      * @param currentUser is the current user.
@@ -27,14 +35,6 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         this.displayedUser = null;
     }
 
-
-    // create variables for all elements that are displayed
-    ImageView profilePicture;
-    TextView name;
-    TextView gender;
-    TextView age;
-    Button noButton;
-    Button yesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,8 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         yesButton = findViewById(R.id.yesButton);
 
         // initialize first user
-        User displayedUser = (User) currentUser.getCompatibilityList().get(0);
+        User displayedUser = recPresenter.displayUser();
+
 
         // yes button click listener
         yesButton.setOnClickListener(view -> {
@@ -86,7 +87,8 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         // add displayed User to viewed/liked list
         update.addToList(displayedUser, liked);
         // displays next user
-        recPresenter.displayNextUser();
+        recPresenter.nextUser();
+        recPresenter.displayUser();
 
     }
 
