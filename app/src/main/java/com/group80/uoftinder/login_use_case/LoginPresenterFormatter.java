@@ -46,7 +46,7 @@ public class LoginPresenterFormatter extends AppCompatActivity implements LoginP
 
     private void updateUI(FirebaseUser user) {
         Toast.makeText(login, "Login Successful!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(login, helloWorld));
+                                startActivity(new Intent(LoginPresenterFormatter.this, HelloWorld.class));
     }
 
 }
