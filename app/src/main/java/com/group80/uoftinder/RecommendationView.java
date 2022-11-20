@@ -33,6 +33,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         this.currentUser = currentUser;
         this.recPresenter = new RecommendationPresenter(this);
         this.displayedUser = null;
+        UpdateList update = new UpdateList(currentUser);
     }
 
 
@@ -63,7 +64,6 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         // no button click listener
         noButton.setOnClickListener(view -> {
             buttonClick(displayedUser, false);
-
         });
     }
 
@@ -83,9 +83,8 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
      * @param liked If true, currentUser 'likes' displayedUser, false otherwise
      */
     private void buttonClick(User displayedUser, boolean liked) {
-        UpdateList update = new UpdateList(currentUser, displayedUser, liked);
         // add displayed User to viewed/liked list
-        update.addToList(displayedUser, liked);
+        UpdateList.addToList(displayedUser, liked, currentUser.getViewed(), currentUser.getLiked());
         // displays next user
         recPresenter.nextUser();
         recPresenter.displayUser();
