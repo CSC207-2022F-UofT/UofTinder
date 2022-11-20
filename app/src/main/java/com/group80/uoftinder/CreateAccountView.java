@@ -24,7 +24,7 @@ import com.group80.uoftinder.entities.User;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-/*
+/**
  * Code for all the views that the user will go through to create a user
  */
 public class CreateAccountView extends AppCompatActivity {
@@ -45,8 +45,8 @@ public class CreateAccountView extends AppCompatActivity {
         setContentView(R.layout.createaccountview);
 
         mAuth = FirebaseAuth.getInstance();
-
-        createAccountEmail = findViewById(R.id.email);
+        
+        createAccountEmail = findViewById(R.id.accountEmail);
         createAccountPassword1 = findViewById(R.id.password1);
         createAccountPassword2 = findViewById(R.id.password2);
 
@@ -66,7 +66,7 @@ public class CreateAccountView extends AppCompatActivity {
             }
         });
     }
-    /*
+    /**
      * Creates the createaccountview.xml and gets inputs, proceeds to next page if information is
      * entered correctly
      */
@@ -112,7 +112,7 @@ public class CreateAccountView extends AppCompatActivity {
             });
         }
     }
-    /*
+    /**
      * Creates the basicinfoview.xml and gets inputs, proceeds to next page if information is
      * entered correctly
      */
@@ -172,7 +172,7 @@ public class CreateAccountView extends AppCompatActivity {
 
     }
 
-    /*
+    /**
      * Creates questionnaire view for the correct type
      * @param type      a string representing the type of user that the user selected (only
      *                  "academic" for now)
@@ -189,7 +189,7 @@ public class CreateAccountView extends AppCompatActivity {
 //        }
     }
 
-    /*
+    /**
      * Creates the academic_questionnaire.xml and gets inputs, proceeds to recommendation page if
      * information is entered correctly
      */

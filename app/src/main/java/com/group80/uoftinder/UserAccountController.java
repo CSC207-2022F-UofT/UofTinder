@@ -26,7 +26,7 @@ public class UserAccountController {
 //    }
 
 
-    /*
+    /**
      * Checks if the information entered in the basicinfoview.xml was entered correctly. Checks if
      * all the fields are non-empty.
      * @param name     a string representing the name the user inputted
@@ -42,7 +42,8 @@ public class UserAccountController {
         boolean checkType = type.compareTo("")!=0;
         return checkName && checkAge && checkIdentity && checkType;
     }
-    /* Checks if the information entered in academic_questionnaire.xml was entered correctly.
+    /**
+     *  Checks if the information entered in academic_questionnaire.xml was entered correctly.
      * Checks if all fields are non-empty or if an answer was chosen correctly (i.e. the int given
      * is within the index of possible selected answers.
      * @param year     an int representing the index of the year selected (out of all possible

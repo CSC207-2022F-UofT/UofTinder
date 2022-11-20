@@ -25,7 +25,7 @@ public class appTestWelcomeScreens extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
-            startActivity(new Intent(appTestWelcomeScreens.this, LoginView.class));
+            startActivity(new Intent(appTestWelcomeScreens.this, Login.class));
         }
     }
 

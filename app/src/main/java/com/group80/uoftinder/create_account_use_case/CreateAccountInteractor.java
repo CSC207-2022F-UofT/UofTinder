@@ -37,7 +37,7 @@ public class CreateAccountInteractor {
         isMultiSelect = iMS;
     }
 
-    /*
+    /**
      * Returns the number of answers to each question
      * @return       returns an array of booleans representing the number of answers for each question in
      *               the correct order of questions
@@ -46,7 +46,7 @@ public class CreateAccountInteractor {
         return answerSchema;
     }
 
-    /*
+    /**
      * Returns whether each question is mulitselect or not
      * @return       returns an array of booleans representing whether each question is multiselect in
      *               the correct order of questions
