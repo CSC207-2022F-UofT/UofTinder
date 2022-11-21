@@ -1,4 +1,4 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.feed;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.NumberPicker;
 
-import com.group80.uoftinder.feed.RecommendationInteractor;
+import com.group80.uoftinder.HelloWorld;
+import com.group80.uoftinder.R;
 
 import java.util.ArrayList;
 import java.util.HashSet;

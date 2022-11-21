@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.group80.uoftinder.feed.AcademicFilterActivity;
 
 public class HelloWorld extends AppCompatActivity {
     @Override
@@ -22,6 +22,14 @@ public class HelloWorld extends AppCompatActivity {
               public void onClick(View view) {
                   startActivity(new Intent(HelloWorld.this, AcademicFilterActivity.class));
               }
+        });
+
+        Button resetFilterButton = findViewById(R.id.resetFilterButton);
+        resetFilterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
         });
 
         Button button = findViewById(R.id.helloWorldEnterChatButton);

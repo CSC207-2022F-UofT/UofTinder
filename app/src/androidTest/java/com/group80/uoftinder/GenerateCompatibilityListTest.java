@@ -10,6 +10,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.GenerateCompatibilityList;
 import com.group80.uoftinder.feed.RecommendationPresenter;
+import com.group80.uoftinder.feed.RecommendationView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

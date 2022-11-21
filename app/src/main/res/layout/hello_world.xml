@@ -9,13 +9,25 @@
         android:id="@+id/testButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/resetFilterButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="138dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginBottom="147dp"
+        android:text="Filter Tests" />
+
+    <Button
+        android:id="@+id/resetFilterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="101dp"
-        android:layout_marginEnd="117dp"
-        android:layout_marginBottom="328dp"
-        android:text="Filter Test Button" />
+        android:layout_marginStart="142dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginBottom="176dp"
+        android:text="Reset Filters" />
 
     <Button
         android:id="@+id/helloWorldEnterChatButton"
@@ -24,8 +36,8 @@
         android:layout_above="@+id/testButton"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="134dp"
-        android:layout_marginEnd="149dp"
-        android:layout_marginBottom="169dp"
+        android:layout_marginStart="139dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="211dp"
         android:text="Enter Chat" />
 </RelativeLayout>

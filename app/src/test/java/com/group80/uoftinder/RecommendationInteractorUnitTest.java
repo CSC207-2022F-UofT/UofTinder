@@ -1,7 +1,10 @@
 package com.group80.uoftinder;
 
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.feed.GenerateCompatibilityList;
 import com.group80.uoftinder.feed.RecommendationInteractor;
+import com.group80.uoftinder.feed.RecommendationPresenter;
+import com.group80.uoftinder.feed.RecommendationView;
 
 import org.junit.Test;
 
@@ -20,9 +23,9 @@ public class RecommendationInteractorUnitTest {
     @Test
     public void filterFeedTestFilters() {
         List<User> compatibilityList = new ArrayList<>();
-        User user1 = new User();
-        User user2 = new User();
-        User user3 = new User();
+        User user1 = new User("uid1");
+        User user2 = new User("uid2");
+        User user3 = new User("uid3");
         user1.setAge(19);
         user2.setAge(13);
         user3.setAge(83);
@@ -50,8 +53,11 @@ public class RecommendationInteractorUnitTest {
         compatibilityList.add(user2);
         compatibilityList.add(user3);
 
-        RecommendationInteractor recommendationInteractor = new RecommendationInteractor();
-        recommendationInteractor.setCompatibilityList(compatibilityList);
+        User curUser = new User("curUser");
+        RecommendationView recommendationView = new RecommendationView(curUser);
+        RecommendationPresenter recPresenter = new RecommendationPresenter(recommendationView);
+        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList();
+        generateCompatibilityList.setCompatibilityList(compatibilityList);
 
         List<User> copyCompatibilityList = new ArrayList<>();
         copyCompatibilityList.addAll(compatibilityList);
@@ -63,9 +69,9 @@ public class RecommendationInteractorUnitTest {
 
         int minAge = 13;
         int maxAge = 100;
-        recommendationInteractor.filterCompatibilityList(filters, minAge, maxAge);
+        generateCompatibilityList.filterCompatibilityList(filters, minAge, maxAge);
 
-        List<User> filteredCompatibilityList = recommendationInteractor.getFilteredCompatibilityList();
+        List<User> filteredCompatibilityList = generateCompatibilityList.getFilteredCompatibilityList();
         assert filteredCompatibilityList.size() == 1 &&
                 filteredCompatibilityList.contains(user2);
     }
@@ -73,11 +79,11 @@ public class RecommendationInteractorUnitTest {
     @Test
     public void filterFeedTestAge() {
         List<User> compatibilityList = new ArrayList<>();
-        User user1 = new User();
-        User user2 = new User();
-        User user3 = new User();
-        User user4 = new User();
-        User user5 = new User();
+        User user1 = new User("uid1");
+        User user2 = new User("uid2");
+        User user3 = new User("uid3");
+        User user4 = new User("uid4");
+        User user5 = new User("uid5");
         user1.setAge(19);
         user2.setAge(13);
         user3.setAge(83);
@@ -126,11 +132,11 @@ public class RecommendationInteractorUnitTest {
     @Test
     public void filterFeedTestNoFilters() {
         List<User> compatibilityList = new ArrayList<>();
-        User user1 = new User();
-        User user2 = new User();
-        User user3 = new User();
-        User user4 = new User();
-        User user5 = new User();
+        User user1 = new User("uid1");
+        User user2 = new User("uid2");
+        User user3 = new User("uid3");
+        User user4 = new User("uid4");
+        User user5 = new User("uid5");
         user1.setAge(19);
         user2.setAge(20);
         user3.setAge(83);
@@ -176,9 +182,9 @@ public class RecommendationInteractorUnitTest {
     @Test
     public void filterFeedTestFiltersAndAge() {
         List<User> compatibilityList = new ArrayList<>();
-        User user1 = new User();
-        User user2 = new User();
-        User user3 = new User();
+        User user1 = new User("uid1");
+        User user2 = new User("uid2");
+        User user3 = new User("uid3");
         user1.setAge(19);
         user2.setAge(13);
         user3.setAge(25);
