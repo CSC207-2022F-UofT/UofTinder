@@ -1,4 +1,4 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.feed;
 
 import com.group80.uoftinder.entities.User;
 
