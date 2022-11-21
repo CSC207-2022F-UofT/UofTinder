@@ -32,7 +32,7 @@ public class GenerateCompatibilityListTest {
         User curUser = new User("curUser");
         RecommendationView recommendationView = new RecommendationView(curUser);
         RecommendationPresenter recPresenter = new RecommendationPresenter(recommendationView);
-        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(recPresenter);
+        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList();
         User user2 = new User("user2");
         User user3 = new User("user3");
         int curUserScore = 11682;

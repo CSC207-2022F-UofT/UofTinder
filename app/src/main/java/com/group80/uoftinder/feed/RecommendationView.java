@@ -1,4 +1,4 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.feed;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.group80.uoftinder.R;
+import com.group80.uoftinder.UpdateList;
+import com.group80.uoftinder.entities.User;
 /**
  * Public class that extends AppCompatActivity and implements RecViewInterface.
  * This class displays the most compatible users to currentUser.
@@ -82,7 +85,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
      * @param displayedUser is the user displayed currently to currentUser
      * @param liked If true, currentUser 'likes' displayedUser, false otherwise
      */
-    private void buttonClick(User displayedUser, boolean liked) {
+    protected void buttonClick(User displayedUser, boolean liked) {
         // add displayed User to viewed/liked list
         UpdateList.addToList(displayedUser, liked, currentUser.getViewed(), currentUser.getLiked());
         // displays next user
