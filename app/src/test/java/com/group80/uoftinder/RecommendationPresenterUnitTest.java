@@ -8,8 +8,16 @@ import com.group80.uoftinder.entities.User;
 
 import org.junit.Test;
 
+/**
+ * A RecommendationPresenterUnitTest class that tests the functionality of the
+ * RecommendationPresenter class
+ */
 public class RecommendationPresenterUnitTest {
 
+    /**
+     * Test that RecommendationPresenter.displayMostCompUser changes the displayedUser attribute
+     * in RecommendationPresenter.recViewInterface
+     */
     @Test
     public void displayMostCompUserTest() {
         User curUser = new User("curUser");
@@ -22,6 +30,10 @@ public class RecommendationPresenterUnitTest {
         assertEquals(actual, user2);
     }
 
+    /**
+     * Test that RecommendationPresenter.displayNoCompatibleUser changes the displayedUser attribute
+     * in RecommendationPresenter.recViewInterface to null
+     */
     @Test
     public void displayNoCompatibleUserTest() {
         User curUser = new User("curUser");

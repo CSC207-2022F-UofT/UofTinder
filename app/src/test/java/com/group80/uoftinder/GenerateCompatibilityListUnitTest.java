@@ -15,14 +15,15 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * A GenerateCompatibilityListTest class that tests the functionality of the
+ * A GenerateCompatibilityListUnitTest class that tests the functionality of the
  * GenerateCompatibilityList class
  */
 public class GenerateCompatibilityListUnitTest {
 
     /**
-     * A class that tests that GenerateCompatibilityList.orderCompatibilityList reorders the
-     * compatibility list correctly when there are 3 total users
+     * Test that GenerateCompatibilityList.orderCompatibilityList reorders the
+     * compatibility list from most compatible user to least compatible user when there are
+     * 3 total users
      */
     @Test
     public void orderCompatibilityListTest() {
@@ -48,6 +49,10 @@ public class GenerateCompatibilityListUnitTest {
         assertEquals(actual, expectedCompList);
     }
 
+    /**
+     * Test that GenerateCompatibilityList.showMostCompUser returns the most compatible user when
+     * there are 2 other users
+     */
     @Test
     public void showMostCompUser2UsersTest() {
         User curUser = new User("curUser");
@@ -60,6 +65,10 @@ public class GenerateCompatibilityListUnitTest {
         assertEquals(actual, expected);
     }
 
+    /**
+     * Test that GenerateCompatibilityList.showMostCompUser returns null when there are no other
+     * compatible users
+     */
     @Test
     public void showMostCompUserNoUsersTest() {
         GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList();
@@ -69,6 +78,10 @@ public class GenerateCompatibilityListUnitTest {
         assertNull(actual);
     }
 
+    /**
+     * Test that GenerateCompatibilityList.removeMostCompUser removes the most compatible user
+     * in the compatibility list
+     */
     @Test
     public void removeMostCompUserTest() {
         GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList();
