@@ -1,13 +1,16 @@
 package com.group80.uoftinder;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.AcademicFilterActivity;
+import com.group80.uoftinder.feed.RecommendationPresenter;
+import com.group80.uoftinder.feed.RecommendationView;
 
 public class HelloWorld extends AppCompatActivity {
     @Override
@@ -28,7 +31,11 @@ public class HelloWorld extends AppCompatActivity {
         resetFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                // TODO: update to the actual current user object
+                User curUser = new User("curUser");
+                RecommendationView recommendationView = new RecommendationView(curUser);
+                RecommendationPresenter recPresenter = new RecommendationPresenter(recommendationView);
+                recPresenter.revertFilters();
             }
         });
 

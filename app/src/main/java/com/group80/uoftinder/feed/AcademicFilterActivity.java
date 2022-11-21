@@ -11,6 +11,7 @@ import android.widget.NumberPicker;
 
 import com.group80.uoftinder.HelloWorld;
 import com.group80.uoftinder.R;
+import com.group80.uoftinder.entities.User;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -121,7 +122,12 @@ public class AcademicFilterActivity extends AppCompatActivity {
                 filters.add(populateCheckboxValues(yearOfStudyBoxes));
                 filters.add(populateCheckboxValues(programOfStudyBoxes));
                 filters.add(populateCheckboxValues(campusBoxes));
-                recommendationInteractor.filterCompatibilityList(filters, minAge, maxAge);
+
+                // TODO: update to the actual current user object
+                User curUser = new User("curUser");
+                RecommendationView recommendationView = new RecommendationView(curUser);
+                RecommendationPresenter recPresenter = new RecommendationPresenter(recommendationView);
+                recPresenter.filterCompatibilityList(filters, minAge, maxAge);
                 // TODO: change to RecommendationFeed class later
                 startActivity(
                         new Intent(AcademicFilterActivity.this, HelloWorld.class)
