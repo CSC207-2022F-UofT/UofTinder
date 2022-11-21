@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">UofTinder</string>
+    <string name="life_sciences">Life Sciences</string>
+    <string name="year_of_study">Year of Study</string>
+    <string name="rotman">Rotman</string>
+    <string name="program_of_study">Program of Study</string>
+    <string name="other">Other</string>
+    <string name="first_year">First Year</string>
+    <string name="second_year">Second Year</string>
+    <string name="third_year">Third Year</string>
+    <string name="fourth_year">Fourth Year</string>
+    <string name="graduate">Graduate</string>
+    <string name="co_op">Co-Op</string>
+    <string name="mathematical_physical_sciences"><![CDATA[Mathematical & Physical Sciences]]></string>
+    <string name="computer_science">Computer Science</string>
+    <string name="social_sciences">Social Sciences/Humanities</string>
+    <string name="minimum_age">Minimum Age</string>
+    <string name="filter">Filter</string>
+    <string name="reset">Reset</string>
+    <string name="maximum_age">Maximum Age</string>
+    <string name="campus">Campus</string>
+    <string name="st_george">St. George</string>
+    <string name="mississauga">Mississauga</string>
+    <string name="scarborough">Scarborough</string>
 </resources>

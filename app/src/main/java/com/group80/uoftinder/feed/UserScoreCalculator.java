@@ -1,10 +1,11 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.feed;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UserScoreCalculator {
-    private List<HashSet<Integer>> userAnswers; // List of HashSets, where index i is a
+    private List<Set<Integer>> userAnswers; // List of HashSets, where index i is a
     // HashSet representing the indices of the answers selected by the currentUser for question i
     private final boolean[] isMultiSelect; // array where index i tells us whether question i can
     // have multiple answers selected or just one
@@ -23,7 +24,7 @@ public class UserScoreCalculator {
      * @param answerBitLengths array where index i tells us the number of bits
      *                         allocated for question i in the user score
      */
-    public UserScoreCalculator(List<HashSet<Integer>> userAnswers, boolean[] isMultiSelect, int[] answerBitLengths) {
+    public UserScoreCalculator(List<Set<Integer>> userAnswers, boolean[] isMultiSelect, int[] answerBitLengths) {
         this.userAnswers = userAnswers;
         this.isMultiSelect = isMultiSelect;
         this.answerBitLengths = answerBitLengths;
