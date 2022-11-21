@@ -194,14 +194,6 @@ public class GenerateCompatibilityList {
     }
 
     /**
-     * Get showFilteredList
-     * @return  the showFilteredList boolean instance variable
-     */
-    public boolean getShowFilteredList() {
-        return this.showFilteredList;
-    }
-
-    /**
      * Mutates the instance variable filteredCompatibilityList based on criteria given by
      * filters parameter and minimum/maximum age values.
      *

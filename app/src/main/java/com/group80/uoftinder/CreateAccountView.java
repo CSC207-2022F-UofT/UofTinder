@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.create_account_use_case.CreateAccountPresenter;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;

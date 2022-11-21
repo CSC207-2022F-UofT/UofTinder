@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Unit tests for the RecommendationInteractor class.
+ * Unit tests for the filtering functionality in GenerateCompatibilityList class.
  */
-public class RecommendationInteractorUnitTest {
+public class FilterUseCaseUnitTest {
 
     @Test
     public void filterFeedTestFilters() {
