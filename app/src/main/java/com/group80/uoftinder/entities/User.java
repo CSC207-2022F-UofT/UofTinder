@@ -34,6 +34,7 @@ public class User {
         this.liked = new ArrayList<>();
         this.viewed = new ArrayList<>();
         this.matches = new ArrayList<>();
+        this.answers = new ArrayList<>();
     }
 
     /**

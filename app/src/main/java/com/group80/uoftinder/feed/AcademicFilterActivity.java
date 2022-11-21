@@ -125,7 +125,7 @@ public class AcademicFilterActivity extends AppCompatActivity {
                 // TODO: update to the actual current user object
                 User curUser = new User("curUser");
                 RecommendationView recommendationView = new RecommendationView(curUser);
-                RecommendationPresenter recPresenter = new RecommendationPresenter(recommendationView);
+                RecommendationPresenter recPresenter = new RecommendationPresenter(curUser, recommendationView);
                 recPresenter.filterCompatibilityList(filters, minAge, maxAge);
                 // TODO: change to RecommendationFeed class later
                 startActivity(

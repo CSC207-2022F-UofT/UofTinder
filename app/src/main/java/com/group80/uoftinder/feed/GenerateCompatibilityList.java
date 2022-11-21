@@ -27,9 +27,10 @@ public class GenerateCompatibilityList {
     /**
      * Initialize the attributes of a GenerateCompatibilityList instance
      */
-    public GenerateCompatibilityList() {
+    public GenerateCompatibilityList(User currUser) {
         getAllUsers();
         filteredCompatibilityList = new ArrayList<>();
+        this.curUser = currUser;
         this.usf = new UserScoreFacade(curUser);
 //        this.curUser = UserRealtimeDbFacade.getCurrentUser();
         this.curUserScore = curUser.getScore();

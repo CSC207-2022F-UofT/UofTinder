@@ -19,8 +19,8 @@ public class RecommendationPresenter{
      * Initialize the attributes of a RecommendationPresenter instance
      * @param recViewInterface: an instance of RecViewInterface
      */
-    public RecommendationPresenter(RecViewInterface recViewInterface) {
-        this.genCompatibilityList = new GenerateCompatibilityList();
+    public RecommendationPresenter(User currUser, RecViewInterface recViewInterface) {
+        this.genCompatibilityList = new GenerateCompatibilityList(currUser);
         genCompatibilityList.orderCompatibilityList();
         this.recViewInterface = recViewInterface;
     }

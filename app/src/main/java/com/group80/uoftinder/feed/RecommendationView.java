@@ -34,7 +34,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
      */
     public RecommendationView(User currentUser) {
         this.currentUser = currentUser;
-        this.recPresenter = new RecommendationPresenter(this);
+        this.recPresenter = new RecommendationPresenter(currentUser, RecommendationView.this);
         this.displayedUser = null;
         UpdateList update = new UpdateList(currentUser);
     }
@@ -77,6 +77,11 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     public void setDisplayedUser(User displayedUser) {
         this.displayedUser = displayedUser;
     }
+
+    /**
+     * Returns displayedUser that is currently being displayed to currentUser.
+     */
+    public User getDisplayedUser() { return this.displayedUser;}
 
 
     /**
