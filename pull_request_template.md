@@ -12,7 +12,7 @@ Please use the following syntax to include images:
 # Checklist
 
 Please do a self-check to make sure you have satisfied all of the following before marking your PR
-as ready for review.
+as ready for review (place an `x` (the letter x) between `[ ]` to mark complete).
 
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code with javadoc and perhaps in-line comments (particularly in
