@@ -115,7 +115,6 @@ public class AcademicFilterActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View view) {
-                RecommendationInteractor recommendationInteractor = new RecommendationInteractor();
                 int minAge = minAgePicker.getValue();
                 int maxAge = maxAgePicker.getValue();
                 List<Set<Integer>> filters = new ArrayList<>();
