@@ -1,5 +1,7 @@
 package com.group80.uoftinder;
 
+import com.group80.uoftinder.entities.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class UpdateList extends User {
      * @param currentUser is the currentUser.
      */
     public UpdateList(User currentUser) {
-        super();
+        super(currentUser.getUid());
         this.currentUser = currentUser;
     }
 
