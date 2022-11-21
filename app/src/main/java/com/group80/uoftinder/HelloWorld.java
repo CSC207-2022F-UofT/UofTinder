@@ -1,9 +1,16 @@
 package com.group80.uoftinder;
 
-import android.os.Bundle;
-import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.feed.AcademicFilterActivity;
+import com.group80.uoftinder.feed.RecommendationPresenter;
+import com.group80.uoftinder.feed.RecommendationView;
 
 public class HelloWorld extends AppCompatActivity {
     @Override
@@ -11,44 +18,34 @@ public class HelloWorld extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hello_world);
 
+        // For testing the filter functionality
+        Button testButton = findViewById(R.id.testButton);
+        testButton.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  startActivity(new Intent(HelloWorld.this, AcademicFilterActivity.class));
+              }
+        });
 
-        mAuth = FirebaseAuth.getInstance(); //Initializing the Firebase Auth (new)
+        Button resetFilterButton = findViewById(R.id.resetFilterButton);
+        resetFilterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: update to the actual current user object
+                User curUser = new User("curUser");
+                RecommendationView recommendationView = new RecommendationView(curUser);
+                RecommendationPresenter recPresenter = new RecommendationPresenter(recommendationView);
+                recPresenter.revertFilters();
+            }
+        });
 
+        Button button = findViewById(R.id.helloWorldEnterChatButton);
+        button.setOnClickListener(view -> {
+            Intent intent = new Intent(HelloWorld.this, ChatActivity.class);
+            // TODO: remove such dependency
+            intent.putExtra("name", "Bot");
+            intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
+            startActivity(intent);
+        });
     }
-
-    // new
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null){
-//            reload();
-//        }
-    }
-
-    private void createAccount(String email, String password) {
-        // [START create_user_with_email]
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(HelloWorld.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-
-                    private void updateUI(FirebaseUser user) {
-                    }
-                });
-}
 }
