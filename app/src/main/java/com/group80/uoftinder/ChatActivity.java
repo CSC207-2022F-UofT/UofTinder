@@ -20,25 +20,19 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.group80.uoftinder.chat.Message;
 import com.group80.uoftinder.chat.MessageAdapter;
+import com.group80.uoftinder.chat.MessageFactory;
 import com.group80.uoftinder.firebase.realtime.RealtimeDbValueObserver;
 import com.group80.uoftinder.firebase.realtime.ucChatMessageWriter;
 import com.group80.uoftinder.firebase.storage.ImageStorageDbFacade;
 import com.group80.uoftinder.firebase.storage.StorageDbDownloadable;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * The chat window to a specific contact
  */
 public class ChatActivity extends AppCompatActivity {
-    private Calendar calendar;
-    private SimpleDateFormat simpleDateFormat;
-
     private MessageAdapter messageAdapter;
     private List<Message> messageList;
     private String inputMessage;
@@ -97,9 +91,6 @@ public class ChatActivity extends AppCompatActivity {
             }
         }, chatRoom);
 
-        calendar = Calendar.getInstance();
-        simpleDateFormat = new SimpleDateFormat("hh:mm a", Locale.CANADA);
-
         backButton.setOnClickListener(view -> {
             finish();
         });
@@ -124,12 +115,7 @@ public class ChatActivity extends AppCompatActivity {
             if (inputMessage.isEmpty()) return;
 
             // TODO: wrap-up firebaseAuth
-            Message message = new Message(inputMessage,
-                    firebaseAuth.getCurrentUser().getUid(),
-                    new Date().getTime(),
-                    simpleDateFormat.format(calendar.getTime())
-            );
-            chatMessageWriter.write(message);
+            chatMessageWriter.write(MessageFactory.createMessage(inputMessage, firebaseAuth.getCurrentUser().getUid()));
             messageEditText.setText(null);
         });
 
