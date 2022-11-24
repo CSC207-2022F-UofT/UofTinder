@@ -132,5 +132,5 @@ replay_pid*
 local.properties
 
 # Auto-Generated Gradle Files
-gradle
+# gradle
 gradlew*
