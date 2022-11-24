@@ -2,6 +2,10 @@ plugins {
     id 'com.android.application'
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.1'
+}
+
 android {
     namespace 'com.group80.uoftinder'
     compileSdk 33
