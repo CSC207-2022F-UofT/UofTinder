@@ -25,7 +25,9 @@ import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +36,7 @@ import java.util.Set;
  */
 public class CreateAccountView extends AppCompatActivity {
 
-    private List<Set<Integer>> answers = new ArrayList<>();
+    private List<List<Integer>> answers = new ArrayList<>();
     private final UserAccountController control = new UserAccountController();
     private final CreateAccountPresenter proceed = new CreateAccountPresenter();
 
@@ -219,7 +221,8 @@ public class CreateAccountView extends AppCompatActivity {
                 //selected
                 ChipGroup major_group = findViewById(R.id.majorgroup);
                 int major_count = major_group.getChildCount();
-                HashSet<Integer> majors = new HashSet<>();
+//                HashSet<Integer> majors = new HashSet<>();
+                List<Integer> majors = new LinkedList<>();
                 for(int i = 0; i<major_count; i++) {
                     Chip chip  = (Chip) major_group.getChildAt(i);
                     if(chip.isChecked()) {
@@ -244,9 +247,12 @@ public class CreateAccountView extends AppCompatActivity {
 
                 if (move_on) {
                     //adds answers user selected to answers
-                    answers.add(new HashSet<>(year));
+                    answers.add(Collections.singletonList(year));
                     answers.add(majors);
-                    answers.add(new HashSet<>(campus));
+                    answers.add(Collections.singletonList(campus));
+//                    answers.add(new HashSet<>(year));
+//                    answers.add(majors);
+//                    answers.add(new HashSet<>(campus));
                     currentUser.setAnswers((answers));
                     //store User into database
                     UserRealtimeDbFacade.uploadUser(currentUser);

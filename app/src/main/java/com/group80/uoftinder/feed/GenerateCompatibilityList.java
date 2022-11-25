@@ -216,12 +216,12 @@ public class GenerateCompatibilityList {
                 continue;  // go to the next user
             }
             // answers are formatted in the same way as filters, explained above
-            List<Set<Integer>> answers = user.getAnswers();
+            List<List<Integer>> answers = user.getAnswers();
             // answers.size() is used here for convenience, works under the
             // assumption that answers.size() == filters.size()
             for(int i = 0; i < answers.size(); i++) {
                 Set<Integer> currentFilter = filters.get(i);
-                Set<Integer> currentAnswers = answers.get(i);
+                List<Integer> currentAnswers = answers.get(i);
                 if(currentFilter.size() == 0)  // if no filters selected, go to next set of answers
                     continue;
                 boolean shouldRemove = true;

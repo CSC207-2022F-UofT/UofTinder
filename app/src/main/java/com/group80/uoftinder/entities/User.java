@@ -3,6 +3,7 @@ package com.group80.uoftinder.entities;
 import android.net.Uri;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ public class User {
     private int age;
     private String gender;
 
-    private List<Set<Integer>> answers;
+    private List<List<Integer>> answers;
     private List<String> viewed;
     private List<String> liked;
     private List<String> matches;
@@ -147,14 +148,14 @@ public class User {
      * Used for calculating user score
      * @return user's answers to questions when setting up their account
      */
-    public List<Set<Integer>> getAnswers() {
+    public List<List<Integer>> getAnswers() {
         return answers;
     }
     /**
      * Sets user's answers that will used to calculate user score
      * @param answers answers of user to questions when setting up account
      */
-    public void setAnswers(List<Set<Integer>> answers) {
+    public void setAnswers(List<List<Integer>> answers) {
         this.answers = answers;
     }
 
