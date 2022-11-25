@@ -26,7 +26,7 @@ public class GenerateCompatibilityListUnitTest {
      * 3 total users
      */
     @Test
-    public void orderCompatibilityListTest() {
+    public void orderCompatibilityListTest1() {
         User curUser = new User("curUser");
         GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList();
         User user2 = new User("user2");
@@ -43,10 +43,25 @@ public class GenerateCompatibilityListUnitTest {
         // user 2 compScore = 3
         genCompatibilityList.setCompatibilityList(initCompList);
         genCompatibilityList.setCurUser(curUser);
-        genCompatibilityList.setCurUserScore(curUserScore);
         genCompatibilityList.orderCompatibilityList();
         List<User> actual = genCompatibilityList.getCompatibilityList();
         assertEquals(actual, expectedCompList);
+    }
+
+    /**
+     * Test that GenerateCompatibilityList.orderCompatibilityList does nothing to the compatibility
+     * list when there are no other users in the database (besides the current user)
+     */
+    @Test
+    public void orderCompatibilityListTest2() {
+        User curUser = new User("curUser");
+        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList();
+        List<User> userList = new ArrayList<>();
+        genCompatibilityList.setCompatibilityList(userList);
+        genCompatibilityList.orderCompatibilityList();
+        List<User> actual = genCompatibilityList.getCompatibilityList();
+        List<User> expected = new ArrayList<>();
+        assertEquals(actual, expected);
     }
 
     /**
