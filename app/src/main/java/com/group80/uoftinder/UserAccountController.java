@@ -72,4 +72,16 @@ public class UserAccountController {
         boolean checkColours = !(colours.isEmpty());
         return checkYear && checkMajors && checkCampus && checkInterests && checkColours;
     }
+
+    public boolean finalAccountRomantic(int sexuality, List<Integer> majors, int campus,
+                                        List<Integer> interests, int distance, int relationship) {
+        boolean checkYear = sexuality != -1;
+        boolean checkMajors = !(majors.isEmpty());
+        boolean checkCampus = campus != -1;
+        boolean checkInterests = !(interests.isEmpty());
+        boolean checkDistance = distance != -1;
+        boolean checkRelationship = relationship != -1;
+        return checkYear && checkMajors && checkCampus && checkInterests && checkDistance &&
+                checkRelationship;
+    }
 }

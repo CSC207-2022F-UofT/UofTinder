@@ -120,6 +120,7 @@ public class CreateAccountView extends AppCompatActivity {
     /**
      * Creates the basicinfoview.xml and gets inputs, proceeds to next page if information is
      * entered correctly
+     * @param currentUser   the current user trying to register
      */
     private void createBasicInfoView(User currentUser) {
 
@@ -179,6 +180,7 @@ public class CreateAccountView extends AppCompatActivity {
 
     /**
      * Creates questionnaire view for the correct type
+     * @param currentUser   the current user trying to register
      * @param type      a string representing the type of user that the user selected (only
      *                  "academic" for now)
      */
@@ -197,6 +199,7 @@ public class CreateAccountView extends AppCompatActivity {
     /**
      * Creates the academic_questionnaire.xml and gets inputs, proceeds to recommendation page if
      * information is entered correctly
+     * @param currentUser   the current user trying to register
      */
     private void createAcademicQuestionnaire(User currentUser) {
         setContentView(R.layout.academic_questionnaire);
@@ -271,6 +274,7 @@ public class CreateAccountView extends AppCompatActivity {
     /**
      * Creates the friendship_questionnaire.xml and gets inputs, proceeds to recommendation page if
      * information is entered correctly
+     * @param currentUser   the current user trying to register
      */
     private void createFriendshipQuestionnaire(User currentUser) {
         setContentView(R.layout.friendship_questionnaire);
@@ -367,11 +371,113 @@ public class CreateAccountView extends AppCompatActivity {
     /**
      * Creates the romantic_questionnaire.xml and gets inputs, proceeds to recommendation page if
      * information is entered correctly
+     * @param currentUser   the current user trying to register
      */
     private void createRomanticQuestionnaire(User currentUser) {
+        setContentView(R.layout.romantic_questionnaire);
 
+        Button enter = findViewById(R.id.friend_finish);
+        enter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ChipGroup sexuality_group = findViewById(R.id.sexualitygroup);
+                int sexuality_count = sexuality_group.getChildCount();
+                int sexuality = -1;
+                for (int i = 0; i < sexuality_count; i++) {
+                    Chip chip = (Chip) sexuality_group.getChildAt(i);
+                    if (chip.isChecked()) {
+                        sexuality = i;
+                    }
+                }
+                //loops through all chips(answers) of majors answers and finds the chips that were
+                //selected
+                ChipGroup major_group = findViewById(R.id.majorgroup);
+                int major_count = major_group.getChildCount();
+                List<Integer> majors = new LinkedList<>();
+                for (int i = 0; i < major_count; i++) {
+                    Chip chip = (Chip) major_group.getChildAt(i);
+                    if (chip.isChecked()) {
+                        majors.add(i);
+                    }
+                }
+
+                //loops through all chips(answers) of campus answers and finds which chip was
+                //selected
+                ChipGroup campus_group = findViewById(R.id.campusgroup);
+                int campus_count = campus_group.getChildCount();
+                int campus = -1;
+                for (int i = 0; i < campus_count; i++) {
+                    Chip chip = (Chip) campus_group.getChildAt(i);
+                    if (chip.isChecked()) {
+                        campus = i;
+                    }
+                }
+
+                ChipGroup interests_group = findViewById(R.id.interestsgroup);
+                int interests_count = interests_group.getChildCount();
+                List<Integer> interests = new LinkedList<>();
+                for (int i = 0; i < interests_count; i++) {
+                    Chip chip = (Chip) interests_group.getChildAt(i);
+                    if (chip.isChecked()) {
+                        interests.add(i);
+                    }
+                }
+
+                ChipGroup distance_group = findViewById(R.id.distancegroup);
+                int distance_count = distance_group.getChildCount();
+                int distance = -1;
+                for (int i = 0; i < distance_count; i++) {
+                    Chip chip = (Chip) distance_group.getChildAt(i);
+                    if (chip.isChecked()) {
+                        distance = i;
+                    }
+                }
+
+                ChipGroup relationship_group = findViewById(R.id.relationshipgroup);
+                int relationship_count = relationship_group.getChildCount();
+                int relationship = -1;
+                for (int i = 0; i < relationship_count; i++) {
+                    Chip chip = (Chip) relationship_group.getChildAt(i);
+                    if (chip.isChecked()) {
+                        relationship = i;
+                    }
+                }
+
+                //checks all questions have an answer
+                boolean move_on = control.finalAccountRomantic(sexuality, majors, campus, interests,
+                        distance, relationship);
+
+                if (move_on) {
+                    //adds answers user selected to answers
+                    answers.add(Collections.singletonList(sexuality));
+                    answers.add(majors);
+                    answers.add(Collections.singletonList(campus));
+                    answers.add(interests);
+                    answers.add(Collections.singletonList(distance));
+                    answers.add(Collections.singletonList(relationship));
+                    currentUser.setAnswers((answers));
+                    //store User into database
+                    UserRealtimeDbFacade.uploadUser(currentUser);
+
+                    Toast.makeText(CreateAccountView.this, "Account created :D",
+                            Toast.LENGTH_SHORT).show();
+
+                    //proceed into recommendation view
+//                    Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
+//                    startActivity(intent);
+//                    finish();
+                } else {
+                    String text = "Please enter your information correctly";
+                    TextView error = findViewById(R.id.error_questionnaire);
+                    error.setText(text);
+                }
+            }
+        });
     }
 
+    /**
+     * Returns view back to loginView
+     * @param view      the current view (createAccountView)
+     */
     private void showLoginView(View view) {
         Intent intent  = new Intent(CreateAccountView.this, appTestWelcomeScreens.class);
         startActivity(intent);

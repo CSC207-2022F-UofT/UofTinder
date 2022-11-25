@@ -352,7 +352,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
-        android:layout_marginTop="664dp"
+        android:layout_marginTop="636dp"
         android:layout_marginEnd="162dp"
         android:text="Finish"
         app:layout_constraintEnd_toEndOf="parent"
@@ -364,7 +364,7 @@
         android:id="@+id/error_questionnaire"
         android:layout_width="200dp"
         android:layout_height="20dp"
-        android:layout_marginTop="644dp"
+        android:layout_marginTop="616dp"
         android:text=""
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -402,8 +402,7 @@
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/colourgroup"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:singleSelection="true">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.chip.Chip
                 style="@style/Widget.MaterialComponents.Chip.Filter"
