@@ -15,7 +15,6 @@ import java.util.Set;
  */
 public class GenerateCompatibilityList {
     private User curUser;
-    private int curUserScore;
     private List<User> compatibilityList;
 //    private RecPresenterInterface recPresenterInterface;
     private UserScoreFacade usf;
@@ -33,7 +32,6 @@ public class GenerateCompatibilityList {
         this.curUser = currUser;
         this.usf = new UserScoreFacade(curUser);
 //        this.curUser = UserRealtimeDbFacade.getCurrentUser();
-        this.curUserScore = curUser.getScore();
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
     }
 
@@ -44,6 +42,7 @@ public class GenerateCompatibilityList {
         UserRealtimeDbFacade.getAllUsers(userList -> {
             setCompatibilityList(userList);
         });
+        compatibilityList.remove(curUser);
     }
 
     /**
@@ -51,8 +50,13 @@ public class GenerateCompatibilityList {
      * attribute.
      */
     public void orderCompatibilityList() {
-        compScores = calculateCompatibilityScores(compatibilityList);
-        compatibilityList.sort(userScoreComparator);
+        if (compatibilityList.size() != 0) {
+            compScores = calculateCompatibilityScores(compatibilityList);
+            compatibilityList.sort(userScoreComparator);
+        }
+        else {
+            compScores = new HashMap<>();
+        }
 
 //        compatibilityList = new ArrayList<>();
 //        Map<String, Integer> compScores = calculateCompatibilityScores(allUsers);
@@ -172,14 +176,6 @@ public class GenerateCompatibilityList {
     }
 
     /**
-     * Set curUserScore to newScore
-     * @param newScore: what to set curUserScore to
-     */
-    public void setCurUserScore(int newScore) {
-        this.curUserScore = newScore;
-    }
-
-    /**
      * Get compatibilityList
      * @return the compatibilityList attribute
      */
@@ -218,12 +214,12 @@ public class GenerateCompatibilityList {
                 continue;  // go to the next user
             }
             // answers are formatted in the same way as filters, explained above
-            List<Set<Integer>> answers = user.getAnswers();
+            List<List<Integer>> answers = user.getAnswers();
             // answers.size() is used here for convenience, works under the
             // assumption that answers.size() == filters.size()
             for(int i = 0; i < answers.size(); i++) {
                 Set<Integer> currentFilter = filters.get(i);
-                Set<Integer> currentAnswers = answers.get(i);
+                List<Integer> currentAnswers = answers.get(i);
                 if(currentFilter.size() == 0)  // if no filters selected, go to next set of answers
                     continue;
                 boolean shouldRemove = true;
