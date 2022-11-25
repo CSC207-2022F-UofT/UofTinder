@@ -201,7 +201,7 @@ public class CreateAccountView extends AppCompatActivity {
     private void createAcademicQuestionnaire(User currentUser) {
         setContentView(R.layout.academic_questionnaire);
 
-        Button enter = findViewById(R.id.finish);
+        Button enter = findViewById(R.id.academic_finish);
         enter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 ChipGroup year_group = findViewById(R.id.yeargroup);
@@ -240,7 +240,7 @@ public class CreateAccountView extends AppCompatActivity {
                 }
 
                 //checks all questions have an answer
-                boolean move_on = control.finalAccount(year, majors, campus);
+                boolean move_on = control.finalAccountAcademic(year, majors, campus);
 
                 if (move_on) {
                     //adds answers user selected to answers
@@ -273,7 +273,95 @@ public class CreateAccountView extends AppCompatActivity {
      * information is entered correctly
      */
     private void createFriendshipQuestionnaire(User currentUser) {
+        setContentView(R.layout.friendship_questionnaire);
 
+        Button enter = findViewById(R.id.friend_finish);
+        enter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ChipGroup year_group = findViewById(R.id.yeargroup);
+                int year_count = year_group.getChildCount();
+                int year = -1; //sets year to -1 (user did not select a chip)
+                //loops through all chips(answers) of year answers and finds which chip was
+                //selected
+                for (int i = 0; i < year_count; i++) {
+                    Chip chip = (Chip) year_group.getChildAt(i);
+                    if (chip.isChecked()) {
+                        year = i;
+                    }
+                }
+                //loops through all chips(answers) of majors answers and finds the chips that were
+                //selected
+                ChipGroup major_group = findViewById(R.id.majorgroup);
+                int major_count = major_group.getChildCount();
+                List<Integer> majors = new LinkedList<>();
+                for (int i = 0; i < major_count; i++) {
+                    Chip chip = (Chip) major_group.getChildAt(i);
+                    if (chip.isChecked()) {
+                        majors.add(i);
+                    }
+                }
+
+                //loops through all chips(answers) of campus answers and finds which chip was
+                //selected
+                ChipGroup campus_group = findViewById(R.id.campusgroup);
+                int campus_count = campus_group.getChildCount();
+                int campus = -1;
+                for (int i = 0; i < campus_count; i++) {
+                    Chip chip = (Chip) campus_group.getChildAt(i);
+                    if (chip.isChecked()) {
+                        campus = i;
+                    }
+                }
+
+                ChipGroup interests_group = findViewById(R.id.interestsgroup);
+                int interests_count = interests_group.getChildCount();
+                List<Integer> interests = new LinkedList<>();
+                for (int i = 0; i < interests_count; i++) {
+                    Chip chip = (Chip) interests_group.getChildAt(i);
+                    if (chip.isChecked()) {
+                        interests.add(i);
+                    }
+                }
+
+                ChipGroup colour_group = findViewById(R.id.colourgroup);
+                int colour_count = colour_group.getChildCount();
+                List<Integer> colours = new LinkedList<>();
+                for (int i = 0; i < colour_count; i++) {
+                    Chip chip = (Chip) colour_group.getChildAt(i);
+                    if (chip.isChecked()) {
+                        colours.add(i);
+                    }
+                }
+
+                //checks all questions have an answer
+                boolean move_on = control.finalAccountFriendship(year, majors, campus, interests,
+                        colours);
+
+                if (move_on) {
+                    //adds answers user selected to answers
+                    answers.add(Collections.singletonList(year));
+                    answers.add(majors);
+                    answers.add(Collections.singletonList(campus));
+                    answers.add(interests);
+                    answers.add(colours);
+                    currentUser.setAnswers((answers));
+                    //store User into database
+                    UserRealtimeDbFacade.uploadUser(currentUser);
+
+                    Toast.makeText(CreateAccountView.this, "Account created :D",
+                            Toast.LENGTH_SHORT).show();
+
+                    //proceed into recommendation view
+//                    Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
+//                    startActivity(intent);
+//                    finish();
+                } else {
+                    String text = "Please enter your information correctly";
+                    TextView error = findViewById(R.id.error_questionnaire);
+                    error.setText(text);
+                }
+            }
+        });
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.group80.uoftinder;
 
-import java.util.HashSet;
+import java.util.List;
 
 public class UserAccountController {
     // TODO: implement clean architecture, shove methods into here from CreateAccountView
@@ -48,20 +48,28 @@ public class UserAccountController {
      * is within the index of possible selected answers.
      * @param year     an int representing the index of the year selected (out of all possible
      *                 years) that the user chose
-     * @param majors   HashSet<Integers> representing the index of the majors selected (out of all
-     *                 possible majors) that the user chose. HashSet because this question is a
+     * @param majors   List<Integers> representing the index of the majors selected (out of all
+     *                 possible majors) that the user chose. List because this question is a
      *                 multi-select question
      * @param campus   an int representing the index of the campus selected (out of all possible
      *                 campuses) that the user chose
      * @return         returns a boolean representing whether all arguments are not 0 or not
      *                 selected
      */
-    public boolean finalAccount(int year, HashSet<Integer> majors, int campus) {
+    public boolean finalAccountAcademic(int year, List<Integer> majors, int campus) {
         boolean checkYear = year != -1;
-        System.out.println(year);
         boolean checkMajors = !(majors.isEmpty());
-        System.out.println(campus);
         boolean checkCampus = campus != -1;
         return checkYear && checkMajors && checkCampus;
+    }
+
+    public boolean finalAccountFriendship(int year, List<Integer> majors, int campus, List<Integer>
+                                          interests, List<Integer> colours) {
+        boolean checkYear = year != -1;
+        boolean checkMajors = !(majors.isEmpty());
+        boolean checkCampus = campus != -1;
+        boolean checkInterests = !(interests.isEmpty());
+        boolean checkColours = !(colours.isEmpty());
+        return checkYear && checkMajors && checkCampus && checkInterests && checkColours;
     }
 }
