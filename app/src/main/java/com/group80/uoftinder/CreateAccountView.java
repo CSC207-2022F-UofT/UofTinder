@@ -21,16 +21,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.create_account_use_case.CreateAccountPresenter;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * Code for all the views that the user will go through to create a user
  */
 public class CreateAccountView extends AppCompatActivity {
 
-    private ArrayList<HashSet<Integer>> answers = new ArrayList<>();
+    private List<Set<Integer>> answers = new ArrayList<>();
     private final UserAccountController control = new UserAccountController();
     private final CreateAccountPresenter proceed = new CreateAccountPresenter();
 
@@ -46,7 +50,7 @@ public class CreateAccountView extends AppCompatActivity {
         setContentView(R.layout.createaccountview);
 
         mAuth = FirebaseAuth.getInstance();
-        
+
         createAccountEmail = findViewById(R.id.accountEmail);
         createAccountPassword1 = findViewById(R.id.password1);
         createAccountPassword2 = findViewById(R.id.password2);
@@ -182,12 +186,12 @@ public class CreateAccountView extends AppCompatActivity {
         if(type.compareTo("Academic")==0) {
             createAcademicQuestionnaire(currentUser);
         }
-        else if(type.compareTo("Friendship")==0) {
-//           friendship questionnaire view
-        }
-        else if(type.compareTo("Romantic")==0) {
-//            academic questionnaire view
-        }
+//        else if(type.compareTo("Friendship")==0) {
+////           friendship questionnaire view
+//        }
+//        else if(type.compareTo("Romantic")==0) {
+////            academic questionnaire view
+//        }
     }
 
     /**
