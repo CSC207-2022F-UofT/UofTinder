@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import com.group80.uoftinder.feed.RecommendationPresenter;
+import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.entities.User;
 
 import org.junit.Test;

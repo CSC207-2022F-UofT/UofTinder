@@ -5,13 +5,16 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.GenerateCompatibilityList;
 import com.group80.uoftinder.feed.RecommendationPresenter;
 import com.group80.uoftinder.feed.RecommendationView;
+import com.group80.uoftinder.feed.UserScoreFacade;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,17 +31,37 @@ public class GenerateCompatibilityListUnitTest {
     @Test
     public void orderCompatibilityListTest1() {
         User curUser = new User("curUser");
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList();
+        int curUserScore = 11682;
+        curUser.setScore(curUserScore);
+//        genCompatibilityList.setCurUser(curUser);
+
+        CreateAccountInteractor.setAnswerSchema(new int[] {3, 4, 4, 5, 4});
+        CreateAccountInteractor.setIsMultiSelect(new boolean[] {false, true, true, false, false});
+
+        List<List<Integer>> userAnswers = new ArrayList<>();
+        userAnswers.add(Collections.singletonList(1));
+        userAnswers.add(Arrays.asList(1, 2));
+        userAnswers.add(Arrays.asList(0, 1, 3));
+        userAnswers.add(Collections.singletonList(0));
+        userAnswers.add(Collections.singletonList(2));
+        curUser.setAnswers(userAnswers);
+
+        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
         User user2 = new User("user2");
         User user3 = new User("user3");
-        int curUserScore = 11682;
+
         int user2Score = 18642;
         int user3Score = 3891;
-        curUser.setScore(curUserScore);
+
         user2.setScore(user2Score);
         user3.setScore(user3Score);
+
         List<User> initCompList = new ArrayList<>(Arrays.asList(user2, user3));
         List<User> expectedCompList = new ArrayList<>(Arrays.asList(user3, user2));
+
+
+        genCompatibilityList.setUsf(new UserScoreFacade(curUser));
+
         // user 3 compScore = 4
         // user 2 compScore = 3
         genCompatibilityList.setCompatibilityList(initCompList);
