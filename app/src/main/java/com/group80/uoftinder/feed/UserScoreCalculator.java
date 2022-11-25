@@ -1,10 +1,6 @@
 package com.group80.uoftinder.feed;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class UserScoreCalculator {
     private List<List<Integer>> userAnswers; // List of HashSets, where index i is a

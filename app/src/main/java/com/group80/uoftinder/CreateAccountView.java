@@ -26,10 +26,8 @@ import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Code for all the views that the user will go through to create a user
@@ -221,7 +219,6 @@ public class CreateAccountView extends AppCompatActivity {
                 //selected
                 ChipGroup major_group = findViewById(R.id.majorgroup);
                 int major_count = major_group.getChildCount();
-//                HashSet<Integer> majors = new HashSet<>();
                 List<Integer> majors = new LinkedList<>();
                 for(int i = 0; i<major_count; i++) {
                     Chip chip  = (Chip) major_group.getChildAt(i);
@@ -250,9 +247,6 @@ public class CreateAccountView extends AppCompatActivity {
                     answers.add(Collections.singletonList(year));
                     answers.add(majors);
                     answers.add(Collections.singletonList(campus));
-//                    answers.add(new HashSet<>(year));
-//                    answers.add(majors);
-//                    answers.add(new HashSet<>(campus));
                     currentUser.setAnswers((answers));
                     //store User into database
                     UserRealtimeDbFacade.uploadUser(currentUser);

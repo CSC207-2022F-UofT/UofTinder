@@ -1,6 +1,5 @@
 package com.group80.uoftinder;
 
-import java.util.HashSet;
 import java.util.List;
 
 public class UserAccountController {

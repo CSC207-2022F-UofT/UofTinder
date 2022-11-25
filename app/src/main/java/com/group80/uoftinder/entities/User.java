@@ -3,9 +3,7 @@ package com.group80.uoftinder.entities;
 import android.net.Uri;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Represents a user that is connected to their corresponding FirebaseUser account
