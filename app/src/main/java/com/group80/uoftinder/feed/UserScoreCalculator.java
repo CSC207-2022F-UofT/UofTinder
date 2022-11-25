@@ -68,7 +68,7 @@ public class UserScoreCalculator {
             return binarySection.toString();
         } else {
             // retrieve the only value in HashSet since there is only one answer
-            int optionSelected = (int) this.userAnswers.get(currIndex).toArray()[0];
+            int optionSelected = (int) this.userAnswers.get(currIndex).get(0);
             String binaryRepresentation = Integer.toBinaryString(optionSelected); // save the binaryRepresentation of the option selected
             return String.format("%0" + this.answerBitLengths[currIndex] + "d", Integer.parseInt(binaryRepresentation)); // pad with zeroes
         }
