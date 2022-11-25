@@ -15,11 +15,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
-      - name: Check Current Dir
-        run: pwd
-             ls -lah
-#      - name: Add Android SDK Path
-#        run: echo "sdk.dir=$HOME/.android/sdk" >> './local.properties'
-#      - name: CHeck Properties File
-#        run: cat ./local.properties
+      - name: Add Android SDK Path
+        run: echo "sdk.dir=$HOME/.android/sdk" >> './local.properties'
+      - name: CHeck Properties File
+        run: cat ./local.properties
       - uses: education/autograding@v1
