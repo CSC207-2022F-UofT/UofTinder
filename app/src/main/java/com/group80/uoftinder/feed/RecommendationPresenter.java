@@ -21,7 +21,7 @@ public class RecommendationPresenter{
      */
     public RecommendationPresenter(User currUser, RecViewInterface recViewInterface) {
         this.genCompatibilityList = new GenerateCompatibilityList(currUser);
-        genCompatibilityList.orderCompatibilityList();
+//        genCompatibilityList.orderCompatibilityList();
         this.recViewInterface = recViewInterface;
     }
 

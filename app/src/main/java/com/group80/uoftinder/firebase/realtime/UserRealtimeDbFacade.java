@@ -1,5 +1,7 @@
 package com.group80.uoftinder.firebase.realtime;
 
+import android.util.Log;
+
 import com.group80.uoftinder.entities.User;
 
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
  * instances of this Facade should be created.
  */
 public class UserRealtimeDbFacade {
-    private static final String DEFAULT_USER_TYPE = "academic";
+    private static final String DEFAULT_USER_TYPE = "Academic";
 
     /**
      * Upload a user to the realtime database, based on the user type and user id. The user is

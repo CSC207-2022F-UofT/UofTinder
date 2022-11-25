@@ -40,10 +40,10 @@ public class HelloWorld extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 User currTestUser = new User("test");
-                List<Set<Integer>> userAnswers1 = new ArrayList<>();
-                userAnswers1.add(new HashSet<>(Collections.singletonList(4))); // single
-                userAnswers1.add(new HashSet<>(Collections.singletonList(1))); // single
-                userAnswers1.add(new HashSet<>(Arrays.asList(0, 1))); // multi
+                List<List<Integer>> userAnswers1 = new ArrayList<>();
+                userAnswers1.add(new ArrayList<>(Collections.singletonList(4))); // single
+                userAnswers1.add(new ArrayList<>(Collections.singletonList(1))); // single
+                userAnswers1.add(new ArrayList<>(Arrays.asList(0, 1))); // multi
                 currTestUser.setAnswers(userAnswers1);
 
                 RecommendationView recView = new RecommendationView(currTestUser);

@@ -28,6 +28,14 @@ public class User {
     private List<String> liked;
     private List<String> matches;
 
+    public User() {
+        this.uid = "NULL";
+        this.liked = new ArrayList<>();
+        this.viewed = new ArrayList<>();
+        this.matches = new ArrayList<>();
+        this.answers = new ArrayList<>();
+    }
+
     public User(String uid){
         this.uid = uid;
         this.liked = new ArrayList<>();

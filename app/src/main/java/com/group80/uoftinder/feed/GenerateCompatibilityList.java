@@ -1,5 +1,7 @@
 package com.group80.uoftinder.feed;
 
+import android.util.Log;
+
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
@@ -28,6 +30,7 @@ public class GenerateCompatibilityList {
      */
     public GenerateCompatibilityList(User currUser) {
         getAllUsers();
+        Log.d("firebase", "Made it out of getAllUsers: " + compatibilityList.size());
         filteredCompatibilityList = new ArrayList<>();
         this.curUser = currUser;
         this.usf = new UserScoreFacade(curUser);
@@ -39,10 +42,10 @@ public class GenerateCompatibilityList {
      * Get the list of all users from the database and assign compatibilityList to this list
      */
     private void getAllUsers() {
-        UserRealtimeDbFacade.getAllUsers(userList -> {
-            setCompatibilityList(userList);
-        });
-        compatibilityList.remove(curUser);
+        UserRealtimeDbFacade.getAllUsers("Academic", userList -> Log.d("test", userList.toString()) );
+//            setCompatibilityList(userList);
+//        });
+//        compatibilityList.remove(curUser);
     }
 
     /**
