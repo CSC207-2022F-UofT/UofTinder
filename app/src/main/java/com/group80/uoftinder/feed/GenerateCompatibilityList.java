@@ -15,7 +15,6 @@ import java.util.Set;
  */
 public class GenerateCompatibilityList {
     private User curUser;
-    private int curUserScore;
     private List<User> compatibilityList;
     private UserScoreFacade usf;
     private Map<User, Integer> compScores;
@@ -31,7 +30,6 @@ public class GenerateCompatibilityList {
         filteredCompatibilityList = new ArrayList<>();
         this.usf = new UserScoreFacade(curUser);
 //        this.curUser = UserRealtimeDbFacade.getCurrentUser();
-        this.curUserScore = curUser.getScore();
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
     }
 
@@ -42,6 +40,7 @@ public class GenerateCompatibilityList {
         UserRealtimeDbFacade.getAllUsers(userList -> {
             setCompatibilityList(userList);
         });
+        compatibilityList.remove(curUser);
     }
 
     /**
@@ -49,8 +48,13 @@ public class GenerateCompatibilityList {
      * attribute.
      */
     public void orderCompatibilityList() {
-        compScores = calculateCompatibilityScores(compatibilityList);
-        compatibilityList.sort(userScoreComparator);
+        if (compatibilityList.size() != 0) {
+            compScores = calculateCompatibilityScores(compatibilityList);
+            compatibilityList.sort(userScoreComparator);
+        }
+        else {
+            compScores = new HashMap<>();
+        }
 
 //        compatibilityList = new ArrayList<>();
 //        Map<String, Integer> compScores = calculateCompatibilityScores(allUsers);
@@ -167,14 +171,6 @@ public class GenerateCompatibilityList {
      */
     public void setCompatibilityList(List<User> usersList) {
         this.compatibilityList = usersList;
-    }
-
-    /**
-     * Set curUserScore to newScore
-     * @param newScore: what to set curUserScore to
-     */
-    public void setCurUserScore(int newScore) {
-        this.curUserScore = newScore;
     }
 
     /**
