@@ -4,6 +4,8 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -12,6 +14,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities.UserType;
 import com.group80.uoftinder.firebase.realtime.RealtimeDbWriteListener;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
@@ -21,7 +24,6 @@ import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 /**
  * Instrumented Unit tests for UserRealtimeDbFacadeUnitTest, run on Android devices
@@ -50,12 +52,12 @@ public class UserRealtimeDbFacadeUnitTest {
 
         User lisinan2 = new User("lisinan2");
         lisinan2.setName("Lance Li");
-        lisinan2.setUserType("test");
+        lisinan2.setUserType(UserType.TEST.toString());
         lisinan2.setViewed(new ArrayList<>(Arrays.asList("a", "b", "c")));
 
         User vgvg = new User("vgvg");
         vgvg.setName("Vedant Goel");
-        vgvg.setUserType("test");
+        vgvg.setUserType(UserType.TEST.toString());
         vgvg.setViewed(new ArrayList<String>());
         vgvg.setMatches(new ArrayList<>(Arrays.asList("d", "e", "f")));
 
@@ -127,12 +129,11 @@ public class UserRealtimeDbFacadeUnitTest {
     public void getUser_isCorrect() {
         StringBuilder userInfo = new StringBuilder();
         UserRealtimeDbFacade.getUser(
-                "test", "lisinan2",
+                UserType.TEST.toString(), "lisinan2",
                 user -> {
-                    assertEquals(
-                            "lisinan2: Lance Li (test)",
-                            userInfo.append(user.getUid()).append(": ").append(user.getName()).append(" (").append(user.getUserType()).append(")").toString()
-                    );
+                    String actual = userInfo.append(user.getUid()).append(": ").append(user.getName()).append(" (").append(user.getUserType()).append(")").toString();
+                    Log.d("test", actual);
+                    assertEquals("lisinan2: Lance Li (test)", actual);
                     assertArrayEquals(new String[]{"a", "b", "c"}, user.getViewed().toArray());
                 }
         );
