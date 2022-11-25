@@ -1,6 +1,6 @@
 name: GitHub Classroom Workflow
 
-on: [ push ]
+on: [push]
 
 permissions:
   checks: write
@@ -13,8 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+#      - name: Setup Android SDK
+#        uses: android-actions/setup-android@v2
+      - name: Check gradle Command
+        run: which gradle
       - name: Add Android SDK Path
         run: echo "sdk.dir=/usr/local/lib/android/sdk" >> './local.properties'
       - uses: education/autograding@v1
