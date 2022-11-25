@@ -21,20 +21,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.create_account_use_case.CreateAccountPresenter;
 import com.group80.uoftinder.entities.User;
-import com.group80.uoftinder.feed.RecommendationView;
+//import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Code for all the views that the user will go through to create a user
  */
 public class CreateAccountView extends AppCompatActivity {
 
-    private List<Set<Integer>> answers = new ArrayList<>();
+    private List<List<Integer>> answers = new ArrayList<>();
     private final UserAccountController control = new UserAccountController();
     private final CreateAccountPresenter proceed = new CreateAccountPresenter();
 
@@ -149,7 +149,7 @@ public class CreateAccountView extends AppCompatActivity {
                 int type_count = type_group.getChildCount();
                 String type = "";
                 for(int i = 0; i<type_count; i++) {
-                    Chip chip  = (Chip) identity_group.getChildAt(i);
+                    Chip chip  = (Chip) type_group.getChildAt(i);
                     if(chip.isChecked()) {
                         type = chip.getText().toString();
                     }
@@ -164,7 +164,7 @@ public class CreateAccountView extends AppCompatActivity {
                     currentUser.setGender(identity);
                     currentUser.setUserType(type);
 
-                    createQuestionnaireView(currentUser, "Academic");
+                    createQuestionnaireView(currentUser, type);
                 }
                 else {
                     String text = "Please enter your information correctly";
@@ -186,12 +186,12 @@ public class CreateAccountView extends AppCompatActivity {
         if(type.compareTo("Academic")==0) {
             createAcademicQuestionnaire(currentUser);
         }
-//        else if(type.compareTo("Friendship")==0) {
-////           friendship questionnaire view
-//        }
-//        else if(type.compareTo("Romantic")==0) {
-////            academic questionnaire view
-//        }
+        else if(type.compareTo("Friendship")==0) {
+            createFriendshipQuestionnaire(currentUser);
+        }
+        else if(type.compareTo("Romantic")==0) {
+            createRomanticQuestionnaire(currentUser);
+        }
     }
 
     /**
@@ -219,7 +219,7 @@ public class CreateAccountView extends AppCompatActivity {
                 //selected
                 ChipGroup major_group = findViewById(R.id.majorgroup);
                 int major_count = major_group.getChildCount();
-                HashSet<Integer> majors = new HashSet<>();
+                List<Integer> majors = new LinkedList<>();
                 for(int i = 0; i<major_count; i++) {
                     Chip chip  = (Chip) major_group.getChildAt(i);
                     if(chip.isChecked()) {
@@ -244,9 +244,9 @@ public class CreateAccountView extends AppCompatActivity {
 
                 if (move_on) {
                     //adds answers user selected to answers
-                    answers.add(new HashSet<>(year));
+                    answers.add(Collections.singletonList(year));
                     answers.add(majors);
-                    answers.add(new HashSet<>(campus));
+                    answers.add(Collections.singletonList(campus));
                     currentUser.setAnswers((answers));
                     //store User into database
                     UserRealtimeDbFacade.uploadUser(currentUser);
@@ -255,9 +255,9 @@ public class CreateAccountView extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
 
                     //proceed into recommendation view
-                    Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
-                    startActivity(intent);
-                    finish();
+//                    Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
+//                    startActivity(intent);
+//                    finish();
                 }
                 else {
                     String text = "Please enter your information correctly";
@@ -266,6 +266,22 @@ public class CreateAccountView extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /**
+     * Creates the friendship_questionnaire.xml and gets inputs, proceeds to recommendation page if
+     * information is entered correctly
+     */
+    private void createFriendshipQuestionnaire(User currentUser) {
+
+    }
+
+    /**
+     * Creates the romantic_questionnaire.xml and gets inputs, proceeds to recommendation page if
+     * information is entered correctly
+     */
+    private void createRomanticQuestionnaire(User currentUser) {
+
     }
 
     private void showLoginView(View view) {
