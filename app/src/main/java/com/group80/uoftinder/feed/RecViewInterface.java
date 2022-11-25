@@ -9,7 +9,7 @@ public interface RecViewInterface {
     // set first displayed user
     void setDisplayedUser(User displayedUser);
     // display user
-    void showUser(User displayedUser);
+    void showUser();
     // no more compatible users
     void noCompatibleUser();
 

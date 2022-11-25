@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.feed.RecommendationPresenter;
 import com.group80.uoftinder.feed.RecommendationView;
 
 public class RecommendationViewTest extends AppCompatActivity {
@@ -34,13 +35,13 @@ public class RecommendationViewTest extends AppCompatActivity {
         compatibleUserList.add(test2);
         compatibleUserList.add(test3);
         // create an instance of RecommendationView
-        RecommendationView recView = new RecommendationView(current);
+        RecommendationView recView = new RecommendationView();
         // create an instance of RecommendationPresenter
-        RecommendationPresenter recPresenter = new RecommendationPresenter(recView);
+        RecommendationPresenter recPresenter = new RecommendationPresenter(new User(), recView);
         // set the displayedUser to the first test User
         User displayedUser = test1;
         //display on screen
-        recView.showUser(displayedUser);
+        recView.showUser();
         // create yes and no buttons
         Button noButton = findViewById(R.id.noButton);
         Button yesButton = findViewById(R.id.yesButton);

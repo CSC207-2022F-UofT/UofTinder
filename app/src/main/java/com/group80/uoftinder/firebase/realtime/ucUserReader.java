@@ -27,27 +27,9 @@ public class ucUserReader {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(userType);
         Task<DataSnapshot> task = reference.get();
 
-        User user = new User("HELLO");
-        user.setAge(99);
-        user.setUserType("test");
-        Log.d("UU", "User Upload");
-        UserRealtimeDbFacade.uploadUser(user, new RealtimeDbWriteListener() {
-            @Override
-            public void onWriteSuccess(Void unused) {
-                Log.i("UU", "Success");
-            }
-
-            @Override
-            public void onWriteFailure(Exception e) {
-                Log.i("UU", "Myself");
-            }
-        });
-
         Thread thread = new Thread(() -> {
             try {
                 DataSnapshot dataSnapshot = Tasks.await(task, 2000, TimeUnit.MILLISECONDS);
-
-                Log.e("WHAT", "You're not supposed to be here");
                 List<User> userList = new LinkedList<>();
                 for (DataSnapshot child : dataSnapshot.getChildren())
                     userList.add(child.getValue(User.class));

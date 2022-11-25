@@ -42,9 +42,9 @@ public class GenerateCompatibilityList {
      * Get the list of all users from the database and assign compatibilityList to this list
      */
     private void getAllUsers() {
-        UserRealtimeDbFacade.getAllUsers("Academic", userList -> Log.d("test", userList.toString()) );
-//            setCompatibilityList(userList);
-//        });
+        UserRealtimeDbFacade.getAllUsers("Academic", userList -> {
+            setCompatibilityList(userList);
+        });
 //        compatibilityList.remove(curUser);
     }
 

@@ -16,8 +16,8 @@ import com.group80.uoftinder.entities.User;
  * This class displays the most compatible users to currentUser.
  */
 public class RecommendationView extends AppCompatActivity implements RecViewInterface {
-    private final User currentUser;
-    private final RecommendationPresenter recPresenter;
+    private User currentUser;
+    private RecommendationPresenter recPresenter;
     private User displayedUser;
 
     // create variables for all elements that are displayed
@@ -27,18 +27,6 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     private TextView age;
     private Button noButton;
     private Button yesButton;
-
-    /**
-     * Initialize an instance of RecommendationView by passing the currentUser.
-     * @param currentUser is the current user.
-     */
-    public RecommendationView(User currentUser) {
-        this.currentUser = currentUser;
-        this.recPresenter = new RecommendationPresenter(currentUser, RecommendationView.this);
-        this.displayedUser = null;
-        UpdateList update = new UpdateList(currentUser);
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +42,18 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         noButton = findViewById(R.id.noButton);
         yesButton = findViewById(R.id.yesButton);
 
+        this.currentUser = (User) getIntent().getSerializableExtra("currentUser");
+        this.recPresenter = new RecommendationPresenter(currentUser, RecommendationView.this);
+        this.displayedUser = null;
+        UpdateList update = new UpdateList(currentUser);
+
         // initialize first user
         recPresenter.displayUser();
-
 
         // yes button click listener
         yesButton.setOnClickListener(view -> {
             buttonClick(displayedUser, true);
         });
-
 
         // no button click listener
         noButton.setOnClickListener(view -> {
@@ -70,6 +61,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         });
     }
 
+    @Override
     /**
      * Initializes displayedUser to the first User in currentUser's most compatible list.
      * @param displayedUser is the user displayed currently to currentUser.
@@ -81,7 +73,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     /**
      * Returns displayedUser that is currently being displayed to currentUser.
      */
-    public User getDisplayedUser() { return this.displayedUser;}
+    public User getDisplayedUser() { return this.displayedUser; }
 
 
     /**
@@ -98,17 +90,19 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         recPresenter.displayUser();
     }
 
+    @Override
     /**
      * Set the information on screen to the displayedUser's information
      * @param displayedUser is the user displayed currently to currentUser
      */
-    public void showUser(User displayedUser) {
+    public void showUser() {
         profilePicture.setImageURI(displayedUser.getPhotoUrl());
         name.setText(displayedUser.getName());
         age.setText(Integer.toString(displayedUser.getAge()));
         gender.setText(displayedUser.getGender());
     }
 
+    @Override
     /**
      * displays a screen that tells currentUsers that there are no more compatible users.
      */

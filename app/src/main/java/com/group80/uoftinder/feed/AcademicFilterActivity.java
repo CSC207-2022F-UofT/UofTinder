@@ -123,10 +123,10 @@ public class AcademicFilterActivity extends AppCompatActivity {
                 filters.add(populateCheckboxValues(campusBoxes));
 
                 // TODO: update to the actual current user object
-                User curUser = new User("curUser");
-                RecommendationView recommendationView = new RecommendationView(curUser);
-                RecommendationPresenter recPresenter = new RecommendationPresenter(curUser, recommendationView);
-                recPresenter.filterCompatibilityList(filters, minAge, maxAge);
+//                User curUser = new User("curUser");
+//                RecommendationView recommendationView = new RecommendationView(curUser);
+//                RecommendationPresenter recPresenter = new RecommendationPresenter(curUser, recommendationView);
+//                recPresenter.filterCompatibilityList(filters, minAge, maxAge);
                 // TODO: change to RecommendationFeed class later
                 startActivity(
                         new Intent(AcademicFilterActivity.this, HelloWorld.class)

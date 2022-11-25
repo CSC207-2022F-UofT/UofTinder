@@ -17,11 +17,10 @@ public class RecommendationPresenter{
 
     /**
      * Initialize the attributes of a RecommendationPresenter instance
-     * @param recViewInterface: an instance of RecViewInterface
      */
     public RecommendationPresenter(User currUser, RecViewInterface recViewInterface) {
         this.genCompatibilityList = new GenerateCompatibilityList(currUser);
-//        genCompatibilityList.orderCompatibilityList();
+        genCompatibilityList.orderCompatibilityList();
         this.recViewInterface = recViewInterface;
     }
 
@@ -50,6 +49,7 @@ public class RecommendationPresenter{
      */
     public void displayUser() {
         User mostCompUser = genCompatibilityList.showMostCompUser();
+//        return mostCompUser;
         if (mostCompUser != null) {
             displayMostCompUser(mostCompUser);
         }
@@ -73,7 +73,7 @@ public class RecommendationPresenter{
      */
     public void displayMostCompUser(User user) {
         recViewInterface.setDisplayedUser(user);
-        recViewInterface.showUser(user);
+        recViewInterface.showUser();
     }
 
     /**

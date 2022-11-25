@@ -30,7 +30,7 @@ public class GenerateCompatibilityListTest {
     @Test
     public void orderCompatibilityListTest() {
         User curUser = new User("curUser");
-        RecommendationView recommendationView = new RecommendationView(curUser);
+        RecommendationView recommendationView = new RecommendationView();
         RecommendationPresenter recPresenter = new RecommendationPresenter(curUser, recommendationView);
         GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(curUser);
         User user2 = new User("user2");
