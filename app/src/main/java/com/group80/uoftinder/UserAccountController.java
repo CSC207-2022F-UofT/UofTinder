@@ -1,6 +1,6 @@
 package com.group80.uoftinder;
 
-import java.util.HashSet;
+import java.util.List;
 
 public class UserAccountController {
     // TODO: implement clean architecture, shove methods into here from CreateAccountView
@@ -56,11 +56,12 @@ public class UserAccountController {
      * @return         returns a boolean representing whether all arguments are not 0 or not
      *                 selected
      */
-    public boolean finalAccount(int year, HashSet<Integer> majors, int campus) {
+//    public boolean finalAccount(int year, HashSet<Integer> majors, int campus) {
+    public boolean finalAccount(int year, List<Integer> majors, int campus) {
         boolean checkYear = year != -1;
-        System.out.println(year);
+//        System.out.println(year);
         boolean checkMajors = !(majors.isEmpty());
-        System.out.println(campus);
+//        System.out.println(campus);
         boolean checkCampus = campus != -1;
         return checkYear && checkMajors && checkCampus;
     }
