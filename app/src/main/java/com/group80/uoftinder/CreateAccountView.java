@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.create_account_use_case.CreateAccountPresenter;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -181,12 +182,12 @@ public class CreateAccountView extends AppCompatActivity {
         if(type.compareTo("Academic")==0) {
             createAcademicQuestionnaire(currentUser);
         }
-//        else if(type.compareTo("Friendship")==0) {
-////           friendship questionnaire view
-//        }
-//        else if(type.compareTo("Romantic")==0) {
-////            academic questionnaire view
-//        }
+        else if(type.compareTo("Friendship")==0) {
+//           friendship questionnaire view
+        }
+        else if(type.compareTo("Romantic")==0) {
+//            academic questionnaire view
+        }
     }
 
     /**
