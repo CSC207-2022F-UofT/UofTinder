@@ -2,6 +2,7 @@ package com.group80.uoftinder.login_use_case;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -10,27 +11,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.HelloWorld;
-import com.group80.uoftinder.Login;
 
 public class LoginPresenterFormatter extends AppCompatActivity implements LoginPresenter {
 
-    final Login login;
     final Class<HelloWorld> helloWorld;
+    final LoginViewInterface loginViewInterface;
 
-    public LoginPresenterFormatter(Login login, Class<HelloWorld> helloWorldClass) {
-        this.login = login;
+    public LoginPresenterFormatter(Class<HelloWorld> helloWorldClass, LoginViewInterface loginViewInterface) {
         this.helloWorld = helloWorldClass;
+        this.loginViewInterface = loginViewInterface;
     }
 
     /**
      * Pop-ups a message indicating login was successful and changes view to recommendation view
-     * @param user current FirebaseUser
+     * @param firebaseUser current FirebaseUser
      */
     @Override
-    public void prepareSuccessView(FirebaseUser user) {
+    public void prepareSuccessView(FirebaseUser firebaseUser) {
         Log.d(TAG, "signInWithEmail:success");
-        Toast.makeText(login, "Login Successful!", Toast.LENGTH_SHORT).show();
-        updateUI(user);
+        Toast.makeText((Context) loginViewInterface, "Login Successful!", Toast.LENGTH_SHORT).show();
+        loginViewInterface.updateUI(firebaseUser);
     }
 
     /**
@@ -39,7 +39,7 @@ public class LoginPresenterFormatter extends AppCompatActivity implements LoginP
      */
     @Override
     public void prepareFailureViewLogin(String error) {
-        Toast.makeText(login, error, Toast.LENGTH_SHORT).show();
+        Toast.makeText((Context) loginViewInterface, error, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -51,14 +51,5 @@ public class LoginPresenterFormatter extends AppCompatActivity implements LoginP
     public void prepareFailureView(EditText text, String error) {
         text.setError(error);
         text.requestFocus();
-    }
-
-    /**
-     * Update the UI to the logged in user's recommendation view.
-     * @param firebaseUser current FirebaseUser
-     */
-    private void updateUI(FirebaseUser firebaseUser) {
-        // TODO: implement this method so that after logging in, the user is brought to their recommendation feed
-        // User loggedInUser = ____.getUserById(firebaseUser.getUid())
     }
 }
