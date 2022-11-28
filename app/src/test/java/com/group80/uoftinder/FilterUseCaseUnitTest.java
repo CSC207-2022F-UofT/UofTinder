@@ -14,6 +14,9 @@ import java.util.Set;
 
 /**
  * Unit tests for the filtering functionality in GenerateCompatibilityList class.
+ *
+ * Need to comment out getAllUsers(); in GenerateCompatibilityList constructor
+ * since this is a unit test for filtering and not for Firebase database retrievals.
  */
 public class FilterUseCaseUnitTest {
 
@@ -50,7 +53,8 @@ public class FilterUseCaseUnitTest {
         compatibilityList.add(user2);
         compatibilityList.add(user3);
 
-        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList();
+        User currUser = new User("currTest");
+        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(currUser);
         generateCompatibilityList.setCompatibilityList(compatibilityList);
 
         List<User> copyCompatibilityList = new ArrayList<>();
@@ -102,7 +106,8 @@ public class FilterUseCaseUnitTest {
         compatibilityList.add(user4);
         compatibilityList.add(user5);
 
-        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList();
+        User currUser = new User("currTest");
+        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(currUser);
         generateCompatibilityList.setCompatibilityList(compatibilityList);
 
         List<User> copyCompatibilityList = new ArrayList<>();
@@ -155,7 +160,8 @@ public class FilterUseCaseUnitTest {
         compatibilityList.add(user4);
         compatibilityList.add(user5);
 
-        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList();
+        User currUser = new User("currTest");
+        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(currUser);
         generateCompatibilityList.setCompatibilityList(compatibilityList);
 
         List<User> copyCompatibilityList = new ArrayList<>();
@@ -207,7 +213,8 @@ public class FilterUseCaseUnitTest {
         compatibilityList.add(user2);
         compatibilityList.add(user3);
 
-        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList();
+        User currUser = new User("currTest");
+        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(currUser);
         generateCompatibilityList.setCompatibilityList(compatibilityList);
 
         List<User> copyCompatibilityList = new ArrayList<>();

@@ -30,7 +30,6 @@ public class GenerateCompatibilityList {
      */
     public GenerateCompatibilityList(User currUser) {
         getAllUsers();
-        Log.d("firebase", "Made it out of getAllUsers: " + compatibilityList.size());
         filteredCompatibilityList = new ArrayList<>();
         this.curUser = currUser;
         this.usf = new UserScoreFacade(curUser);
