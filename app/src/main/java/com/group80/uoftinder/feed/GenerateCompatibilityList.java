@@ -46,7 +46,7 @@ public class GenerateCompatibilityList {
         UserRealtimeDbFacade.getAllUsers("Academic", userList -> {
             setCompatibilityList(userList);
         });
-//        compatibilityList.remove(curUser);
+        compatibilityList.remove(curUser);
     }
 
     /**

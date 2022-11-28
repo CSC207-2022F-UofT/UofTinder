@@ -5,6 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.GenerateCompatibilityList;
@@ -46,7 +47,7 @@ public class GenerateCompatibilityListUnitTest {
         userAnswers.add(Collections.singletonList(2));
         curUser.setAnswers(userAnswers);
 
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList();
+        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
         User user2 = new User("user2");
         User user3 = new User("user3");
 
@@ -65,7 +66,6 @@ public class GenerateCompatibilityListUnitTest {
         // user 3 compScore = 4
         // user 2 compScore = 3
         genCompatibilityList.setCompatibilityList(initCompList);
-        genCompatibilityList.setCurUser(curUser);
         genCompatibilityList.orderCompatibilityList();
         List<User> actual = genCompatibilityList.getCompatibilityList();
         assertEquals(expectedCompList, actual);
@@ -78,7 +78,7 @@ public class GenerateCompatibilityListUnitTest {
     @Test
     public void orderCompatibilityListTest2() {
         User curUser = new User("curUser");
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList();
+        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
         List<User> userList = new ArrayList<>();
         genCompatibilityList.setCompatibilityList(userList);
         genCompatibilityList.orderCompatibilityList();
@@ -94,7 +94,7 @@ public class GenerateCompatibilityListUnitTest {
     @Test
     public void showMostCompUser2UsersTest() {
         User curUser = new User("curUser");
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList();
+        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
         User user2 = new User("user2");
         User user3 = new User("user3");
         List<User> compList = new ArrayList<>(Arrays.asList(user3, user2));
@@ -110,7 +110,8 @@ public class GenerateCompatibilityListUnitTest {
      */
     @Test
     public void showMostCompUserNoUsersTest() {
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList();
+        User curUser = new User("curUser");
+        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
         List<User> compList = new ArrayList<>();
         genCompatibilityList.setCompatibilityList(compList);
         User actual = genCompatibilityList.showMostCompUser();
@@ -123,7 +124,8 @@ public class GenerateCompatibilityListUnitTest {
      */
     @Test
     public void removeMostCompUserTest() {
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList();
+        User curUser = new User("curUser");
+        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
         User user2 = new User("user2");
         User user3 = new User("user3");
         List<User> compList = new ArrayList<>(Arrays.asList(user2, user3));

@@ -93,9 +93,10 @@ public class RecommendationPresenter{
     }
 
     /**
-     * Set the genCompatibilityList attribute the newGenCompatibilityList
+     * Get the genCompatibilityList attribute
+     * @return this.genCompatibilityList
      */
-    public void setGenCompatibilityList(GenerateCompatibilityList newGenCompatibilityList) {
-        this.genCompatibilityList = newGenCompatibilityList;
+    public GenerateCompatibilityList getGenCompatibilityList() {
+        return this.genCompatibilityList;
     }
 }
