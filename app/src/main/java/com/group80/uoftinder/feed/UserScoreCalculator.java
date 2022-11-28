@@ -1,7 +1,6 @@
 package com.group80.uoftinder.feed;
 
 import java.util.List;
-import java.util.Set;
 
 public class UserScoreCalculator {
     private List<List<Integer>> userAnswers; // List of HashSets, where index i is a
@@ -21,6 +20,7 @@ public class UserScoreCalculator {
      * @param isMultiSelect is an array where index i tells us whether question i can
      *                      have multiple answers selected or just one
      * @param answerBitLengths array where index i tells us the number of bits
+     *                         allocated for question i in the user score
      */
     public UserScoreCalculator(List<List<Integer>> userAnswers, boolean[] isMultiSelect, int[] answerBitLengths) {
         this.userAnswers = userAnswers;
