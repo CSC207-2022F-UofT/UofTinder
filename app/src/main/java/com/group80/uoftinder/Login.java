@@ -8,9 +8,10 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
+import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 import com.group80.uoftinder.login_use_case.LoginController;
 import com.group80.uoftinder.login_use_case.LoginInput;
 import com.group80.uoftinder.login_use_case.LoginInteractor;
@@ -24,13 +25,12 @@ public class Login extends AppCompatActivity implements LoginViewInterface {
     EditText loginEmail;
     EditText loginPassword;
     Button enterLogin;
+    User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginview);
-
-        FirebaseAuth mAuth = FirebaseAuth.getInstance(); // initialize the Firebase Auth
 
         // UserAccountController
         loginEmail = findViewById(R.id.loginEmail);
@@ -51,7 +51,32 @@ public class Login extends AppCompatActivity implements LoginViewInterface {
      */
     @Override
     public void updateUI(FirebaseUser firebaseUser) {
+        String id = firebaseUser.getUid();
+        UserRealtimeDbFacade.getUser("Academic", id, user -> {
+            setCurrentUser(user);
+        });
+        UserRealtimeDbFacade.getUser("Romantic", id, user -> {
+            setCurrentUser(user);
+        });
+        UserRealtimeDbFacade.getUser("Friendship", id, user -> {
+            setCurrentUser(user);
+        });
         startActivity(new Intent(Login.this, RecommendationView.class));
+    }
+
+    /**
+     * Set user
+     */
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+    }
+
+    /**
+     * Return the current user
+     * @return user
+     */
+    public User getCurrentUser() {
+        return this.currentUser;
     }
 
     /**
