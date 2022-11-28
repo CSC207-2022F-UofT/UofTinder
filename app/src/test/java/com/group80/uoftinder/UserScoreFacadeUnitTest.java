@@ -1,6 +1,8 @@
 package com.group80.uoftinder;
 
+import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.feed.UserScoreFacade;
 
 import org.junit.Test;
 
@@ -8,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Unit tests for the UserScoreFacade class
@@ -18,14 +22,14 @@ public class UserScoreFacadeUnitTest {
         CreateAccountInteractor.setAnswerSchema(new int[] {3, 4, 4, 5, 4});
         CreateAccountInteractor.setIsMultiSelect(new boolean[] {false, true, true, false, false});
 
-        ArrayList<HashSet<Integer>> userAnswers = new ArrayList<>();
-        userAnswers.add(new HashSet<>(Collections.singletonList(1)));
-        userAnswers.add(new HashSet<>(Arrays.asList(1, 2)));
-        userAnswers.add(new HashSet<>(Arrays.asList(0, 1, 3)));
-        userAnswers.add(new HashSet<>(Collections.singletonList(0)));
-        userAnswers.add(new HashSet<>(Collections.singletonList(2)));
+        List<List<Integer>> userAnswers = new ArrayList<>();
+        userAnswers.add(Collections.singletonList(1));
+        userAnswers.add(Arrays.asList(1, 2));
+        userAnswers.add(Arrays.asList(0, 1, 3));
+        userAnswers.add(Collections.singletonList(0));
+        userAnswers.add(Collections.singletonList(2));
 
-        User currUser = new User();
+        User currUser = new User("currUser");
         currUser.setAnswers(userAnswers);
 
         UserScoreFacade usf = new UserScoreFacade(currUser);
@@ -41,14 +45,14 @@ public class UserScoreFacadeUnitTest {
         CreateAccountInteractor.setAnswerSchema(new int[] {3, 4, 4, 5, 4});
         CreateAccountInteractor.setIsMultiSelect(new boolean[] {false, true, true, false, false});
 
-        ArrayList<HashSet<Integer>> userAnswers = new ArrayList<>();
-        userAnswers.add(new HashSet<>(Collections.singletonList(2))); // single
-        userAnswers.add(new HashSet<>(Collections.singletonList(1))); // multi
-        userAnswers.add(new HashSet<>(Arrays.asList(1, 2))); // multi
-        userAnswers.add(new HashSet<>(Collections.singletonList(4))); // single
-        userAnswers.add(new HashSet<>(Collections.singletonList(2))); // single
+        List<List<Integer>> userAnswers = new ArrayList<>();
+        userAnswers.add(Collections.singletonList(2)); // single
+        userAnswers.add(Collections.singletonList(1)); // multi
+        userAnswers.add(Arrays.asList(1, 2)); // multi
+        userAnswers.add(Collections.singletonList(4)); // single
+        userAnswers.add(Collections.singletonList(2)); // single
 
-        User currUser = new User();
+        User currUser = new User("currUser");
         currUser.setAnswers(userAnswers);
 
         UserScoreFacade usf = new UserScoreFacade(currUser);
@@ -64,14 +68,14 @@ public class UserScoreFacadeUnitTest {
         CreateAccountInteractor.setAnswerSchema(new int[] {3, 4, 4, 5, 4});
         CreateAccountInteractor.setIsMultiSelect(new boolean[] {false, true, true, false, false});
 
-        ArrayList<HashSet<Integer>> userAnswers = new ArrayList<>();
-        userAnswers.add(new HashSet<>(Collections.singletonList(1)));
-        userAnswers.add(new HashSet<>(Arrays.asList(1, 2)));
-        userAnswers.add(new HashSet<>(Arrays.asList(0, 1, 3)));
-        userAnswers.add(new HashSet<>(Collections.singletonList(0)));
-        userAnswers.add(new HashSet<>(Collections.singletonList(2)));
+        List<List<Integer>> userAnswers = new ArrayList<>();
+        userAnswers.add(Collections.singletonList(1));
+        userAnswers.add(Arrays.asList(1, 2));
+        userAnswers.add(Arrays.asList(0, 1, 3));
+        userAnswers.add(Collections.singletonList(0));
+        userAnswers.add(Collections.singletonList(2));
 
-        User currUser = new User();
+        User currUser = new User("currUser");
         currUser.setAnswers(userAnswers);
 
         UserScoreFacade usf = new UserScoreFacade(currUser);

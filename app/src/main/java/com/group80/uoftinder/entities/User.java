@@ -1,19 +1,16 @@
-/**
- * Represents a user that is connected to their corresponding FirebaseUser account
- * with a user id
- */
-
 package com.group80.uoftinder.entities;
 
 import android.net.Uri;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
-
-
-public class User {
+/**
+ * Represents a user that is connected to their corresponding FirebaseUser account
+ * with a user id.
+ */
+public class User implements Serializable {
 
     private final String uid;
 
@@ -27,16 +24,25 @@ public class User {
     private int age;
     private String gender;
 
-    private ArrayList<HashSet<Integer>> answers;
+    private List<List<Integer>> answers;
     private List<String> viewed;
     private List<String> liked;
     private List<String> matches;
+
+    public User() {
+        this.uid = "NULL";
+        this.liked = new ArrayList<>();
+        this.viewed = new ArrayList<>();
+        this.matches = new ArrayList<>();
+        this.answers = new ArrayList<>();
+    }
 
     public User(String uid){
         this.uid = uid;
         this.liked = new ArrayList<>();
         this.viewed = new ArrayList<>();
         this.matches = new ArrayList<>();
+        this.answers = new ArrayList<>();
     }
 
     /**
@@ -47,7 +53,6 @@ public class User {
         return uid;
     }
 
-
     /**
      * Return user type of the current user
      * @return user type
@@ -55,6 +60,7 @@ public class User {
     public String getUserType(){
         return userType;
     }
+
     /**
      * Sets the user type: Academic, Romantic, or Friendship
      * @param userType String that indicates the desired type of user: Academic, Romantic, or Friendship
@@ -78,7 +84,6 @@ public class User {
     public void setScore(int score) {
         this.score = score;
     }
-
 
     // Information used for user's profile
     /**
@@ -104,6 +109,7 @@ public class User {
     public Uri getPhotoUrl() {
         return photoUrl;
     }
+
     /**
      * Sets the user's profile picture url
      * Profile picture is displayed in user profile
@@ -150,14 +156,14 @@ public class User {
      * Used for calculating user score
      * @return user's answers to questions when setting up their account
      */
-    public ArrayList<HashSet<Integer>> getAnswers() {
+    public List<List<Integer>> getAnswers() {
         return answers;
     }
     /**
      * Sets user's answers that will used to calculate user score
      * @param answers answers of user to questions when setting up account
      */
-    public void setAnswers(ArrayList<HashSet<Integer>> answers) {
+    public void setAnswers(List<List<Integer>> answers) {
         this.answers = answers;
     }
 

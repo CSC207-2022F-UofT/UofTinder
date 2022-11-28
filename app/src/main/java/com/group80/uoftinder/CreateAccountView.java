@@ -21,15 +21,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.create_account_use_case.CreateAccountPresenter;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.feed.RecommendationView;
+import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Code for all the views that the user will go through to create a user
  */
 public class CreateAccountView extends AppCompatActivity {
 
-    private ArrayList<HashSet<Integer>> answers = new ArrayList<>();
+    private List<List<Integer>> answers = new ArrayList<>();
     private final UserAccountController control = new UserAccountController();
     private final CreateAccountPresenter proceed = new CreateAccountPresenter();
 
@@ -214,7 +219,7 @@ public class CreateAccountView extends AppCompatActivity {
                 //selected
                 ChipGroup major_group = findViewById(R.id.majorgroup);
                 int major_count = major_group.getChildCount();
-                HashSet<Integer> majors = new HashSet<>();
+                List<Integer> majors = new LinkedList<>();
                 for(int i = 0; i<major_count; i++) {
                     Chip chip  = (Chip) major_group.getChildAt(i);
                     if(chip.isChecked()) {
@@ -239,9 +244,9 @@ public class CreateAccountView extends AppCompatActivity {
 
                 if (move_on) {
                     //adds answers user selected to answers
-                    answers.add(new HashSet<>(year));
+                    answers.add(Collections.singletonList(year));
                     answers.add(majors);
-                    answers.add(new HashSet<>(campus));
+                    answers.add(Collections.singletonList(campus));
                     currentUser.setAnswers((answers));
                     //store User into database
                     UserRealtimeDbFacade.uploadUser(currentUser);

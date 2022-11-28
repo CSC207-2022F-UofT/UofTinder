@@ -1,17 +1,21 @@
 package com.group80.uoftinder;
 
 import static org.junit.Assert.assertEquals;
+
+import com.group80.uoftinder.entities.User;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.group80.uoftinder.entities.User;
 
 /**
  * Test class for UpdateList class.
  */
 public class UpdateListTest {
     // create currentUser
-    User currentUser = new User();
+    User currentUser = new User("currUser");
     // create an instance of updateList
     UpdateList update = new UpdateList(currentUser);
 
@@ -21,7 +25,7 @@ public class UpdateListTest {
      */
     public void currUserNoLikeDisplayedUser() {
         // set the currentUser and displayedUser
-        User displayedUser  = new User();
+        User displayedUser  = new User("displayedUser");
         // make the currentUser's viewedList and likedList
         List viewedList = new ArrayList<>();
         List likedList = new ArrayList<>();
@@ -45,7 +49,7 @@ public class UpdateListTest {
      */
     public void currUserLikeDisplayedUser() {
         // set the currentUser and displayedUser
-        User displayedUser  = new User();
+        User displayedUser  = new User("displayedUser");
         // make the currentUser's viewedList and likedList
         List viewedList = new ArrayList<>();
         List likedList = new ArrayList<>();
