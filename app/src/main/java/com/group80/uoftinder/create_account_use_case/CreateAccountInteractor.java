@@ -1,8 +1,8 @@
 package com.group80.uoftinder.create_account_use_case;
 
 public class CreateAccountInteractor {
-    private static int[] answerSchema; //should be [5, 6, 3] for now (academic answers)
-    private static boolean[] isMultiSelect; //should be [false, true, false] for now (academic answers)
+    private static int[] answerSchema = {5, 6, 3}; //should be [5, 6, 3] for now (academic answers)
+    private static boolean[] isMultiSelect = {false, true, false}; //should be [false, true, false] for now (academic answers)
 
     // TODO: implement clean architecture, shove methods into here from CreateAccountView
     /*

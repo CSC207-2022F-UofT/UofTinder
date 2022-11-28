@@ -30,9 +30,9 @@ public class GenerateCompatibilityListTest {
     @Test
     public void orderCompatibilityListTest() {
         User curUser = new User("curUser");
-        RecommendationView recommendationView = new RecommendationView(curUser);
-        RecommendationPresenter recPresenter = new RecommendationPresenter(recommendationView);
-        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(recPresenter);
+        RecommendationView recommendationView = new RecommendationView();
+        RecommendationPresenter recPresenter = new RecommendationPresenter(curUser, recommendationView);
+        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(curUser);
         User user2 = new User("user2");
         User user3 = new User("user3");
         int curUserScore = 11682;

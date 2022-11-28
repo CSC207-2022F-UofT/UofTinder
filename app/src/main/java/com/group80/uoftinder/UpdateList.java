@@ -5,6 +5,8 @@ import com.group80.uoftinder.entities.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.group80.uoftinder.entities.User;
+
 public class UpdateList extends User {
     private static User currentUser; // the current user
 
