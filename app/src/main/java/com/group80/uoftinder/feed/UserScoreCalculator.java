@@ -1,11 +1,10 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.feed;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class UserScoreCalculator {
-    private List<Set<Integer>> userAnswers; // List of HashSets, where index i is a
+    private List<List<Integer>> userAnswers; // List of HashSets, where index i is a
     // HashSet representing the indices of the answers selected by the currentUser for question i
     private final boolean[] isMultiSelect; // array where index i tells us whether question i can
     // have multiple answers selected or just one
@@ -16,13 +15,14 @@ public class UserScoreCalculator {
 
     /**
      * Constructor for the UserScoreCalculator class
-     *  @param userAnswers is an List of HashSets, where index i is a HashSet representing the
+     *
+     * @param userAnswers is an List of Lists, where index i is an Inner List representing the
      *                    indices of the answers selected by the currentUser for question i
      * @param isMultiSelect is an array where index i tells us whether question i can
      *                      have multiple answers selected or just one
      * @param answerBitLengths array where index i tells us the number of bits
      */
-    public UserScoreCalculator(List<Set<Integer>> userAnswers, boolean[] isMultiSelect, int[] answerBitLengths) {
+    public UserScoreCalculator(List<List<Integer>> userAnswers, boolean[] isMultiSelect, int[] answerBitLengths) {
         this.userAnswers = userAnswers;
         this.isMultiSelect = isMultiSelect;
         this.answerBitLengths = answerBitLengths;
@@ -68,7 +68,7 @@ public class UserScoreCalculator {
             return binarySection.toString();
         } else {
             // retrieve the only value in HashSet since there is only one answer
-            int optionSelected = (int) this.userAnswers.get(currIndex).toArray()[0];
+            int optionSelected = (int) this.userAnswers.get(currIndex).get(0);
             String binaryRepresentation = Integer.toBinaryString(optionSelected); // save the binaryRepresentation of the option selected
             return String.format("%0" + this.answerBitLengths[currIndex] + "d", Integer.parseInt(binaryRepresentation)); // pad with zeroes
         }
