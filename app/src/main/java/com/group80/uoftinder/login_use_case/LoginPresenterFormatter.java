@@ -10,15 +10,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseUser;
-import com.group80.uoftinder.HelloWorld;
+import com.group80.uoftinder.feed.RecommendationView;
 
 public class LoginPresenterFormatter extends AppCompatActivity implements LoginPresenter {
 
-    final Class<HelloWorld> helloWorld;
+    final Class<RecommendationView> helloWorld;
     final LoginViewInterface loginViewInterface;
 
-    public LoginPresenterFormatter(Class<HelloWorld> helloWorldClass, LoginViewInterface loginViewInterface) {
-        this.helloWorld = helloWorldClass;
+    public LoginPresenterFormatter(Class<RecommendationView> recommendationViewClass, LoginViewInterface loginViewInterface) {
+        this.helloWorld = recommendationViewClass;
         this.loginViewInterface = loginViewInterface;
     }
 
