@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.1.0'
     implementation 'com.google.firebase:firebase-firestore:24.4.0'
     implementation 'com.google.firebase:firebase-storage:20.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
     // Firebase - ends here
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
