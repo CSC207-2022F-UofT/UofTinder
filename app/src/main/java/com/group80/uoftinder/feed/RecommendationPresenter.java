@@ -5,21 +5,21 @@ import com.group80.uoftinder.entities.User;
 import java.util.List;
 import java.util.Set;
 
+import com.group80.uoftinder.entities.User;
 /**
  * A presenter class (that also acts as a controller, per the MVP design pattern) that
  * calls the appropriate use case and return the necessary information to the view, through
  * recViewInterface
  */
-public class RecommendationPresenter {
+public class RecommendationPresenter{
     private GenerateCompatibilityList genCompatibilityList;
     private RecViewInterface recViewInterface;
 
     /**
      * Initialize the attributes of a RecommendationPresenter instance
-     * @param recViewInterface: an instance of RecViewInterface
      */
-    public RecommendationPresenter(RecViewInterface recViewInterface) {
-        this.genCompatibilityList = new GenerateCompatibilityList();
+    public RecommendationPresenter(User currUser, RecViewInterface recViewInterface) {
+        this.genCompatibilityList = new GenerateCompatibilityList(currUser);
         genCompatibilityList.orderCompatibilityList();
         this.recViewInterface = recViewInterface;
     }
@@ -49,10 +49,13 @@ public class RecommendationPresenter {
      */
     public void displayUser() {
         User mostCompUser = genCompatibilityList.showMostCompUser();
-        if(mostCompUser != null)
+//        return mostCompUser;
+        if (mostCompUser != null) {
             displayMostCompUser(mostCompUser);
-        else
+        }
+        else {
             displayNoCompatibleUser();
+        }
     }
 
     /**
@@ -70,7 +73,7 @@ public class RecommendationPresenter {
      */
     public void displayMostCompUser(User user) {
         recViewInterface.setDisplayedUser(user);
-        recViewInterface.showUser(user);
+        recViewInterface.showUser();
     }
 
     /**

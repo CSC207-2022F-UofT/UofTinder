@@ -2,6 +2,7 @@ package com.group80.uoftinder.entities;
 
 import android.net.Uri;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * Represents a user that is connected to their corresponding FirebaseUser account
  * with a user id.
  */
-public class User {
+public class User implements Serializable {
 
     private final String uid;
 
@@ -28,11 +29,20 @@ public class User {
     private List<String> liked;
     private List<String> matches;
 
+    public User() {
+        this.uid = "NULL";
+        this.liked = new ArrayList<>();
+        this.viewed = new ArrayList<>();
+        this.matches = new ArrayList<>();
+        this.answers = new ArrayList<>();
+    }
+
     public User(String uid){
         this.uid = uid;
         this.liked = new ArrayList<>();
         this.viewed = new ArrayList<>();
         this.matches = new ArrayList<>();
+        this.answers = new ArrayList<>();
     }
 
     /**

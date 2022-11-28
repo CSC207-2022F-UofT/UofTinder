@@ -85,6 +85,7 @@ public class FilterUseCaseUnitTest {
         user5.setAge(25);
 
         List<List<Integer>> userAnswers = new ArrayList<>();
+
         userAnswers.add(Collections.singletonList(2)); // single
         userAnswers.add(Collections.singletonList(1)); // multi
         userAnswers.add(Arrays.asList(1, 2)); // multi
