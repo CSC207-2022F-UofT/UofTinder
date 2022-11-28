@@ -56,6 +56,7 @@ public class Login extends AppCompatActivity implements LoginViewInterface {
 
     /**
      * Switches UI to create account when the create account button is clicked
+     * @param view current view
      */
     public void showCreateAccountView(View view) {
         // CreateAccountView will be fine when merged with create account branch
