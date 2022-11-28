@@ -46,7 +46,7 @@ public class GenerateCompatibilityListUnitTest {
         userAnswers.add(Collections.singletonList(2));
         curUser.setAnswers(userAnswers);
 
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
+        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList();
         User user2 = new User("user2");
         User user3 = new User("user3");
 
@@ -68,7 +68,7 @@ public class GenerateCompatibilityListUnitTest {
         genCompatibilityList.setCurUser(curUser);
         genCompatibilityList.orderCompatibilityList();
         List<User> actual = genCompatibilityList.getCompatibilityList();
-        assertEquals(actual, expectedCompList);
+        assertEquals(expectedCompList, actual);
     }
 
     /**
@@ -98,6 +98,7 @@ public class GenerateCompatibilityListUnitTest {
         User user2 = new User("user2");
         User user3 = new User("user3");
         List<User> compList = new ArrayList<>(Arrays.asList(user3, user2));
+        genCompatibilityList.setCompatibilityList(compList);
         User expected = user3;
         User actual = genCompatibilityList.showMostCompUser();
         assertEquals(actual, expected);

@@ -91,4 +91,11 @@ public class RecommendationPresenter{
     public void regenerate() {
         genCompatibilityList.recalculateCompatibilityList();
     }
+
+    /**
+     * Set the genCompatibilityList attribute the newGenCompatibilityList
+     */
+    public void setGenCompatibilityList(GenerateCompatibilityList newGenCompatibilityList) {
+        this.genCompatibilityList = newGenCompatibilityList;
+    }
 }

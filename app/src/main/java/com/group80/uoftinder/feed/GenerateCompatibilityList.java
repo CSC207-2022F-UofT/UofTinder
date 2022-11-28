@@ -6,6 +6,7 @@ import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,16 +56,24 @@ public class GenerateCompatibilityList {
     public void orderCompatibilityList() {
         if (compatibilityList.size() != 0) {
             compScores = calculateCompatibilityScores(compatibilityList);
-            compatibilityList.sort(userScoreComparator);
+            compatibilityList.sort(Collections.reverseOrder(userScoreComparator));
         }
         else {
             compScores = new HashMap<>();
         }
-
+//        int length;
+//        Map<User, Integer> compScores;
+//        if (compatibilityList != null) {
+//            length = compatibilityList.size();
+//            compScores = calculateCompatibilityScores(compatibilityList);
+//        }
+//        else {
+//            length = 0;
+//            return;
+//        }
 //        compatibilityList = new ArrayList<>();
-//        Map<String, Integer> compScores = calculateCompatibilityScores(allUsers);
-//        for (int i = 0 ; i < users.size() ; i++) {
-//            String maxKey = getMaxKey(compScores);
+//        for (int i = 0 ; i < length ; i++) {
+//            User maxKey = getMaxKey(compScores);
 //            compatibilityList.add(maxKey);
 //            compScores.remove(maxKey);
 //        }
@@ -78,10 +87,10 @@ public class GenerateCompatibilityList {
 //     *                 user
 //     * @return the key that corresponds to the max value in userScore
 //     */
-//    private String getMaxKey(Map<String, Integer> userScore) {
+//    private User getMaxKey(Map<User, Integer> userScore) {
 //        int maxValue = 0;
-//        String maxKey = "";
-//        for (String key : userScore.keySet()) {
+//        User maxKey = null;
+//        for (User key : userScore.keySet()) {
 //            Integer currentScore = userScore.get(key);
 //            if (currentScore != null && currentScore > maxValue) {
 ////                if (currentScore > maxValue) {
@@ -100,7 +109,7 @@ public class GenerateCompatibilityList {
      * @return a map of User to the user's compatibility score with the current user
      */
     private Map<User, Integer> calculateCompatibilityScores(List<User> users) {
-        Map<User, Integer> compScores = new HashMap<User, Integer>();
+        Map<User, Integer> compScores = new HashMap<>();
         for (User user : users) {
             calculateCompatibilityScore(compScores, user);
         }
@@ -176,6 +185,10 @@ public class GenerateCompatibilityList {
      */
     public void setCompatibilityList(List<User> usersList) {
         this.compatibilityList = usersList;
+    }
+
+    public void setUsf(UserScoreFacade newUsf) {
+        this.usf = newUsf;
     }
 
     /**
