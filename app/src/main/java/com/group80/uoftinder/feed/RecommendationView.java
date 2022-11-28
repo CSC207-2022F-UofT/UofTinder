@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.group80.uoftinder.HelloWorld;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.UpdateList;
 import com.group80.uoftinder.entities.User;
@@ -33,6 +35,26 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         super.onCreate(savedInstanceState);
         // set the view to recommendation profile display
         setContentView(R.layout.recommendation_profile_display);
+
+        Button filterButton = findViewById(R.id.filterButton);
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RecommendationView.this, AcademicFilterActivity.class));
+            }
+        });
+
+        Button resetFilterButton = findViewById(R.id.resetFilterButton);
+        resetFilterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: update to the actual current user object
+                User curUser = new User("curUser");
+                RecommendationView recommendationView = new RecommendationView();
+                RecommendationPresenter recPresenter = new RecommendationPresenter(curUser, recommendationView);
+                recPresenter.revertFilters();
+            }
+        });
 
         // connect all the different components of the screen
         profilePicture = findViewById(R.id.profilePicture);

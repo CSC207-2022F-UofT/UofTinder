@@ -6,6 +6,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/filterButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:text="Add Filters" />
+
+        <Button
+            android:id="@+id/resetFilterButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="Reset Filters" />
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/profilePicture"
         android:layout_width="444dp"
@@ -49,7 +76,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-            android:background="#F44336"
             android:text="No"
             app:cornerRadius="20dp"
             app:icon="@android:drawable/ic_delete" />
