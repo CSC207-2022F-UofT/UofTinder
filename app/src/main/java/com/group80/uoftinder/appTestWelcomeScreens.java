@@ -2,7 +2,6 @@ package com.group80.uoftinder;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,9 +28,9 @@ public class appTestWelcomeScreens extends AppCompatActivity {
         }
     }
 
-    public void showCreateAccountView(View view) {
-        Intent intent = new Intent(appTestWelcomeScreens.this, CreateAccountView.class);
-        startActivity(intent);
-        finish();
-    }
+//    public void showCreateAccountView(View view) {
+//        Intent intent = new Intent(appTestWelcomeScreens.this, CreateAccountView.class);
+//        startActivity(intent);
+//        finish();
+//    }
 }
