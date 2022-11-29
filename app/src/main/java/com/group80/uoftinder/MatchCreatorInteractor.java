@@ -29,12 +29,12 @@ public class MatchCreatorInteractor {
      */
     // called when currentUser likes user2
     public static boolean checkForMatchAndCreate(User currentUser, User user2) {
-        if (user2.getLiked().contains(currentUser.getUid())) {
+        if (user2.getLiked().contains(currentUser.getUid())) { // if user2 has liked currentUser
             List<String> user1MatchList = currentUser.getMatches();
             List<String> user2MatchList = user2.getMatches();
-            user1MatchList.add(user2.getUid());
+            user1MatchList.add(user2.getUid()); // add both users to each other's match lists
             user2MatchList.add(currentUser.getUid());
-            UserRealtimeDbFacade.uploadUser(user2);
+            UserRealtimeDbFacade.uploadUser(user2); // reupload users to the database
             UserRealtimeDbFacade.uploadUser(currentUser);
 
             sendIntroMessage(); // send a message from currentUser to user2
