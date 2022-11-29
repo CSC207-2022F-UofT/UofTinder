@@ -14,4 +14,5 @@ public interface RecViewInterface {
     // no more compatible users
     void noCompatibleUser();
     void createPopUp();
+    // create a pop-up if a match has been created
 }

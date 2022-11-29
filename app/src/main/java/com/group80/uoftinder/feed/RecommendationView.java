@@ -93,7 +93,8 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         UpdateList.addToList(displayedUser, liked, currentUser.getViewed(), currentUser.getLiked());
         // displays next user
         if (liked) {
-            recPresenter.useMatchCreator();
+            recPresenter.useMatchCreator(); // if we liked the displayed user, we call upon
+            // the match creator to check if a match can be created
         }
         recPresenter.nextUser();
         recPresenter.displayUser();
@@ -120,9 +121,11 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         Intent intent = new Intent(context, NoNewRecommendation.class);
         startActivity(intent);
     }
+
     @Override
     /**
-     *
+     * Creates a pop-up message at the button of the screen when the current user has matched
+     * with the person they clicked like on
      */
     public void createPopUp() {
         Toast.makeText(RecommendationView.this,

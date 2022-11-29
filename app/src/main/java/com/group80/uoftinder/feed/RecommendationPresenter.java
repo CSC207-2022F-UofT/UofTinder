@@ -89,12 +89,14 @@ public class RecommendationPresenter{
     }
 
     /**
-     *
+     * Use the MatchCreator static method checkforMatchAndCreate in order to determine if a match
+     * can be created between the current user and the displayed user
      */
     public void useMatchCreator() {
         boolean matchCreated = MatchCreatorInteractor.checkForMatchAndCreate(currUser,
                 recViewInterface.getDisplayedUser());
-        if (matchCreated) {
+        if (matchCreated) { // if we have successfully created a match, we display a pop-up using
+            // the recViewInterface
             recViewInterface.createPopUp();
         }
     }
