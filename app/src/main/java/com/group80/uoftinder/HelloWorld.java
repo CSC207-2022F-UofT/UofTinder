@@ -1,11 +1,11 @@
 package com.group80.uoftinder;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.AcademicFilterActivity;
