@@ -44,6 +44,16 @@ public class Login extends AppCompatActivity implements LoginViewInterface {
 
         enterLogin = findViewById(R.id.EnterLogin);
         enterLogin.setOnClickListener(view -> loginController.loginUser(loginEmail, loginPassword));
+
+        // testing
+        Button button = findViewById(R.id.helloWorldEnterChatButton);
+        button.setOnClickListener(view -> {
+            Intent intent = new Intent(Login.this, ChatActivity.class);
+            // TODO: remove such dependency
+            intent.putExtra("name", "Bot");
+            intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
+            startActivity(intent);
+        });
     }
 
     /**
@@ -53,16 +63,13 @@ public class Login extends AppCompatActivity implements LoginViewInterface {
     @Override
     public void updateUI(FirebaseUser firebaseUser) {
         String id = firebaseUser.getUid();
-        UserRealtimeDbFacade.getUser("Academic", id, user -> {
-            setCurrentUser(user);
-        });
-        UserRealtimeDbFacade.getUser("Romantic", id, user -> {
-            setCurrentUser(user);
-        });
-        UserRealtimeDbFacade.getUser("Friendship", id, user -> {
-            setCurrentUser(user);
-        });
-//        Log.d("HELLO", "userID: " + id + " userName: " + currentUser.getName());
+        UserRealtimeDbFacade.getUser("Academic", id, this::setCurrentUser);
+        if(getCurrentUser() == null) {
+            UserRealtimeDbFacade.getUser("Romantic", id, this::setCurrentUser);
+            if(getCurrentUser() == null) {
+                UserRealtimeDbFacade.getUser("Friendship", id, this::setCurrentUser);
+            }
+        }
         Intent intent = new Intent(Login.this, RecommendationView.class);
         intent.putExtra("currentUser", currentUser);
         startActivity(intent);

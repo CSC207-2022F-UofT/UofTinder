@@ -8,6 +8,7 @@ import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.List;
 import java.util.Set;
@@ -18,7 +19,6 @@ import java.util.Set;
 public class GenerateCompatibilityList {
     private User curUser;
     private List<User> compatibilityList;
-//    private RecPresenterInterface recPresenterInterface;
     private UserScoreFacade usf;
     private Map<User, Integer> compScores;
     private Comparator<User> userScoreComparator;
@@ -29,22 +29,35 @@ public class GenerateCompatibilityList {
      * Initialize the attributes of a GenerateCompatibilityList instance
      */
     public GenerateCompatibilityList(User currUser) {
-        getAllUsers();
-        filteredCompatibilityList = new ArrayList<>();
         this.curUser = currUser;
+        getAllUsers();
+        removeCurrentUser();
+        filteredCompatibilityList = new ArrayList<>();
         this.usf = new UserScoreFacade(curUser);
-//        this.curUser = UserRealtimeDbFacade.getCurrentUser();
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
     }
 
     /**
-     * Get the list of all users from the database and assign compatibilityList to this list
+     * Get the list of all users from the database and
+     * then assign compatibilityList to this list.
      */
     private void getAllUsers() {
         UserRealtimeDbFacade.getAllUsers("Academic", userList -> {
             setCompatibilityList(userList);
         });
-//        compatibilityList.remove(curUser);
+    }
+
+    /**
+     * Find and then remove current user from current user's list of
+     * compatible users since they should not match with themselves.
+     */
+    private void removeCurrentUser() {
+        User removeUser = null;
+        for(User user: compatibilityList) {
+            if(user.getUid().equals(curUser.getUid()))
+                removeUser = user;
+        }
+        compatibilityList.remove(removeUser);
     }
 
     /**

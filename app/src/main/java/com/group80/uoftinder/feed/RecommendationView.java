@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.group80.uoftinder.HelloWorld;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.UpdateList;
 import com.group80.uoftinder.entities.User;
