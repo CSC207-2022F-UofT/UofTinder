@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="90dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
 
     <RelativeLayout
@@ -53,7 +54,8 @@
 
             android:id="@+id/cardviewofuser"
 
-            app:cardCornerRadius="55dp">
+            app:cardCornerRadius="55dp"
+            tools:ignore="UnknownId">
 
 
             <ImageView
