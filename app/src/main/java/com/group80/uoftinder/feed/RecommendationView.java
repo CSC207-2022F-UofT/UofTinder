@@ -92,7 +92,9 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         // add displayed User to viewed/liked list
         UpdateList.addToList(displayedUser, liked, currentUser.getViewed(), currentUser.getLiked());
         // displays next user
-        recPresenter.useMatchCreator();
+        if (liked) {
+            recPresenter.useMatchCreator();
+        }
         recPresenter.nextUser();
         recPresenter.displayUser();
     }
