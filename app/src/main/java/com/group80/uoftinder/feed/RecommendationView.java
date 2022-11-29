@@ -36,26 +36,6 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         // set the view to recommendation profile display
         setContentView(R.layout.recommendation_profile_display);
 
-        Button filterButton = findViewById(R.id.filterButton);
-        filterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(RecommendationView.this, AcademicFilterActivity.class));
-            }
-        });
-
-        Button resetFilterButton = findViewById(R.id.resetFilterButton);
-        resetFilterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: update to the actual current user object
-                User curUser = new User("curUser");
-                RecommendationView recommendationView = new RecommendationView();
-                RecommendationPresenter recPresenter = new RecommendationPresenter(curUser, recommendationView);
-                recPresenter.revertFilters();
-            }
-        });
-
         // connect all the different components of the screen
         profilePicture = findViewById(R.id.profilePicture);
         name = findViewById(R.id.name);
@@ -80,6 +60,25 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         // no button click listener
         noButton.setOnClickListener(view -> {
             buttonClick(displayedUser, false);
+        });
+
+        Button filterButton = findViewById(R.id.filterButton);
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecommendationView.this, AcademicFilterActivity.class);
+                intent.putExtra("currentUser", currentUser);
+                intent.putExtra("recPresenter", recPresenter);
+                startActivity(intent);
+            }
+        });
+
+        Button resetFilterButton = findViewById(R.id.resetFilterButton);
+        resetFilterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recPresenter.revertFilters();
+            }
         });
     }
 

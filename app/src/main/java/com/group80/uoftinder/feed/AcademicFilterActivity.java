@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.NumberPicker;
 
-import com.group80.uoftinder.HelloWorld;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.User;
 
@@ -27,6 +26,7 @@ public class AcademicFilterActivity extends AppCompatActivity {
     private CheckBox[] campusBoxes;
     private final int MIN_AGE = 13;
     private final int MAX_AGE = 100;
+    private User currentUser;
 
     /**
      * Initialize Android Number Picker objects with minimum and maximum ages.
@@ -102,6 +102,9 @@ public class AcademicFilterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_filter);
 
+        User currentUser = (User) getIntent().getSerializableExtra("currentUser");
+        RecommendationPresenter recPresenter = (RecommendationPresenter) getIntent().getSerializableExtra("recPresenter");
+
         initializePickers();
         initializeCheckBoxes();
         Button filterButton = findViewById(R.id.filterButton);
@@ -121,16 +124,12 @@ public class AcademicFilterActivity extends AppCompatActivity {
                 filters.add(populateCheckboxValues(yearOfStudyBoxes));
                 filters.add(populateCheckboxValues(programOfStudyBoxes));
                 filters.add(populateCheckboxValues(campusBoxes));
+                recPresenter.filterCompatibilityList(filters, minAge, maxAge);
 
-                // TODO: update to the actual current user object
-//                User curUser = new User("curUser");
-//                RecommendationView recommendationView = new RecommendationView(curUser);
-//                RecommendationPresenter recPresenter = new RecommendationPresenter(curUser, recommendationView);
-//                recPresenter.filterCompatibilityList(filters, minAge, maxAge);
-                // TODO: change to RecommendationFeed class later
-                startActivity(
-                        new Intent(AcademicFilterActivity.this, HelloWorld.class)
-                );
+                // Go back to the main Recommendation View
+                Intent intent = new Intent(AcademicFilterActivity.this, RecommendationView.class);
+                intent.putExtra("currentUser", currentUser);
+                startActivity(intent);
             }
         });
 

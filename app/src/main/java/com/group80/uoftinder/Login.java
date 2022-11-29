@@ -2,6 +2,7 @@ package com.group80.uoftinder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,7 +62,10 @@ public class Login extends AppCompatActivity implements LoginViewInterface {
         UserRealtimeDbFacade.getUser("Friendship", id, user -> {
             setCurrentUser(user);
         });
-        startActivity(new Intent(Login.this, RecommendationView.class));
+//        Log.d("HELLO", "userID: " + id + " userName: " + currentUser.getName());
+        Intent intent = new Intent(Login.this, RecommendationView.class);
+        intent.putExtra("currentUser", currentUser);
+        startActivity(intent);
     }
 
     /**

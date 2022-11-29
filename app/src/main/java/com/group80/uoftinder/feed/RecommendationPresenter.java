@@ -2,6 +2,7 @@ package com.group80.uoftinder.feed;
 
 import com.group80.uoftinder.entities.User;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import com.group80.uoftinder.entities.User;
  * calls the appropriate use case and return the necessary information to the view, through
  * recViewInterface
  */
-public class RecommendationPresenter{
+public class RecommendationPresenter implements Serializable {
     private GenerateCompatibilityList genCompatibilityList;
     private RecViewInterface recViewInterface;
 
@@ -37,7 +38,7 @@ public class RecommendationPresenter{
 
     /**
      * Revert all previously selected filters to show all users in compatibility list
-     * without checking or caring whether they satsify certain filtering criteria.
+     * without checking or caring whether they satisfy certain filtering criteria.
      */
     public void revertFilters() {
         genCompatibilityList.revertFilters();
