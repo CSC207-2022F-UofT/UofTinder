@@ -8,9 +8,10 @@ import com.group80.uoftinder.entities.User;
 public interface RecViewInterface {
     // set first displayed user
     void setDisplayedUser(User displayedUser);
+    User getDisplayedUser();
     // display user
     void showUser();
     // no more compatible users
     void noCompatibleUser();
-
+    void createPopUp();
 }

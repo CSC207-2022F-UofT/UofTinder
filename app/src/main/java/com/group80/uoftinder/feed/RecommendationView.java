@@ -1,13 +1,18 @@
 package com.group80.uoftinder.feed;
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.UpdateList;
 import com.group80.uoftinder.entities.User;
@@ -70,6 +75,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         this.displayedUser = displayedUser;
     }
 
+    @Override
     /**
      * Returns displayedUser that is currently being displayed to currentUser.
      */
@@ -86,6 +92,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         // add displayed User to viewed/liked list
         UpdateList.addToList(displayedUser, liked, currentUser.getViewed(), currentUser.getLiked());
         // displays next user
+        recPresenter.useMatchCreator();
         recPresenter.nextUser();
         recPresenter.displayUser();
     }
@@ -110,5 +117,14 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         final Context context = this;
         Intent intent = new Intent(context, NoNewRecommendation.class);
         startActivity(intent);
+    }
+    @Override
+    /**
+     *
+     */
+    public void createPopUp() {
+        Toast.makeText(RecommendationView.this,
+                "You matched with " + getDisplayedUser().getName() + "!",
+                Toast.LENGTH_SHORT).show();
     }
 }

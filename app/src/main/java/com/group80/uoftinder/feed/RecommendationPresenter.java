@@ -1,11 +1,11 @@
 package com.group80.uoftinder.feed;
 
+import com.group80.uoftinder.MatchCreatorInteractor;
 import com.group80.uoftinder.entities.User;
 
 import java.util.List;
 import java.util.Set;
 
-import com.group80.uoftinder.entities.User;
 /**
  * A presenter class (that also acts as a controller, per the MVP design pattern) that
  * calls the appropriate use case and return the necessary information to the view, through
@@ -14,11 +14,14 @@ import com.group80.uoftinder.entities.User;
 public class RecommendationPresenter{
     private GenerateCompatibilityList genCompatibilityList;
     private RecViewInterface recViewInterface;
+//    private MatchCreatorInteractor mci;
+    private User currUser;
 
     /**
      * Initialize the attributes of a RecommendationPresenter instance
      */
     public RecommendationPresenter(User currUser, RecViewInterface recViewInterface) {
+        this.currUser = currUser;
         this.genCompatibilityList = new GenerateCompatibilityList(currUser);
         genCompatibilityList.orderCompatibilityList();
         this.recViewInterface = recViewInterface;
@@ -83,6 +86,17 @@ public class RecommendationPresenter{
     public void displayNoCompatibleUser() {
         recViewInterface.setDisplayedUser(null);
         recViewInterface.noCompatibleUser();
+    }
+
+    /**
+     *
+     */
+    public void useMatchCreator() {
+        boolean matchCreated = MatchCreatorInteractor.checkForMatchAndCreate(currUser,
+                recViewInterface.getDisplayedUser());
+        if (matchCreated) {
+            recViewInterface.createPopUp();
+        }
     }
 
     /**
