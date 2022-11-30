@@ -1,14 +1,17 @@
 package com.group80.uoftinder.feed;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.NumberPicker;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.User;
 
@@ -19,6 +22,7 @@ import java.util.Set;
 
 public class AcademicFilterActivity extends AppCompatActivity {
 
+    private CoordinatorLayout coordinatorLayout;
     private NumberPicker minAgePicker;
     private NumberPicker maxAgePicker;
     private CheckBox[] programOfStudyBoxes;
@@ -101,9 +105,10 @@ public class AcademicFilterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_filter);
+        coordinatorLayout = findViewById(R.id.coordinatorLayout);
 
         User currentUser = (User) getIntent().getSerializableExtra("currentUser");
-        RecommendationPresenter recPresenter = (RecommendationPresenter) getIntent().getSerializableExtra("recPresenter");
+//        RecommendationPresenter recPresenter = (RecommendationPresenter) getIntent().getSerializableExtra("recPresenter");
 
         initializePickers();
         initializeCheckBoxes();
@@ -124,12 +129,21 @@ public class AcademicFilterActivity extends AppCompatActivity {
                 filters.add(populateCheckboxValues(yearOfStudyBoxes));
                 filters.add(populateCheckboxValues(programOfStudyBoxes));
                 filters.add(populateCheckboxValues(campusBoxes));
-                recPresenter.filterCompatibilityList(filters, minAge, maxAge);
 
-                // Go back to the main Recommendation View
-                Intent intent = new Intent(AcademicFilterActivity.this, RecommendationView.class);
-                intent.putExtra("currentUser", currentUser);
-                startActivity(intent);
+                if(maxAge < minAge) {
+                    Snackbar.make(coordinatorLayout,
+                            "Maxmimum Age must be greater than or equal to Minimum Age",
+                            Snackbar.LENGTH_LONG).show();
+                }
+
+                else {
+//                recPresenter.filterCompatibilityList(filters, minAge, maxAge);
+
+                    // Go back to the main Recommendation View
+                    Intent intent = new Intent(AcademicFilterActivity.this, RecommendationView.class);
+                    intent.putExtra("currentUser", currentUser);
+                    startActivity(intent);
+                }
             }
         });
 

@@ -29,11 +29,33 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     private Button noButton;
     private Button yesButton;
 
+//    @Override
+//    public void onSaveInstanceState(Bundle savedInstanceState) {
+//        // Save the user's current game state
+//        savedInstanceState.putSerializable("currentUser", currentUser);
+//        savedInstanceState.putSerializable("recPresenter", recPresenter);
+//        savedInstanceState.putSerializable("displayedUser", displayedUser);
+//
+//        // Always call the superclass so it can save the view hierarchy state
+//        super.onSaveInstanceState(savedInstanceState);
+//    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // set the view to recommendation profile display
         setContentView(R.layout.recommendation_profile_display);
+
+//        if(savedInstanceState == null) {
+//            this.currentUser = (User) getIntent().getSerializableExtra("currentUser");
+//            this.recPresenter = new RecommendationPresenter(currentUser, RecommendationView.this);
+//            this.displayedUser = null;
+//        }
+//        else {
+//            currentUser = (User) savedInstanceState.getSerializable("currentUser");
+//            recPresenter = (RecommendationPresenter) savedInstanceState.getSerializable("recPresenter");
+//            displayedUser = (User) savedInstanceState.getSerializable("displayedUser");
+//        }
 
         // connect all the different components of the screen
         profilePicture = findViewById(R.id.profilePicture);
@@ -67,7 +89,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
             public void onClick(View view) {
                 Intent intent = new Intent(RecommendationView.this, AcademicFilterActivity.class);
                 intent.putExtra("currentUser", currentUser);
-                intent.putExtra("recPresenter", recPresenter);
+//                intent.putExtra("recPresenter", recPresenter);
                 startActivity(intent);
             }
         });

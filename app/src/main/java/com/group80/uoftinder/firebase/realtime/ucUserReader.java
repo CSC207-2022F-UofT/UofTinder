@@ -75,7 +75,6 @@ public class ucUserReader {
             try {
                 DataSnapshot dataSnapshot = Tasks.await(task, 2000, TimeUnit.MILLISECONDS);
                 callback.onData(dataSnapshot.getValue(User.class));
-                Log.d("REACHED", dataSnapshot.getValue(User.class).getName());
             } catch (NullPointerException e) { // data does not exist in given location
                 e.printStackTrace();
             } catch (ExecutionException e) {
