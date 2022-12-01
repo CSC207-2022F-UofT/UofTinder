@@ -12,7 +12,7 @@ import com.group80.uoftinder.entities.User;
  * calls the appropriate use case and return the necessary information to the view, through
  * recViewInterface
  */
-public class RecommendationPresenter implements Serializable {
+public class RecommendationPresenter {
     private GenerateCompatibilityList genCompatibilityList;
     private RecViewInterface recViewInterface;
 
