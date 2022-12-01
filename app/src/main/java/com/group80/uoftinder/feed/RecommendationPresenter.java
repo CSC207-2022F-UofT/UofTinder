@@ -2,11 +2,9 @@ package com.group80.uoftinder.feed;
 
 import com.group80.uoftinder.entities.User;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
-import com.group80.uoftinder.entities.User;
 /**
  * A presenter class (that also acts as a controller, per the MVP design pattern) that
  * calls the appropriate use case and return the necessary information to the view, through

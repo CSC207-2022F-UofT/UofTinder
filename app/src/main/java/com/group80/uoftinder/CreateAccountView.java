@@ -24,6 +24,7 @@ import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
+import com.group80.uoftinder.login_use_case.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;

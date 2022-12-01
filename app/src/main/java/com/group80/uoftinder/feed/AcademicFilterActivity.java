@@ -5,7 +5,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -29,6 +28,7 @@ public class AcademicFilterActivity extends AppCompatActivity {
     private CheckBox[] programOfStudyBoxes;
     private CheckBox[] yearOfStudyBoxes;
     private CheckBox[] campusBoxes;
+    private final String AGE_PICKER_ERROR = "Maximum Age must be greater than or equal to Minimum Age";
 
     /**
      * Initialize Android Number Picker objects with minimum and maximum ages.
@@ -129,11 +129,8 @@ public class AcademicFilterActivity extends AppCompatActivity {
                 filters.add(populateCheckboxValues(programOfStudyBoxes));
                 filters.add(populateCheckboxValues(campusBoxes));
 
-                if(maxAge < minAge) {
-                    Snackbar.make(coordinatorLayout,
-                            "Maximum Age must be greater than or equal to Minimum Age",
-                            Snackbar.LENGTH_LONG).show();
-                }
+                if(maxAge < minAge)
+                    Snackbar.make(coordinatorLayout, AGE_PICKER_ERROR,Snackbar.LENGTH_LONG).show();
 
                 else {
                     // Go back to the main Recommendation View

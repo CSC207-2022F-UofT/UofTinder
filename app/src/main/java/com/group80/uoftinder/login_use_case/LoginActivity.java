@@ -1,4 +1,4 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.login_use_case;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,16 +9,13 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.group80.uoftinder.ChatActivity;
+import com.group80.uoftinder.CreateAccountView;
+import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
-import com.group80.uoftinder.login_use_case.LoginController;
-import com.group80.uoftinder.login_use_case.LoginInput;
-import com.group80.uoftinder.login_use_case.LoginInteractor;
-import com.group80.uoftinder.login_use_case.LoginPresenter;
-import com.group80.uoftinder.login_use_case.LoginPresenterFormatter;
-import com.group80.uoftinder.login_use_case.LoginViewInterface;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginViewInterface {

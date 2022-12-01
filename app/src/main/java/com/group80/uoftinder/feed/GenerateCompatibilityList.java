@@ -1,7 +1,5 @@
 package com.group80.uoftinder.feed;
 
-import android.util.Log;
-
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
