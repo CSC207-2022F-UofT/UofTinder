@@ -256,6 +256,7 @@ public class CreateAccountView extends AppCompatActivity {
 
                     //proceed into recommendation view
                     Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
+                    intent.putExtra("currentUser", currentUser);
                     startActivity(intent);
                     finish();
                 }
@@ -269,7 +270,7 @@ public class CreateAccountView extends AppCompatActivity {
     }
 
     private void showLoginView(View view) {
-        Intent intent  = new Intent(CreateAccountView.this, Login.class);
+        Intent intent  = new Intent(CreateAccountView.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }

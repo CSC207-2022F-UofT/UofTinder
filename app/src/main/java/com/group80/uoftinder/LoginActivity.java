@@ -2,7 +2,6 @@ package com.group80.uoftinder;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +20,7 @@ import com.group80.uoftinder.login_use_case.LoginPresenterFormatter;
 import com.group80.uoftinder.login_use_case.LoginViewInterface;
 
 
-public class Login extends AppCompatActivity implements LoginViewInterface {
+public class LoginActivity extends AppCompatActivity implements LoginViewInterface {
 
     EditText loginEmail;
     EditText loginPassword;
@@ -37,7 +36,7 @@ public class Login extends AppCompatActivity implements LoginViewInterface {
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
 
-        LoginPresenter loginPresenter = new LoginPresenterFormatter(RecommendationView.class, Login.this);
+        LoginPresenter loginPresenter = new LoginPresenterFormatter(RecommendationView.class, LoginActivity.this);
         LoginInput loginInteractor = new LoginInteractor(loginPresenter);
         LoginController loginController = new LoginController(loginInteractor);
 
@@ -48,7 +47,7 @@ public class Login extends AppCompatActivity implements LoginViewInterface {
         // testing
         Button button = findViewById(R.id.helloWorldEnterChatButton);
         button.setOnClickListener(view -> {
-            Intent intent = new Intent(Login.this, ChatActivity.class);
+            Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
             // TODO: remove such dependency
             intent.putExtra("name", "Bot");
             intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
@@ -70,7 +69,7 @@ public class Login extends AppCompatActivity implements LoginViewInterface {
                 UserRealtimeDbFacade.getUser("Friendship", id, this::setCurrentUser);
             }
         }
-        Intent intent = new Intent(Login.this, RecommendationView.class);
+        Intent intent = new Intent(LoginActivity.this, RecommendationView.class);
         intent.putExtra("currentUser", currentUser);
         startActivity(intent);
     }
@@ -96,7 +95,7 @@ public class Login extends AppCompatActivity implements LoginViewInterface {
      */
     public void showCreateAccountView(View view) {
         // CreateAccountView will be fine when merged with create account branch
-        Intent intent = new Intent(Login.this, CreateAccountView.class);
+        Intent intent = new Intent(LoginActivity.this, CreateAccountView.class);
         startActivity(intent);
         finish();
     }

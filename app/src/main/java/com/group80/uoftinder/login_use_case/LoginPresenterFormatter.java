@@ -29,7 +29,7 @@ public class LoginPresenterFormatter extends AppCompatActivity implements LoginP
     @Override
     public void prepareSuccessView(FirebaseUser firebaseUser) {
         Log.d(TAG, "signInWithEmail:success");
-        Toast.makeText((Context) loginViewInterface, "Login Successful!", Toast.LENGTH_SHORT).show();
+        Toast.makeText((Context) loginViewInterface, "LoginActivity Successful!", Toast.LENGTH_SHORT).show();
         loginViewInterface.updateUI(firebaseUser);
     }
 

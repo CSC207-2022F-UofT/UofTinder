@@ -43,6 +43,8 @@ public class AcademicFilterActivity extends AppCompatActivity {
         minAgePicker.setMinValue(MIN_AGE);
         maxAgePicker.setMaxValue(MAX_AGE);
         maxAgePicker.setMinValue(MIN_AGE);
+        minAgePicker.setValue(MIN_AGE);
+        maxAgePicker.setValue(MAX_AGE);
     }
 
     /**
@@ -131,7 +133,7 @@ public class AcademicFilterActivity extends AppCompatActivity {
 
                 if(maxAge < minAge) {
                     Snackbar.make(coordinatorLayout,
-                            "Maxmimum Age must be greater than or equal to Minimum Age",
+                            "Maximum Age must be greater than or equal to Minimum Age",
                             Snackbar.LENGTH_LONG).show();
                 }
 
