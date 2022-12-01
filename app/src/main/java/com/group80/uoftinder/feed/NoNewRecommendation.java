@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.group80.uoftinder.R;
+import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 
 public class NoNewRecommendation extends AppCompatActivity
@@ -17,14 +18,14 @@ public class NoNewRecommendation extends AppCompatActivity
         // set the view to no new recommendation
         setContentView(R.layout.no_new_recommendation);
 
-        User currentUser = (User) getIntent().getSerializableExtra("currentUser");
+        User currentUser = (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING);
 
         Button filterButton = findViewById(R.id.filterButton);
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NoNewRecommendation.this, AcademicFilterActivity.class);
-                intent.putExtra("currentUser", currentUser);
+                intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
                 startActivity(intent);
             }
         });

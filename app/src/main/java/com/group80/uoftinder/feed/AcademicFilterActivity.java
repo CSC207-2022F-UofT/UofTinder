@@ -13,6 +13,7 @@ import android.widget.NumberPicker;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.group80.uoftinder.R;
+import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 
 import java.io.Serializable;
@@ -22,15 +23,12 @@ import java.util.List;
 import java.util.Set;
 
 public class AcademicFilterActivity extends AppCompatActivity {
-
     private CoordinatorLayout coordinatorLayout;
     private NumberPicker minAgePicker;
     private NumberPicker maxAgePicker;
     private CheckBox[] programOfStudyBoxes;
     private CheckBox[] yearOfStudyBoxes;
     private CheckBox[] campusBoxes;
-    private final int MIN_AGE = 13;
-    private final int MAX_AGE = 100;
 
     /**
      * Initialize Android Number Picker objects with minimum and maximum ages.
@@ -39,12 +37,12 @@ public class AcademicFilterActivity extends AppCompatActivity {
     private void initializePickers() {
         minAgePicker = findViewById(R.id.minAgePicker);
         maxAgePicker = findViewById(R.id.maxAgePicker);
-        minAgePicker.setMaxValue(MAX_AGE);
-        minAgePicker.setMinValue(MIN_AGE);
-        maxAgePicker.setMaxValue(MAX_AGE);
-        maxAgePicker.setMinValue(MIN_AGE);
-        minAgePicker.setValue(MIN_AGE);
-        maxAgePicker.setValue(MAX_AGE);
+        minAgePicker.setMaxValue(Constants.MAX_AGE);
+        minAgePicker.setMinValue(Constants.MIN_AGE);
+        maxAgePicker.setMaxValue(Constants.MAX_AGE);
+        maxAgePicker.setMinValue(Constants.MIN_AGE);
+        minAgePicker.setValue(Constants.MIN_AGE);
+        maxAgePicker.setValue(Constants.MAX_AGE);
     }
 
     /**
@@ -109,7 +107,7 @@ public class AcademicFilterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_academic_filter);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
 
-        User currentUser = (User) getIntent().getSerializableExtra("currentUser");
+        User currentUser = (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING);
 
         initializePickers();
         initializeCheckBoxes();
@@ -140,11 +138,11 @@ public class AcademicFilterActivity extends AppCompatActivity {
                 else {
                     // Go back to the main Recommendation View
                     Intent intent = new Intent(AcademicFilterActivity.this, RecommendationView.class);
-                    intent.putExtra("shouldFilter", true);
-                    intent.putExtra("filters", (Serializable) filters);
-                    intent.putExtra("minAge", minAge);
-                    intent.putExtra("maxAge", maxAge);
-                    intent.putExtra("currentUser", currentUser);
+                    intent.putExtra(Constants.SHOULD_FILTER_STRING, true);
+                    intent.putExtra(Constants.FILTERS_STRING, (Serializable) filters);
+                    intent.putExtra(Constants.MIN_AGE_STRING, minAge);
+                    intent.putExtra(Constants.MAX_AGE_STRING, maxAge);
+                    intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
                     startActivity(intent);
                 }
             }
@@ -159,8 +157,8 @@ public class AcademicFilterActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View view) {
-                maxAgePicker.setValue(MAX_AGE);
-                minAgePicker.setValue(MIN_AGE);
+                maxAgePicker.setValue(Constants.MAX_AGE);
+                minAgePicker.setValue(Constants.MIN_AGE);
                 for(CheckBox checkBox: programOfStudyBoxes)
                     uncheckBox(checkBox);
                 for(CheckBox checkBox: yearOfStudyBoxes)
@@ -168,8 +166,8 @@ public class AcademicFilterActivity extends AppCompatActivity {
                 for(CheckBox checkBox: campusBoxes)
                     uncheckBox(checkBox);
                 Intent intent = new Intent(AcademicFilterActivity.this, RecommendationView.class);
-                intent.putExtra("shouldFilter", false);
-                intent.putExtra("currentUser", currentUser);
+                intent.putExtra(Constants.SHOULD_FILTER_STRING, false);
+                intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
                 startActivity(intent);
             }
         });

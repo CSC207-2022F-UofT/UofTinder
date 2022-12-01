@@ -20,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.create_account_use_case.CreateAccountPresenter;
+import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
@@ -256,7 +257,7 @@ public class CreateAccountView extends AppCompatActivity {
 
                     //proceed into recommendation view
                     Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
-                    intent.putExtra("currentUser", currentUser);
+                    intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
                     startActivity(intent);
                     finish();
                 }

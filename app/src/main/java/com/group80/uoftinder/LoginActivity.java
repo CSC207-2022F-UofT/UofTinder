@@ -9,6 +9,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
@@ -70,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
             }
         }
         Intent intent = new Intent(LoginActivity.this, RecommendationView.class);
-        intent.putExtra("currentUser", currentUser);
+        intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
         startActivity(intent);
     }
 

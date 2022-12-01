@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.UpdateList;
+import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 
 import java.util.List;
@@ -45,16 +46,16 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         Button noButton = findViewById(R.id.noButton);
         Button yesButton = findViewById(R.id.yesButton);
 
-        this.currentUser = (User) getIntent().getSerializableExtra("currentUser");
+        this.currentUser = (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING);
         this.recPresenter = new RecommendationPresenter(currentUser, RecommendationView.this);
         this.displayedUser = null;
         UpdateList update = new UpdateList(currentUser);
 
-        boolean shouldFilter = getIntent().getBooleanExtra("shouldFilter", false);
+        boolean shouldFilter = getIntent().getBooleanExtra(Constants.SHOULD_FILTER_STRING, false);
         if(shouldFilter) {
-            List<Set<Integer>> filters = (List<Set<Integer>>) getIntent().getSerializableExtra("filters");
-            int minAge = getIntent().getIntExtra("minAge", 13);
-            int maxAge = getIntent().getIntExtra("maxAge", 100);
+            List<Set<Integer>> filters = (List<Set<Integer>>) getIntent().getSerializableExtra(Constants.FILTERS_STRING);
+            int minAge = getIntent().getIntExtra(Constants.MIN_AGE_STRING, Constants.MIN_AGE);
+            int maxAge = getIntent().getIntExtra(Constants.MAX_AGE_STRING, Constants.MAX_AGE);
             recPresenter.filterCompatibilityList(filters, minAge, maxAge);
         }
 
@@ -76,7 +77,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RecommendationView.this, AcademicFilterActivity.class);
-                intent.putExtra("currentUser", currentUser);
+                intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
                 startActivity(intent);
             }
         });
@@ -130,7 +131,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     public void noCompatibleUser() {
         final Context context = this;
         Intent intent = new Intent(context, NoNewRecommendation.class);
-        intent.putExtra("currentUser", currentUser);
+        intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
         startActivity(intent);
     }
 }
