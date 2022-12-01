@@ -269,7 +269,7 @@ public class CreateAccountView extends AppCompatActivity {
     }
 
     private void showLoginView(View view) {
-        Intent intent  = new Intent(CreateAccountView.this, appTestWelcomeScreens.class);
+        Intent intent  = new Intent(CreateAccountView.this, Login.class);
         startActivity(intent);
         finish();
     }

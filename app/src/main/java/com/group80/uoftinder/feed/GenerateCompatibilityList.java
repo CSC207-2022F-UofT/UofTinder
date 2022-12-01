@@ -231,7 +231,7 @@ public class GenerateCompatibilityList {
             List<List<Integer>> answers = user.getAnswers();
             // answers.size() is used here for convenience, works under the
             // assumption that answers.size() == filters.size()
-            for(int i = 0; i < answers.size(); i++) {
+            for(int i = 0; i < filters.size(); i++) {
                 Set<Integer> currentFilter = filters.get(i);
                 List<Integer> currentAnswers = answers.get(i);
                 if(currentFilter.size() == 0)  // if no filters selected, go to next set of answers

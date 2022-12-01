@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -30,7 +31,6 @@ public class AcademicFilterActivity extends AppCompatActivity {
     private CheckBox[] campusBoxes;
     private final int MIN_AGE = 13;
     private final int MAX_AGE = 100;
-    private User currentUser;
 
     /**
      * Initialize Android Number Picker objects with minimum and maximum ages.
@@ -108,7 +108,6 @@ public class AcademicFilterActivity extends AppCompatActivity {
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
 
         User currentUser = (User) getIntent().getSerializableExtra("currentUser");
-//        RecommendationPresenter recPresenter = (RecommendationPresenter) getIntent().getSerializableExtra("recPresenter");
 
         initializePickers();
         initializeCheckBoxes();
@@ -137,10 +136,12 @@ public class AcademicFilterActivity extends AppCompatActivity {
                 }
 
                 else {
-//                recPresenter.filterCompatibilityList(filters, minAge, maxAge);
-
                     // Go back to the main Recommendation View
                     Intent intent = new Intent(AcademicFilterActivity.this, RecommendationView.class);
+                    intent.putExtra("shouldFilter", true);
+                    intent.putExtra("filters", (Serializable) filters);
+                    intent.putExtra("minAge", minAge);
+                    intent.putExtra("maxAge", maxAge);
                     intent.putExtra("currentUser", currentUser);
                     startActivity(intent);
                 }
@@ -164,6 +165,10 @@ public class AcademicFilterActivity extends AppCompatActivity {
                     uncheckBox(checkBox);
                 for(CheckBox checkBox: campusBoxes)
                     uncheckBox(checkBox);
+                Intent intent = new Intent(AcademicFilterActivity.this, RecommendationView.class);
+                intent.putExtra("shouldFilter", false);
+                intent.putExtra("currentUser", currentUser);
+                startActivity(intent);
             }
         });
     }
