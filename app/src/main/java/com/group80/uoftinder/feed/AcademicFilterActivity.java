@@ -30,6 +30,73 @@ public class AcademicFilterActivity extends AppCompatActivity {
     private CheckBox[] campusBoxes;
     private final String AGE_PICKER_ERROR = "Maximum Age must be greater than or equal to Minimum Age";
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_academic_filter);
+        coordinatorLayout = findViewById(R.id.coordinatorLayout);
+
+        User currentUser = (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING);
+
+        initializePickers();
+        initializeCheckBoxes();
+        Button filterButton = findViewById(R.id.filterButton);
+        Button resetButton = findViewById(R.id.resetButton);
+
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Returns to main page from filter view UI after updating the list
+             * of compatible users for the current user via RecommendationInteractor.
+             * @param view  Current view
+             */
+            @Override
+            public void onClick(View view) {
+                int minAge = minAgePicker.getValue();
+                int maxAge = maxAgePicker.getValue();
+                List<Set<Integer>> filters = new ArrayList<>();
+                filters.add(populateCheckboxValues(yearOfStudyBoxes));
+                filters.add(populateCheckboxValues(programOfStudyBoxes));
+                filters.add(populateCheckboxValues(campusBoxes));
+
+                // validation to ensure chosen max age is greater than or equal to chosen min age
+                if(maxAge < minAge)
+                    Snackbar.make(coordinatorLayout, AGE_PICKER_ERROR,Snackbar.LENGTH_LONG).show();
+
+                else {
+                    // Go back to the main Recommendation View
+                    Intent intent = new Intent(
+                            AcademicFilterActivity.this, RecommendationView.class
+                    );
+                    intent.putExtra(Constants.SHOULD_FILTER_STRING, true);
+                    intent.putExtra(Constants.FILTERS_STRING, (Serializable) filters);
+                    intent.putExtra(Constants.MIN_AGE_STRING, minAge);
+                    intent.putExtra(Constants.MAX_AGE_STRING, maxAge);
+                    intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Resets Android Number Picker to default age values defined by constants
+             * and uncheck all Android Checkbox objects when the resetButton gets clicked.
+             * @param view  Current view
+             */
+            @Override
+            public void onClick(View view) {
+                setDefaultAgeValues();
+                uncheckAllBoxes();
+                Intent intent = new Intent(
+                        AcademicFilterActivity.this, RecommendationView.class
+                );
+                intent.putExtra(Constants.SHOULD_FILTER_STRING, false);
+                intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
+                startActivity(intent);
+            }
+        });
+    }
+
     /**
      * Initialize Android Number Picker objects with minimum and maximum ages.
      * Populates picker instance variables with Android Number Picker objects.
@@ -41,6 +108,13 @@ public class AcademicFilterActivity extends AppCompatActivity {
         minAgePicker.setMinValue(Constants.MIN_AGE);
         maxAgePicker.setMaxValue(Constants.MAX_AGE);
         maxAgePicker.setMinValue(Constants.MIN_AGE);
+        setDefaultAgeValues();
+    }
+
+    /**
+     * Initialize the values of the age pickers to their default values.
+     */
+    private void setDefaultAgeValues() {
         minAgePicker.setValue(Constants.MIN_AGE);
         maxAgePicker.setValue(Constants.MAX_AGE);
     }
@@ -82,6 +156,18 @@ public class AcademicFilterActivity extends AppCompatActivity {
     }
 
     /**
+     * Reset all checkboxes of the Activity to the default unchecked mode.
+     */
+    private void uncheckAllBoxes() {
+        for(CheckBox checkBox: programOfStudyBoxes)
+            uncheckBox(checkBox);
+        for(CheckBox checkBox: yearOfStudyBoxes)
+            uncheckBox(checkBox);
+        for(CheckBox checkBox: campusBoxes)
+            uncheckBox(checkBox);
+    }
+
+    /**
      * Return a set of integers representing user input to filter options
      * represented by checkboxes.
      * Integers included represent the index of the checked checkboxes.
@@ -99,74 +185,5 @@ public class AcademicFilterActivity extends AppCompatActivity {
                 checkboxValues.add(i);
         }
         return checkboxValues;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_academic_filter);
-        coordinatorLayout = findViewById(R.id.coordinatorLayout);
-
-        User currentUser = (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING);
-
-        initializePickers();
-        initializeCheckBoxes();
-        Button filterButton = findViewById(R.id.filterButton);
-        Button resetButton = findViewById(R.id.resetButton);
-
-        filterButton.setOnClickListener(new View.OnClickListener() {
-            /**
-             * Returns to main page from filter view UI after updating the list
-             * of compatible users for the current user via RecommendationInteractor.
-             * @param view  Current view
-             */
-            @Override
-            public void onClick(View view) {
-                int minAge = minAgePicker.getValue();
-                int maxAge = maxAgePicker.getValue();
-                List<Set<Integer>> filters = new ArrayList<>();
-                filters.add(populateCheckboxValues(yearOfStudyBoxes));
-                filters.add(populateCheckboxValues(programOfStudyBoxes));
-                filters.add(populateCheckboxValues(campusBoxes));
-
-                if(maxAge < minAge)
-                    Snackbar.make(coordinatorLayout, AGE_PICKER_ERROR,Snackbar.LENGTH_LONG).show();
-
-                else {
-                    // Go back to the main Recommendation View
-                    Intent intent = new Intent(AcademicFilterActivity.this, RecommendationView.class);
-                    intent.putExtra(Constants.SHOULD_FILTER_STRING, true);
-                    intent.putExtra(Constants.FILTERS_STRING, (Serializable) filters);
-                    intent.putExtra(Constants.MIN_AGE_STRING, minAge);
-                    intent.putExtra(Constants.MAX_AGE_STRING, maxAge);
-                    intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
-                    startActivity(intent);
-                }
-            }
-        });
-
-
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            /**
-             * Resets Android Number Picker to default age values defined by constants
-             * and uncheck all Android Checkbox objects when the resetButton gets clicked.
-             * @param view  Current view
-             */
-            @Override
-            public void onClick(View view) {
-                maxAgePicker.setValue(Constants.MAX_AGE);
-                minAgePicker.setValue(Constants.MIN_AGE);
-                for(CheckBox checkBox: programOfStudyBoxes)
-                    uncheckBox(checkBox);
-                for(CheckBox checkBox: yearOfStudyBoxes)
-                    uncheckBox(checkBox);
-                for(CheckBox checkBox: campusBoxes)
-                    uncheckBox(checkBox);
-                Intent intent = new Intent(AcademicFilterActivity.this, RecommendationView.class);
-                intent.putExtra(Constants.SHOULD_FILTER_STRING, false);
-                intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
-                startActivity(intent);
-            }
-        });
     }
 }

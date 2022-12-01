@@ -168,6 +168,7 @@ public class GenerateCompatibilityList {
      */
     public void recalculateCompatibilityList() {
         getAllUsers();
+        removeCurrentUser();
         orderCompatibilityList();
     }
 

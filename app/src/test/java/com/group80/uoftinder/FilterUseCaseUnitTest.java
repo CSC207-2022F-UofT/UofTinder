@@ -15,8 +15,9 @@ import java.util.Set;
 /**
  * Unit tests for the filtering functionality in GenerateCompatibilityList class.
  *
- * Need to comment out getAllUsers(); in GenerateCompatibilityList constructor
- * since this is a unit test for filtering and not for Firebase database retrievals.
+ * Need to comment out getAllUsers() and removeCurrentUser() in
+ * GenerateCompatibilityList constructor since this is a unit test for
+ * filtering and NOT for Firebase database retrievals.
  */
 public class FilterUseCaseUnitTest {
 
