@@ -58,6 +58,9 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
             int maxAge = getIntent().getIntExtra(Constants.MAX_AGE_STRING, Constants.MAX_AGE);
             recPresenter.filterCompatibilityList(filters, minAge, maxAge);
         }
+        else {
+            recPresenter.revertFilters();
+        }
 
         // initialize first user
         recPresenter.displayUser();
