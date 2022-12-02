@@ -39,6 +39,7 @@ public class UserScoreCalculator {
             String bundledBinary = answerSetToBinary(i); // calls helper method to compute the binary bits for question i
             binaryScore.append(bundledBinary); // append this to binary score to create one binary number
         }
+        System.out.println(binaryScore.toString());
         return Integer.parseInt(binaryScore.toString(), this.BASE_TWO);
     }
 
