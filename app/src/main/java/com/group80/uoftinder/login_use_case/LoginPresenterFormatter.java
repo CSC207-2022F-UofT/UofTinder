@@ -1,24 +1,15 @@
 package com.group80.uoftinder.login_use_case;
 
-import static android.content.ContentValues.TAG;
-
-import android.content.Context;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.feed.RecommendationView;
 
-public class LoginPresenterFormatter extends AppCompatActivity implements LoginPresenter {
+public class LoginPresenterFormatter implements LoginPresenter {
 
-    final Class<RecommendationView> helloWorld;
-    final LoginViewInterface loginViewInterface;
+    final Class<RecommendationView> recommendationViewClass;
+    final LoginViewModel loginViewInterface;
 
-    public LoginPresenterFormatter(Class<RecommendationView> recommendationViewClass, LoginViewInterface loginViewInterface) {
-        this.helloWorld = recommendationViewClass;
+    public LoginPresenterFormatter(Class<RecommendationView> recommendationViewClass, LoginViewModel loginViewInterface) {
+        this.recommendationViewClass = recommendationViewClass;
         this.loginViewInterface = loginViewInterface;
     }
 
@@ -27,29 +18,30 @@ public class LoginPresenterFormatter extends AppCompatActivity implements LoginP
      * @param firebaseUser current FirebaseUser
      */
     @Override
-    public void prepareSuccessView(FirebaseUser firebaseUser) {
-        Log.d(TAG, "signInWithEmail:success");
-        Toast.makeText((Context) loginViewInterface, "Login Successful!", Toast.LENGTH_SHORT).show();
+    public void prepareSuccessView(String success, FirebaseUser firebaseUser) {
+        loginViewInterface.showMessageToast(success);
         loginViewInterface.updateUI(firebaseUser);
     }
 
     /**
      * If email and password combination do not match, pop-ups a message indicating login failure
-     * @param error error message
      */
     @Override
-    public void prepareFailureViewLogin(String error) {
-        Toast.makeText((Context) loginViewInterface, error, Toast.LENGTH_SHORT).show();
+    public void prepareLoginFailureView(String unsuccessful) {
+        loginViewInterface.showMessageToast(unsuccessful);
     }
 
     /**
      * If there is a missing input, sets an error to text and also requests focus, shows error as error message
-     * @param text EditText of where error should show
      * @param error error message
      */
     @Override
-    public void prepareFailureView(EditText text, String error) {
-        text.setError(error);
-        text.requestFocus();
+    public void prepareEmailFailureView(String error) {
+        loginViewInterface.showEmailMessage(error);
+    }
+
+    @Override
+    public void preparePasswordFailureView(String error) {
+        loginViewInterface.showPasswordMessage(error);
     }
 }

@@ -14,12 +14,16 @@ public class LoginController {
         this.loginInput = loginGateway;
     }
 
+
     /**
      * Attempts to log in user using email and password
      * @param loginEmail email input
      * @param loginPassword password input
      */
     public void loginUser(EditText loginEmail, EditText loginPassword) {
-        loginInput.loginUser(loginEmail, loginPassword);
+        String email = loginEmail.getText().toString().trim();
+        String password = loginPassword.getText().toString().trim();
+
+        loginInput.loginUser(email, password);
     }
 }

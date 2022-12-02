@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,10 +18,10 @@ import com.group80.uoftinder.login_use_case.LoginInput;
 import com.group80.uoftinder.login_use_case.LoginInteractor;
 import com.group80.uoftinder.login_use_case.LoginPresenter;
 import com.group80.uoftinder.login_use_case.LoginPresenterFormatter;
-import com.group80.uoftinder.login_use_case.LoginViewInterface;
+import com.group80.uoftinder.login_use_case.LoginViewModel;
 
 
-public class Login extends AppCompatActivity implements LoginViewInterface {
+public class Login extends AppCompatActivity implements LoginViewModel {
 
     EditText loginEmail;
     EditText loginPassword;
@@ -63,6 +64,24 @@ public class Login extends AppCompatActivity implements LoginViewInterface {
         });
         startActivity(new Intent(Login.this, RecommendationView.class));
     }
+
+    @Override
+    public void showMessageToast(String message) {
+        Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showEmailMessage(String error) {
+        loginEmail.setError(error);
+        loginEmail.requestFocus();
+    }
+
+    @Override
+    public void showPasswordMessage(String error) {
+        loginPassword.setError(error);
+        loginPassword.requestFocus();
+    }
+
 
     /**
      * Set user

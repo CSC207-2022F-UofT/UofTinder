@@ -6,7 +6,6 @@
 package com.group80.uoftinder.login_use_case;
 
 import android.text.TextUtils;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,18 +24,15 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
      * Error will appear if there is no email input, if there is no password input,
      * or if incorrect email and password combination is input
      *
-     * @param loginEmail login email input
-     * @param loginPassword login password input
+     * @param email login email input
+     * @param password login password input
      */
-    public void loginUser(EditText loginEmail, EditText loginPassword) {
-        String email = loginEmail.getText().toString().trim();
-        String password = loginPassword.getText().toString().trim();
-
+    public void loginUser(String email, String password) {
         if (TextUtils.isEmpty(email)) { // no email input, user == null
-            loginPresenter.prepareFailureView(loginEmail, "Email is required!");
+            loginPresenter.prepareEmailFailureView("Email is required!");
         }
         else if (TextUtils.isEmpty(password)){ // no password input, user == null
-            loginPresenter.prepareFailureView(loginPassword, "Password is required!");
+            loginPresenter.preparePasswordFailureView("Password is required!");
         }
 
         else { // user == null, signing in with email and password
@@ -45,11 +41,11 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
 
                         // Login Presenter
                         if (task.isSuccessful()) {
-                            loginPresenter.prepareSuccessView(FirebaseAuth.getInstance().getCurrentUser());
+                            loginPresenter.prepareSuccessView("Login Successful!", FirebaseAuth.getInstance().getCurrentUser());
 
                         } else {
                             // If sign in fails, display a message to the user.
-                            loginPresenter.prepareFailureViewLogin("Login Unsuccessful :(");
+                            loginPresenter.prepareLoginFailureView("Login Unsuccessful :(");
                         }
                     });
         }

@@ -56,10 +56,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".appTestWelcomeScreens"
-            android:exported="true">
-        </activity>
-        <activity
             android:name=".feed.RecommendationView"
             android:exported="true">
         </activity>
