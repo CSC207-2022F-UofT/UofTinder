@@ -360,9 +360,10 @@ public class CreateAccountView extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
 
                     //proceed into recommendation view
-//                    Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
-//                    startActivity(intent);
-//                    finish();
+                    Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
+                    intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
+                    startActivity(intent);
+                    finish();
                 } else {
                     String text = "Please enter your information correctly";
                     TextView error = findViewById(R.id.error_questionnaire);
@@ -466,9 +467,10 @@ public class CreateAccountView extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
 
                     //proceed into recommendation view
-//                    Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
-//                    startActivity(intent);
-//                    finish();
+                    Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
+                    intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
+                    startActivity(intent);
+                    finish();
                 } else {
                     String text = "Please enter your information correctly";
                     TextView error = findViewById(R.id.error_questionnaire);
