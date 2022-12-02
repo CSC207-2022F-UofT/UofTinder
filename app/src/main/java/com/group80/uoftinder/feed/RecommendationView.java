@@ -87,26 +87,39 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
 
         Button logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Logs out the current logged in user and return to the main Login page.
+             * @param view  Current view
+             */
             @Override
             public void onClick(View view) {
-                // TODO: output logic
-                Log.d("LOGOUT", "TRIED TO LOG OUT");
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(RecommendationView.this, LoginActivity.class));
             }
         });
 
         Button chatButton = findViewById(R.id.chatButton);
-        chatButton.setOnClickListener(view -> {
-            Intent intent = new Intent(RecommendationView.this, ChatActivity.class);
-            // TODO: remove such dependency
-            intent.putExtra("name", "Bot");
-            intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
-            startActivity(intent);
+        chatButton.setOnClickListener(new View.OnClickListener()  {
+            /**
+             * Enters the chat page for the current user to chat with their matched users.
+             * @param view  Current view
+             */
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecommendationView.this, ChatActivity.class);
+                // TODO: remove such dependency
+                intent.putExtra("name", "Bot");
+                intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
+                startActivity(intent);
+            }
         });
 
         Button filterButton = findViewById(R.id.filterButton);
         filterButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Enters the filter page for current user to choose filtering criteria.
+             * @param view  Current view
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RecommendationView.this, AcademicFilterActivity.class);
