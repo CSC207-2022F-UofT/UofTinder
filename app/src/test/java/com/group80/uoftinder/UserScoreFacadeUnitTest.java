@@ -79,6 +79,7 @@ public class UserScoreFacadeUnitTest {
         currUser.setAnswers(userAnswers);
 
         UserScoreFacade usf = new UserScoreFacade(currUser);
+        currUser.setScore(usf.generateCompatibilityScore());
         // binary: 01-0110-1101-000-10
         int userScore2 = 18642;
         // binary: 10-0100-0110-100-10

@@ -16,10 +16,9 @@ public class RecommendationPresenter {
 
     /**
      * Initialize the attributes of a RecommendationPresenter instance
-     * @param recViewInterface: an instance of RecViewInterface
      */
-    public RecommendationPresenter(RecViewInterface recViewInterface) {
-        this.genCompatibilityList = new GenerateCompatibilityList();
+    public RecommendationPresenter(User currUser, RecViewInterface recViewInterface) {
+        this.genCompatibilityList = new GenerateCompatibilityList(currUser);
         genCompatibilityList.orderCompatibilityList();
         this.recViewInterface = recViewInterface;
     }
@@ -32,15 +31,16 @@ public class RecommendationPresenter {
      * @param maxAge    The maximum age, inclusive
      */
     public void filterCompatibilityList(List<Set<Integer>> filters, int minAge, int maxAge) {
-        genCompatibilityList.filterCompatibilityList(filters, minAge, maxAge);
+        RecommendationFilterInputData filterInputData = new RecommendationFilterInputData(filters, minAge, maxAge);
+        genCompatibilityList.filterCompatibilityList(filterInputData);
     }
 
     /**
      * Revert all previously selected filters to show all users in compatibility list
-     * without checking or caring whether they satsify certain filtering criteria.
+     * without checking or caring whether they satisfy certain filtering criteria.
      */
     public void revertFilters() {
-        genCompatibilityList.revertFilters();
+        genCompatibilityList.setShowFilteredList(false);
     }
 
     /**
@@ -49,10 +49,12 @@ public class RecommendationPresenter {
      */
     public void displayUser() {
         User mostCompUser = genCompatibilityList.showMostCompUser();
-        if(mostCompUser != null)
+        if (mostCompUser != null) {
             displayMostCompUser(mostCompUser);
-        else
+        }
+        else {
             displayNoCompatibleUser();
+        }
     }
 
     /**
@@ -70,7 +72,7 @@ public class RecommendationPresenter {
      */
     public void displayMostCompUser(User user) {
         recViewInterface.setDisplayedUser(user);
-        recViewInterface.showUser(user);
+        recViewInterface.showUser();
     }
 
     /**

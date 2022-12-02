@@ -20,9 +20,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.create_account_use_case.CreateAccountPresenter;
+import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 //import com.group80.uoftinder.feed.RecommendationView;
+import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
+import com.group80.uoftinder.login_use_case.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -258,9 +261,10 @@ public class CreateAccountView extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
 
                     //proceed into recommendation view
-//                    Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
-//                    startActivity(intent);
-//                    finish();
+                    Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);
+                    intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
+                    startActivity(intent);
+                    finish();
                 }
                 else {
                     String text = "Please enter your information correctly";
@@ -479,7 +483,7 @@ public class CreateAccountView extends AppCompatActivity {
      * @param view      the current view (createAccountView)
      */
     private void showLoginView(View view) {
-        Intent intent  = new Intent(CreateAccountView.this, appTestWelcomeScreens.class);
+        Intent intent  = new Intent(CreateAccountView.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }

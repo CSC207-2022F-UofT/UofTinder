@@ -15,7 +15,7 @@ public class UserScoreCalculator {
     /**
      * Constructor for the UserScoreCalculator class
      *
-     * @param userAnswers is an List of HashSets, where index i is a HashSet representing the
+     * @param userAnswers is an List of Lists, where index i is an Inner List representing the
      *                    indices of the answers selected by the currentUser for question i
      * @param isMultiSelect is an array where index i tells us whether question i can
      *                      have multiple answers selected or just one
