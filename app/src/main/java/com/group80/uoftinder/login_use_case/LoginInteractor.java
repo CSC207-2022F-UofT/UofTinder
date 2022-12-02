@@ -42,6 +42,18 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
         }
 
         else { // user == null, signing in with email and password
+//            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+//                    .addOnCompleteListener(this, task -> {
+//
+//                        // Login Presenter
+//                        if (task.isSuccessful()) {
+//                            loginPresenter.prepareSuccessView("Login Successful!", FirebaseAuth.getInstance().getCurrentUser());
+//
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            loginPresenter.prepareLoginFailureView("Login Unsuccessful :(");
+//                        }
+//                    });
             Task<AuthResult> task = FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password);
             Thread thread = new Thread(() -> {
                 try {

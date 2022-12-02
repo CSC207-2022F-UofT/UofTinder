@@ -109,7 +109,6 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
      * @param view current view
      */
     public void showCreateAccountView(View view) {
-        // CreateAccountView will be fine when merged with create account branch
         Intent intent = new Intent(LoginActivity.this, CreateAccountView.class);
         startActivity(intent);
         finish();
