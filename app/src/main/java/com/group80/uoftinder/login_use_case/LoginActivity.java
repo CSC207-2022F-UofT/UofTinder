@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseUser;
-import com.group80.uoftinder.ChatActivity;
 import com.group80.uoftinder.CreateAccountView;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.Constants;
@@ -18,7 +18,7 @@ import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 
-public class LoginActivity extends AppCompatActivity implements LoginViewInterface {
+public class LoginActivity extends AppCompatActivity implements LoginViewModel {
 
     EditText loginEmail;
     EditText loginPassword;
@@ -43,14 +43,14 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
         enterLogin.setOnClickListener(view -> loginController.loginUser(loginEmail, loginPassword));
 
         // testing
-        Button button = findViewById(R.id.helloWorldEnterChatButton);
-        button.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
-            // TODO: remove such dependency
-            intent.putExtra("name", "Bot");
-            intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
-            startActivity(intent);
-        });
+//        Button button = findViewById(R.id.helloWorldEnterChatButton);
+//        button.setOnClickListener(view -> {
+//            Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
+//            // TODO: remove such dependency
+//            intent.putExtra("name", "Bot");
+//            intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
+//            startActivity(intent);
+//        });
     }
 
     /**
@@ -70,6 +70,23 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
         Intent intent = new Intent(LoginActivity.this, RecommendationView.class);
         intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
         startActivity(intent);
+    }
+
+    @Override
+    public void showMessageToast(String message) {
+        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showEmailMessage(String error) {
+        loginEmail.setError(error);
+        loginEmail.requestFocus();
+    }
+
+    @Override
+    public void showPasswordMessage(String error) {
+        loginPassword.setError(error);
+        loginPassword.requestFocus();
     }
 
     /**

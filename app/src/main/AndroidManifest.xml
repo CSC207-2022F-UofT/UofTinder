@@ -45,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Login"
+            android:name=".login_use_case.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

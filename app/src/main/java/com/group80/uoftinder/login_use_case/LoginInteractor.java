@@ -6,6 +6,7 @@
 package com.group80.uoftinder.login_use_case;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,15 +46,7 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
             Thread thread = new Thread(() -> {
                 try {
                     Tasks.await(task);  // wait until sign in method finishes
-
-                    // after finishing method, then we can execute the following code
-                    if (task.isSuccessful()) {
-                        loginPresenter.prepareSuccessView("Login Successful!", FirebaseAuth.getInstance().getCurrentUser());
-
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        loginPresenter.prepareLoginFailureView("Login Unsuccessful :(");
-                    }
+                    Log.e("Login", "Done!");
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -65,6 +58,15 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
                 thread.join(); // join this thread back to main thread
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            }
+
+            // after finishing method, then we can execute the following code
+            if (task.isSuccessful()) {
+                loginPresenter.prepareSuccessView("Login Successful!", FirebaseAuth.getInstance().getCurrentUser());
+
+            } else {
+                // If sign in fails, display a message to the user.
+                loginPresenter.prepareLoginFailureView("Login Unsuccessful :(");
             }
         }
     }
