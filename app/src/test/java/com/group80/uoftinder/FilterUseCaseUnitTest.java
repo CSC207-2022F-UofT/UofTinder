@@ -1,6 +1,7 @@
 package com.group80.uoftinder;
 
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.feed.RecommendationFilterInputData;
 import com.group80.uoftinder.feed.GenerateCompatibilityList;
 
 import org.junit.Test;
@@ -14,6 +15,10 @@ import java.util.Set;
 
 /**
  * Unit tests for the filtering functionality in GenerateCompatibilityList class.
+ *
+ * Need to comment out getAllUsers() and removeCurrentUser() in
+ * GenerateCompatibilityList constructor since this is a unit test for
+ * filtering and NOT for Firebase database retrievals.
  */
 public class FilterUseCaseUnitTest {
 
@@ -50,7 +55,8 @@ public class FilterUseCaseUnitTest {
         compatibilityList.add(user2);
         compatibilityList.add(user3);
 
-        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList();
+        User currUser = new User("currTest");
+        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(currUser);
         generateCompatibilityList.setCompatibilityList(compatibilityList);
 
         List<User> copyCompatibilityList = new ArrayList<>();
@@ -63,7 +69,8 @@ public class FilterUseCaseUnitTest {
 
         int minAge = 13;
         int maxAge = 100;
-        generateCompatibilityList.filterCompatibilityList(filters, minAge, maxAge);
+        RecommendationFilterInputData filterInputData = new RecommendationFilterInputData(filters, minAge, maxAge);
+        generateCompatibilityList.filterCompatibilityList(filterInputData);
 
         List<User> filteredCompatibilityList = generateCompatibilityList.getFilteredCompatibilityList();
         assert filteredCompatibilityList.size() == 1 &&
@@ -102,7 +109,8 @@ public class FilterUseCaseUnitTest {
         compatibilityList.add(user4);
         compatibilityList.add(user5);
 
-        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList();
+        User currUser = new User("currTest");
+        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(currUser);
         generateCompatibilityList.setCompatibilityList(compatibilityList);
 
         List<User> copyCompatibilityList = new ArrayList<>();
@@ -115,7 +123,8 @@ public class FilterUseCaseUnitTest {
 
         int minAge = 18;
         int maxAge = 30;
-        generateCompatibilityList.filterCompatibilityList(filters, minAge, maxAge);
+        RecommendationFilterInputData filterInputData = new RecommendationFilterInputData(filters, minAge, maxAge);
+        generateCompatibilityList.filterCompatibilityList(filterInputData);
 
         List<User> filteredCompatibilityList = generateCompatibilityList.getFilteredCompatibilityList();
         assert filteredCompatibilityList.size() == 3 &&
@@ -155,7 +164,8 @@ public class FilterUseCaseUnitTest {
         compatibilityList.add(user4);
         compatibilityList.add(user5);
 
-        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList();
+        User currUser = new User("currTest");
+        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(currUser);
         generateCompatibilityList.setCompatibilityList(compatibilityList);
 
         List<User> copyCompatibilityList = new ArrayList<>();
@@ -168,7 +178,8 @@ public class FilterUseCaseUnitTest {
 
         int minAge = 13;
         int maxAge = 100;
-        generateCompatibilityList.filterCompatibilityList(filters, minAge, maxAge);
+        RecommendationFilterInputData filterInputData = new RecommendationFilterInputData(filters, minAge, maxAge);
+        generateCompatibilityList.filterCompatibilityList(filterInputData);
 
         List<User> filteredCompatibilityList = generateCompatibilityList.getFilteredCompatibilityList();
         assert filteredCompatibilityList.equals(copyCompatibilityList);
@@ -207,7 +218,8 @@ public class FilterUseCaseUnitTest {
         compatibilityList.add(user2);
         compatibilityList.add(user3);
 
-        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList();
+        User currUser = new User("currTest");
+        GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(currUser);
         generateCompatibilityList.setCompatibilityList(compatibilityList);
 
         List<User> copyCompatibilityList = new ArrayList<>();
@@ -220,7 +232,8 @@ public class FilterUseCaseUnitTest {
 
         int minAge = 18;
         int maxAge = 30;
-        generateCompatibilityList.filterCompatibilityList(filters, minAge, maxAge);
+        RecommendationFilterInputData filterInputData = new RecommendationFilterInputData(filters, minAge, maxAge);
+        generateCompatibilityList.filterCompatibilityList(filterInputData);
 
         List<User> filteredCompatibilityList = generateCompatibilityList.getFilteredCompatibilityList();
         assert filteredCompatibilityList.size() == 1 &&

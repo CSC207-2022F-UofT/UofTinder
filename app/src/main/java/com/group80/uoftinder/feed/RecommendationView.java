@@ -4,13 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.UpdateList;
+import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 /**
  * Public class that extends AppCompatActivity and implements RecViewInterface.
  * This class displays the most compatible users to currentUser.
@@ -25,8 +34,10 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     private TextView name;
     private TextView gender;
     private TextView age;
-    private Button noButton;
-    private Button yesButton;
+
+    private List<Set<Integer>> filters = new ArrayList<>();
+    private int minAge = Constants.MIN_AGE;
+    private int maxAge = Constants.MAX_AGE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +50,24 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         name = findViewById(R.id.name);
         gender = findViewById(R.id.gender);
         age = findViewById(R.id.age);
-        noButton = findViewById(R.id.noButton);
-        yesButton = findViewById(R.id.yesButton);
+        Button noButton = findViewById(R.id.noButton);
+        Button yesButton = findViewById(R.id.yesButton);
 
-        this.currentUser = (User) getIntent().getSerializableExtra("currentUser");
+        this.currentUser = (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING);
         this.recPresenter = new RecommendationPresenter(currentUser, RecommendationView.this);
         this.displayedUser = null;
         UpdateList update = new UpdateList(currentUser);
+
+        boolean shouldFilter = getIntent().getBooleanExtra(Constants.SHOULD_FILTER_STRING, false);
+        if(shouldFilter) {
+            filters = (List<Set<Integer>>) getIntent().getSerializableExtra(Constants.FILTERS_STRING);
+            minAge = getIntent().getIntExtra(Constants.MIN_AGE_STRING, Constants.MIN_AGE);
+            maxAge = getIntent().getIntExtra(Constants.MAX_AGE_STRING, Constants.MAX_AGE);
+            recPresenter.filterCompatibilityList(filters, minAge, maxAge);
+        }
+        else {
+            recPresenter.revertFilters();
+        }
 
         // initialize first user
         recPresenter.displayUser();
@@ -58,6 +80,19 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         // no button click listener
         noButton.setOnClickListener(view -> {
             buttonClick(displayedUser, false);
+        });
+
+        Button filterButton = findViewById(R.id.filterButton);
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecommendationView.this, AcademicFilterActivity.class);
+                intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
+                intent.putExtra(Constants.FILTERS_STRING, (Serializable) filters);
+                intent.putExtra(Constants.MIN_AGE_STRING, minAge);
+                intent.putExtra(Constants.MAX_AGE_STRING, maxAge);
+                startActivity(intent);
+            }
         });
     }
 
@@ -100,6 +135,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         name.setText(displayedUser.getName());
         age.setText(Integer.toString(displayedUser.getAge()));
         gender.setText(displayedUser.getGender());
+        Log.i("User Info", displayedUser.getAnswers().toString());
     }
 
     @Override
@@ -109,6 +145,10 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     public void noCompatibleUser() {
         final Context context = this;
         Intent intent = new Intent(context, NoNewRecommendation.class);
+        intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
+        intent.putExtra(Constants.FILTERS_STRING, (Serializable) filters);
+        intent.putExtra(Constants.MIN_AGE_STRING, minAge);
+        intent.putExtra(Constants.MAX_AGE_STRING, maxAge);
         startActivity(intent);
     }
 }
