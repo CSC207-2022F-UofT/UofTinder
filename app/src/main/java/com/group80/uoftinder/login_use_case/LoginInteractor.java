@@ -9,7 +9,12 @@ import android.text.TextUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.concurrent.ExecutionException;
 
 public class LoginInteractor extends AppCompatActivity implements LoginInput{
 
@@ -36,18 +41,31 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
         }
 
         else { // user == null, signing in with email and password
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, task -> {
+            Task<AuthResult> task = FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password);
+            Thread thread = new Thread(() -> {
+                try {
+                    Tasks.await(task);  // wait until sign in method finishes
 
-                        // Login Presenter
-                        if (task.isSuccessful()) {
-                            loginPresenter.prepareSuccessView("Login Successful!", FirebaseAuth.getInstance().getCurrentUser());
+                    // after finishing method, then we can execute the following code
+                    if (task.isSuccessful()) {
+                        loginPresenter.prepareSuccessView("Login Successful!", FirebaseAuth.getInstance().getCurrentUser());
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            loginPresenter.prepareLoginFailureView("Login Unsuccessful :(");
-                        }
-                    });
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        loginPresenter.prepareLoginFailureView("Login Unsuccessful :(");
+                    }
+                } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            thread.start(); // start the thread
+
+            try {
+                thread.join(); // join this thread back to main thread
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
