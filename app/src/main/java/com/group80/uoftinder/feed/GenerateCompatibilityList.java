@@ -21,14 +21,16 @@ public class GenerateCompatibilityList {
     private Comparator<User> userScoreComparator;
     private List<User> filteredCompatibilityList;
     private boolean showFilteredList;
+    private User alrVisitedUser;
+    private String type;
 
     /**
      * Initialize the attributes of a GenerateCompatibilityList instance
      */
     public GenerateCompatibilityList(User currUser) {
         this.curUser = currUser;
-//        getAllUsers();
-//        removeCurrentUser();
+        this.type = this.curUser.getUserType();
+        calculateCompatibilityList();
         filteredCompatibilityList = new ArrayList<>();
         this.usf = new UserScoreFacade(curUser);
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
@@ -39,7 +41,7 @@ public class GenerateCompatibilityList {
      * then assign compatibilityList to this list.
      */
     private void getAllUsers() {
-        UserRealtimeDbFacade.getAllUsers("Academic", this::setCompatibilityList);
+        UserRealtimeDbFacade.getAllUsers(type, this::setCompatibilityList);
     }
 
     /**
@@ -107,7 +109,7 @@ public class GenerateCompatibilityList {
      * @return a map of User to the user's compatibility score with the current user
      */
     private Map<User, Integer> calculateCompatibilityScores(List<User> users) {
-        Map<User, Integer> compScores = new HashMap<User, Integer>();
+        Map<User, Integer> compScores = new HashMap<>();
         for (User user : users) {
             calculateCompatibilityScore(compScores, user);
         }
@@ -162,12 +164,26 @@ public class GenerateCompatibilityList {
     }
 
     /**
-     * Recalculate compatibilityList
+     * Calculate compatibilityList
      */
-    public void recalculateCompatibilityList() {
+    public void calculateCompatibilityList() {
         getAllUsers();
         removeCurrentUser();
+        removeVisitedUsers();
         orderCompatibilityList();
+    }
+
+    /**
+     * Remove the users from compatibilityList that are in the current user's visited list
+     */
+    public void removeVisitedUsers() {
+        List<String> visitedList = curUser.getViewed();
+        for (String visitedUserId : visitedList) {
+            if (curUser.getViewed().contains(visitedUserId)) {
+                UserRealtimeDbFacade.getUser(type, visitedUserId, this::setAlrVisitedUser);
+                compatibilityList.remove(alrVisitedUser);
+            }
+        }
     }
 
     /**
@@ -184,6 +200,14 @@ public class GenerateCompatibilityList {
      */
     public void setCompatibilityList(List<User> usersList) {
         this.compatibilityList = usersList;
+    }
+
+    /**
+     * Set alrVisitedUser to newAlrVisitedUser
+     * @param newAlrVisitedUser: what to set alrVisitedUser to
+     */
+    public void setAlrVisitedUser(User newAlrVisitedUser) {
+        this.alrVisitedUser = newAlrVisitedUser;
     }
 
     /**
