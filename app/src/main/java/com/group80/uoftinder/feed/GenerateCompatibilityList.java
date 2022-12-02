@@ -65,43 +65,10 @@ public class GenerateCompatibilityList {
         if (compatibilityList.size() != 0) {
             compScores = calculateCompatibilityScores(compatibilityList);
             compatibilityList.sort(userScoreComparator);
-        }
-        else {
+        } else {
             compScores = new HashMap<>();
         }
-
-//        compatibilityList = new ArrayList<>();
-//        Map<String, Integer> compScores = calculateCompatibilityScores(allUsers);
-//        for (int i = 0 ; i < users.size() ; i++) {
-//            String maxKey = getMaxKey(compScores);
-//            compatibilityList.add(maxKey);
-//            compScores.remove(maxKey);
-//        }
-//        curUser.setCompatibilityList(compatibilityList);
-//        recPresenterInterface.showUsers(compatibilityList);
     }
-
-//    /**
-//     * Return the key that corresponds to the max value in userScore
-//     * @param userScore: a map that maps the user ID to their compatibility score with the current
-//     *                 user
-//     * @return the key that corresponds to the max value in userScore
-//     */
-//    private String getMaxKey(Map<String, Integer> userScore) {
-//        int maxValue = 0;
-//        String maxKey = "";
-//        for (String key : userScore.keySet()) {
-//            Integer currentScore = userScore.get(key);
-//            if (currentScore != null && currentScore > maxValue) {
-////                if (currentScore > maxValue) {
-//                maxValue = currentScore;
-//                maxKey = key;
-////                }
-//            }
-//
-//        }
-//        return maxKey;
-//    }
 
     /**
      * Return a map of User to the user's compatibility score with the current user
