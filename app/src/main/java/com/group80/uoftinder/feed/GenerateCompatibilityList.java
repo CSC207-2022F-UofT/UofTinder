@@ -1,7 +1,5 @@
 package com.group80.uoftinder.feed;
 
-import android.util.Log;
-
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
@@ -19,7 +17,6 @@ import java.util.Set;
 public class GenerateCompatibilityList {
     private User curUser;
     private List<User> compatibilityList;
-//    private RecPresenterInterface recPresenterInterface;
     private UserScoreFacade usf;
     private Map<User, Integer> compScores;
     private Comparator<User> userScoreComparator;
@@ -31,11 +28,9 @@ public class GenerateCompatibilityList {
      */
     public GenerateCompatibilityList(User currUser) {
         getAllUsers();
-        Log.d("firebase", "Made it out of getAllUsers: " + compatibilityList.size());
         filteredCompatibilityList = new ArrayList<>();
         this.curUser = currUser;
         this.usf = new UserScoreFacade(curUser);
-//        this.curUser = UserRealtimeDbFacade.getCurrentUser();
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
     }
 
@@ -57,51 +52,10 @@ public class GenerateCompatibilityList {
         if (compatibilityList.size() != 0) {
             compScores = calculateCompatibilityScores(compatibilityList);
             compatibilityList.sort(Collections.reverseOrder(userScoreComparator));
-        }
-        else {
+        } else {
             compScores = new HashMap<>();
         }
-//        int length;
-//        Map<User, Integer> compScores;
-//        if (compatibilityList != null) {
-//            length = compatibilityList.size();
-//            compScores = calculateCompatibilityScores(compatibilityList);
-//        }
-//        else {
-//            length = 0;
-//            return;
-//        }
-//        compatibilityList = new ArrayList<>();
-//        for (int i = 0 ; i < length ; i++) {
-//            User maxKey = getMaxKey(compScores);
-//            compatibilityList.add(maxKey);
-//            compScores.remove(maxKey);
-//        }
-//        curUser.setCompatibilityList(compatibilityList);
-//        recPresenterInterface.showUsers(compatibilityList);
     }
-
-//    /**
-//     * Return the key that corresponds to the max value in userScore
-//     * @param userScore: a map that maps the user ID to their compatibility score with the current
-//     *                 user
-//     * @return the key that corresponds to the max value in userScore
-//     */
-//    private User getMaxKey(Map<User, Integer> userScore) {
-//        int maxValue = 0;
-//        User maxKey = null;
-//        for (User key : userScore.keySet()) {
-//            Integer currentScore = userScore.get(key);
-//            if (currentScore != null && currentScore > maxValue) {
-////                if (currentScore > maxValue) {
-//                maxValue = currentScore;
-//                maxKey = key;
-////                }
-//            }
-//
-//        }
-//        return maxKey;
-//    }
 
     /**
      * Return a map of User to the user's compatibility score with the current user

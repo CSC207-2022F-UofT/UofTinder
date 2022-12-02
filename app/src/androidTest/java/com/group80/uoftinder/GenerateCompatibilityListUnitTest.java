@@ -34,7 +34,6 @@ public class GenerateCompatibilityListUnitTest {
         User curUser = new User("curUser");
         int curUserScore = 11682;
         curUser.setScore(curUserScore);
-//        genCompatibilityList.setCurUser(curUser);
 
         CreateAccountInteractor.setAnswerSchema(new int[] {3, 4, 4, 5, 4});
         CreateAccountInteractor.setIsMultiSelect(new boolean[] {false, true, true, false, false});
