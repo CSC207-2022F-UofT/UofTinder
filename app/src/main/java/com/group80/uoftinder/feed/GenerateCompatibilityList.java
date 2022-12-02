@@ -1,7 +1,5 @@
 package com.group80.uoftinder.feed;
 
-import android.util.Log;
-
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
@@ -18,7 +16,6 @@ import java.util.Set;
 public class GenerateCompatibilityList {
     private User curUser;
     private List<User> compatibilityList;
-//    private RecPresenterInterface recPresenterInterface;
     private UserScoreFacade usf;
     private Map<User, Integer> compScores;
     private Comparator<User> userScoreComparator;
@@ -29,23 +26,33 @@ public class GenerateCompatibilityList {
      * Initialize the attributes of a GenerateCompatibilityList instance
      */
     public GenerateCompatibilityList(User currUser) {
-        getAllUsers();
-        Log.d("firebase", "Made it out of getAllUsers: " + compatibilityList.size());
-        filteredCompatibilityList = new ArrayList<>();
         this.curUser = currUser;
+//        getAllUsers();
+//        removeCurrentUser();
+        filteredCompatibilityList = new ArrayList<>();
         this.usf = new UserScoreFacade(curUser);
-//        this.curUser = UserRealtimeDbFacade.getCurrentUser();
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
     }
 
     /**
-     * Get the list of all users from the database and assign compatibilityList to this list
+     * Get the list of all users from the database and
+     * then assign compatibilityList to this list.
      */
     private void getAllUsers() {
-        UserRealtimeDbFacade.getAllUsers("Academic", userList -> {
-            setCompatibilityList(userList);
-        });
-//        compatibilityList.remove(curUser);
+        UserRealtimeDbFacade.getAllUsers("Academic", this::setCompatibilityList);
+    }
+
+    /**
+     * Find and then remove current user from current user's list of
+     * compatible users since they should not match with themselves.
+     */
+    private void removeCurrentUser() {
+        User removeUser = null;
+        for(User user: compatibilityList) {
+            if(user.getUid().equals(curUser.getUid()))
+                removeUser = user;
+        }
+        compatibilityList.remove(removeUser);
     }
 
     /**
@@ -159,6 +166,7 @@ public class GenerateCompatibilityList {
      */
     public void recalculateCompatibilityList() {
         getAllUsers();
+        removeCurrentUser();
         orderCompatibilityList();
     }
 
@@ -197,16 +205,13 @@ public class GenerateCompatibilityList {
     /**
      * Mutates the instance variable filteredCompatibilityList based on criteria given by
      * filters parameter and minimum/maximum age values.
-     *
-     * @param filters   A list of sets of integers that represents the wanted criteria.
-     *                  Each set in the list corresponds to a filtering question.
-     *                  For academic users, filters.size() should be 3 (program of study,
-     *                  year of study, and campus). Each integer represents a selected choice.
-     *                  {0, 3, 5} means the first, fourth, and sixth choices were checked.
-     * @param minAge    The minimum age, inclusive
-     * @param maxAge    The maximum age, inclusive
+     * @param filterInputData   An input data structure that contains the filtering criteria
      */
-    public void filterCompatibilityList(List<Set<Integer>> filters, int minAge, int maxAge) {
+    public void filterCompatibilityList(RecommendationFilterInputData filterInputData) {
+        List<Set<Integer>> filters = filterInputData.getFilters();
+        int minAge = filterInputData.getMinAge();
+        int maxAge = filterInputData.getMaxAge();
+
         filteredCompatibilityList = new ArrayList<>();
         filteredCompatibilityList.addAll(compatibilityList);
 
@@ -220,7 +225,7 @@ public class GenerateCompatibilityList {
             List<List<Integer>> answers = user.getAnswers();
             // answers.size() is used here for convenience, works under the
             // assumption that answers.size() == filters.size()
-            for(int i = 0; i < answers.size(); i++) {
+            for(int i = 0; i < filters.size(); i++) {
                 Set<Integer> currentFilter = filters.get(i);
                 List<Integer> currentAnswers = answers.get(i);
                 if(currentFilter.size() == 0)  // if no filters selected, go to next set of answers
@@ -236,15 +241,19 @@ public class GenerateCompatibilityList {
                 }
             }
         }
-        showFilteredList = true;
+        setShowFilteredList(true);
     }
 
     /**
-     * Sets showFilteredList to false so compatibilityList.get(0) would be displayed
-     * next instead of filteredCompatibilityList.get(0). This happens when users
-     * reset the filters and revert back to not filtering anything.
+     * Sets showFilteredList based on parameter showFilteredList.
+     *
+     * When this is false, compatibilityList.get(0) would be
+     * displayed next instead of filteredCompatibilityList.get(0).
+     * Vice versa for when this is true.
+     *
+     * @param showFilteredList  whether to display filteredCompatibilityList.get(0)
      */
-    public void revertFilters() {
-        showFilteredList = false;
+    public void setShowFilteredList(boolean showFilteredList) {
+        this.showFilteredList = showFilteredList;
     }
 }
