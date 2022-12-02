@@ -27,8 +27,8 @@ public class GenerateCompatibilityList {
      */
     public GenerateCompatibilityList(User currUser) {
         this.curUser = currUser;
-        getAllUsers();
-        removeCurrentUser();
+//        getAllUsers();
+//        removeCurrentUser();
         filteredCompatibilityList = new ArrayList<>();
         this.usf = new UserScoreFacade(curUser);
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
@@ -39,9 +39,7 @@ public class GenerateCompatibilityList {
      * then assign compatibilityList to this list.
      */
     private void getAllUsers() {
-        UserRealtimeDbFacade.getAllUsers("Academic", userList -> {
-            setCompatibilityList(userList);
-        });
+        UserRealtimeDbFacade.getAllUsers("Academic", this::setCompatibilityList);
     }
 
     /**
@@ -243,15 +241,19 @@ public class GenerateCompatibilityList {
                 }
             }
         }
-        showFilteredList = true;
+        setShowFilteredList(true);
     }
 
     /**
-     * Sets showFilteredList to false so compatibilityList.get(0) would be displayed
-     * next instead of filteredCompatibilityList.get(0). This happens when users
-     * reset the filters and revert back to not filtering anything.
+     * Sets showFilteredList based on parameter showFilteredList.
+     *
+     * When this is false, compatibilityList.get(0) would be
+     * displayed next instead of filteredCompatibilityList.get(0).
+     * Vice versa for when this is true.
+     *
+     * @param showFilteredList  whether to display filteredCompatibilityList.get(0)
      */
-    public void revertFilters() {
-        showFilteredList = false;
+    public void setShowFilteredList(boolean showFilteredList) {
+        this.showFilteredList = showFilteredList;
     }
 }

@@ -40,7 +40,7 @@ public class RecommendationPresenter {
      * without checking or caring whether they satisfy certain filtering criteria.
      */
     public void revertFilters() {
-        genCompatibilityList.revertFilters();
+        genCompatibilityList.setShowFilteredList(false);
     }
 
     /**

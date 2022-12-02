@@ -146,12 +146,18 @@ public class AcademicFilterActivity extends AppCompatActivity {
         campusBoxes = new CheckBox[]{stGeorgeBox, mississaugaBox, scarboroughBox};
 
         if(filters.size() > 0) {
+            // existing filters are present
             setCheckboxValues(yearOfStudyBoxes, filters.get(0));
             setCheckboxValues(programOfStudyBoxes, filters.get(1));
             setCheckboxValues(campusBoxes, filters.get(2));
         }
     }
 
+    /**
+     * Populates checkboxes based on the values present in the provided set.
+     * @param checkboxes    Android Checkbox objects to toggle
+     * @param values        Data about which boxes should be toggled
+     */
     private void setCheckboxValues(CheckBox[] checkboxes, Set<Integer> values) {
         for(int selected: values) {
             checkboxes[selected].toggle();
