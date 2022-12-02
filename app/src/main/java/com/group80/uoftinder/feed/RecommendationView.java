@@ -10,10 +10,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.group80.uoftinder.ChatActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.UpdateList;
 import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.login_use_case.LoginActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -82,8 +85,41 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
             buttonClick(displayedUser, false);
         });
 
+        Button logoutButton = findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Logs out the current logged in user and return to the main Login page.
+             * @param view  Current view
+             */
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(RecommendationView.this, LoginActivity.class));
+            }
+        });
+
+        Button chatButton = findViewById(R.id.chatButton);
+        chatButton.setOnClickListener(new View.OnClickListener()  {
+            /**
+             * Enters the chat page for the current user to chat with their matched users.
+             * @param view  Current view
+             */
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecommendationView.this, ChatActivity.class);
+                // TODO: remove such dependency
+                intent.putExtra("name", "Bot");
+                intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
+                startActivity(intent);
+            }
+        });
+
         Button filterButton = findViewById(R.id.filterButton);
         filterButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Enters the filter page for current user to choose filtering criteria.
+             * @param view  Current view
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RecommendationView.this, AcademicFilterActivity.class);
