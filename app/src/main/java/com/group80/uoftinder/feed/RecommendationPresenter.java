@@ -11,7 +11,7 @@ import java.util.Set;
  * calls the appropriate use case and return the necessary information to the view, through
  * recViewInterface
  */
-public class RecommendationPresenter{
+public class RecommendationPresenter {
     private GenerateCompatibilityList genCompatibilityList;
     private RecViewInterface recViewInterface;
 //    private MatchCreatorInteractor mci;
@@ -35,15 +35,16 @@ public class RecommendationPresenter{
      * @param maxAge    The maximum age, inclusive
      */
     public void filterCompatibilityList(List<Set<Integer>> filters, int minAge, int maxAge) {
-        genCompatibilityList.filterCompatibilityList(filters, minAge, maxAge);
+        RecommendationFilterInputData filterInputData = new RecommendationFilterInputData(filters, minAge, maxAge);
+        genCompatibilityList.filterCompatibilityList(filterInputData);
     }
 
     /**
      * Revert all previously selected filters to show all users in compatibility list
-     * without checking or caring whether they satsify certain filtering criteria.
+     * without checking or caring whether they satisfy certain filtering criteria.
      */
     public void revertFilters() {
-        genCompatibilityList.revertFilters();
+        genCompatibilityList.setShowFilteredList(false);
     }
 
     /**
@@ -52,7 +53,6 @@ public class RecommendationPresenter{
      */
     public void displayUser() {
         User mostCompUser = genCompatibilityList.showMostCompUser();
-//        return mostCompUser;
         if (mostCompUser != null) {
             displayMostCompUser(mostCompUser);
         }
