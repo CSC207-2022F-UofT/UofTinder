@@ -207,16 +207,13 @@ public class GenerateCompatibilityList {
     /**
      * Mutates the instance variable filteredCompatibilityList based on criteria given by
      * filters parameter and minimum/maximum age values.
-     *
-     * @param filters   A list of sets of integers that represents the wanted criteria.
-     *                  Each set in the list corresponds to a filtering question.
-     *                  For academic users, filters.size() should be 3 (program of study,
-     *                  year of study, and campus). Each integer represents a selected choice.
-     *                  {0, 3, 5} means the first, fourth, and sixth choices were checked.
-     * @param minAge    The minimum age, inclusive
-     * @param maxAge    The maximum age, inclusive
+     * @param filterInputData   An input data structure that contains the filtering criteria
      */
-    public void filterCompatibilityList(List<Set<Integer>> filters, int minAge, int maxAge) {
+    public void filterCompatibilityList(RecommendationFilterInputData filterInputData) {
+        List<Set<Integer>> filters = filterInputData.getFilters();
+        int minAge = filterInputData.getMinAge();
+        int maxAge = filterInputData.getMaxAge();
+
         filteredCompatibilityList = new ArrayList<>();
         filteredCompatibilityList.addAll(compatibilityList);
 

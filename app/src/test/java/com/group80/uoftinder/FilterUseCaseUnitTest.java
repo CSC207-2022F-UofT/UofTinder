@@ -1,6 +1,7 @@
 package com.group80.uoftinder;
 
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.feed.RecommendationFilterInputData;
 import com.group80.uoftinder.feed.GenerateCompatibilityList;
 
 import org.junit.Test;
@@ -68,7 +69,8 @@ public class FilterUseCaseUnitTest {
 
         int minAge = 13;
         int maxAge = 100;
-        generateCompatibilityList.filterCompatibilityList(filters, minAge, maxAge);
+        RecommendationFilterInputData filterInputData = new RecommendationFilterInputData(filters, minAge, maxAge);
+        generateCompatibilityList.filterCompatibilityList(filterInputData);
 
         List<User> filteredCompatibilityList = generateCompatibilityList.getFilteredCompatibilityList();
         assert filteredCompatibilityList.size() == 1 &&
@@ -121,7 +123,8 @@ public class FilterUseCaseUnitTest {
 
         int minAge = 18;
         int maxAge = 30;
-        generateCompatibilityList.filterCompatibilityList(filters, minAge, maxAge);
+        RecommendationFilterInputData filterInputData = new RecommendationFilterInputData(filters, minAge, maxAge);
+        generateCompatibilityList.filterCompatibilityList(filterInputData);
 
         List<User> filteredCompatibilityList = generateCompatibilityList.getFilteredCompatibilityList();
         assert filteredCompatibilityList.size() == 3 &&
@@ -175,7 +178,8 @@ public class FilterUseCaseUnitTest {
 
         int minAge = 13;
         int maxAge = 100;
-        generateCompatibilityList.filterCompatibilityList(filters, minAge, maxAge);
+        RecommendationFilterInputData filterInputData = new RecommendationFilterInputData(filters, minAge, maxAge);
+        generateCompatibilityList.filterCompatibilityList(filterInputData);
 
         List<User> filteredCompatibilityList = generateCompatibilityList.getFilteredCompatibilityList();
         assert filteredCompatibilityList.equals(copyCompatibilityList);
@@ -228,7 +232,8 @@ public class FilterUseCaseUnitTest {
 
         int minAge = 18;
         int maxAge = 30;
-        generateCompatibilityList.filterCompatibilityList(filters, minAge, maxAge);
+        RecommendationFilterInputData filterInputData = new RecommendationFilterInputData(filters, minAge, maxAge);
+        generateCompatibilityList.filterCompatibilityList(filterInputData);
 
         List<User> filteredCompatibilityList = generateCompatibilityList.getFilteredCompatibilityList();
         assert filteredCompatibilityList.size() == 1 &&

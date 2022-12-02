@@ -31,7 +31,8 @@ public class RecommendationPresenter {
      * @param maxAge    The maximum age, inclusive
      */
     public void filterCompatibilityList(List<Set<Integer>> filters, int minAge, int maxAge) {
-        genCompatibilityList.filterCompatibilityList(filters, minAge, maxAge);
+        RecommendationFilterInputData filterInputData = new RecommendationFilterInputData(filters, minAge, maxAge);
+        genCompatibilityList.filterCompatibilityList(filterInputData);
     }
 
     /**
@@ -48,7 +49,6 @@ public class RecommendationPresenter {
      */
     public void displayUser() {
         User mostCompUser = genCompatibilityList.showMostCompUser();
-//        return mostCompUser;
         if (mostCompUser != null) {
             displayMostCompUser(mostCompUser);
         }
