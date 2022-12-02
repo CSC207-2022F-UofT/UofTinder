@@ -10,6 +10,10 @@ import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 
+import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
+
 public class NoNewRecommendation extends AppCompatActivity
 {
     @Override
@@ -20,12 +24,19 @@ public class NoNewRecommendation extends AppCompatActivity
 
         User currentUser = (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING);
 
+        List<Set<Integer>> filters = (List<Set<Integer>>) getIntent().getSerializableExtra(Constants.FILTERS_STRING);
+        int minAge = getIntent().getIntExtra(Constants.MIN_AGE_STRING, Constants.MIN_AGE);
+        int maxAge = getIntent().getIntExtra(Constants.MAX_AGE_STRING, Constants.MAX_AGE);
+
         Button filterButton = findViewById(R.id.filterButton);
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NoNewRecommendation.this, AcademicFilterActivity.class);
                 intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
+                intent.putExtra(Constants.FILTERS_STRING, (Serializable) filters);
+                intent.putExtra(Constants.MIN_AGE_STRING, minAge);
+                intent.putExtra(Constants.MAX_AGE_STRING, maxAge);
                 startActivity(intent);
             }
         });

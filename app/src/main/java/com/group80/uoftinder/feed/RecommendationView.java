@@ -14,6 +14,8 @@ import com.group80.uoftinder.UpdateList;
 import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -31,6 +33,10 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     private TextView name;
     private TextView gender;
     private TextView age;
+
+    private List<Set<Integer>> filters = new ArrayList<>();
+    private int minAge = Constants.MIN_AGE;
+    private int maxAge = Constants.MAX_AGE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +59,9 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
 
         boolean shouldFilter = getIntent().getBooleanExtra(Constants.SHOULD_FILTER_STRING, false);
         if(shouldFilter) {
-            List<Set<Integer>> filters = (List<Set<Integer>>) getIntent().getSerializableExtra(Constants.FILTERS_STRING);
-            int minAge = getIntent().getIntExtra(Constants.MIN_AGE_STRING, Constants.MIN_AGE);
-            int maxAge = getIntent().getIntExtra(Constants.MAX_AGE_STRING, Constants.MAX_AGE);
+            filters = (List<Set<Integer>>) getIntent().getSerializableExtra(Constants.FILTERS_STRING);
+            minAge = getIntent().getIntExtra(Constants.MIN_AGE_STRING, Constants.MIN_AGE);
+            maxAge = getIntent().getIntExtra(Constants.MAX_AGE_STRING, Constants.MAX_AGE);
             recPresenter.filterCompatibilityList(filters, minAge, maxAge);
         }
         else {
@@ -81,6 +87,9 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
             public void onClick(View view) {
                 Intent intent = new Intent(RecommendationView.this, AcademicFilterActivity.class);
                 intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
+                intent.putExtra(Constants.FILTERS_STRING, (Serializable) filters);
+                intent.putExtra(Constants.MIN_AGE_STRING, minAge);
+                intent.putExtra(Constants.MAX_AGE_STRING, maxAge);
                 startActivity(intent);
             }
         });
@@ -135,6 +144,9 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         final Context context = this;
         Intent intent = new Intent(context, NoNewRecommendation.class);
         intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
+        intent.putExtra(Constants.FILTERS_STRING, (Serializable) filters);
+        intent.putExtra(Constants.MIN_AGE_STRING, minAge);
+        intent.putExtra(Constants.MAX_AGE_STRING, maxAge);
         startActivity(intent);
     }
 }

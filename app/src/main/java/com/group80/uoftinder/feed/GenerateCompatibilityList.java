@@ -27,8 +27,8 @@ public class GenerateCompatibilityList {
      */
     public GenerateCompatibilityList(User currUser) {
         this.curUser = currUser;
-//        getAllUsers();
-//        removeCurrentUser();
+        getAllUsers();
+        removeCurrentUser();
         filteredCompatibilityList = new ArrayList<>();
         this.usf = new UserScoreFacade(curUser);
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
