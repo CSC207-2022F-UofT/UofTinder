@@ -92,6 +92,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
                 // TODO: output logic
                 Log.d("LOGOUT", "TRIED TO LOG OUT");
                 FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(RecommendationView.this, LoginActivity.class));
             }
         });
 
