@@ -10,10 +10,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.group80.uoftinder.ChatActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.UpdateList;
 import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.login_use_case.LoginActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -80,6 +83,25 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         // no button click listener
         noButton.setOnClickListener(view -> {
             buttonClick(displayedUser, false);
+        });
+
+        Button logoutButton = findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: output logic
+                Log.d("LOGOUT", "TRIED TO LOG OUT");
+                FirebaseAuth.getInstance().signOut();
+            }
+        });
+
+        Button chatButton = findViewById(R.id.chatButton);
+        chatButton.setOnClickListener(view -> {
+            Intent intent = new Intent(RecommendationView.this, ChatActivity.class);
+            // TODO: remove such dependency
+            intent.putExtra("name", "Bot");
+            intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
+            startActivity(intent);
         });
 
         Button filterButton = findViewById(R.id.filterButton);
