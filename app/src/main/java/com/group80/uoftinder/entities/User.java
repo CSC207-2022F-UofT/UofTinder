@@ -2,6 +2,8 @@ package com.group80.uoftinder.entities;
 
 import android.net.Uri;
 
+import androidx.annotation.Nullable;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -212,5 +214,22 @@ public class User implements Serializable {
      */
     public void setMatches(List<String> matches) {
         this.matches = matches;
+    }
+
+    /**
+     * Indicates whether some other object has the same uid to this one
+     * @param obj: the object that is being compared to
+     * @return whether some other object has the same uid to this one
+     */
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == this)
+            return true;
+
+        if (!(obj instanceof User))
+            return false;
+
+        User user = (User) obj;
+        return this.uid.equals(user.uid);
     }
 }
