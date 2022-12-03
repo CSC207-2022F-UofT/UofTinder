@@ -31,27 +31,27 @@ public class GenerateCompatibilityListUnitTest {
      */
     @Test
     public void orderCompatibilityListTest1() {
-        User curUser = new User("curUser");
-        int curUserScore = 11682;
-        curUser.setScore(curUserScore);
-
-        CreateAccountInteractor.setAnswerSchema(new int[] {3, 4, 4, 5, 4});
-        CreateAccountInteractor.setIsMultiSelect(new boolean[] {false, true, true, false, false});
 
         List<List<Integer>> userAnswers = new ArrayList<>();
-        userAnswers.add(Collections.singletonList(1));
-        userAnswers.add(Arrays.asList(1, 2));
-        userAnswers.add(Arrays.asList(0, 1, 3));
-        userAnswers.add(Collections.singletonList(0));
-        userAnswers.add(Collections.singletonList(2));
+        userAnswers.add(Collections.singletonList(1)); // single
+        userAnswers.add(Arrays.asList(0, 1, 3)); // multi
+        userAnswers.add(Collections.singletonList(2)); // single
+        userAnswers.add(Arrays.asList(2, 3, 5)); // multi
+        userAnswers.add(Collections.singletonList(0)); // single
+        userAnswers.add(Collections.singletonList(1)); // single
+
+        User curUser = new User("curUser");
         curUser.setAnswers(userAnswers);
+        curUser.setUserType("Romantic");
 
         GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
-        User user2 = new User("user2");
-        User user3 = new User("user3");
+        genCompatibilityList.setUsf(new UserScoreFacade(curUser));
 
-        int user2Score = 18642;
-        int user3Score = 3891;
+        User user2 = new User("user2");
+        int user2Score = 2893321; // User 2 similarity score = 5
+
+        User user3 = new User("user3");
+        int user3Score = 3354610; // User 3 similarity score = 6
 
         user2.setScore(user2Score);
         user3.setScore(user3Score);
@@ -60,7 +60,6 @@ public class GenerateCompatibilityListUnitTest {
         List<User> expectedCompList = new ArrayList<>(Arrays.asList(user3, user2));
 
 
-        genCompatibilityList.setUsf(new UserScoreFacade(curUser));
 
         // user 3 compScore = 4
         // user 2 compScore = 3
