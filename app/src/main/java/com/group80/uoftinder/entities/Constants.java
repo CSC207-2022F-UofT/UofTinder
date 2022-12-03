@@ -1,7 +1,7 @@
 package com.group80.uoftinder.entities;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Constants {
     public static final String CURRENT_USER_STRING = "currentUser";
@@ -13,10 +13,37 @@ public class Constants {
     public static final int MIN_AGE = 13;
     public static final int MAX_AGE = 100;
 
-    public static final String[][] ACADEMIC_ANSWERS = {
-            {"First Year", "Second Year", "Third Year", "Fourth Year", "Graduate"},
-            {"Computer Science", "Mathematical & Physical Sciences", "Life Sciences",
-                    "Social Sciences & Humanities", "Rotman", "Other"},
-            {"St. George", "Mississauga", "Scarborough"}
+    public static final Map<String,String[][]> USER_ANSWERS = new HashMap<String, String[][]>()
+    {
+        {
+            put("Academic", new String[][] {
+                    {"First Year", "Second Year", "Third Year", "Fourth Year", "Graduate"},
+                    {"Computer Science", "Mathematical & Physical Sciences", "Life Sciences",
+                            "Social Sciences & Humanities", "Rotman", "Other"},
+                    {"St. George", "Mississauga", "Scarborough"}
+            });
+            put("Friendship", new String[][] {
+                    {"First Year", "Second Year", "Third Year", "Fourth Year", "Graduate"},
+                    {"Computer Science", "Mathematical & Physical Sciences", "Life Sciences",
+                            "Social Sciences & Humanities", "Rotman", "Other"},
+                    {"Art", "Fashion", "Food", "Gaming", "Movies & TV & Literature", "Music",
+                            "Technology", "Sports & Athletics"},
+                    {"Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Black & White & Gray"}
+            });
+            put("Romantic", new String[][] {
+                    {"Heterosexual", "Homosexual", "Bisexual", "Pansexual",
+                            "Asexual", "Prefer not to answer sexuality"},
+                    {"Computer Science", "Mathematical & Physical Sciences", "Life Sciences",
+                            "Social Sciences & Humanities", "Rotman", "Other"},
+                    {"St. George", "Mississauga", "Scarborough"},
+                    {"Art", "Fashion", "Food", "Gaming", "Movies & TV & Literature", "Music",
+                            "Technology", "Sports & Athletics"},
+                    {"Willing about long distance", "Unwilling about long distance",
+                            "Unsure about long distance"},
+                    {"Casual relationship", "Long term relationship", "Unsure about relationship"}
+            });
+        }
     };
 }
+
+

@@ -173,25 +173,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         name.setText(displayedUser.getName());
         age.setText(Integer.toString(displayedUser.getAge()));
         gender.setText(displayedUser.getGender());
-        info.setText(getUserInfoString(displayedUser));
-    }
-
-    /**
-     * Return the strings representing the answers of the user.
-     * @param user  The current user trying to display now
-     * @return      A String representing the answers of the user
-     */
-    private String getUserInfoString(User user) {
-        String infoString = new String();
-        List<List<Integer>> answers = user.getAnswers();
-        for(int i = 0; i < answers.size(); i++) {
-            List<Integer> answer = answers.get(i);
-            for(Integer value: answer) {
-                infoString = infoString + Constants.ACADEMIC_ANSWERS[i][value] + " ";
-            }
-            infoString = infoString + "/ ";
-        }
-        return infoString;
+        info.setText(displayedUser.getUserInfoString());
     }
 
     @Override
