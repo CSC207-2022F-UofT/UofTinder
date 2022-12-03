@@ -16,7 +16,7 @@ public class Constants {
     public static final String[][] ACADEMIC_ANSWERS = {
             {"First Year", "Second Year", "Third Year", "Fourth Year", "Graduate"},
             {"Computer Science", "Mathematical & Physical Sciences", "Life Sciences",
-                    "Social Sciences/Humanities", "Rotman", "Other"},
+                    "Social Sciences & Humanities", "Rotman", "Other"},
             {"St. George", "Mississauga", "Scarborough"}
     };
 }
