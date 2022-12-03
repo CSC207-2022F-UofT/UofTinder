@@ -35,6 +35,8 @@ public class UserScoreFacade {  // using Facade Design Principle to delegate tas
 
         this.usCalc = new UserScoreCalculator(this.userAnswers, this.isMultiSelect, answerBitLengths);
         this.usComp = new UserScoreComparator(currentUser, this.isMultiSelect, answerBitLengths);
+
+        currentUser.setScore(generateCompatibilityScore());
     }
 
     /**
