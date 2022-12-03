@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,9 @@ import com.group80.uoftinder.chat.ContactModel;
 import com.group80.uoftinder.chat.ContactPresenter;
 import com.group80.uoftinder.chat.ContactViewHolder;
 import com.group80.uoftinder.chat.ContactsView;
+import com.group80.uoftinder.entities.Constants;
+import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.feed.RecommendationView;
 
 /**
  * A window that displays all the contacts to chat with
@@ -29,6 +33,19 @@ import com.group80.uoftinder.chat.ContactsView;
 public class ContactsActivity extends AppCompatActivity implements ContactsView {
     FirestoreRecyclerAdapter<ContactModel, ContactViewHolder> contactAdapter;
 
+    /**
+     * Called when the activity is first created. This is where you should do all of your normal
+     * static set up: create views, bind data to lists, etc. This method also provides you with a
+     * Bundle containing the activity's previously frozen state, if there was one.
+     * <p>
+     * Always followed by `onStart()`.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being
+     *                           shut down then this Bundle contains the data it most recently
+     *                           supplied in `onSaveInstanceState(Bundle)`.
+     *                           <p>
+     *                           Note: Otherwise it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +64,9 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
 
         ContactPresenter presenter = new ContactPresenter(this);
 
+        ImageButton button = findViewById(R.id.contactActivityBackButton);
+        button.setOnClickListener(view -> presenter.enterRecommendationActivity());
+
         FirestoreRecyclerOptions<ContactModel> contacts = new FirestoreRecyclerOptions.Builder<ContactModel>().setQuery(query, ContactModel.class).build();
         contactAdapter = new FirestoreRecyclerAdapter<ContactModel, ContactViewHolder>(contacts) {
             @Override
@@ -64,6 +84,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
             }
         };
 
+        // Sets the layout
         RecyclerView recyclerView = findViewById(R.id.contactActivityRecyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
@@ -87,9 +108,16 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
 
     @Override
     public void enterChatView(ContactModel contactModel) {
-        Intent intent = new Intent(this.getApplicationContext(), ChatActivity.class);
+        Intent intent = new Intent(ContactsActivity.this, ChatActivity.class);
         intent.putExtra("name", contactModel.getName());
         intent.putExtra("contactUid", contactModel.getUid());
+        startActivity(intent);
+    }
+
+    @Override
+    public void enterRecommendationView() {
+        Intent intent = new Intent(ContactsActivity.this, RecommendationView.class);
+        intent.putExtra(Constants.CURRENT_USER_STRING, (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
         startActivity(intent);
     }
 }

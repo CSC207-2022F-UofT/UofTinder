@@ -28,4 +28,8 @@ public class ContactPresenter {
     public void enterChatActivity(ContactModel contactModel) {
         view.enterChatView(contactModel);
     }
+
+    public void enterRecommendationActivity() {
+        view.enterRecommendationView();
+    }
 }
