@@ -1,5 +1,7 @@
 package com.group80.uoftinder.feed;
 
+import android.util.Log;
+
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
@@ -30,10 +32,10 @@ public class GenerateCompatibilityList {
     public GenerateCompatibilityList(User currUser) {
         this.curUser = currUser;
         this.type = this.curUser.getUserType();
-        calculateCompatibilityList();
-        filteredCompatibilityList = new ArrayList<>();
         this.usf = new UserScoreFacade(curUser);
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
+        calculateCompatibilityList();
+        filteredCompatibilityList = new ArrayList<>();
     }
 
     /**
@@ -48,7 +50,7 @@ public class GenerateCompatibilityList {
      * Find and then remove current user from current user's list of
      * compatible users since they should not match with themselves.
      */
-    private void removeCurrentUser() {
+    public void removeCurrentUser() {
         User removeUser = null;
         for(User user: compatibilityList) {
             if(user.getUid().equals(curUser.getUid()))
@@ -146,8 +148,8 @@ public class GenerateCompatibilityList {
     public void removeVisitedUsers() {
         List<String> visitedList = curUser.getViewed();
         for (String visitedUserId : visitedList) {
-            if (curUser.getViewed().contains(visitedUserId)) {
-                UserRealtimeDbFacade.getUser(type, visitedUserId, this::setAlrVisitedUser);
+            UserRealtimeDbFacade.getUser(type, visitedUserId, this::setAlrVisitedUser);
+            if (compatibilityList.contains(alrVisitedUser)) {
                 compatibilityList.remove(alrVisitedUser);
             }
         }
