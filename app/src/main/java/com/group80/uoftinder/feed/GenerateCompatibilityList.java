@@ -1,5 +1,7 @@
 package com.group80.uoftinder.feed;
 
+import android.util.Log;
+
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
@@ -21,17 +23,19 @@ public class GenerateCompatibilityList {
     private Comparator<User> userScoreComparator;
     private List<User> filteredCompatibilityList;
     private boolean showFilteredList;
+    private User alrVisitedUser;
+    private String type;
 
     /**
      * Initialize the attributes of a GenerateCompatibilityList instance
      */
     public GenerateCompatibilityList(User currUser) {
         this.curUser = currUser;
-//        getAllUsers();
-//        removeCurrentUser();
-        filteredCompatibilityList = new ArrayList<>();
+        this.type = this.curUser.getUserType();
         this.usf = new UserScoreFacade(curUser);
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
+//        calculateCompatibilityList();
+        filteredCompatibilityList = new ArrayList<>();
     }
 
     /**
@@ -39,14 +43,14 @@ public class GenerateCompatibilityList {
      * then assign compatibilityList to this list.
      */
     private void getAllUsers() {
-        UserRealtimeDbFacade.getAllUsers("Academic", this::setCompatibilityList);
+        UserRealtimeDbFacade.getAllUsers(type, this::setCompatibilityList);
     }
 
     /**
      * Find and then remove current user from current user's list of
      * compatible users since they should not match with themselves.
      */
-    private void removeCurrentUser() {
+    public void removeCurrentUser() {
         User removeUser = null;
         for(User user: compatibilityList) {
             if(user.getUid().equals(curUser.getUid()))
@@ -63,43 +67,10 @@ public class GenerateCompatibilityList {
         if (compatibilityList.size() != 0) {
             compScores = calculateCompatibilityScores(compatibilityList);
             compatibilityList.sort(userScoreComparator);
-        }
-        else {
+        } else {
             compScores = new HashMap<>();
         }
-
-//        compatibilityList = new ArrayList<>();
-//        Map<String, Integer> compScores = calculateCompatibilityScores(allUsers);
-//        for (int i = 0 ; i < users.size() ; i++) {
-//            String maxKey = getMaxKey(compScores);
-//            compatibilityList.add(maxKey);
-//            compScores.remove(maxKey);
-//        }
-//        curUser.setCompatibilityList(compatibilityList);
-//        recPresenterInterface.showUsers(compatibilityList);
     }
-
-//    /**
-//     * Return the key that corresponds to the max value in userScore
-//     * @param userScore: a map that maps the user ID to their compatibility score with the current
-//     *                 user
-//     * @return the key that corresponds to the max value in userScore
-//     */
-//    private String getMaxKey(Map<String, Integer> userScore) {
-//        int maxValue = 0;
-//        String maxKey = "";
-//        for (String key : userScore.keySet()) {
-//            Integer currentScore = userScore.get(key);
-//            if (currentScore != null && currentScore > maxValue) {
-////                if (currentScore > maxValue) {
-//                maxValue = currentScore;
-//                maxKey = key;
-////                }
-//            }
-//
-//        }
-//        return maxKey;
-//    }
 
     /**
      * Return a map of User to the user's compatibility score with the current user
@@ -107,7 +78,7 @@ public class GenerateCompatibilityList {
      * @return a map of User to the user's compatibility score with the current user
      */
     private Map<User, Integer> calculateCompatibilityScores(List<User> users) {
-        Map<User, Integer> compScores = new HashMap<User, Integer>();
+        Map<User, Integer> compScores = new HashMap<>();
         for (User user : users) {
             calculateCompatibilityScore(compScores, user);
         }
@@ -162,12 +133,26 @@ public class GenerateCompatibilityList {
     }
 
     /**
-     * Recalculate compatibilityList
+     * Calculate compatibilityList
      */
-    public void recalculateCompatibilityList() {
+    public void calculateCompatibilityList() {
         getAllUsers();
         removeCurrentUser();
+        removeVisitedUsers();
         orderCompatibilityList();
+    }
+
+    /**
+     * Remove the users from compatibilityList that are in the current user's visited list
+     */
+    public void removeVisitedUsers() {
+        List<String> visitedList = curUser.getViewed();
+        for (String visitedUserId : visitedList) {
+            UserRealtimeDbFacade.getUser(type, visitedUserId, this::setAlrVisitedUser);
+            if (compatibilityList.contains(alrVisitedUser)) {
+                compatibilityList.remove(alrVisitedUser);
+            }
+        }
     }
 
     /**
@@ -184,6 +169,14 @@ public class GenerateCompatibilityList {
      */
     public void setCompatibilityList(List<User> usersList) {
         this.compatibilityList = usersList;
+    }
+
+    /**
+     * Set alrVisitedUser to newAlrVisitedUser
+     * @param newAlrVisitedUser: what to set alrVisitedUser to
+     */
+    public void setAlrVisitedUser(User newAlrVisitedUser) {
+        this.alrVisitedUser = newAlrVisitedUser;
     }
 
     /**
