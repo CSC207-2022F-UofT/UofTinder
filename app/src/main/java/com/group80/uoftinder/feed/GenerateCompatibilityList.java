@@ -1,5 +1,7 @@
 package com.group80.uoftinder.feed;
 
+import android.util.Log;
+
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
@@ -22,17 +24,19 @@ public class GenerateCompatibilityList {
     private Comparator<User> userScoreComparator;
     private List<User> filteredCompatibilityList;
     private boolean showFilteredList;
+    private User alrVisitedUser;
+    private String type;
 
     /**
      * Initialize the attributes of a GenerateCompatibilityList instance
      */
     public GenerateCompatibilityList(User currUser) {
         this.curUser = currUser;
-//        getAllUsers();
-//        removeCurrentUser();
-        filteredCompatibilityList = new ArrayList<>();
+        this.type = this.curUser.getUserType();
         this.usf = new UserScoreFacade(curUser);
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
+//        calculateCompatibilityList();
+        filteredCompatibilityList = new ArrayList<>();
     }
 
     /**
@@ -40,14 +44,14 @@ public class GenerateCompatibilityList {
      * then assign compatibilityList to this list.
      */
     private void getAllUsers() {
-        UserRealtimeDbFacade.getAllUsers("Academic", this::setCompatibilityList);
+        UserRealtimeDbFacade.getAllUsers(type, this::setCompatibilityList);
     }
 
     /**
      * Find and then remove current user from current user's list of
      * compatible users since they should not match with themselves.
      */
-    private void removeCurrentUser() {
+    public void removeCurrentUser() {
         User removeUser = null;
         for(User user: compatibilityList) {
             if(user.getUid().equals(curUser.getUid()))
@@ -63,7 +67,11 @@ public class GenerateCompatibilityList {
     public void orderCompatibilityList() {
         if (compatibilityList.size() != 0) {
             compScores = calculateCompatibilityScores(compatibilityList);
+<<<<<<< HEAD
             compatibilityList.sort(Collections.reverseOrder(userScoreComparator));
+=======
+            compatibilityList.sort(userScoreComparator);
+>>>>>>> 9ee4b1a81ef1fd3803a58d3ba5a32db6b205b0a7
         } else {
             compScores = new HashMap<>();
         }
@@ -130,12 +138,26 @@ public class GenerateCompatibilityList {
     }
 
     /**
-     * Recalculate compatibilityList
+     * Calculate compatibilityList
      */
-    public void recalculateCompatibilityList() {
+    public void calculateCompatibilityList() {
         getAllUsers();
         removeCurrentUser();
+        removeVisitedUsers();
         orderCompatibilityList();
+    }
+
+    /**
+     * Remove the users from compatibilityList that are in the current user's visited list
+     */
+    public void removeVisitedUsers() {
+        List<String> visitedList = curUser.getViewed();
+        for (String visitedUserId : visitedList) {
+            UserRealtimeDbFacade.getUser(type, visitedUserId, this::setAlrVisitedUser);
+            if (compatibilityList.contains(alrVisitedUser)) {
+                compatibilityList.remove(alrVisitedUser);
+            }
+        }
     }
 
     /**
@@ -156,6 +178,14 @@ public class GenerateCompatibilityList {
 
     public void setUsf(UserScoreFacade newUsf) {
         this.usf = newUsf;
+    }
+
+    /**
+     * Set alrVisitedUser to newAlrVisitedUser
+     * @param newAlrVisitedUser: what to set alrVisitedUser to
+     */
+    public void setAlrVisitedUser(User newAlrVisitedUser) {
+        this.alrVisitedUser = newAlrVisitedUser;
     }
 
     /**
