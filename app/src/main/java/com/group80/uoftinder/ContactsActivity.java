@@ -111,6 +111,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
         Intent intent = new Intent(ContactsActivity.this, ChatActivity.class);
         intent.putExtra("name", contactModel.getName());
         intent.putExtra("contactUid", contactModel.getUid());
+        intent.putExtra(Constants.CURRENT_USER_STRING, (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
         startActivity(intent);
     }
 

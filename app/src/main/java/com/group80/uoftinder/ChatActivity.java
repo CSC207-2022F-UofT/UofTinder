@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseError;
 import com.group80.uoftinder.chat.Message;
 import com.group80.uoftinder.chat.MessageAdapter;
 import com.group80.uoftinder.chat.MessageFactory;
+import com.group80.uoftinder.entities.Constants;
+import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.RealtimeDbValueObserver;
 import com.group80.uoftinder.firebase.realtime.ucChatMessageWriter;
 import com.group80.uoftinder.firebase.storage.ImageStorageDbFacade;
@@ -90,7 +92,11 @@ public class ChatActivity extends AppCompatActivity {
             }
         }, chatRoom);
 
-        backButton.setOnClickListener(view -> startActivity(new Intent(ChatActivity.this, ContactsActivity.class)));
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(ChatActivity.this, ContactsActivity.class);
+            intent.putExtra(Constants.CURRENT_USER_STRING, (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
+            startActivity(intent);
+        });
 
         contactName.setText(contactNameStr);
         ImageStorageDbFacade.downloadImage(new String[]{contactUid, "img", "_profile_img.jpg"},
