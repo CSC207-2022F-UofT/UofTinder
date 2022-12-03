@@ -13,7 +13,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.Query;
 import com.group80.uoftinder.ChatActivity;
 import com.group80.uoftinder.CreateAccountView;
-import com.group80.uoftinder.QueryWriter;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.chat.ContactModel;
 import com.group80.uoftinder.entities.Constants;

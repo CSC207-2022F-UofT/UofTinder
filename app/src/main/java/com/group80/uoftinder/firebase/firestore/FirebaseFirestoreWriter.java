@@ -25,6 +25,7 @@ public class FirebaseFirestoreWriter {
 //        })
 //        return query;
 //    }
+//
 
     public void writeToFirestore(ContactModel contact) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
