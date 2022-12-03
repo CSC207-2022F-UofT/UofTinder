@@ -1,18 +1,15 @@
 package com.group80.uoftinder;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,13 +19,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.group80.uoftinder.chat.ContactModel;
-import com.group80.uoftinder.firebase.storage.ImageStorageDbFacade;
-import com.group80.uoftinder.firebase.storage.StorageDbDownloadable;
+import com.group80.uoftinder.chat.ContactPresenter;
+import com.group80.uoftinder.chat.ContactViewHolder;
+import com.group80.uoftinder.chat.ContactsView;
 
 /**
  * A window that displays all the contacts to chat with
  */
-public class ContactsActivity extends AppCompatActivity {
+public class ContactsActivity extends AppCompatActivity implements ContactsView {
     FirestoreRecyclerAdapter<ContactModel, ContactViewHolder> contactAdapter;
 
     @Override
@@ -47,11 +45,15 @@ public class ContactsActivity extends AppCompatActivity {
         Query query = firebaseFirestore.collection("Users").whereArrayContains("contacts", uid);
         //******************************************************************************************
 
+        ContactPresenter presenter = new ContactPresenter(this);
+
         FirestoreRecyclerOptions<ContactModel> contacts = new FirestoreRecyclerOptions.Builder<ContactModel>().setQuery(query, ContactModel.class).build();
         contactAdapter = new FirestoreRecyclerAdapter<ContactModel, ContactViewHolder>(contacts) {
             @Override
             protected void onBindViewHolder(@NonNull ContactViewHolder holder, int position, @NonNull ContactModel contactModel) {
-                holder.onBind(getApplicationContext(), position, contactModel);
+                Drawable defaultProfilePic = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_launcher_foreground);
+                presenter.setContactInfo(holder, contactModel, defaultProfilePic);
+                holder.itemView.setOnClickListener(view -> presenter.enterChatActivity(contactModel));
             }
 
             @NonNull
@@ -83,52 +85,11 @@ public class ContactsActivity extends AppCompatActivity {
         }
     }
 
-    private class ContactViewHolder extends RecyclerView.ViewHolder {
-        protected final TextView contactName;
-        protected final ImageView contactPic;
-
-        public ContactViewHolder(@NonNull View itemView) {
-            super(itemView);
-            contactName = itemView.findViewById(R.id.contactListContactName);
-            contactPic = itemView.findViewById(R.id.contactListContactPic);
-        }
-
-        /**
-         * Triggered when this View Holder is bind to an adapter
-         * <p>
-         * // TODO: this method may require architectural fix
-         *
-         * @param context      the global information about an application environment // TODO: architectural fix?
-         * @param position     the position of this View Holder in the adapter
-         * @param contactModel a model storing the contact information // TODO: architectural fix
-         */
-        protected void onBind(Context context, int position, @NonNull ContactModel contactModel) {
-            contactName.setText(contactModel.getName());
-
-            // TODO: extract the set-to-image-view process?
-            ImageStorageDbFacade.downloadImage(
-                    new String[]{contactModel.getUid(), "img", "_profile_img.jpg"},
-                    new StorageDbDownloadable<byte[]>() {
-                        @Override
-                        public void onStorageDownloadSuccess(byte[] data) {
-                            contactPic.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
-                        }
-
-                        @Override
-                        public void onStorageDownloadFailure(@NonNull Exception exception) {
-                            // Set to a default profile image
-                            contactPic.setImageDrawable(AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_account_circle_24));
-                        }
-                    }
-            );
-
-            // TODO: optimize architecture
-            itemView.setOnClickListener(view -> {
-                Intent intent = new Intent(context, ChatActivity.class);
-                intent.putExtra("name", contactModel.getName());
-                intent.putExtra("contactUid", contactModel.getUid());
-                startActivity(intent);
-            });
-        }
+    @Override
+    public void enterChatView(ContactModel contactModel) {
+        Intent intent = new Intent(this.getApplicationContext(), ChatActivity.class);
+        intent.putExtra("name", contactModel.getName());
+        intent.putExtra("contactUid", contactModel.getUid());
+        startActivity(intent);
     }
 }
