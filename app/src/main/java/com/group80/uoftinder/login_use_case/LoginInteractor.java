@@ -5,6 +5,8 @@
 
 package com.group80.uoftinder.login_use_case;
 
+// Use case layer
+
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -46,18 +48,6 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
         }
 
         else { // user == null, signing in with email and password
-//            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-//                    .addOnCompleteListener(this, task -> {
-//
-//                        // Login Presenter
-//                        if (task.isSuccessful()) {
-//                            loginPresenter.prepareSuccessView("Login Successful!", FirebaseAuth.getInstance().getCurrentUser());
-//
-//                        } else {
-//                            // If sign in fails, display a message to the user.
-//                            loginPresenter.prepareLoginFailureView("Login Unsuccessful :(");
-//                        }
-//                    });
             Task<AuthResult> task = FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password);
             Thread thread = new Thread(() -> {
                 try {
@@ -91,6 +81,7 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
                         UserRealtimeDbFacade.getUser("Friendship", id, this::setCurrentUser);
                     }
                 }
+
                 Log.e("TEST", this.currentUser == null ? "NULL" : "YESSSSS");
                 // using the current user, change the UI
                 loginPresenter.prepareSuccessView("Login Successful!", currentUser);

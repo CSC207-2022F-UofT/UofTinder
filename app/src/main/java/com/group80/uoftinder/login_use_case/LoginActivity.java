@@ -1,3 +1,9 @@
+/**
+ * Logs in a user so they can use the app
+ *
+ * View layer
+ */
+
 package com.group80.uoftinder.login_use_case;
 
 import android.content.Intent;
@@ -32,7 +38,6 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
         user.setUserType("Academic");
         UserRealtimeDbFacade.uploadUser(user);
 
-        // UserAccountController
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
 
@@ -40,40 +45,45 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
         LoginInput loginInteractor = new LoginInteractor(loginPresenter);
         LoginController loginController = new LoginController(loginInteractor);
 
-
         enterLogin = findViewById(R.id.EnterLogin);
         enterLogin.setOnClickListener(view -> loginController.loginUser(loginEmail, loginPassword));
     }
 
     /**
-     * Update the UI to the logged in user's recommendation view.
+     * Update the UI to the logged in user's recommendation view
+     * and passes the current user to the next class
+     * @param currentUser current signed in User
      */
     @Override
     public void updateUI(User currentUser) {
-//        String id = firebaseUser.getUid();
-//        UserRealtimeDbFacade.getUser("Academic", id, this::setCurrentUser);
-//        if(getCurrentUser() == null) {
-//            UserRealtimeDbFacade.getUser("Romantic", id, this::setCurrentUser);
-//            if(getCurrentUser() == null) {
-//                UserRealtimeDbFacade.getUser("Friendship", id, this::setCurrentUser);
-//            }
-//        }
         Intent intent = new Intent(LoginActivity.this, RecommendationView.class);
         intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
         startActivity(intent);
     }
 
+    /**
+     * Toast a message that will pop up when a user attempts to sign in
+     * @param message display message
+     */
     @Override
     public void showMessageToast(String message) {
         Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Pop up if email input is null when signing in
+     * @param error error message
+     */
     @Override
     public void showEmailMessage(String error) {
         loginEmail.setError(error);
         loginEmail.requestFocus();
     }
 
+    /**
+     * Pop up if password input is null when signing in
+     * @param error error message
+     */
     @Override
     public void showPasswordMessage(String error) {
         loginPassword.setError(error);

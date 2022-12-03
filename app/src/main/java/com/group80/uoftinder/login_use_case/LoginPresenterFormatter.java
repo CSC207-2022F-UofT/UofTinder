@@ -1,5 +1,7 @@
 package com.group80.uoftinder.login_use_case;
 
+// Interface Adapter Layer
+
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 

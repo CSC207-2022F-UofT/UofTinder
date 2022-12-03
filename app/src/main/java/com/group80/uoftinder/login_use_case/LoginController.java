@@ -5,6 +5,8 @@
 
 package com.group80.uoftinder.login_use_case;
 
+// Interface Adapter Layer
+
 import android.widget.EditText;
 
 public class LoginController {
