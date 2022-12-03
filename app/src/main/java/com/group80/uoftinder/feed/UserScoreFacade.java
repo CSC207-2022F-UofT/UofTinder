@@ -13,7 +13,7 @@ import java.util.Set;
 public class UserScoreFacade {  // using Facade Design Principle to delegate tasks
     private final UserScoreCalculator usCalc; // instance of class designed for calculating user scores
     private final UserScoreComparator usComp; // instance of class designed for comparing user scores
-    private List<Set<Integer>> userAnswers; // List of HashSets, where index i is a
+    private List<List<Integer>> userAnswers; // List of HashSets, where index i is a
     // HashSet representing the indices of the answers selected by the currentUser for question i
     private final int[] answerSchema; // array where index i tells us the number of options for
     // question i
@@ -27,8 +27,8 @@ public class UserScoreFacade {  // using Facade Design Principle to delegate tas
      */
     public UserScoreFacade(User currentUser) {  // using Dependency Injection Design Principle
         this.userAnswers = currentUser.getAnswers();
-        this.answerSchema = CreateAccountInteractor.getAnswerSchema(); // static method that returns number of options for each question
-        this.isMultiSelect = CreateAccountInteractor.getIsMultiSelect(); // static method that returns whether each question is multi-select
+        this.answerSchema = CreateAccountInteractor.getAnswerSchema(currentUser.getUserType()); // static method that returns number of options for each question
+        this.isMultiSelect = CreateAccountInteractor.getIsMultiSelect(currentUser.getUserType()); // static method that returns whether each question is multi-select
         this.answerLen = this.userAnswers.size();
         int[] answerBitLengths = getAnswerBitLengths(); // array where index i tells us the number of bits
         // allocated for question i in the user score

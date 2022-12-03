@@ -4,6 +4,8 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -104,8 +106,9 @@ public class UserRealtimeDbFacadeUnitTest {
     @Test
     public void getAllUsers_isCorrect() {
         StringBuilder namesBuilder = new StringBuilder();
-        UserRealtimeDbFacade.getAllUsers("test", userList -> {
+        UserRealtimeDbFacade.getAllUsers("Academic", userList -> {
             userList.forEach(user -> namesBuilder.append(user.getUid()).append("_"));
+            assertEquals("lisinan2_test1_test2_test3_", namesBuilder.toString());
             // this line is equivalent to the following code chunk -- please refer to Java lambda expressions for more details
             /* userList.forEach(new Consumer<User>() {
              *    @Override
@@ -114,7 +117,6 @@ public class UserRealtimeDbFacadeUnitTest {
              *    }
              *});
              */
-            assertEquals("lisinan2_vgvg_", namesBuilder.toString());
         });
     }
 
