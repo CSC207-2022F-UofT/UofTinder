@@ -1,3 +1,9 @@
+/**
+ * Logs in a user so they can use the app
+ *
+ * View layer
+ */
+
 package com.group80.uoftinder.login_use_case;
 
 import android.content.Intent;
@@ -5,11 +11,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseUser;
-import com.group80.uoftinder.ChatActivity;
 import com.group80.uoftinder.CreateAccountView;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.Constants;
@@ -18,19 +23,21 @@ import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 
-public class LoginActivity extends AppCompatActivity implements LoginViewInterface {
+public class LoginActivity extends AppCompatActivity implements LoginViewModel {
 
     EditText loginEmail;
     EditText loginPassword;
     Button enterLogin;
-    User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginview);
 
-        // UserAccountController
+        User user = new User("jduio2i098");
+        user.setUserType("Academic");
+        UserRealtimeDbFacade.uploadUser(user);
+
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
 
@@ -38,53 +45,49 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
         LoginInput loginInteractor = new LoginInteractor(loginPresenter);
         LoginController loginController = new LoginController(loginInteractor);
 
-
         enterLogin = findViewById(R.id.EnterLogin);
         enterLogin.setOnClickListener(view -> loginController.loginUser(loginEmail, loginPassword));
-
-        // testing
-        Button button = findViewById(R.id.helloWorldEnterChatButton);
-        button.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
-            // TODO: remove such dependency
-            intent.putExtra("name", "Bot");
-            intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
-            startActivity(intent);
-        });
     }
 
     /**
-     * Update the UI to the logged in user's recommendation view.
-     * @param firebaseUser current FirebaseUser
+     * Update the UI to the logged in user's recommendation view
+     * and passes the current user to the next class
+     * @param currentUser current signed in User
      */
     @Override
-    public void updateUI(FirebaseUser firebaseUser) {
-        String id = firebaseUser.getUid();
-        UserRealtimeDbFacade.getUser("Academic", id, this::setCurrentUser);
-        if(getCurrentUser() == null) {
-            UserRealtimeDbFacade.getUser("Romantic", id, this::setCurrentUser);
-            if(getCurrentUser() == null) {
-                UserRealtimeDbFacade.getUser("Friendship", id, this::setCurrentUser);
-            }
-        }
+    public void updateUI(User currentUser) {
         Intent intent = new Intent(LoginActivity.this, RecommendationView.class);
         intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
         startActivity(intent);
     }
 
     /**
-     * Set user
+     * Toast a message that will pop up when a user attempts to sign in
+     * @param message display message
      */
-    public void setCurrentUser(User user) {
-        this.currentUser = user;
+    @Override
+    public void showMessageToast(String message) {
+        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     /**
-     * Return the current user
-     * @return user
+     * Pop up if email input is null when signing in
+     * @param error error message
      */
-    public User getCurrentUser() {
-        return this.currentUser;
+    @Override
+    public void showEmailMessage(String error) {
+        loginEmail.setError(error);
+        loginEmail.requestFocus();
+    }
+
+    /**
+     * Pop up if password input is null when signing in
+     * @param error error message
+     */
+    @Override
+    public void showPasswordMessage(String error) {
+        loginPassword.setError(error);
+        loginPassword.requestFocus();
     }
 
     /**
@@ -92,7 +95,6 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
      * @param view current view
      */
     public void showCreateAccountView(View view) {
-        // CreateAccountView will be fine when merged with create account branch
         Intent intent = new Intent(LoginActivity.this, CreateAccountView.class);
         startActivity(intent);
         finish();
