@@ -8,14 +8,20 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.Query;
 import com.group80.uoftinder.ChatActivity;
 import com.group80.uoftinder.CreateAccountView;
+import com.group80.uoftinder.QueryWriter;
 import com.group80.uoftinder.R;
+import com.group80.uoftinder.chat.ContactModel;
 import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
+
+import java.util.ArrayList;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginViewInterface {
@@ -30,27 +36,33 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginview);
 
-        // UserAccountController
-        loginEmail = findViewById(R.id.loginEmail);
-        loginPassword = findViewById(R.id.loginPassword);
+        FirebaseAuth.getInstance().signInWithEmailAndPassword("csc207.group80.uoftinder@gmail.com", "CSC207Group80!");
 
-        LoginPresenter loginPresenter = new LoginPresenterFormatter(RecommendationView.class, LoginActivity.this);
-        LoginInput loginInteractor = new LoginInteractor(loginPresenter);
-        LoginController loginController = new LoginController(loginInteractor);
+        QueryWriter writer = new QueryWriter();
+        ContactModel contact = new ContactModel("Test", "test_user", new ArrayList<>());
+        writer.writeToFirestore(contact);
 
-
-        enterLogin = findViewById(R.id.EnterLogin);
-        enterLogin.setOnClickListener(view -> loginController.loginUser(loginEmail, loginPassword));
-
-        // testing
-        Button button = findViewById(R.id.helloWorldEnterChatButton);
-        button.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
-            // TODO: remove such dependency
-            intent.putExtra("name", "Bot");
-            intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
-            startActivity(intent);
-        });
+//        // UserAccountController
+//        loginEmail = findViewById(R.id.loginEmail);
+//        loginPassword = findViewById(R.id.loginPassword);
+//
+//        LoginPresenter loginPresenter = new LoginPresenterFormatter(RecommendationView.class, LoginActivity.this);
+//        LoginInput loginInteractor = new LoginInteractor(loginPresenter);
+//        LoginController loginController = new LoginController(loginInteractor);
+//
+//
+//        enterLogin = findViewById(R.id.EnterLogin);
+//        enterLogin.setOnClickListener(view -> loginController.loginUser(loginEmail, loginPassword));
+//
+//        // testing
+//        Button button = findViewById(R.id.helloWorldEnterChatButton);
+//        button.setOnClickListener(view -> {
+//            Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
+//            // TODO: remove such dependency
+//            intent.putExtra("name", "Bot");
+//            intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
+//            startActivity(intent);
+//        });
     }
 
     /**
