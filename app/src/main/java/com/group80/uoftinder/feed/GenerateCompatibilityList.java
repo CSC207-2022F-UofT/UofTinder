@@ -67,11 +67,7 @@ public class GenerateCompatibilityList {
     public void orderCompatibilityList() {
         if (compatibilityList.size() != 0) {
             compScores = calculateCompatibilityScores(compatibilityList);
-<<<<<<< HEAD
             compatibilityList.sort(Collections.reverseOrder(userScoreComparator));
-=======
-            compatibilityList.sort(userScoreComparator);
->>>>>>> 9ee4b1a81ef1fd3803a58d3ba5a32db6b205b0a7
         } else {
             compScores = new HashMap<>();
         }
