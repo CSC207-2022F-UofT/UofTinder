@@ -28,21 +28,8 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".HelloWorld"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".CreateAccountView"
             android:exported="true">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".login_use_case.LoginActivity"
@@ -54,6 +41,10 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+        </activity>
+        <activity
+            android:name=".feed.NoNewRecommendation"
+            android:exported="true">
         </activity>
         <activity
             android:name=".feed.RecommendationView"
