@@ -55,6 +55,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         name = findViewById(R.id.name);
         gender = findViewById(R.id.gender);
         age = findViewById(R.id.age);
+        info = findViewById(R.id.info);
         Button noButton = findViewById(R.id.noButton);
         Button yesButton = findViewById(R.id.yesButton);
 
@@ -182,7 +183,6 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
             infoString = infoString + "/ ";
         }
         info.setText(infoString);
-        Log.i("User Info", displayedUser.getAnswers().toString());
     }
 
     @Override
