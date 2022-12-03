@@ -34,7 +34,7 @@ public class LoginPresenterFormatter implements LoginPresenter {
     }
 
     /**
-     * If there is a missing input, sets an error to text and also requests focus, shows error as error message
+     * If email input is missing, notifies the user
      * @param error error message
      */
     @Override
@@ -42,6 +42,10 @@ public class LoginPresenterFormatter implements LoginPresenter {
         loginViewModel.showEmailMessage(error);
     }
 
+    /**
+     * If password input is missing, notifies the user
+     * @param error error message
+     */
     @Override
     public void preparePasswordFailureView(String error) {
         loginViewModel.showPasswordMessage(error);
