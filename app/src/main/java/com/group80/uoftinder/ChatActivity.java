@@ -1,5 +1,6 @@
 package com.group80.uoftinder;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -21,6 +22,8 @@ import com.google.firebase.database.DatabaseError;
 import com.group80.uoftinder.chat.Message;
 import com.group80.uoftinder.chat.MessageAdapter;
 import com.group80.uoftinder.chat.MessageFactory;
+import com.group80.uoftinder.entities.Constants;
+import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.RealtimeDbValueObserver;
 import com.group80.uoftinder.firebase.realtime.ucChatMessageWriter;
 import com.group80.uoftinder.firebase.storage.ImageStorageDbFacade;
@@ -33,11 +36,11 @@ import java.util.List;
  * The chat window to a specific contact
  */
 public class ChatActivity extends AppCompatActivity {
+    private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
     private MessageAdapter messageAdapter;
     private List<Message> messageList;
     private String inputMessage;
-
-    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +72,7 @@ public class ChatActivity extends AppCompatActivity {
         String contactUid = getIntent().getStringExtra("contactUid");
         String contactNameStr = getIntent().getStringExtra("name");
 
-        // TODO: remove after having functioning log-in ********************************************
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signInWithEmailAndPassword("csc207.group80.uoftinder@gmail.com", "CSC207Group80!").addOnFailureListener(Throwable::printStackTrace);
+        // TODO: wrap-up FirebaseAuth
         String selfUid = firebaseAuth.getCurrentUser().getUid();
         //******************************************************************************************
 
@@ -91,7 +92,11 @@ public class ChatActivity extends AppCompatActivity {
             }
         }, chatRoom);
 
-        backButton.setOnClickListener(view -> finish());
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(ChatActivity.this, ContactsActivity.class);
+            intent.putExtra(Constants.CURRENT_USER_STRING, (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
+            startActivity(intent);
+        });
 
         contactName.setText(contactNameStr);
         ImageStorageDbFacade.downloadImage(new String[]{contactUid, "img", "_profile_img.jpg"},
@@ -112,8 +117,8 @@ public class ChatActivity extends AppCompatActivity {
             inputMessage = messageEditText.getText().toString();
             if (inputMessage.isEmpty()) return;
 
-            // TODO: wrap-up firebaseAuth
-            MessageFactory.createMessage(inputMessage, firebaseAuth.getCurrentUser().getUid());
+            // TODO: wrap-up FirebaseAuth
+            chatMessageWriter.write(MessageFactory.createMessage(inputMessage, firebaseAuth.getCurrentUser().getUid()));
             messageEditText.setText(null);
         });
 
