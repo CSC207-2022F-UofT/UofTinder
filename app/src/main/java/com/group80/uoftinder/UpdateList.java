@@ -28,11 +28,11 @@ public class UpdateList extends User {
      * @param likedList is a list of Users that currentUser has currently liked
      */
     public static void addToList(User displayedUser, boolean liked, List viewedList, List likedList) {
-        viewedList.add(displayedUser);
+        viewedList.add(displayedUser.getUid());
         currentUser.setViewed(viewedList);
         // push currentUser.getViewed() to firebase viewed list
         if (liked) {
-            likedList.add(displayedUser);
+            likedList.add(displayedUser.getUid());
             currentUser.setLiked(likedList);
             // push currentUser.getLiked() to firebase liked list
         }

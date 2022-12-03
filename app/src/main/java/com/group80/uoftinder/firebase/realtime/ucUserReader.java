@@ -74,7 +74,9 @@ public class ucUserReader {
         Thread thread = new Thread(() -> {
             try {
                 DataSnapshot dataSnapshot = Tasks.await(task, 2000, TimeUnit.MILLISECONDS);
-                callback.onData(dataSnapshot.getValue(User.class));
+                User user = dataSnapshot.getValue(User.class);
+                Log.e("TEST", "getUser: " + (user == null ? "NULL" : "NOT NULL"));
+                callback.onData(user);
             } catch (NullPointerException e) { // data does not exist in given location
                 e.printStackTrace();
             } catch (ExecutionException e) {

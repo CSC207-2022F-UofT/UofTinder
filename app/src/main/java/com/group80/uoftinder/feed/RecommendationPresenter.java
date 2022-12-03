@@ -19,7 +19,6 @@ public class RecommendationPresenter {
      */
     public RecommendationPresenter(User currUser, RecViewInterface recViewInterface) {
         this.genCompatibilityList = new GenerateCompatibilityList(currUser);
-        genCompatibilityList.orderCompatibilityList();
         this.recViewInterface = recViewInterface;
     }
 
@@ -88,6 +87,6 @@ public class RecommendationPresenter {
      * Regenerate the compatibilityList to curUser so that it is up to date
      */
     public void regenerate() {
-        genCompatibilityList.recalculateCompatibilityList();
+        genCompatibilityList.calculateCompatibilityList();
     }
 }

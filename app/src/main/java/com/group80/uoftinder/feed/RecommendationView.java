@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.ChatActivity;
+import com.group80.uoftinder.ContactsActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.UpdateList;
 import com.group80.uoftinder.entities.Constants;
@@ -106,10 +107,9 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
              */
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RecommendationView.this, ChatActivity.class);
+                Intent intent = new Intent(RecommendationView.this, ContactsActivity.class);
                 // TODO: remove such dependency
-                intent.putExtra("name", "Bot");
-                intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
+                intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
                 startActivity(intent);
             }
         });

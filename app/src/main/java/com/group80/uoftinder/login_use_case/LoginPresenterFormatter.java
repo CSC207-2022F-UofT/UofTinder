@@ -1,55 +1,53 @@
 package com.group80.uoftinder.login_use_case;
 
-import static android.content.ContentValues.TAG;
+// Interface Adapter Layer
 
-import android.content.Context;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.auth.FirebaseUser;
+import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 
-public class LoginPresenterFormatter extends AppCompatActivity implements LoginPresenter {
+public class LoginPresenterFormatter implements LoginPresenter {
 
-    final Class<RecommendationView> helloWorld;
-    final LoginViewInterface loginViewInterface;
+    final Class<RecommendationView> recommendationViewClass;
+    final LoginViewModel loginViewModel;
 
-    public LoginPresenterFormatter(Class<RecommendationView> recommendationViewClass, LoginViewInterface loginViewInterface) {
-        this.helloWorld = recommendationViewClass;
-        this.loginViewInterface = loginViewInterface;
+    public LoginPresenterFormatter(Class<RecommendationView> recommendationViewClass, LoginViewModel loginViewInterface) {
+        this.recommendationViewClass = recommendationViewClass;
+        this.loginViewModel = loginViewInterface;
     }
 
     /**
      * Pop-ups a message indicating login was successful and changes view to recommendation view
-     * @param firebaseUser current FirebaseUser
+     * @param currentUser current User
      */
     @Override
-    public void prepareSuccessView(FirebaseUser firebaseUser) {
-        Log.d(TAG, "signInWithEmail:success");
-        Toast.makeText((Context) loginViewInterface, "Login Successful!", Toast.LENGTH_SHORT).show();
-        loginViewInterface.updateUI(firebaseUser);
+    public void prepareSuccessView(String success, User currentUser) {
+        loginViewModel.showMessageToast(success);
+        loginViewModel.updateUI(currentUser);
     }
 
     /**
      * If email and password combination do not match, pop-ups a message indicating login failure
-     * @param error error message
      */
     @Override
-    public void prepareFailureViewLogin(String error) {
-        Toast.makeText((Context) loginViewInterface, error, Toast.LENGTH_SHORT).show();
+    public void prepareLoginFailureView(String unsuccessful) {
+        loginViewModel.showMessageToast(unsuccessful);
     }
 
     /**
-     * If there is a missing input, sets an error to text and also requests focus, shows error as error message
-     * @param text EditText of where error should show
+     * If email input is missing, notifies the user
      * @param error error message
      */
     @Override
-    public void prepareFailureView(EditText text, String error) {
-        text.setError(error);
-        text.requestFocus();
+    public void prepareEmailFailureView(String error) {
+        loginViewModel.showEmailMessage(error);
+    }
+
+    /**
+     * If password input is missing, notifies the user
+     * @param error error message
+     */
+    @Override
+    public void preparePasswordFailureView(String error) {
+        loginViewModel.showPasswordMessage(error);
     }
 }
