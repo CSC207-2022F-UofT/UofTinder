@@ -3,15 +3,8 @@ package com.group80.uoftinder;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.GenerateCompatibilityList;
-import com.group80.uoftinder.feed.RecommendationPresenter;
-import com.group80.uoftinder.feed.RecommendationView;
-import com.group80.uoftinder.feed.UserScoreFacade;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
@@ -31,32 +24,30 @@ public class GenerateCompatibilityListUnitTest {
     @Test
     public void removeCurrentUserTest() {
         User curUser = new User("curUser");
-        int curUserScore = 11682;
+        int curUserScore = 1909569;
         curUser.setScore(curUserScore);
-        curUser.setUserType("Academic");
-
-        CreateAccountInteractor.setAnswerSchema(new int[] {3, 4, 4, 5, 4});
-        CreateAccountInteractor.setIsMultiSelect(new boolean[] {false, true, true, false, false});
+        curUser.setUserType("Romantic");
 
         List<List<Integer>> userAnswers = new ArrayList<>();
-        userAnswers.add(Collections.singletonList(1));
-        userAnswers.add(Arrays.asList(1, 2));
-        userAnswers.add(Arrays.asList(0, 1, 3));
-        userAnswers.add(Collections.singletonList(0));
-        userAnswers.add(Collections.singletonList(2));
+        userAnswers.add(Collections.singletonList(1)); // single
+        userAnswers.add(Arrays.asList(0, 1, 3)); // multi
+        userAnswers.add(Collections.singletonList(2)); // single
+        userAnswers.add(Arrays.asList(2, 3, 5)); // multi
+        userAnswers.add(Collections.singletonList(0)); // single
+        userAnswers.add(Collections.singletonList(1)); // single
         curUser.setAnswers(userAnswers);
 
         GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
 
         User user2 = new User("user2");
-        int user2Score = 18642;
+        int user2Score = 2893321;
         user2.setScore(user2Score);
-        user2.setUserType("Academic");
+        user2.setUserType("Romantic");
 
         User user3 = new User("user3");
         int user3Score = 3891;
         user3.setScore(user3Score);
-        user2.setUserType("Academic");
+        user2.setUserType("Romantic");
 
         List<User> initCompList = new ArrayList<>(Arrays.asList(curUser, user2, user3));
         List<User> expectedCompList = new ArrayList<>(Arrays.asList(user2, user3));
@@ -74,37 +65,35 @@ public class GenerateCompatibilityListUnitTest {
     @Test
     public void removeVisitedUsersTest() {
         User curUser = new User("curUser");
-        int curUserScore = 11682;
+        int curUserScore = 1909569;
         curUser.setScore(curUserScore);
-        curUser.setUserType("Academic");
-
-        CreateAccountInteractor.setAnswerSchema(new int[] {3, 4, 4, 5, 4});
-        CreateAccountInteractor.setIsMultiSelect(new boolean[] {false, true, true, false, false});
+        curUser.setUserType("Romantic");
 
         List<List<Integer>> userAnswers = new ArrayList<>();
-        userAnswers.add(Collections.singletonList(1));
-        userAnswers.add(Arrays.asList(1, 2));
-        userAnswers.add(Arrays.asList(0, 1, 3));
-        userAnswers.add(Collections.singletonList(0));
-        userAnswers.add(Collections.singletonList(2));
+        userAnswers.add(Collections.singletonList(1)); // single
+        userAnswers.add(Arrays.asList(0, 1, 3)); // multi
+        userAnswers.add(Collections.singletonList(2)); // single
+        userAnswers.add(Arrays.asList(2, 3, 5)); // multi
+        userAnswers.add(Collections.singletonList(0)); // single
+        userAnswers.add(Collections.singletonList(1)); // single
         curUser.setAnswers(userAnswers);
 
         GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
 
         User user2 = new User("user2");
-        int user2Score = 18642;
+        int user2Score = 2893321;
         user2.setScore(user2Score);
-        user2.setUserType("Academic");
+        user2.setUserType("Romantic");
 
         User user3 = new User("user3");
         int user3Score = 3891;
         user3.setScore(user3Score);
-        user3.setUserType("Academic");
+        user3.setUserType("Romantic");
 
         User user4 = new User("user4");
         int user4Score = 18643;
         user4.setScore(user4Score);
-        user4.setUserType("Academic");
+        user4.setUserType("Romantic");
 
         UserRealtimeDbFacade.uploadUser(user2);
         UserRealtimeDbFacade.uploadUser(user3);
