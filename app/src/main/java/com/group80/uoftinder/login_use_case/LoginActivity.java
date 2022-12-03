@@ -9,13 +9,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.CreateAccountView;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
-import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginViewModel {
@@ -23,7 +21,6 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
     EditText loginEmail;
     EditText loginPassword;
     Button enterLogin;
-    User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +52,17 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
 
     /**
      * Update the UI to the logged in user's recommendation view.
-     * @param firebaseUser current FirebaseUser
      */
     @Override
-    public void updateUI(FirebaseUser firebaseUser) {
-        String id = firebaseUser.getUid();
-        UserRealtimeDbFacade.getUser("Academic", id, this::setCurrentUser);
-        if(getCurrentUser() == null) {
-            UserRealtimeDbFacade.getUser("Romantic", id, this::setCurrentUser);
-            if(getCurrentUser() == null) {
-                UserRealtimeDbFacade.getUser("Friendship", id, this::setCurrentUser);
-            }
-        }
+    public void updateUI(User currentUser) {
+//        String id = firebaseUser.getUid();
+//        UserRealtimeDbFacade.getUser("Academic", id, this::setCurrentUser);
+//        if(getCurrentUser() == null) {
+//            UserRealtimeDbFacade.getUser("Romantic", id, this::setCurrentUser);
+//            if(getCurrentUser() == null) {
+//                UserRealtimeDbFacade.getUser("Friendship", id, this::setCurrentUser);
+//            }
+//        }
         Intent intent = new Intent(LoginActivity.this, RecommendationView.class);
         intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
         startActivity(intent);
@@ -87,21 +83,6 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
     public void showPasswordMessage(String error) {
         loginPassword.setError(error);
         loginPassword.requestFocus();
-    }
-
-    /**
-     * Set user
-     */
-    public void setCurrentUser(User user) {
-        this.currentUser = user;
-    }
-
-    /**
-     * Return the current user
-     * @return user
-     */
-    public User getCurrentUser() {
-        return this.currentUser;
     }
 
     /**

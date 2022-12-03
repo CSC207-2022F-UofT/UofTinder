@@ -1,9 +1,9 @@
 package com.group80.uoftinder.login_use_case;
 
-import com.google.firebase.auth.FirebaseUser;
+import com.group80.uoftinder.entities.User;
 
 public interface LoginViewModel {
-    void updateUI(FirebaseUser firebaseUser);
+    void updateUI(User currentUser);
     void showMessageToast(String message);
     void showEmailMessage(String error);
     void showPasswordMessage(String error);

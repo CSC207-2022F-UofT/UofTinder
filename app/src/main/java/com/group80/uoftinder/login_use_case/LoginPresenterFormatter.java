@@ -1,26 +1,26 @@
 package com.group80.uoftinder.login_use_case;
 
-import com.google.firebase.auth.FirebaseUser;
+import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 
 public class LoginPresenterFormatter implements LoginPresenter {
 
     final Class<RecommendationView> recommendationViewClass;
-    final LoginViewModel loginViewInterface;
+    final LoginViewModel loginViewModel;
 
     public LoginPresenterFormatter(Class<RecommendationView> recommendationViewClass, LoginViewModel loginViewInterface) {
         this.recommendationViewClass = recommendationViewClass;
-        this.loginViewInterface = loginViewInterface;
+        this.loginViewModel = loginViewInterface;
     }
 
     /**
      * Pop-ups a message indicating login was successful and changes view to recommendation view
-     * @param firebaseUser current FirebaseUser
+     * @param currentUser current User
      */
     @Override
-    public void prepareSuccessView(String success, FirebaseUser firebaseUser) {
-        loginViewInterface.showMessageToast(success);
-        loginViewInterface.updateUI(firebaseUser);
+    public void prepareSuccessView(String success, User currentUser) {
+        loginViewModel.showMessageToast(success);
+        loginViewModel.updateUI(currentUser);
     }
 
     /**
@@ -28,7 +28,7 @@ public class LoginPresenterFormatter implements LoginPresenter {
      */
     @Override
     public void prepareLoginFailureView(String unsuccessful) {
-        loginViewInterface.showMessageToast(unsuccessful);
+        loginViewModel.showMessageToast(unsuccessful);
     }
 
     /**
@@ -37,11 +37,11 @@ public class LoginPresenterFormatter implements LoginPresenter {
      */
     @Override
     public void prepareEmailFailureView(String error) {
-        loginViewInterface.showEmailMessage(error);
+        loginViewModel.showEmailMessage(error);
     }
 
     @Override
     public void preparePasswordFailureView(String error) {
-        loginViewInterface.showPasswordMessage(error);
+        loginViewModel.showPasswordMessage(error);
     }
 }
