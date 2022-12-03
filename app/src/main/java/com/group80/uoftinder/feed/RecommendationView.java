@@ -38,6 +38,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     private TextView name;
     private TextView gender;
     private TextView age;
+    private TextView info;
 
     private List<Set<Integer>> filters = new ArrayList<>();
     private int minAge = Constants.MIN_AGE;
@@ -171,6 +172,16 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         name.setText(displayedUser.getName());
         age.setText(Integer.toString(displayedUser.getAge()));
         gender.setText(displayedUser.getGender());
+        String infoString = new String();
+        List<List<Integer>> answers = displayedUser.getAnswers();
+        for(int i = 0; i < answers.size(); i++) {
+            List<Integer> answer = answers.get(i);
+            for(Integer value: answer) {
+                infoString = infoString + Constants.ACADEMIC_ANSWERS[i][value] + " ";
+            }
+            infoString = infoString + "/ ";
+        }
+        info.setText(infoString);
         Log.i("User Info", displayedUser.getAnswers().toString());
     }
 
