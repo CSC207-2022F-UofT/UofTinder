@@ -19,9 +19,6 @@ import java.util.List;
  * they have liked, if that user has also liked them
  */
 public class MatchCreatorInteractor {
-//    private final User currentUser;
-//    private final User user2;
-
     /**
      * This method is called when the currentUser has clicked like while displaying the
      * profile of user2, indicating that we need to check for a match.
@@ -36,7 +33,6 @@ public class MatchCreatorInteractor {
      * @param user2 is the user whose liked list we need to check and possibly create a match with
      * @return a boolean indicating whether a match has been created
      */
-    // called when currentUser likes user2
     public static boolean checkForMatchAndCreate(User currentUser, User user2) {
         if (user2.getLiked().contains(currentUser.getUid())) { // if user2 has liked currentUser
             List<String> user1MatchList = currentUser.getMatches();
