@@ -157,21 +157,17 @@ public class GenerateCompatibilityList {
     }
 
     /**
-     * Set curUser to newUser
-     * @param newUser: what to set curUser to
-     */
-    public void setCurUser(User newUser) {
-        this.curUser = newUser;
-    }
-
-    /**
      * Set compatibilityList to usersList
-     * @param usersList: what to set CompatibilityList to
+     * @param usersList: what to set compatibilityList to
      */
     public void setCompatibilityList(List<User> usersList) {
         this.compatibilityList = usersList;
     }
 
+    /**
+     * Set usf to newUsf
+     * @param newUsf: what to set usf to
+     */
     public void setUsf(UserScoreFacade newUsf) {
         this.usf = newUsf;
     }
