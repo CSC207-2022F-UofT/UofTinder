@@ -29,7 +29,7 @@ public class CreateAccountInteractor {
             return new int[] {5, 6, 3};
         }
         else if (type.equals("Friendship")) {
-            return new int[] {5, 6, 8, 8};
+            return new int[] {5, 6, 3, 8, 8};
         }
         else if (type.equals("Romantic")) {
             return new int[] {6, 6, 3, 8, 3, 3};
