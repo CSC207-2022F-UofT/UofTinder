@@ -69,10 +69,35 @@ public class ucUserReader {
      */
     public static void getUser(String userType, String uid, RealtimeDbCallback<User> callback) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(userType);
+        Task<DataSnapshot> task = reference.child(uid).get();
+
+        Thread thread = new Thread(() -> {
+            try {
+                DataSnapshot dataSnapshot = Tasks.await(task, 2000, TimeUnit.MILLISECONDS);
+                callback.onData(dataSnapshot.getValue(User.class));
+            } catch (NullPointerException e) { // data does not exist in given location
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (TimeoutException e) {
+                Log.e("ucUserWriter", "`getUser` time out!");
+            }
+        });
+
+        thread.start();
         try {
-            reference.child(uid).get().addOnSuccessListener(dataSnapshot -> callback.onData(dataSnapshot.getValue(User.class)));
-        } catch (NullPointerException e) { // data does not exist in given location
+            thread.join();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(userType);
+//        try {
+//            reference.child(uid).get().addOnSuccessListener(dataSnapshot -> callback.onData(dataSnapshot.getValue(User.class)));
+//        } catch (NullPointerException e) { // data does not exist in given location
+//            e.printStackTrace();
+//        }
     }
 }
