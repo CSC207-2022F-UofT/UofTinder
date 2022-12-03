@@ -43,13 +43,11 @@ public class MatchCreatorInteractor {
             List<String> user2MatchList = user2.getMatches();
             user1MatchList.add(user2.getUid()); // add both users to each other's match lists
             user2MatchList.add(currentUser.getUid());
-            Log.d("Matchmaking", "Match detected: added to each other's match list");
+
             UserRealtimeDbFacade.uploadUser(user2); // re-upload users to the database
             UserRealtimeDbFacade.uploadUser(currentUser);
-            Log.d("Matchmaking", "Reuploaded user objects");
 
             sendIntroMessage(currentUser.getUid(), user2.getUid(), "Hey! We matched with each other!"); // send a message from currentUser to user2
-            Log.d("Matchmaking", "Sent preliminary message");
             return true;
         }
         return false;
