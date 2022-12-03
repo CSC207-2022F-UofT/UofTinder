@@ -92,12 +92,27 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
         recyclerView.setAdapter(contactAdapter);
     }
 
+    /**
+     * Called when the activity is becoming visible to the user.
+     * <p>
+     * Followed by `onResume()` if the activity comes to the foreground, or `onStop()` if it becomes
+     * hidden.
+     */
     @Override
     public void onStart() {
         super.onStart();
         contactAdapter.startListening();
     }
 
+    /**
+     * Called when the activity is no longer visible to the user. This may happen either because a
+     * new activity is being started on top, an existing one is being brought in front of this one,
+     * or this one is being destroyed. This is typically used to stop animations and refreshing the
+     * UI, etc.
+     * <p>
+     * Followed by either `onRestart()` if this activity is coming back to interact with the user,
+     * or `onDestroy()` if this activity is going away.
+     */
     @Override
     public void onStop() {
         super.onStop();
@@ -106,6 +121,11 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
         }
     }
 
+    /**
+     * Enters the `ChatActivity` with the given contact
+     *
+     * @param contactModel a model storing the information of a contact
+     */
     @Override
     public void enterChatView(ContactModel contactModel) {
         Intent intent = new Intent(ContactsActivity.this, ChatActivity.class);
@@ -115,6 +135,9 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
         startActivity(intent);
     }
 
+    /**
+     * Enters the recommendation view
+     */
     @Override
     public void enterRecommendationView() {
         Intent intent = new Intent(ContactsActivity.this, RecommendationView.class);
