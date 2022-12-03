@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.ChatActivity;
-import com.group80.uoftinder.CreateAccountView;
+import com.group80.uoftinder.create_account_use_case.CreateAccountView;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;

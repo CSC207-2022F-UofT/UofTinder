@@ -1,8 +1,9 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.create_account_use_case;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,11 +20,12 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.group80.uoftinder.create_account_use_case.CreateAccountPresenter;
+import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 //import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.feed.RecommendationView;
+import com.group80.uoftinder.firebase.realtime.RealtimeDbWriteListener;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 
@@ -355,9 +357,6 @@ public class CreateAccountView extends AppCompatActivity {
                     currentUser.setAnswers((answers));
                     //store User into database
                     UserRealtimeDbFacade.uploadUser(currentUser);
-
-                    Toast.makeText(CreateAccountView.this, "Account created :D",
-                            Toast.LENGTH_SHORT).show();
 
                     //proceed into recommendation view
                     Intent intent  = new Intent(CreateAccountView.this, RecommendationView.class);

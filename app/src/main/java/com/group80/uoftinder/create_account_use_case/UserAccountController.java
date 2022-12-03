@@ -1,4 +1,4 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.create_account_use_case;
 
 import java.util.List;
 
