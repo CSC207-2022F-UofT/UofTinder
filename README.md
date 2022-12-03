@@ -6,7 +6,7 @@ Introducing UofTinder, a social networking Android application built by a group 
 
 # Core Functionalities
 **1. User login**
-- Login requires an email and password that have been already registered in the database to a User object
+- Login requires an email and password that have been already registered in the database to a ```User``` object
 - Incorrect/absent information will trigger failure views that indicate that fields are missing
 - Correct information will trigger a success view, and will switch the view from Login to the home feed
 
@@ -35,8 +35,12 @@ Introducing UofTinder, a social networking Android application built by a group 
 - If they like each other, we open a chat between the two users and display a success view to indicate that a match has been created
 
 **8. Chat feature**
+- Pressing on the chat tab opens up a contact list including all of the people that the current user has matched with
+- Users are able to chat with each other through a messaging interface, which is available as soon as they have matched
 
 **9. User persistence**
+- As soon as the user has registered their account and answered the questionnaire, a ```User``` object containing their information is pushed to Firebase
+- Whenever the current user's internal data is updated as they use the app, we synchronize these changes with the database.
 
 # Next steps for UofTinder
 
