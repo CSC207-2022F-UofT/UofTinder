@@ -5,8 +5,40 @@ Introducing UofTinder, a social networking Android application built by a group 
 # Installation/Execution Instructions
 
 # Core Functionalities
+**1. User login**
+- Login requires an email and password that have been already registered in the database to a User object
+- Incorrect/absent information will trigger failure views that indicate that fields are missing
+- Correct information will trigger a success view, and will switch the view from Login to the home feed
 
-# Next Steps for UofTinder
+**2. Create new account**
+- User can choose between three different types of users when registering: Romantic, Academic, and Friendship
+- An email and password are required to identify each user
+
+**3. Profile setup/questionnaire**
+- The user cannot continue before answering profile setup questions
+- Questionnaire answers for each user are later used in generating a recommendation feed for the current user
+
+**4. Generate recommendation feed**
+- Based on the user responses to the mandatory questionnaire, a user score is computed for each user
+- We retrieve all users from the database and create an ordered compatibility list based on computed similarity scores
+
+**5. Display recommendation feed**
+- Each user in the generated compatibility list is displayed on the home feed, including their profile picture and relevant information
+- The current user is able to select "Yes" or "No" on the displayed user, indicating whether they would like to match or not
+
+**6. Filter recommendation feed**
+- We are able to filter the compatibility list based on answers to any questions on the questionnaire
+- Filter options vary by user type, and applying the filter alters the recommendation feed shown
+
+**7. Creating matches**
+- Every time the user likes someone displayed on the recommendation feed, we check to see if a match can be created between the two
+- If they like each other, we open a chat between the two users and display a success view to indicate that a match has been created
+
+**8. Chat feature**
+
+**9. User persistence**
+
+# Next steps for UofTinder
 
 # 
 
