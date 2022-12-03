@@ -14,6 +14,7 @@ import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
+import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginViewModel {
@@ -27,6 +28,10 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginview);
 
+        User user = new User("jduio2i098");
+        user.setUserType("Academic");
+        UserRealtimeDbFacade.uploadUser(user);
+
         // UserAccountController
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
@@ -38,16 +43,6 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
 
         enterLogin = findViewById(R.id.EnterLogin);
         enterLogin.setOnClickListener(view -> loginController.loginUser(loginEmail, loginPassword));
-
-        // testing
-//        Button button = findViewById(R.id.helloWorldEnterChatButton);
-//        button.setOnClickListener(view -> {
-//            Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
-//            // TODO: remove such dependency
-//            intent.putExtra("name", "Bot");
-//            intent.putExtra("contactUid", "FJuPu9PeQ8TpTPZmDXOVluUCp7c2");
-//            startActivity(intent);
-//        });
     }
 
     /**

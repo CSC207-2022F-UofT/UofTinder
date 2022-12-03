@@ -78,6 +78,7 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
 
             // after finishing method, then we can execute the following code
             if (task.isSuccessful()) {
+
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 assert firebaseUser != null; // ensuring user logged in properly
 
@@ -90,6 +91,7 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
                         UserRealtimeDbFacade.getUser("Friendship", id, this::setCurrentUser);
                     }
                 }
+                Log.e("TEST", this.currentUser == null ? "NULL" : "YESSSSS");
                 // using the current user, change the UI
                 loginPresenter.prepareSuccessView("Login Successful!", currentUser);
             }
