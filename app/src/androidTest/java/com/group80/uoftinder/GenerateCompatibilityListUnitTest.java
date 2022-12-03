@@ -19,7 +19,8 @@ import java.util.List;
 public class GenerateCompatibilityListUnitTest {
 
     /**
-     *
+     * Test that GenerateCompatibilityList.removeCurrentUser removes the current user
+     * from the current user's compatibility list
      */
     @Test
     public void removeCurrentUserTest() {
@@ -60,7 +61,8 @@ public class GenerateCompatibilityListUnitTest {
     }
 
     /**
-     *
+     * Test that GenerateCompatibilityList.removeVisitedUsers removes the visited users from
+     * the current user's compatibility list
      */
     @Test
     public void removeVisitedUsersTest() {
@@ -99,12 +101,12 @@ public class GenerateCompatibilityListUnitTest {
         UserRealtimeDbFacade.uploadUser(user3);
         UserRealtimeDbFacade.uploadUser(user4);
 
-        List<String> visitedList = new ArrayList<>(Collections.singletonList("user3"));
+        List<String> visitedList = new ArrayList<>(Arrays.asList("user4", "user3"));
 
         curUser.setViewed(visitedList);
 
         List<User> initCompList = new ArrayList<>(Arrays.asList(user2, user3, user4));
-        List<User> expectedCompList = new ArrayList<>(Arrays.asList(user2, user4));
+        List<User> expectedCompList = new ArrayList<>(Arrays.asList(user2));
 
         genCompatibilityList.setCompatibilityList(initCompList);
 
