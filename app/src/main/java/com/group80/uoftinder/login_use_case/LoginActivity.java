@@ -1,6 +1,6 @@
 /**
  * Logs in a user so they can use the app
- *
+ * <p>
  * View layer
  */
 
@@ -15,12 +15,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.group80.uoftinder.CreateAccountView;
-import com.google.firebase.auth.FirebaseUser;
-import com.group80.uoftinder.ChatActivity;
-import com.group80.uoftinder.create_account_use_case.CreateAccountView;
-import com.group80.uoftinder.R;
 import com.group80.uoftinder.Constants;
+import com.group80.uoftinder.R;
+import com.group80.uoftinder.create_account_use_case.CreateAccountView;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
