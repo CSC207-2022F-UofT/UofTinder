@@ -1,5 +1,4 @@
 package com.group80.uoftinder.feed;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
+import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.ContactsActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.UpdateList;
-import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 
@@ -63,13 +64,12 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         UpdateList update = new UpdateList(currentUser);
 
         boolean shouldFilter = getIntent().getBooleanExtra(Constants.SHOULD_FILTER_STRING, false);
-        if(shouldFilter) {
+        if (shouldFilter) {
             filters = (List<Set<Integer>>) getIntent().getSerializableExtra(Constants.FILTERS_STRING);
             minAge = getIntent().getIntExtra(Constants.MIN_AGE_STRING, Constants.MIN_AGE);
             maxAge = getIntent().getIntExtra(Constants.MAX_AGE_STRING, Constants.MAX_AGE);
             recPresenter.filterCompatibilityList(filters, minAge, maxAge);
-        }
-        else {
+        } else {
             recPresenter.revertFilters();
         }
 
@@ -100,7 +100,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         });
 
         Button chatButton = findViewById(R.id.chatButton);
-        chatButton.setOnClickListener(new View.OnClickListener()  {
+        chatButton.setOnClickListener(new View.OnClickListener() {
             /**
              * Enters the chat page for the current user to chat with their matched users.
              * @param view  Current view
@@ -132,6 +132,13 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         });
     }
 
+    /**
+     * Returns displayedUser that is currently being displayed to currentUser.
+     */
+    public User getDisplayedUser() {
+        return this.displayedUser;
+    }
+
     @Override
     /**
      * Initializes displayedUser to the first User in currentUser's most compatible list.
@@ -142,16 +149,11 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     }
 
     /**
-     * Returns displayedUser that is currently being displayed to currentUser.
-     */
-    public User getDisplayedUser() { return this.displayedUser; }
-
-
-    /**
      * helper method for onClickListener method that listens
      * when the 'Yes' and 'No' button is clicked
+     *
      * @param displayedUser is the user displayed currently to currentUser
-     * @param liked If true, currentUser 'likes' displayedUser, false otherwise
+     * @param liked         If true, currentUser 'likes' displayedUser, false otherwise
      */
     protected void buttonClick(User displayedUser, boolean liked) {
         // add displayed User to viewed/liked list
@@ -171,7 +173,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         name.setText(displayedUser.getName());
         age.setText(Integer.toString(displayedUser.getAge()));
         gender.setText(displayedUser.getGender());
-        info.setText(displayedUser.getUserInfoString());
+//        info.setText(displayedUser.getUserInfoString());
     }
 
     @Override
