@@ -1,7 +1,5 @@
 package com.group80.uoftinder.feed;
 
-import android.service.autofill.FieldClassification;
-
 import com.group80.uoftinder.MatchInteractor;
 import com.group80.uoftinder.entities.User;
 
@@ -107,8 +105,7 @@ public class RecommendationPresenter {
      * @param liked: whether currUser likes the displayed user
      */
     public void updateLists(boolean liked) {
-        MatchInteractor.addToList(recViewInterface.getDisplayedUser(), currUser, liked,
-                currUser.getViewed(), currUser.getLiked());
+        MatchInteractor.addToList(currUser, recViewInterface.getDisplayedUser(), liked);
     }
 
     /**
