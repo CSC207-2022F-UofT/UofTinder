@@ -1,5 +1,7 @@
 package com.group80.uoftinder.firebase.firestore;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -15,7 +17,7 @@ public class FirestoreDbReader {
         // Get a collection of `documents` who has `uid` in their "contacts" array
         return FirebaseFirestore.getInstance()
                 .collection("Users")
-                .whereArrayContains("contacts",
+                .whereArrayContains("matches",
                         FirebaseAuth.getInstance().getCurrentUser().getUid());
     }
 }
