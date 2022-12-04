@@ -57,6 +57,7 @@ public class FilterUseCaseUnitTest {
 
         User currUser = new User("currTest");
         currUser.setUserType("Academic");
+        currUser.setAnswers(userAnswers1);
         GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(currUser);
         generateCompatibilityList.setCompatibilityList(compatibilityList);
 
@@ -112,6 +113,7 @@ public class FilterUseCaseUnitTest {
 
         User currUser = new User("currTest");
         currUser.setUserType("Academic");
+        currUser.setAnswers(userAnswers);
         GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(currUser);
         generateCompatibilityList.setCompatibilityList(compatibilityList);
 
@@ -168,6 +170,7 @@ public class FilterUseCaseUnitTest {
 
         User currUser = new User("currTest");
         currUser.setUserType("Academic");
+        currUser.setAnswers(userAnswers);
         GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(currUser);
         generateCompatibilityList.setCompatibilityList(compatibilityList);
 
@@ -223,6 +226,7 @@ public class FilterUseCaseUnitTest {
 
         User currUser = new User("currTest");
         currUser.setUserType("Academic");
+        currUser.setAnswers(userAnswers1);
         GenerateCompatibilityList generateCompatibilityList = new GenerateCompatibilityList(currUser);
         generateCompatibilityList.setCompatibilityList(compatibilityList);
 

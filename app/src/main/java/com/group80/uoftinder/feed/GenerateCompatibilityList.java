@@ -6,6 +6,7 @@ import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class GenerateCompatibilityList {
         this.type = this.curUser.getUserType();
         this.usf = new UserScoreFacade(curUser);
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
-//        calculateCompatibilityList();
+        // calculateCompatibilityList();
         filteredCompatibilityList = new ArrayList<>();
     }
 
@@ -66,7 +67,7 @@ public class GenerateCompatibilityList {
     public void orderCompatibilityList() {
         if (compatibilityList.size() != 0) {
             compScores = calculateCompatibilityScores(compatibilityList);
-            compatibilityList.sort(userScoreComparator);
+            compatibilityList.sort(Collections.reverseOrder(userScoreComparator));
         } else {
             compScores = new HashMap<>();
         }
@@ -156,19 +157,19 @@ public class GenerateCompatibilityList {
     }
 
     /**
-     * Set curUser to newUser
-     * @param newUser: what to set curUser to
-     */
-    public void setCurUser(User newUser) {
-        this.curUser = newUser;
-    }
-
-    /**
      * Set compatibilityList to usersList
-     * @param usersList: what to set CompatibilityList to
+     * @param usersList: what to set compatibilityList to
      */
     public void setCompatibilityList(List<User> usersList) {
         this.compatibilityList = usersList;
+    }
+
+    /**
+     * Set usf to newUsf
+     * @param newUsf: what to set usf to
+     */
+    public void setUsf(UserScoreFacade newUsf) {
+        this.usf = newUsf;
     }
 
     /**

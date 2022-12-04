@@ -89,4 +89,12 @@ public class RecommendationPresenter {
     public void regenerate() {
         genCompatibilityList.calculateCompatibilityList();
     }
+
+    /**
+     * Get the genCompatibilityList attribute
+     * @return this.genCompatibilityList
+     */
+    public GenerateCompatibilityList getGenCompatibilityList() {
+        return this.genCompatibilityList;
+    }
 }
