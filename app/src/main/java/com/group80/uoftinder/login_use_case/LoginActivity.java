@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.group80.uoftinder.CreateAccountView;
 import com.group80.uoftinder.R;
-import com.group80.uoftinder.entities.Constants;
+import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
@@ -34,8 +34,8 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginview);
 
-        User user = new User("jduio2i098");
-        user.setUserType("Academic");
+        User user = new User("CSC207_Group80");
+        user.setUserType("Administrator");
         UserRealtimeDbFacade.uploadUser(user);
 
         loginEmail = findViewById(R.id.loginEmail);
