@@ -1,6 +1,8 @@
 package com.group80.uoftinder.feed;
 
-import com.group80.uoftinder.MatchCreatorInteractor;
+import android.service.autofill.FieldClassification;
+
+import com.group80.uoftinder.MatchInteractor;
 import com.group80.uoftinder.entities.User;
 
 import java.util.List;
@@ -88,16 +90,25 @@ public class RecommendationPresenter {
     }
 
     /**
-     * Use the MatchCreator static method checkforMatchAndCreate in order to determine if a match
+     * Use the MatchInteractor static method checkforMatchAndCreate in order to determine if a match
      * can be created between the current user and the displayed user
      */
     public void useMatchCreator() {
-        boolean matchCreated = MatchCreatorInteractor.checkForMatchAndCreate(currUser,
+        boolean matchCreated = MatchInteractor.checkForMatchAndCreate(currUser,
                 recViewInterface.getDisplayedUser());
         if (matchCreated) { // if we have successfully created a match, we display a pop-up using
             // the recViewInterface
             recViewInterface.createPopUp();
         }
+    }
+
+    /**
+     * Use the MatchInteractor to update the current user's displayed and liked lists
+     * @param liked: whether currUser likes the displayed user
+     */
+    public void updateLists(boolean liked) {
+        MatchInteractor.addToList(recViewInterface.getDisplayedUser(), currUser, liked,
+                currUser.getViewed(), currUser.getLiked());
     }
 
     /**

@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.ChatActivity;
 import com.group80.uoftinder.R;
-import com.group80.uoftinder.UpdateList;
 import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.login_use_case.LoginActivity;
@@ -62,7 +61,6 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         this.currentUser = (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING);
         this.recPresenter = new RecommendationPresenter(currentUser, RecommendationView.this);
         this.displayedUser = null;
-        UpdateList update = new UpdateList(currentUser);
 
         boolean shouldFilter = getIntent().getBooleanExtra(Constants.SHOULD_FILTER_STRING, false);
         if(shouldFilter) {
@@ -80,12 +78,12 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
 
         // yes button click listener
         yesButton.setOnClickListener(view -> {
-            buttonClick(displayedUser, true);
+            buttonClick(true);
         });
 
         // no button click listener
         noButton.setOnClickListener(view -> {
-            buttonClick(displayedUser, false);
+            buttonClick(false);
         });
 
         Button logoutButton = findViewById(R.id.logoutButton);
@@ -135,31 +133,30 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         });
     }
 
-    @Override
     /**
      * Initializes displayedUser to the first User in currentUser's most compatible list.
      * @param displayedUser is the user displayed currently to currentUser.
      */
+    @Override
     public void setDisplayedUser(User displayedUser) {
         this.displayedUser = displayedUser;
     }
 
-    @Override
     /**
      * Returns displayedUser that is currently being displayed to currentUser.
      */
+    @Override
     public User getDisplayedUser() { return this.displayedUser; }
 
 
     /**
      * helper method for onClickListener method that listens
      * when the 'Yes' and 'No' button is clicked
-     * @param displayedUser is the user displayed currently to currentUser
      * @param liked If true, currentUser 'likes' displayedUser, false otherwise
      */
-    protected void buttonClick(User displayedUser, boolean liked) {
+    protected void buttonClick(boolean liked) {
         // add displayed User to viewed/liked list
-        UpdateList.addToList(displayedUser, liked, currentUser.getViewed(), currentUser.getLiked());
+        recPresenter.updateLists(liked);
         // displays next user
         if (liked) {
             recPresenter.useMatchCreator(); // if we liked the displayed user, we call upon
@@ -169,11 +166,10 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         recPresenter.displayUser();
     }
 
-    @Override
     /**
      * Set the information on screen to the displayedUser's information
-     * @param displayedUser is the user displayed currently to currentUser
      */
+    @Override
     public void showUser() {
         profilePicture.setImageURI(displayedUser.getPhotoUrl());
         name.setText(displayedUser.getName());
@@ -182,10 +178,10 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         Log.i("User Info", displayedUser.getAnswers().toString());
     }
 
-    @Override
     /**
      * displays a screen that tells currentUsers that there are no more compatible users.
      */
+    @Override
     public void noCompatibleUser() {
         final Context context = this;
         Intent intent = new Intent(context, NoNewRecommendation.class);
@@ -196,11 +192,11 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         startActivity(intent);
     }
 
-    @Override
     /**
      * Creates a pop-up message at the button of the screen when the current user has matched
      * with the person they clicked like on
      */
+    @Override
     public void createPopUp() {
         Toast.makeText(RecommendationView.this,
                 "You matched with " + getDisplayedUser().getName() + "!",

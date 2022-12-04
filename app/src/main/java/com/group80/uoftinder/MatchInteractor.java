@@ -1,7 +1,5 @@
 package com.group80.uoftinder;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,10 +13,10 @@ import com.group80.uoftinder.firebase.realtime.*;
 import java.util.List;
 
 /**
- * The MatchCreatorInteractor class is used to create a match between the current user and the user
+ * The MatchInteractor class is used to create a match between the current user and the user
  * they have liked, if that user has also liked them
  */
-public class MatchCreatorInteractor {
+public class MatchInteractor {
     /**
      * This method is called when the currentUser has clicked like while displaying the
      * profile of user2, indicating that we need to check for a match.
@@ -43,7 +41,8 @@ public class MatchCreatorInteractor {
             UserRealtimeDbFacade.uploadUser(user2); // re-upload users to the database
             UserRealtimeDbFacade.uploadUser(currentUser);
 
-            sendIntroMessage(currentUser.getUid(), user2.getUid(), "Hey! We matched with each other!"); // send a message from currentUser to user2
+            sendIntroMessage(currentUser.getUid(),
+                    user2.getUid(), "Hey! We matched with each other!"); // send a message from currentUser to user2
             return true;
         }
         return false;
@@ -63,5 +62,31 @@ public class MatchCreatorInteractor {
         }, chatRoom);
 
         chatMessageWriter.write(MessageFactory.createMessage(message, selfUid));
+    }
+
+    /**
+     * Adds displayedUser to currentUser's viewed list.
+     * If liked is true, also adds displayedUser to currentUser's liked list.
+     * @param displayedUser is the user that is currently being displayed to currentUser.
+     * @param currentUser is the user that is currently logged in.
+     * @param liked is True when currentUser 'likes' displayedUser, False otherwise.
+     * @param viewedList is a list of Users that currentUser has currently viewed
+     * @param likedList is a list of Users that currentUser has currently liked
+     */
+    public static void addToList(User displayedUser, User currentUser, boolean liked,
+                                 List<String> viewedList, List<String> likedList) {
+        viewedList.add(displayedUser.getUid());
+        currentUser.setViewed(viewedList);
+        // push currentUser.getViewed() to firebase viewed list
+        if (liked) {
+            likedList.add(displayedUser.getUid());
+            currentUser.setLiked(likedList);
+            // push currentUser.getLiked() to firebase liked list
+        }
+        // TODO: write a function that writes to currentUser's liked and visited list in firebase
+        // if liked is true, push to liked list and viewed list
+        // if liked is false, push to viewed list
+        // sending display user id to be added to firebase
+        // updateListStatus(displayedUser.getUid(), liked);
     }
 }
