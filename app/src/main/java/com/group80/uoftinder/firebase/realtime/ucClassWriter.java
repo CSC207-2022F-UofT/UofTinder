@@ -1,6 +1,5 @@
 package com.group80.uoftinder.firebase.realtime;
 
-
 import com.google.firebase.database.DatabaseReference;
 
 /**
