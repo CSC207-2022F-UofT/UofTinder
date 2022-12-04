@@ -2,56 +2,40 @@ package com.group80.uoftinder.create_account_use_case;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
-//import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.feed.RecommendationView;
-import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 import com.group80.uoftinder.login_use_case.LoginActivity;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Code for all the views that the user will go through to create a user
  */
-public class CreateAccountView extends AppCompatActivity implements CreateAccountViewModel{
+public class CreateAccountView extends AppCompatActivity implements CreateAccountViewModel {
 
+    private final CreateAccountPresenter presenter = new CreateAccountPresenterFormatter(RecommendationView.class,
+            CreateAccountView.this);
+    private final CreateAccountInput interactor = new CreateAccountInteractor(presenter);
+    private final CreateAccountController controller = new CreateAccountController(interactor);
     private EditText createAccountEmail;
     private EditText createAccountPassword1;
     private EditText createAccountPassword2;
-
-    private CreateAccountPresenter presenter = new CreateAccountPresenterFormatter(RecommendationView.class,
-            CreateAccountView.this);
-    private CreateAccountInput interactor = new CreateAccountInteractor(presenter);
-    private CreateAccountController controller = new CreateAccountController(interactor);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.createaccountview);
 
-       FirebaseAuth.getInstance();
+        FirebaseAuth.getInstance();
 
         createAccountEmail = findViewById(R.id.accountEmail);
         createAccountPassword1 = findViewById(R.id.password1);
@@ -74,31 +58,57 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
             }
         });
     }
+
+    /**
+     * Pops up a message notifying the user of an event
+     *
+     * @param message message displayed
+     */
     @Override
-    public void showMessage(String message){
+    public void showMessage(String message) {
         Toast.makeText(CreateAccountView.this, message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Sets error message and requests focus to email input
+     *
+     * @param error message displayed
+     */
     @Override
-    public void showEmailMessage(String error){
+    public void showEmailMessage(String error) {
         createAccountEmail.setError(error);
         createAccountEmail.requestFocus();
     }
 
+    /**
+     * Sets error message and requests focus to password1 input
+     *
+     * @param error message displayed
+     */
     @Override
-    public void showPassword1Message(String error){
+    public void showPassword1Message(String error) {
         createAccountPassword1.setError(error);
         createAccountPassword1.requestFocus();
     }
 
+    /**
+     * Sets error message and requests focus to password2 input
+     *
+     * @param error message displayed
+     */
     @Override
-    public void showPassword2Message(String error){
+    public void showPassword2Message(String error) {
         createAccountPassword2.setError(error);
         createAccountPassword2.requestFocus();
     }
 
+    /**
+     * Creates the basicinfoview.xml and gets inputs which is passed to the controller
+     *
+     * @param currentUser the current user trying to register
+     */
     @Override
-    public void basicInfoUI(User currentUser){
+    public void basicInfoUI(User currentUser) {
         setContentView(R.layout.basicinfoview);
 
         Button enter = findViewById(R.id.cont);
@@ -115,8 +125,13 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
         });
     }
 
+    /**
+     * Creates the academic_questionnaire.xml and gets inputs which is passed to the controller
+     *
+     * @param currentUser the current user trying to register
+     */
     @Override
-    public void academicQuestionnaireUI(User currentUser){
+    public void academicQuestionnaireUI(User currentUser) {
         setContentView(R.layout.academic_questionnaire);
         Button enter = findViewById(R.id.academic_finish);
 
@@ -131,8 +146,13 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
         });
     }
 
+    /**
+     * Creates the friendship_questionnaire.xml and gets inputs which is passed to the controller
+     *
+     * @param currentUser the current user trying to register
+     */
     @Override
-    public void friendshipQuestionnaireUI(User currentUser){
+    public void friendshipQuestionnaireUI(User currentUser) {
         setContentView(R.layout.friendship_questionnaire);
         Button enter = findViewById(R.id.friend_finish);
 
@@ -150,8 +170,13 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
         });
     }
 
+    /**
+     * Creates the romantic_questionnaire.xml and gets inputs which is passed to the controller
+     *
+     * @param currentUser the current user trying to register
+     */
     @Override
-    public void romanticQuestionnaireUI(User currentUser){
+    public void romanticQuestionnaireUI(User currentUser) {
         setContentView(R.layout.romantic_questionnaire);
         Button enter = findViewById(R.id.romantic_finish);
 
@@ -170,8 +195,14 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
         });
     }
 
+    /**
+     * Updates UI to the user's recommendation view after finishing setting up their profile
+     * and answering the questionnaire
+     *
+     * @param currentUser the current user
+     */
     @Override
-    public void updateUI(User currentUser){
+    public void updateUI(User currentUser) {
         Intent intent = new Intent(CreateAccountView.this, RecommendationView.class);
         intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
         startActivity(intent);
@@ -180,10 +211,11 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
 
     /**
      * Returns view back to loginView
-     * @param view      the current view (createAccountView)
+     *
+     * @param view the current view (createAccountView)
      */
     private void showLoginView(View view) {
-        Intent intent  = new Intent(CreateAccountView.this, LoginActivity.class);
+        Intent intent = new Intent(CreateAccountView.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
