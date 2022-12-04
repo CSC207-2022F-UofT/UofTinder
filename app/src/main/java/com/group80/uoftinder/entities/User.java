@@ -4,6 +4,8 @@ import android.net.Uri;
 
 import androidx.annotation.Nullable;
 
+import com.group80.uoftinder.Constants;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -231,5 +233,22 @@ public class User implements Serializable {
 
         User user = (User) obj;
         return this.uid.equals(user.uid);
+    }
+
+    /**
+     * Return the strings representing the answers of the user.
+     * @return      A String representing the answers of the user
+     */
+    public String getUserInfoString() {
+        String infoString = new String();
+        for(int i = 0; i < answers.size(); i++) {
+            List<Integer> answer = answers.get(i);
+            for(Integer value: answer) {
+                String[][] currentAnswers = Constants.USER_ANSWERS.get(userType);
+                infoString = infoString + currentAnswers[i][value] + " ";
+            }
+            infoString = infoString + "/ ";
+        }
+        return infoString;
     }
 }

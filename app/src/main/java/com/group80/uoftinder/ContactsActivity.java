@@ -23,7 +23,6 @@ import com.group80.uoftinder.chat.ContactModel;
 import com.group80.uoftinder.chat.ContactPresenter;
 import com.group80.uoftinder.chat.ContactViewHolder;
 import com.group80.uoftinder.chat.ContactsView;
-import com.group80.uoftinder.entities.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 

@@ -4,18 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.group80.uoftinder.ChatActivity;
 import com.group80.uoftinder.ContactsActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.UpdateList;
-import com.group80.uoftinder.entities.Constants;
+import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 
@@ -38,6 +36,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     private TextView name;
     private TextView gender;
     private TextView age;
+    private TextView info;
 
     private List<Set<Integer>> filters = new ArrayList<>();
     private int minAge = Constants.MIN_AGE;
@@ -54,6 +53,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         name = findViewById(R.id.name);
         gender = findViewById(R.id.gender);
         age = findViewById(R.id.age);
+        info = findViewById(R.id.info);
         Button noButton = findViewById(R.id.noButton);
         Button yesButton = findViewById(R.id.yesButton);
 
@@ -171,7 +171,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         name.setText(displayedUser.getName());
         age.setText(Integer.toString(displayedUser.getAge()));
         gender.setText(displayedUser.getGender());
-        Log.i("User Info", displayedUser.getAnswers().toString());
+        info.setText(displayedUser.getUserInfoString());
     }
 
     @Override
