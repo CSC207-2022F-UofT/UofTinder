@@ -34,8 +34,8 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginview);
 
-        User user = new User("jduio2i098");
-        user.setUserType("Academic");
+        User user = new User("CSC207_Group80");
+        user.setUserType("Administrator");
         UserRealtimeDbFacade.uploadUser(user);
 
         loginEmail = findViewById(R.id.loginEmail);
