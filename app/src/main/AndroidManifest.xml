@@ -16,7 +16,7 @@
             android:name=".feed.AcademicFilterActivity"
             android:exported="true" />
         <activity
-            android:name=".CreateAccountView"
+            android:name=".create_account_use_case.CreateAccountView"
             android:exported="true" />
         <activity
             android:name=".login_use_case.LoginActivity"
