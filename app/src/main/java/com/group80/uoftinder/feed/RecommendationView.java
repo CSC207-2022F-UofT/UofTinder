@@ -4,18 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.group80.uoftinder.ChatActivity;
 import com.group80.uoftinder.ContactsActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.UpdateList;
-import com.group80.uoftinder.entities.Constants;
+import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 

@@ -4,6 +4,8 @@ import android.net.Uri;
 
 import androidx.annotation.Nullable;
 
+import com.group80.uoftinder.Constants;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

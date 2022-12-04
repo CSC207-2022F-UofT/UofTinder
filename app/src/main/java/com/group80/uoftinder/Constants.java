@@ -1,4 +1,4 @@
-package com.group80.uoftinder.entities;
+package com.group80.uoftinder;
 
 import java.util.HashMap;
 import java.util.Map;
