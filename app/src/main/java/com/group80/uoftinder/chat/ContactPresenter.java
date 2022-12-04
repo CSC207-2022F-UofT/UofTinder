@@ -4,7 +4,10 @@ import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.firebase.ImageViewImagePresenter;
+import com.group80.uoftinder.firebase.firestore.FirestoreDbReader;
 
 /**
  * A presenter for presenting the contacts list
@@ -39,6 +42,18 @@ public class ContactPresenter {
                 holder.getContactPic(),
                 defaultProfilePic
         );
+    }
+
+    /**
+     * Sets the options to configure a {@link com.firebase.ui.firestore.FirestoreRecyclerAdapter}.
+     *
+     * @return options to configure a FirestoreRecyclerAdapter.
+     */
+    public FirestoreRecyclerOptions<ContactModel> setRecyclerAdapterOption() {
+        return new FirestoreRecyclerOptions
+                .Builder<ContactModel>()
+                .setQuery(FirestoreDbReader.getContactsAsQuery(FirebaseAuth.getInstance().getUid()), ContactModel.class)
+                .build();
     }
 
     /**

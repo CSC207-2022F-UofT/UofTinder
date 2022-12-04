@@ -1,24 +1,21 @@
 package com.group80.uoftinder.firebase.firestore;
 
-import android.util.Log;
-
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class FirestoreDbReader {
-    public static Query getContactsAsQuery(){
-        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        Query query = firebaseFirestore.collection("Users")
-                .whereEqualTo("uid", uid);
-
-        query.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Log.d("FIRESTORE", "Retrieved query for contacts");
-            }
-        });
-        return query;
+    /**
+     * Get the contacts of the user with the given uid as a {@link com.google.firebase.firestore.Query}
+     *
+     * @param uid the uid of the user whose contact list is to be returned
+     * @return A {@link com.google.firebase.firestore.Query} of contacts of the given user
+     */
+    public static Query getContactsAsQuery(String uid) {
+        // Get a collection of `documents` who has `uid` in their "contacts" array
+        return FirebaseFirestore.getInstance()
+                .collection("Users")
+                .whereArrayContains("contacts",
+                        FirebaseAuth.getInstance().getCurrentUser().getUid());
     }
 }
