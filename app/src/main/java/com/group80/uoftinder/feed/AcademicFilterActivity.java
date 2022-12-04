@@ -12,7 +12,7 @@ import android.widget.NumberPicker;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.group80.uoftinder.R;
-import com.group80.uoftinder.entities.Constants;
+import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.entities.User;
 
 import java.io.Serializable;
