@@ -43,7 +43,7 @@ Introducing UofTinder, a social networking Android application built by a group 
 - Whenever the current user's internal data is updated as they use the app, we synchronize these changes with the database.
 
 # Unit Tests we've implemented
-- Generate Compatibility List
+- **Generate Compatibility List**
   - orderCompatibilityListTest1: tests that GenerateCompatibilityList.orderCompatibilityList reorders the compatibility list from most compatible user to least compatible user when there are 3 total users.
   - orderCompatibilityListTest2: tests that GenerateCompatibilityList.orderCompatibilityListTest2 does nothing to the compatibility list when there are no other users in the database (besides the current user).
   - showMostCompUser2UsersTest: tests that GenerateCompatibilityList.showMostCompUser returns the most compatible user when there are 2 other users.
@@ -51,29 +51,29 @@ Introducing UofTinder, a social networking Android application built by a group 
   - removeMostCompUserTest: tests that GenerateCompatibilityList.removeMostCompUser removes the most compatible user in the compatibility list.
   - removeCurrentUserTest:  tests that GenerateCompatibilityList.removeCurrentUser removes the current user from the current user's compatibility list.
   - removeVisitedUsersTest: tests that GenerateCompatibilityList.removeVisitedUsers removes the visited users from the current user's compatibility list.
-- Match Interactor 
+- **Match Interactor** 
   - checkMatchListsUpdatedLocal: test to see if the match lists for two users are both updated in the local User classes.
   - checkMatchListsUpdatedRemote: test to see if the match lists for two users are both updated in the database upon match.
   - currUserSkipsDisplayedUserLocal: test to see if the local User viewed and liked lists are updated when the currentUser does not 'like' the displayedUser.
   - currUserLikesDisplayedUserLocal: test to see if the local User viewed and liked lists are updated when the currentUser 'likes' the displayedUser.
   - currUserSkipsDisplayedUserRemote: test to see if the viewed and liked lists of the current user are updated in the database when the currentUser does not 'like' the displayedUser.
   - currUserLikesDisplayedUserRemote: test to see if the viewed and liked lists of the current user are updated in the database when the currentUser does not 'like' the displayedUser.
-- UserRealTimeDbFacade
+- **UserRealTimeDbFacade**
   - uploadUser_isCorrect: test if the upload task can be done without error.
   - getAllUsers_isCorrect: test if we can get all users without error.
   - getUser_isCorrect: test that we can get the correct user without error.
-- Filter 
+- **Filter** 
   - filterFeedTestFilters: tests that we can apply filters to the feed.
   - filterFeedTestAge: tests that we can filter by age.
   - filterFeedTestNoFilters: tests that we can see the fee without any filters.
   - filterFeedTestFiltersAndAge: test that we can filter by age and other filters.
-- UserScoreFacade
+- **UserScoreFacade**
   - generateCompatibilityScoreTest1: tests to see whether the correct compatibility gets generated for current user (User 1).
   - generateCompatibilityScoreTest2: tests to see whether the correct compatibility gets generated for current user (User 2).
   - generateCompatibilityScoreTest3: tests to see whether the correct compatibility gets generated for current user (User 3).
   - compareTest1: tests to see compare method returns the correct similarity scores for two users (User 1 and User 2).
   - compareTest2: tests to see compare method returns the correct similarity scores for two users (User 3 and User 2).
-- UserUnit
+- **UserUnit**
   - infoStringTestAcademicUser: tests to get the correct display information string for an academic user.
   - infoStringTestRomanticUser: tests to get the correct display information string for a romantic user. Also tests the case of not providing answers for several questions.
   - infoStringTestFriendshipUser: tests for getting the correct display information string for a friendship user. Also tests the case of not providing an answer for a question between two questions with answers provided.
