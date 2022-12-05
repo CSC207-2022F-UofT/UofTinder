@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_below="@id/LoginText"
-        android:layout_marginTop="101dp"
+        android:layout_marginTop="75dp"
         android:text="Email:"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="32dp"
         android:layout_alignParentBottom="true"
         android:text="Create An account"
         android:onClick="showCreateAccountView" />

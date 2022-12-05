@@ -37,11 +37,11 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
 
         FirebaseAuth.getInstance();
 
-        createAccountEmail = findViewById(R.id.accountEmail);
-        createAccountPassword1 = findViewById(R.id.password1);
-        createAccountPassword2 = findViewById(R.id.password2);
+        createAccountEmail = findViewById(R.id.createAccountViewEmailEditText);
+        createAccountPassword1 = findViewById(R.id.createAccountViewPasswordEditText);
+        createAccountPassword2 = findViewById(R.id.createAccountViewReEnterPasswordEditText);
 
-        Button buttonShowLoginView = findViewById(R.id.loginButton);
+        Button buttonShowLoginView = findViewById(R.id.createAccountViewRetLoginButton);
         buttonShowLoginView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +49,7 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
             }
         });
 
-        Button enter = findViewById(R.id.accountEnter);
+        Button enter = findViewById(R.id.createAccountViewCreateAccountButton);
         // creating account and uploading to the FirebaseAuth
         enter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
