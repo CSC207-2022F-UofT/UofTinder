@@ -2,6 +2,9 @@
 
 Introducing UofTinder, a social networking Android application built by a group of UofT students.
 
+The program allows users to match with other users based on their compatibility. Our program gives the user the option to either look for a romantic partner, a friend, or an academic friend. Then, a compatibility algorithm analyzes age, location, sexual orientation, hobbies, academic focus, and similar metrics to recommend potential matches to people, depending on the mode the user selects. If two people match with each other through this selection process, they proceed to a chat feature where they have the opportunity to talk and get to know each other in further depth. Users are able to send and react to text messages and pictures to facilitate getting to know each other.
+
+We were inspired by the dating app Tinder and wanted to create an app with more options in what kind of relationships one wants to build.
 # Installation/Execution Instructions
 
 # Core Functionalities
