@@ -149,7 +149,7 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
     }
 
     /**
-     * Creates the friendship_questionnaire.xml and gets inputs which is passed to the controller
+     * Creates the questionnaire_friendship.xml and gets inputs which is passed to the controller
      *
      * @param currentUser the current user trying to register
      */
@@ -173,7 +173,7 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
     }
 
     /**
-     * Creates the romantic_questionnaire.xml and gets inputs which is passed to the controller
+     * Creates the questionnaire_romantic.xml and gets inputs which is passed to the controller
      *
      * @param currentUser the current user trying to register
      */

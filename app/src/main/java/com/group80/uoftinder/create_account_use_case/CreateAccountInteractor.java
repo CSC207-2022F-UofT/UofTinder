@@ -293,7 +293,7 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
     }
 
     /**
-     * Checks if the information entered in friendship_questionnaire.xml was entered correctly.
+     * Checks if the information entered in questionnaire_friendship.xml was entered correctly.
      * Checks if all fields are non-empty or if an answer was chosen correctly (i.e. the int given
      * is within the index of possible selected answers.
      *
@@ -324,7 +324,7 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
     }
 
     /**
-     * Checks if the information entered in romantic_questionnaire.xml was entered correctly.
+     * Checks if the information entered in questionnaire_romantic.xml was entered correctly.
      * Checks if all fields are non-empty or if an answer was chosen correctly (i.e. the int given
      * is within the index of possible selected answers.
      *
