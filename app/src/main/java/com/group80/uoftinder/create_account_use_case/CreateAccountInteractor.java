@@ -243,6 +243,8 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
             currentUser.setAnswers((answers));
             //store User into realtime database
             UserRealtimeDbFacade.uploadUser(currentUser);
+            // stores User into Firebase Firestore
+            FirestoreDbWriter.uploadUser(currentUser);
 
             createAccountPresenter.prepareProfilePicUploadActivity(currentUser);
         } else {
