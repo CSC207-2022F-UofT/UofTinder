@@ -1,7 +1,6 @@
 package com.group80.uoftinder;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +21,6 @@ import com.group80.uoftinder.chat.ContactModel;
 import com.group80.uoftinder.chat.ContactPresenter;
 import com.group80.uoftinder.chat.ContactViewHolder;
 import com.group80.uoftinder.chat.ContactsView;
-import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 
 /**
@@ -70,8 +67,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
         contactAdapter = new FirestoreRecyclerAdapter<ContactModel, ContactViewHolder>(contacts) {
             @Override
             protected void onBindViewHolder(@NonNull ContactViewHolder holder, int position, @NonNull ContactModel contactModel) {
-                Drawable defaultProfilePic = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_launcher_foreground);
-                presenter.setContactInfo(holder, contactModel, defaultProfilePic);
+                holder.displayContactInfo(getApplicationContext(), contactModel);
                 holder.itemView.setOnClickListener(view -> presenter.enterChatActivity(contactModel));
             }
 
@@ -130,7 +126,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
         Intent intent = new Intent(ContactsActivity.this, ChatActivity.class);
         intent.putExtra("name", contactModel.getName());
         intent.putExtra("contactUid", contactModel.getUid());
-        intent.putExtra(Constants.CURRENT_USER_STRING, (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
+        intent.putExtra(Constants.CURRENT_USER_STRING, getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
         startActivity(intent);
     }
 
@@ -140,7 +136,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
     @Override
     public void enterRecommendationView() {
         Intent intent = new Intent(ContactsActivity.this, RecommendationView.class);
-        intent.putExtra(Constants.CURRENT_USER_STRING, (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
+        intent.putExtra(Constants.CURRENT_USER_STRING, getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
         startActivity(intent);
     }
 }

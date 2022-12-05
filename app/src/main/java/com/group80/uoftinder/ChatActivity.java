@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.group80.uoftinder.chat.ChatView;
 import com.group80.uoftinder.chat.Message;
 import com.group80.uoftinder.chat.MessageAdapter;
 import com.group80.uoftinder.chat.MessageFactory;
@@ -34,12 +35,13 @@ import java.util.List;
 /**
  * The chat window to a specific contact
  */
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity implements ChatView {
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
     private MessageAdapter messageAdapter;
     private List<Message> messageList;
     private String inputMessage;
+
+    private TextView contactName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class ChatActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.chatActivityToolBar);
         ImageButton backButton = findViewById(R.id.chatActivityBackButton);
         ImageView contactProfilePic = findViewById(R.id.chatActivityContactProfilePic);
-        TextView contactName = findViewById(R.id.chatActivityContactName);
+        contactName = findViewById(R.id.chatActivityContactName);
         RecyclerView messagesRecyclerView = findViewById(R.id.chatActivityMessagesRecyclerView);
         EditText messageEditText = findViewById(R.id.chatActivityMessageEditText);
         CardView sendMessageCardView = findViewById(R.id.chatActivitySendMessageCardView);
@@ -139,5 +141,10 @@ public class ChatActivity extends AppCompatActivity {
         super.onStop();
         if (messageAdapter != null)
             messageAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showContactInfo(String contactName) {
+        this.contactName.setText(contactName);
     }
 }
