@@ -14,7 +14,6 @@ import java.util.Set;
 public class RecommendationPresenter {
     private GenerateCompatibilityList genCompatibilityList;
     private RecViewInterface recViewInterface;
-//    private MatchCreatorInteractor mci;
     private User currUser;
 
     /**
