@@ -9,14 +9,12 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.group80.uoftinder.chat.ContactModel;
 import com.group80.uoftinder.chat.ContactPresenter;
 import com.group80.uoftinder.chat.ContactViewHolder;
@@ -47,24 +45,15 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
 
-        // TODO: remove after having functioning log-in ********************************************
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signInWithEmailAndPassword("csc207.group80.uoftinder@gmail.com", "CSC207Group80!").addOnFailureListener(Throwable::printStackTrace);
-//        firebaseAuth.signInWithEmailAndPassword("csc207.group80.uoftinder.bot@gmail.com", "12345678").addOnFailureListener(Throwable::printStackTrace);
-
-        // TODO: wrap-up FirebaseFirestore
-        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-        String uid = firebaseAuth.getCurrentUser().getUid();
-        Query query = firebaseFirestore.collection("Users").whereArrayContains("contacts", uid);
-        //******************************************************************************************
-
         ContactPresenter presenter = new ContactPresenter(this);
 
-        ImageButton button = findViewById(R.id.contactActivityBackButton);
+        ImageButton button = findViewById(R.id.contactsActivityBackButton);
         button.setOnClickListener(view -> presenter.enterRecommendationActivity());
 
-        FirestoreRecyclerOptions<ContactModel> contacts = new FirestoreRecyclerOptions.Builder<ContactModel>().setQuery(query, ContactModel.class).build();
-        contactAdapter = new FirestoreRecyclerAdapter<ContactModel, ContactViewHolder>(contacts) {
+        Toolbar toolbar = findViewById(R.id.contactsActivityToolBar);
+        setSupportActionBar(toolbar);
+
+        contactAdapter = new FirestoreRecyclerAdapter<ContactModel, ContactViewHolder>(presenter.setRecyclerAdapterOption()) {
             @Override
             protected void onBindViewHolder(@NonNull ContactViewHolder holder, int position, @NonNull ContactModel contactModel) {
                 holder.displayContactInfo(getApplicationContext(), contactModel);
@@ -80,7 +69,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
         };
 
         // Sets the layout
-        RecyclerView recyclerView = findViewById(R.id.contactActivityRecyclerView);
+        RecyclerView recyclerView = findViewById(R.id.contactsActivityRecyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -117,7 +106,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
     }
 
     /**
-     * Enters the `ChatActivity` with the given contact
+     * Enters {@link ChatActivity} with the given contact
      *
      * @param contactModel a model storing the information of a contact
      */

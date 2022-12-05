@@ -13,6 +13,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.firebase.firestore.FirestoreDbWriter;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
@@ -158,8 +159,10 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
             answers.add(majors);
             answers.add(Collections.singletonList(campus));
             currentUser.setAnswers((answers));
-            //store User into database
+            //store User into realtime database
             UserRealtimeDbFacade.uploadUser(currentUser);
+            // stores User into Firebase Firestore
+            FirestoreDbWriter.uploadUser(currentUser);
 
             createAccountPresenter.prepareRecommendationView(currentUser);
         } else {
@@ -195,8 +198,10 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
             answers.add(interests);
             answers.add(colours);
             currentUser.setAnswers((answers));
-            //store User into database
+            //store User into realtime database
             UserRealtimeDbFacade.uploadUser(currentUser);
+            // stores User into Firebase Firestore
+            FirestoreDbWriter.uploadUser(currentUser);
 
             createAccountPresenter.prepareRecommendationView(currentUser);
         } else {
@@ -236,8 +241,11 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
             answers.add(Collections.singletonList(distance));
             answers.add(Collections.singletonList(relationship));
             currentUser.setAnswers((answers));
-            //store User into database
+            //store User into realtime database
             UserRealtimeDbFacade.uploadUser(currentUser);
+            // stores User into Firebase Firestore
+            FirestoreDbWriter.uploadUser(currentUser);
+
             createAccountPresenter.prepareRecommendationView(currentUser);
         } else {
             createAccountPresenter.prepareCreateAccountFailureView("Please enter your information correctly!");

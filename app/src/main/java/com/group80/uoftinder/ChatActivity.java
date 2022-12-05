@@ -23,7 +23,6 @@ import com.group80.uoftinder.chat.ChatView;
 import com.group80.uoftinder.chat.Message;
 import com.group80.uoftinder.chat.MessageAdapter;
 import com.group80.uoftinder.chat.MessageFactory;
-import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.RealtimeDbValueObserver;
 import com.group80.uoftinder.firebase.realtime.ucChatMessageWriter;
 import com.group80.uoftinder.firebase.storage.ImageStorageDbFacade;
@@ -69,12 +68,10 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
 
         setSupportActionBar(toolbar);
 
-        // TODO: remove such dependency
         String contactUid = getIntent().getStringExtra("contactUid");
         String contactNameStr = getIntent().getStringExtra("name");
 
-        // TODO: wrap-up FirebaseAuth
-        String selfUid = firebaseAuth.getCurrentUser().getUid();
+        String selfUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //******************************************************************************************
 
         String chatRoom = selfUid.compareTo(contactUid) < 0 ? selfUid + contactUid : contactUid + selfUid;
@@ -95,8 +92,9 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
 
         backButton.setOnClickListener(view -> {
             Intent intent = new Intent(ChatActivity.this, ContactsActivity.class);
-            intent.putExtra(Constants.CURRENT_USER_STRING, (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
+            intent.putExtra(Constants.CURRENT_USER_STRING, getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
             startActivity(intent);
+            finish();
         });
 
         contactName.setText(contactNameStr);
