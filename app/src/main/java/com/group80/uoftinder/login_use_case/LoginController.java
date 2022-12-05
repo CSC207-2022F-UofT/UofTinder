@@ -19,7 +19,8 @@ public class LoginController {
 
     /**
      * Attempts to log in user using email and password
-     * @param loginEmail email input
+     *
+     * @param loginEmail    email input
      * @param loginPassword password input
      */
     public void loginUser(EditText loginEmail, EditText loginPassword) {

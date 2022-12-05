@@ -1,54 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/romantic_q"
+        android:id="@+id/friend_q"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="134dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="135dp"
-        android:layout_marginBottom="665dp"
-        android:text="Romantic Questionnaire"
+        android:text="Friendship Questionnaire"
         android:textColor="@color/black"
         android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="234dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginEnd="158dp"
-        android:layout_marginBottom="495dp"
-        android:ems="10"
-        android:focusable="false"
+    <TextView
+        android:id="@+id/questionnaireAcademicYearOfStudyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/friend_q"
+        android:layout_marginTop="50dp"
         android:inputType="textPersonName"
-        android:text="What is/are your major(s)?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.911" />
+        android:text="What is your year of study?"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="219dp"
-        android:layout_marginBottom="464dp"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        android:layout_below="@id/questionnaireAcademicYearOfStudyText"
+        android:layout_marginTop="5dp"
+        android:scrollbars="none" >
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/yeargroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="1"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="2"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="3"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="4"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Grad"
+                android:textAlignment="center" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/MajorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/questionnaireAcademicYearOfStudyText"
+        android:layout_marginTop="60dp"
+        android:inputType="textPersonName"
+        android:text="What is/are your major(s)?"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MajorText"
+        android:layout_marginTop="5dp"
+        android:scrollbars="none">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/majorgroup"
@@ -59,7 +116,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
+                android:layout_marginStart="10dp"
                 android:text="Computer Science"
                 android:textAlignment="center" />
 
@@ -108,31 +165,28 @@
 
     </HorizontalScrollView>
 
-    <EditText
-        android:id="@+id/editTextTextPersonName5"
-        android:layout_width="234dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="267dp"
-        android:layout_marginEnd="158dp"
-        android:layout_marginBottom="421dp"
-        android:ems="10"
-        android:focusable="false"
+    <TextView
+        android:id="@+id/CampusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/MajorText"
+        android:layout_marginTop="60dp"
         android:inputType="textPersonName"
         android:text="What campus are you on?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="310dp"
-        android:layout_marginBottom="373dp"
+        android:layout_below="@id/CampusText"
+        android:layout_marginTop="5dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/campusgroup"
@@ -144,7 +198,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
+                android:layout_marginStart="10dp"
                 android:text="St. George"
                 android:textAlignment="center" />
 
@@ -168,28 +222,24 @@
 
     </HorizontalScrollView>
 
-    <EditText
+    <TextView
         android:id="@+id/interests_q"
-        android:layout_width="234dp"
-        android:layout_height="43dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="358dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="330dp"
-        android:ems="10"
-        android:focusable="false"
+        android:layout_below="@id/CampusText"
+        android:layout_marginTop="60dp"
         android:inputType="textPersonName"
         android:text="What are your interests?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="401dp"
-        android:layout_marginBottom="282dp"
+        android:layout_below="@id/interests_q"
+        android:layout_marginTop="5dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -204,7 +254,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
+                android:layout_marginStart="10dp"
                 android:text="Art"
                 android:textAlignment="center" />
 
@@ -269,70 +319,37 @@
 
     </HorizontalScrollView>
 
-    <Button
-        android:id="@+id/romantic_finish"
+    <TextView
+        android:id="@+id/ColourText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="648dp"
-        android:layout_marginEnd="162dp"
-        android:text="Finish"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/error_questionnaire"
-        android:layout_width="200dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="628dp"
-        android:text=""
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/interests_q"
+        android:layout_marginTop="60dp"
+        android:inputType="textPersonName"
+        android:text="What is your favourite colour(s)!"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/art_q"
-        android:layout_width="300dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="449dp"
-        android:layout_marginEnd="95dp"
-        android:layout_marginBottom="239dp"
-        android:ems="10"
-        android:focusable="false"
-        android:inputType="textPersonName"
-        android:text="Are you willing to do long distance?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="492dp"
-        android:layout_marginBottom="191dp"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        android:layout_below="@id/ColourText"
+        android:layout_marginTop="5dp"
+        android:scrollbars="none" >
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/distancegroup"
+            android:id="@+id/colourgroup"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:singleSelection="true">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.chip.Chip
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Yes"
+                android:layout_marginStart="10dp"
+                android:text="Red"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
@@ -340,166 +357,70 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
-                android:text="No"
+                android:text="Orange"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
-                android:text="Not Sure"
+                android:text="Yellow"
                 android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Green"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Blue"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Purple"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Pink"
+                android:textAlignment="center" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Black/White/Gray"
+                android:textAlignment="center" />
+
 
         </com.google.android.material.chip.ChipGroup>
 
     </HorizontalScrollView>
 
-    <EditText
-        android:id="@+id/sexuality_q"
-        android:layout_width="200dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="85dp"
-        android:layout_marginEnd="192dp"
-        android:layout_marginBottom="603dp"
-        android:ems="10"
-        android:focusable="false"
-        android:inputType="textPersonName"
-        android:text="What is your sexuality?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/friend_finish"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:layout_marginBottom="555dp"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/sexualitygroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Heterosexual"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Homosexual"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Bisexual"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Pansexual"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Asexual"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Other/Prefer not to answer"
-                android:textAlignment="center" />
-
-        </com.google.android.material.chip.ChipGroup>
-
-    </HorizontalScrollView>
-
-    <EditText
-        android:id="@+id/relationship_q"
-        android:layout_width="370dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="540dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="148dp"
-        android:ems="10"
-        android:focusable="false"
-        android:inputType="textPersonName"
-        android:text="What kind of relationship are you looking for? "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="580dp"
-        android:layout_marginBottom="103dp"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/relationshipgroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Casual"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Long Term"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Don't know!"
-                android:textAlignment="center" />
-
-        </com.google.android.material.chip.ChipGroup>
-
-    </HorizontalScrollView>
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:layout_alignParentBottom="true"
+        android:text="Continue" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

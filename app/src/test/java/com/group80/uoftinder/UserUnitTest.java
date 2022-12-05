@@ -61,11 +61,12 @@ public class UserUnitTest {
         List<List<Integer>> answers = new ArrayList<>();
         answers.add(Arrays.asList(3));
         answers.add(Arrays.asList(4, 0));
+        answers.add(Arrays.asList(1));
         answers.add(Arrays.asList());
         answers.add(Arrays.asList(2));
         currentUser.setAnswers(answers);
 
         String infoString = currentUser.getUserInfoString();
-        assert infoString.equals("Fourth Year / Rotman Computer Science / / Yellow / ");
+        assert infoString.equals("Fourth Year / Rotman Computer Science / Mississauga / / Yellow / ");
     }
 }

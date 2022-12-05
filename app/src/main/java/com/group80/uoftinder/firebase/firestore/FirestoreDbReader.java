@@ -15,7 +15,7 @@ public class FirestoreDbReader {
         // Get a collection of `documents` who has `uid` in their "contacts" array
         return FirebaseFirestore.getInstance()
                 .collection("Users")
-                .whereArrayContains("contacts",
+                .whereArrayContains("matches",
                         FirebaseAuth.getInstance().getCurrentUser().getUid());
     }
 }
