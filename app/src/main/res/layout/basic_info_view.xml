@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,182 +15,192 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/basicInfoViewPersonNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/BasicInfoViewTitle"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:text="What is your name?"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/basicInfoViewPersonNameTextView"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="" />
-
-    <TextView
-        android:id="@+id/basicInfoViewPersonAgeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/name"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="How old are you?"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/basicInfoViewPersonAgeTextView"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="number"
-        android:minHeight="48dp" />
-
-    <TextView
-        android:id="@+id/basicInfoViewPersonGenderTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/age"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="How do you identify?"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/basicInfoViewPersonTypeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/basicInfoViewPersonGenderScrollView"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="Choose your account type!"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <HorizontalScrollView
-        android:id="@+id/basicInfoViewPersonGenderScrollView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/basicInfoViewPersonGenderTextView"
-        android:layout_marginTop="20dp"
-        android:scrollbars="none">
+        android:layout_height="match_parent"
+        android:layout_below="@id/BasicInfoViewTitle">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/identityGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:singleSelection="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="100dp"
+            <TextView
+                android:id="@+id/basicInfoViewPersonNameTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Female"
-                android:textAlignment="center" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:text="What is your name?"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="100dp"
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Male"
-                android:textAlignment="center" />
+                android:layout_below="@id/basicInfoViewPersonNameTextView"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:text="" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="100dp"
+            <TextView
+                android:id="@+id/basicInfoViewPersonAgeTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Non-binary"
-                android:textAlignment="center" />
+                android:layout_below="@id/name"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="How old are you?"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+            <EditText
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/basicInfoViewPersonAgeTextView"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="number"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/basicInfoViewPersonGenderTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/age"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="How do you identify?"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/basicInfoViewPersonTypeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/basicInfoViewPersonGenderScrollView"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Choose your account type!"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:id="@+id/basicInfoViewPersonGenderScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/basicInfoViewPersonGenderTextView"
+                android:layout_marginTop="20dp"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/identityGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Female"
+                        android:textAlignment="center" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Male"
+                        android:textAlignment="center" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Non-binary"
+                        android:textAlignment="center" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="Other/Prefer not to answer"
+                        android:textAlignment="center" />
+
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:id="@+id/basicInfoViewPersonTypeScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/basicInfoViewPersonTypeTextView"
+                android:layout_marginTop="20dp"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/typeGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Academic"
+                        android:textAlignment="center" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Friendship"
+                        android:textAlignment="center" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Romantic"
+                        android:textAlignment="center" />
+
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
+
+            <Button
+                android:id="@+id/cont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/basicInfoViewPersonTypeScrollView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="Continue" />
+
+            <TextView
+                android:id="@+id/error_basicinfo"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="Other/Prefer not to answer"
-                android:textAlignment="center" />
-
-
-        </com.google.android.material.chip.ChipGroup>
-
-    </HorizontalScrollView>
-
-    <HorizontalScrollView
-        android:id="@+id/basicInfoViewPersonTypeScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/basicInfoViewPersonTypeTextView"
-        android:layout_marginTop="20dp"
-        android:scrollbars="none">
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/typeGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Academic"
-                android:layout_marginStart="10dp"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Friendship"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Romantic"
-                android:textAlignment="center" />
-
-
-        </com.google.android.material.chip.ChipGroup>
-
-    </HorizontalScrollView>
-
-    <Button
-        android:id="@+id/cont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/basicInfoViewPersonTypeScrollView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="Continue" />
-
-    <TextView
-        android:id="@+id/error_basicinfo"
-        android:layout_width="200dp"
-        android:layout_height="20dp"
-        android:layout_below="@id/basicInfoViewPersonTypeScrollView"
-        android:layout_marginTop="5dp"
-        android:text=""
-        android:textColor="@color/black" />
-
+                android:layout_height="20dp"
+                android:layout_below="@id/basicInfoViewPersonTypeScrollView"
+                android:layout_marginTop="5dp"
+                android:text=""
+                android:textColor="@color/black" />
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

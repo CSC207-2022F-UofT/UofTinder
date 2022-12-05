@@ -2,6 +2,7 @@ package com.group80.uoftinder.create_account_use_case;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.Constants;
+import com.group80.uoftinder.ProfilePicUploadActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
@@ -203,7 +205,8 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
      */
     @Override
     public void updateUI(User currentUser) {
-        Intent intent = new Intent(CreateAccountView.this, RecommendationView.class);
+        Intent intent = new Intent(CreateAccountView.this, ProfilePicUploadActivity.class);
+        Log.d("DEBUGGING", "updateUI: " + (currentUser == null ? "User is NULL" : "User is not NULL"));
         intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
         startActivity(intent);
         finish();

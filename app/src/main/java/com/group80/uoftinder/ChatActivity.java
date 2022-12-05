@@ -25,7 +25,7 @@ import com.group80.uoftinder.chat.MessageFactory;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.RealtimeDbValueObserver;
 import com.group80.uoftinder.firebase.realtime.ucChatMessageWriter;
-import com.group80.uoftinder.firebase.storage.ImageStorageDbFacade;
+import com.group80.uoftinder.firebase.storage.ImageStorageDbController;
 import com.group80.uoftinder.firebase.storage.StorageDbDownloadable;
 
 import java.util.ArrayList;
@@ -98,7 +98,7 @@ public class ChatActivity extends AppCompatActivity {
         });
 
         contactName.setText(contactNameStr);
-        ImageStorageDbFacade.downloadImage(new String[]{contactUid, "img", "_profile_img.jpg"},
+        ImageStorageDbController.downloadImage(new String[]{contactUid, "img", "_profile_img.jpg"},
                 new StorageDbDownloadable<byte[]>() {
                     @Override
                     public void onStorageDownloadSuccess(byte[] data) {

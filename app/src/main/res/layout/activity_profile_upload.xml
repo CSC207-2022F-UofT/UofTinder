@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfilePicUploadActivity">
+
+    <TextView
+        android:id="@+id/profileUploadActivityTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/profilePicUploadActivityProfileImgCardView"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="25dp"
+        android:text="Upload Your Profile Picture"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profilePicUploadActivityProfileImgCardView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="150dp">
+
+        <ImageView
+            android:id="@+id/profileImgUploadActivityProfileImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/profileImgUploadActivityUploadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profilePicUploadActivityProfileImgCardView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="Upload"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/profileImgUploadActivitySkipButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileImgUploadActivityUploadButton"
+        android:layout_centerInParent="true"
+        android:background="@color/fui_transparent"
+        android:text="Skip"
+        android:textColor="#BDBDBD" />
+</RelativeLayout>
