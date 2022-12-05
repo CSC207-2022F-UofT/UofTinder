@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/questionnaireAcademicBasicInfoViewTitle"
+        android:id="@+id/BasicInfoViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_below="@+id/questionnaireAcademicBasicInfoViewTitle"
+        android:layout_below="@+id/BasicInfoViewTitle"
         android:layout_marginTop="50dp"
         android:inputType="textPersonName"
         android:text="What is your year of study?"
@@ -88,7 +88,7 @@
     </HorizontalScrollView>
 
     <TextView
-        android:id="@+id/questionnaireAcademicMajorText"
+        android:id="@+id/MajorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -103,7 +103,7 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/questionnaireAcademicMajorText"
+        android:layout_below="@id/MajorText"
         android:layout_marginTop="5dp"
         android:scrollbars="none">
 
@@ -166,11 +166,11 @@
     </HorizontalScrollView>
 
     <TextView
-        android:id="@+id/questionnaireAcademicCampusText"
+        android:id="@+id/CampusText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_below="@id/questionnaireAcademicMajorText"
+        android:layout_below="@id/MajorText"
         android:layout_marginTop="60dp"
         android:inputType="textPersonName"
         android:text="What campus are you on?"
@@ -181,7 +181,7 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/questionnaireAcademicCampusText"
+        android:layout_below="@id/CampusText"
         android:layout_marginTop="5dp"
         android:scrollbars="none">
 
@@ -244,16 +244,5 @@
         android:layout_marginBottom="32dp"
         android:layout_alignParentBottom="true"
         android:text="Finish" />
-
-    <TextView
-        android:id="@+id/error_questionnaire"
-        android:layout_width="200dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_below="@id/questionnaireAcademicCampusText"
-        android:layout_marginTop="70dp"
-        android:text=""
-        android:textColor="@color/black" />
-
 
 </RelativeLayout>
