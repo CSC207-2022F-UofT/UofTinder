@@ -17,13 +17,12 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/basicInfoViewPersonNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/basicInfoViewTitle"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:focusable="false"
+        android:layout_marginTop="40dp"
         android:text="What is your name?"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -33,84 +32,68 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/basicInfoViewPersonNameTextView"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="133dp"
-        android:layout_marginEnd="185dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:minHeight="48dp"
+        android:text="" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName8"
+    <TextView
+        android:id="@+id/basicInfoViewPersonAgeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/name"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="201dp"
-        android:layout_marginEnd="185dp"
-        android:layout_marginBottom="485dp"
-        android:ems="10"
-        android:focusable="false"
-        android:inputType="textPersonName"
+        android:layout_marginTop="20dp"
         android:text="How old are you?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/typetext"
+        android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/basicInfoViewPersonAgeTextView"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="305dp"
-        android:layout_marginEnd="185dp"
-        android:layout_marginBottom="381dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
-        android:focusable="false"
-        android:inputType="textPersonName"
-        android:text="How do you identify?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:inputType="number"
+        android:minHeight="48dp" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName11"
-        android:layout_width="236dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="407dp"
-        android:layout_marginEnd="163dp"
-        android:layout_marginBottom="281dp"
-        android:ems="10"
-        android:focusable="false"
-        android:inputType="textPersonName"
-        android:text="Choose your account Type!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="407dp" />
+    <TextView
+        android:id="@+id/basicInfoViewPersonGenderTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/age"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="How do you identify?"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/basicInfoViewPersonTypeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/basicInfoViewPersonGenderScrollView"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Choose your account type!"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <HorizontalScrollView
+        android:id="@+id/basicInfoViewPersonGenderScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
-        android:layout_marginBottom="333dp"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        android:layout_below="@id/basicInfoViewPersonGenderTextView"
+        android:layout_marginTop="20dp"
+        android:scrollbars="none">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/identityGroup"
@@ -122,7 +105,7 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
+                android:layout_marginStart="10dp"
                 android:text="Female"
                 android:textAlignment="center" />
 
@@ -130,7 +113,6 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
                 android:text="Male"
                 android:textAlignment="center" />
 
@@ -138,7 +120,6 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
                 android:text="Non-binary"
                 android:textAlignment="center" />
 
@@ -146,7 +127,6 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
                 android:text="Other/Prefer not to answer"
                 android:textAlignment="center" />
 
@@ -156,14 +136,12 @@
     </HorizontalScrollView>
 
     <HorizontalScrollView
+        android:id="@+id/basicInfoViewPersonTypeScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
-        android:layout_marginBottom="233dp"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        android:layout_below="@id/basicInfoViewPersonTypeTextView"
+        android:layout_marginTop="20dp"
+        android:scrollbars="none">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/typeGroup"
@@ -175,15 +153,14 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
                 android:text="Academic"
+                android:layout_marginStart="10dp"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
                 android:text="Friendship"
                 android:textAlignment="center" />
 
@@ -191,7 +168,6 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
                 android:text="Romantic"
                 android:textAlignment="center" />
 
@@ -204,45 +180,18 @@
         android:id="@+id/cont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="552dp"
-        android:layout_marginEnd="151dp"
-        android:layout_marginBottom="131dp"
-        android:text="Continue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="246dp"
-        android:layout_marginEnd="185dp"
-        android:layout_marginBottom="440dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_below="@id/basicInfoViewPersonTypeScrollView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Continue" />
 
     <TextView
         android:id="@+id/error_basicinfo"
         android:layout_width="200dp"
         android:layout_height="20dp"
-        android:layout_marginTop="516dp"
+        android:layout_below="@id/basicInfoViewPersonTypeScrollView"
+        android:layout_marginTop="5dp"
         android:text=""
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/black" />
 
 </RelativeLayout>
