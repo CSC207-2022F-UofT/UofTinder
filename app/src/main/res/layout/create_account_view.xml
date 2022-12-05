@@ -142,7 +142,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/createAccountViewProfileImageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="254dp"
