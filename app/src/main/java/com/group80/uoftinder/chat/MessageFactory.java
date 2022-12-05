@@ -9,7 +9,6 @@ import java.util.Locale;
  * Creates new messages
  */
 public class MessageFactory {
-    private static final Calendar calendar = Calendar.getInstance();
     private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm a", Locale.CANADA);
 
     /**
@@ -21,6 +20,7 @@ public class MessageFactory {
      */
     public static Message createMessage(String message, String senderUid) {
         Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
         return new Message(message, senderUid, date.getTime(), simpleDateFormat.format(calendar.getTime()));
     }
 }
