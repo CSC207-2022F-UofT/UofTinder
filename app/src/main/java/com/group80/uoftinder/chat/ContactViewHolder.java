@@ -23,21 +23,13 @@ public class ContactViewHolder extends RecyclerView.ViewHolder {
         contactPic = itemView.findViewById(R.id.contactListContactPic);
     }
 
-    public void setContactName(String contactName) {
-        this.contactName.setText(contactName);
-    }
-
-    public ImageView getContactPic() {
-        return this.contactPic;
-    }
-
     public void displayContactInfo(Context context, ContactModel contactModel) {
         this.contactName.setText(contactModel.name);
 
         Drawable defaultProfilePic = ContextCompat.getDrawable(context, R.drawable.ic_launcher_foreground);
         ImageViewImagePresenter.downloadBitmapToImageView(
                 new String[]{contactModel.getUid(), "img", "_profile_img.jpg"},
-                getContactPic(),
+                contactPic,
                 defaultProfilePic
         );
     }

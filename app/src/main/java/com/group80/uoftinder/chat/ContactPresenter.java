@@ -1,5 +1,9 @@
 package com.group80.uoftinder.chat;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.group80.uoftinder.firebase.firestore.FirestoreDbReader;
+
 /**
  * A presenter for presenting the contacts list
  */
@@ -14,6 +18,19 @@ public class ContactPresenter {
     public ContactPresenter(ContactsView view) {
         this.view = view;
     }
+
+    /**
+     * Sets the options to configure a {@link com.firebase.ui.firestore.FirestoreRecyclerAdapter}.
+     *
+     * @return options to configure a FirestoreRecyclerAdapter.
+     */
+    public FirestoreRecyclerOptions<ContactModel> setRecyclerAdapterOption() {
+        return new FirestoreRecyclerOptions
+                .Builder<ContactModel>()
+                .setQuery(FirestoreDbReader.getContactsAsQuery(FirebaseAuth.getInstance().getUid()), ContactModel.class)
+                .build();
+    }
+
 
     /**
      * Enters the `ChatActivity` with the given contact
