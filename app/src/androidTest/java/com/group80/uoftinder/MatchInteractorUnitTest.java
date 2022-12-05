@@ -122,7 +122,7 @@ public class MatchInteractorUnitTest {
      * when the currentUser does not 'like' the displayedUser
      */
     @Test
-    public void currUserSkipsDisplayedUserTest() {
+    public void currUserSkipsDisplayedUserRemote() {
         User currentUser = new User("user2");
         User displayedUser = new User("user3");
         currentUser.setUserType("Romantic");
@@ -145,7 +145,7 @@ public class MatchInteractorUnitTest {
      * when the currentUser does not 'like' the displayedUser
      */
     @Test
-    public void currUserLikesDisplayedUserTest() {
+    public void currUserLikesDisplayedUserRemote() {
         User currentUser = new User("user2");
         User displayedUser = new User("user3");
         currentUser.setUserType("Romantic");
