@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/questionnaireAcademicMajorText"
         android:layout_width="234dp"
         android:layout_height="43dp"
         android:layout_marginStart="19dp"
@@ -109,7 +109,7 @@
     </HorizontalScrollView>
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/questionnaireAcademicCampusText"
         android:layout_width="234dp"
         android:layout_height="43dp"
         android:layout_marginStart="19dp"
@@ -295,7 +295,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/art_q"
+        android:id="@+id/questionnaireFriendshipColourText"
         android:layout_width="300dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
