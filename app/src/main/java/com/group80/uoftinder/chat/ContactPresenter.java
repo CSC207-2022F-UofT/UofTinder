@@ -31,7 +31,6 @@ public class ContactPresenter {
                 .build();
     }
 
-
     /**
      * Enters the `ChatActivity` with the given contact
      *
