@@ -1,4 +1,5 @@
 package com.group80.uoftinder.feed;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,12 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.ContactsActivity;
 import com.group80.uoftinder.R;
-import com.group80.uoftinder.UpdateList;
-import com.group80.uoftinder.Constants;
+
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 
@@ -60,16 +62,14 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         this.currentUser = (User) getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING);
         this.recPresenter = new RecommendationPresenter(currentUser, RecommendationView.this);
         this.displayedUser = null;
-        UpdateList update = new UpdateList(currentUser);
 
         boolean shouldFilter = getIntent().getBooleanExtra(Constants.SHOULD_FILTER_STRING, false);
-        if(shouldFilter) {
+        if (shouldFilter) {
             filters = (List<Set<Integer>>) getIntent().getSerializableExtra(Constants.FILTERS_STRING);
             minAge = getIntent().getIntExtra(Constants.MIN_AGE_STRING, Constants.MIN_AGE);
             maxAge = getIntent().getIntExtra(Constants.MAX_AGE_STRING, Constants.MAX_AGE);
             recPresenter.filterCompatibilityList(filters, minAge, maxAge);
-        }
-        else {
+        } else {
             recPresenter.revertFilters();
         }
 
@@ -78,12 +78,12 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
 
         // yes button click listener
         yesButton.setOnClickListener(view -> {
-            buttonClick(displayedUser, true);
+            buttonClick(true);
         });
 
         // no button click listener
         noButton.setOnClickListener(view -> {
-            buttonClick(displayedUser, false);
+            buttonClick(false);
         });
 
         Button logoutButton = findViewById(R.id.logoutButton);
@@ -100,7 +100,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         });
 
         Button chatButton = findViewById(R.id.chatButton);
-        chatButton.setOnClickListener(new View.OnClickListener()  {
+        chatButton.setOnClickListener(new View.OnClickListener() {
             /**
              * Enters the chat page for the current user to chat with their matched users.
              * @param view  Current view
@@ -108,7 +108,6 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RecommendationView.this, ContactsActivity.class);
-                // TODO: remove such dependency
                 intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
                 startActivity(intent);
             }
@@ -132,11 +131,11 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         });
     }
 
-    @Override
     /**
      * Initializes displayedUser to the first User in currentUser's most compatible list.
      * @param displayedUser is the user displayed currently to currentUser.
      */
+    @Override
     public void setDisplayedUser(User displayedUser) {
         this.displayedUser = displayedUser;
     }
@@ -144,28 +143,31 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     /**
      * Returns displayedUser that is currently being displayed to currentUser.
      */
+    @Override
     public User getDisplayedUser() { return this.displayedUser; }
 
 
     /**
      * helper method for onClickListener method that listens
      * when the 'Yes' and 'No' button is clicked
-     * @param displayedUser is the user displayed currently to currentUser
      * @param liked If true, currentUser 'likes' displayedUser, false otherwise
      */
-    protected void buttonClick(User displayedUser, boolean liked) {
+    protected void buttonClick(boolean liked) {
         // add displayed User to viewed/liked list
-        UpdateList.addToList(displayedUser, liked, currentUser.getViewed(), currentUser.getLiked());
+        recPresenter.updateLists(liked);
+        if (liked) {
+            recPresenter.useMatchCreator(); // if we liked the displayed user, we call upon
+            // the match creator to check if a match can be created
+        }
         // displays next user
         recPresenter.nextUser();
         recPresenter.displayUser();
     }
 
-    @Override
     /**
      * Set the information on screen to the displayedUser's information
-     * @param displayedUser is the user displayed currently to currentUser
      */
+    @Override
     public void showUser() {
         profilePicture.setImageURI(displayedUser.getPhotoUrl());
         name.setText(displayedUser.getName());
@@ -174,10 +176,10 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         info.setText(displayedUser.getUserInfoString());
     }
 
-    @Override
     /**
      * displays a screen that tells currentUsers that there are no more compatible users.
      */
+    @Override
     public void noCompatibleUser() {
         final Context context = this;
         Intent intent = new Intent(context, NoNewRecommendation.class);
@@ -186,5 +188,16 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         intent.putExtra(Constants.MIN_AGE_STRING, minAge);
         intent.putExtra(Constants.MAX_AGE_STRING, maxAge);
         startActivity(intent);
+    }
+
+    /**
+     * Creates a pop-up message at the button of the screen when the current user has matched
+     * with the person they clicked like on
+     */
+    @Override
+    public void createPopUp() {
+        Toast.makeText(RecommendationView.this,
+                "You matched with " + getDisplayedUser().getName() + "!",
+                Toast.LENGTH_SHORT).show();
     }
 }

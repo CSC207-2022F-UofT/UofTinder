@@ -38,8 +38,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".create_account_use_case.CreateAccountActivity"
-            android:exported="true" />
+            android:name=".create_account_use_case.CreateAccountActivity" />
         <activity
             android:name=".login_use_case.LoginActivity"
             android:exported="true">
@@ -64,7 +63,8 @@
         </activity>
         <activity
             android:name=".ContactsActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
