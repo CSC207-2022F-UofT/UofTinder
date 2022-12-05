@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loginview);
+        setContentView(R.layout.login_view);
 
         User user = new User("CSC207_Group80");
         user.setUserType("Administrator");

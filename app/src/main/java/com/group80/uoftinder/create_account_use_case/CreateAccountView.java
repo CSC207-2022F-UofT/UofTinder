@@ -33,7 +33,7 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.createaccountview);
+        setContentView(R.layout.create_account_view);
 
         FirebaseAuth.getInstance();
 
@@ -109,7 +109,7 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
      */
     @Override
     public void basicInfoUI(User currentUser) {
-        setContentView(R.layout.basicinfoview);
+        setContentView(R.layout.basic_info_view);
 
         Button enter = findViewById(R.id.cont);
         EditText userName = findViewById(R.id.name);
@@ -132,7 +132,7 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
      */
     @Override
     public void academicQuestionnaireUI(User currentUser) {
-        setContentView(R.layout.academic_questionnaire);
+        setContentView(R.layout.questionnaire_academic);
         Button enter = findViewById(R.id.academic_finish);
 
         ChipGroup yearGroup = findViewById(R.id.yeargroup);
@@ -153,7 +153,7 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
      */
     @Override
     public void friendshipQuestionnaireUI(User currentUser) {
-        setContentView(R.layout.friendship_questionnaire);
+        setContentView(R.layout.questionnaire_friendship);
         Button enter = findViewById(R.id.friend_finish);
 
         ChipGroup yearGroup = findViewById(R.id.yeargroup);
@@ -177,7 +177,7 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
      */
     @Override
     public void romanticQuestionnaireUI(User currentUser) {
-        setContentView(R.layout.romantic_questionnaire);
+        setContentView(R.layout.questionnaire_romantic);
         Button enter = findViewById(R.id.romantic_finish);
 
         ChipGroup sexualityGroup = findViewById(R.id.sexualitygroup);
