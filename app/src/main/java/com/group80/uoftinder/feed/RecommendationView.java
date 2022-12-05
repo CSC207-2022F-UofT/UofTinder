@@ -173,7 +173,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         name.setText(displayedUser.getName());
         age.setText(Integer.toString(displayedUser.getAge()));
         gender.setText(displayedUser.getGender());
-//        info.setText(displayedUser.getUserInfoString());
+        info.setText(displayedUser.getUserInfoString());
     }
 
     @Override
