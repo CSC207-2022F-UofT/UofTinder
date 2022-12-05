@@ -6,12 +6,12 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.group80.uoftinder.firebase.storage.ImageStorageDbFacade;
+import com.group80.uoftinder.firebase.storage.ImageStorageDbController;
 import com.group80.uoftinder.firebase.storage.StorageDbDownloadable;
 
 public class ImageViewImagePresenter {
     public static void downloadBitmapToImageView(String[] path, ImageView imageView, Drawable defaultDrawable) {
-        ImageStorageDbFacade.downloadImage(path, new StorageDbDownloadable<byte[]>() {
+        ImageStorageDbController.downloadImage(path, new StorageDbDownloadable<byte[]>() {
             @Override
             public void onStorageDownloadSuccess(byte[] data) {
                 imageView.setImageBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
