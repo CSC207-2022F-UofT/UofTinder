@@ -10,7 +10,7 @@ import com.group80.uoftinder.create_account_use_case.CreateAccountPresenter;
 public class CheckInfoEmptyTest {
 
 //    Class<RecommendationView> testRecView;
-//    CreateAccountViewModel viewModel;
+//    CreateAccountViewInterface viewModel;
     CreateAccountPresenter testPresenter;
 //    = new CreateAccountPresenterFormatter(testRecView, viewModel);
     CreateAccountInteractor testInteractor = new CreateAccountInteractor(testPresenter);
