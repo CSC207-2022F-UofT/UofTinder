@@ -26,6 +26,7 @@ public class Constants {
                     {"First Year", "Second Year", "Third Year", "Fourth Year", "Graduate"},
                     {"Computer Science", "Mathematical & Physical Sciences", "Life Sciences",
                             "Social Sciences & Humanities", "Rotman", "Other"},
+                    {"St. George", "Mississauga", "Scarborough"},
                     {"Art", "Fashion", "Food", "Gaming", "Movies & TV & Literature", "Music",
                             "Technology", "Sports & Athletics"},
                     {"Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Black & White & Gray"}

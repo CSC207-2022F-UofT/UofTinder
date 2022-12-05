@@ -48,6 +48,13 @@ public class MatchInteractor {
         return false;
     }
 
+    /**
+     * Send a preliminary message to the displayed user upon match
+     * Uses ChatMessageWriter use case
+     * @param selfUid is the uid of the current user
+     * @param contactUid is the uid of the displayed user
+     * @param message is the String to send from current user to the displayed user
+     */
     private static void sendIntroMessage(String selfUid, String contactUid, String message) {
         String chatRoom = selfUid.compareTo(contactUid) < 0 ? selfUid + contactUid : contactUid + selfUid;
 

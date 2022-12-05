@@ -1,5 +1,4 @@
 package com.group80.uoftinder.feed;
-import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,9 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.ContactsActivity;
 import com.group80.uoftinder.R;
-import com.group80.uoftinder.Constants;
+
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 
@@ -64,13 +64,12 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         this.displayedUser = null;
 
         boolean shouldFilter = getIntent().getBooleanExtra(Constants.SHOULD_FILTER_STRING, false);
-        if(shouldFilter) {
+        if (shouldFilter) {
             filters = (List<Set<Integer>>) getIntent().getSerializableExtra(Constants.FILTERS_STRING);
             minAge = getIntent().getIntExtra(Constants.MIN_AGE_STRING, Constants.MIN_AGE);
             maxAge = getIntent().getIntExtra(Constants.MAX_AGE_STRING, Constants.MAX_AGE);
             recPresenter.filterCompatibilityList(filters, minAge, maxAge);
-        }
-        else {
+        } else {
             recPresenter.revertFilters();
         }
 
@@ -101,7 +100,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         });
 
         Button chatButton = findViewById(R.id.chatButton);
-        chatButton.setOnClickListener(new View.OnClickListener()  {
+        chatButton.setOnClickListener(new View.OnClickListener() {
             /**
              * Enters the chat page for the current user to chat with their matched users.
              * @param view  Current view
@@ -109,7 +108,6 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RecommendationView.this, ContactsActivity.class);
-                // TODO: remove such dependency
                 intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
                 startActivity(intent);
             }
@@ -157,11 +155,11 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     protected void buttonClick(boolean liked) {
         // add displayed User to viewed/liked list
         recPresenter.updateLists(liked);
-        // displays next user
         if (liked) {
             recPresenter.useMatchCreator(); // if we liked the displayed user, we call upon
             // the match creator to check if a match can be created
         }
+        // displays next user
         recPresenter.nextUser();
         recPresenter.displayUser();
     }
