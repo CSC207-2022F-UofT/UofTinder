@@ -82,6 +82,7 @@ We were inspired by the dating app Tinder and wanted to create an app with more 
   - infoStringTestFriendshipUser: tests for getting the correct display information string for a friendship user. Also tests the case of not providing an answer for a question between two questions with answers provided.
 
 # Next steps for UofTinder
+Given more time, we would create prettier viewing of user profiles (UI changes) and also add a filter UI option for romantic and friendship users.
 
 # 
 
