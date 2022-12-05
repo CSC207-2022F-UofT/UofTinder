@@ -38,7 +38,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".create_account_use_case.CreateAccountView"
+            android:name=".create_account_use_case.CreateAccountActivity"
             android:exported="true" />
         <activity
             android:name=".login_use_case.LoginActivity"

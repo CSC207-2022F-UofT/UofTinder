@@ -17,13 +17,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.R;
-import com.group80.uoftinder.create_account_use_case.CreateAccountView;
+import com.group80.uoftinder.create_account_use_case.CreateAccountActivity;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 
-public class LoginActivity extends AppCompatActivity implements LoginViewModel {
+public class LoginActivity extends AppCompatActivity implements LoginViewInterface {
 
     EditText loginEmail;
     EditText loginPassword;
@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_view);
+        setContentView(R.layout.activity_login);
 
         User user = new User("CSC207_Group80");
         user.setUserType("Administrator");
@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
 
-        LoginPresenter loginPresenter = new LoginPresenterFormatter(RecommendationView.class, LoginActivity.this);
+        LoginPresenterInterface loginPresenter = new LoginPresenter(RecommendationView.class, LoginActivity.this);
         LoginInput loginInteractor = new LoginInteractor(loginPresenter);
         LoginController loginController = new LoginController(loginInteractor);
 
@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewModel {
      * @param view current view
      */
     public void showCreateAccountView(View view) {
-        Intent intent = new Intent(LoginActivity.this, CreateAccountView.class);
+        Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
         startActivity(intent);
         finish();
     }

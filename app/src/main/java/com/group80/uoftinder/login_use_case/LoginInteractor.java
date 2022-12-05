@@ -22,12 +22,12 @@ import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.concurrent.ExecutionException;
 
-public class LoginInteractor extends AppCompatActivity implements LoginInput{
+public class LoginInteractor extends AppCompatActivity implements LoginInput {
 
-    final LoginPresenter loginPresenter;
+    final LoginPresenterInterface loginPresenter;
     private User currentUser;
 
-    public LoginInteractor(LoginPresenter loginPresenter) {
+    public LoginInteractor(LoginPresenterInterface loginPresenter) {
         this.loginPresenter = loginPresenter;
     }
 
@@ -36,18 +36,15 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
      * Error will appear if there is no email input, if there is no password input,
      * or if incorrect email and password combination is input
      *
-     * @param email login email input
+     * @param email    login email input
      * @param password login password input
      */
     public void loginUser(String email, String password) {
         if (TextUtils.isEmpty(email)) { // no email input, user == null
             loginPresenter.prepareEmailFailureView("Email is required!");
-        }
-        else if (TextUtils.isEmpty(password)){ // no password input, user == null
+        } else if (TextUtils.isEmpty(password)) { // no password input, user == null
             loginPresenter.preparePasswordFailureView("Password is required!");
-        }
-
-        else { // user == null, signing in with email and password
+        } else { // user == null, signing in with email and password
             Task<AuthResult> task = FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password);
             Thread thread = new Thread(() -> {
                 try {
@@ -85,8 +82,7 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput{
                 Log.e("TEST", this.currentUser == null ? "NULL" : "YESSSSS");
                 // using the current user, change the UI
                 loginPresenter.prepareSuccessView("Login Successful!", currentUser);
-            }
-            else {
+            } else {
                 // If sign in fails, display a message to the user.
                 loginPresenter.prepareLoginFailureView("Login Unsuccessful :(");
             }

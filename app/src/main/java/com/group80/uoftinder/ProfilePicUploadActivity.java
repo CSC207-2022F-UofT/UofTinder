@@ -6,8 +6,10 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -20,6 +22,7 @@ import com.group80.uoftinder.profile_upload.ProfileUploadPresenter;
 import com.group80.uoftinder.profile_upload.ProfileUploadView;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -85,17 +88,17 @@ public class ProfilePicUploadActivity extends AppCompatActivity implements Profi
         uploadButton.setOnClickListener(v -> {
             try {
                 presenter.uploadProfileImage(MediaStore.Images.Media.getBitmap(getContentResolver(), imagePath.get()));
-                presenter.proceedToNextView(ProfilePicUploadActivity.this, RecommendationView.class, getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
+                presenter.proceedToNextView("Registration Successful :D", getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (NullPointerException e) { // no file set
-                presenter.showEmptyImageMessage(getApplicationContext(), "Profile Image Empty!");
+                presenter.showEmptyImageMessage("Profile Image Empty!");
             }
         });
 
         // Button for skip. No image will be uploaded
         skipButton.setOnClickListener(view -> {
-            presenter.proceedToNextView(ProfilePicUploadActivity.this, RecommendationView.class, getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
+            presenter.proceedToNextView("Registration Successful :D", getIntent().getSerializableExtra(Constants.CURRENT_USER_STRING));
         });
     }
 
@@ -117,5 +120,28 @@ public class ProfilePicUploadActivity extends AppCompatActivity implements Profi
     @Override
     public void showProfileImage(Uri uri) {
         profileImage.setImageURI(uri);
+    }
+
+    /**
+     * Updates UI to RecommendationView of the current user
+     *
+     * @param data current user
+     */
+    @Override
+    public void showNextView(Serializable data) {
+        Intent intent = new Intent(ProfilePicUploadActivity.this, RecommendationView.class);
+        intent.putExtra(Constants.CURRENT_USER_STRING, data);
+        Log.d("DEBUGGING", "proceedToNextView: " + (data == null ? "No User passed in" : "User passed in"));
+        startActivity(intent);
+    }
+
+    /**
+     * Display a pop up message to the user
+     *
+     * @param msg message to display
+     */
+    @Override
+    public void showImageMessage(CharSequence msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 }

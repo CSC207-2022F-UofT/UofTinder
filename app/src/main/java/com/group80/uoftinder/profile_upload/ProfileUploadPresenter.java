@@ -1,23 +1,16 @@
 package com.group80.uoftinder.profile_upload;
 
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.firebase.storage.ImageStorageDbController;
 
 import java.io.Serializable;
 
 public class ProfileUploadPresenter {
-    private final ProfileUploadView view;
+    private final ProfileUploadView profileUploadView;
 
     /**
      * Constructor, initializes the presenter
@@ -25,7 +18,7 @@ public class ProfileUploadPresenter {
      * @param view the view this presenter is in charge of
      */
     public ProfileUploadPresenter(ProfileUploadView view) {
-        this.view = view;
+        this.profileUploadView = view;
     }
 
     /**
@@ -34,7 +27,7 @@ public class ProfileUploadPresenter {
      * @param bm the bitmap to show
      */
     public void setProfileImage(Bitmap bm) {
-        view.showProfileImage(bm);
+        profileUploadView.showProfileImage(bm);
     }
 
     /**
@@ -43,7 +36,7 @@ public class ProfileUploadPresenter {
      * @param uri the link to the image to show
      */
     public void setProfileImage(Uri uri) {
-        view.showProfileImage(uri);
+        profileUploadView.showProfileImage(uri);
     }
 
     /**
@@ -52,7 +45,7 @@ public class ProfileUploadPresenter {
      * @param bm the bitmap to be uploaded
      */
     public void uploadProfileImage(Bitmap bm) {
-        view.showProfileImage(bm);
+        profileUploadView.showProfileImage(bm);
         ImageStorageDbController.uploadProfileImage(bm);
     }
 
@@ -71,24 +64,20 @@ public class ProfileUploadPresenter {
      * Proceeds to the next view, while passing on the current {@link com.group80.uoftinder.entities.User}
      * as a {@link Serializable}
      *
-     * @param context  a {@link Context} of the application package implementing this class
-     * @param cls      the component class that is to be used for the intent.
      * @param currUser the information of the currently logged in User
      */
-    public void proceedToNextView(Context context, Class<?> cls, Serializable currUser) {
-        Intent intent = new Intent(context, cls).setFlags(FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(Constants.CURRENT_USER_STRING, currUser);
-        Log.d("DEBUGGING", "proceedToNextView: " + (currUser == null ? "No User passed in" : "User passed in"));
-        context.startActivity(intent);
+    public void proceedToNextView(CharSequence msg, Serializable currUser) {
+        profileUploadView.showImageMessage(msg);
+        profileUploadView.showNextView(currUser);
+
     }
 
     /**
      * Informs that no image is set as the profile image
      *
-     * @param context the context to use
-     * @param msg     the tex to show. Can be formatted text.
+     * @param msg the tex to show. Can be formatted text.
      */
-    public void showEmptyImageMessage(Context context, CharSequence msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+    public void showEmptyImageMessage(CharSequence msg) {
+        profileUploadView.showImageMessage(msg);
     }
 }

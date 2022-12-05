@@ -420,7 +420,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
         android:layout_alignParentBottom="true"
-        android:text="Finish" />
+        android:text="Continue" />
 
 
 </RelativeLayout>

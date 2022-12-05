@@ -22,10 +22,10 @@ import com.group80.uoftinder.login_use_case.LoginActivity;
 /**
  * Code for all the views that the user will go through to create a user
  */
-public class CreateAccountView extends AppCompatActivity implements CreateAccountViewModel {
+public class CreateAccountActivity extends AppCompatActivity implements CreateAccountViewInterface {
 
-    private final CreateAccountPresenter presenter = new CreateAccountPresenterFormatter(RecommendationView.class,
-            CreateAccountView.this);
+    private final CreateAccountPresenterInterface presenter = new CreateAccountPresenter(RecommendationView.class,
+            CreateAccountActivity.this);
     private final CreateAccountInput interactor = new CreateAccountInteractor(presenter);
     private final CreateAccountController controller = new CreateAccountController(interactor);
     private EditText createAccountEmail;
@@ -35,7 +35,7 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_account_view);
+        setContentView(R.layout.activity_create_account);
 
         FirebaseAuth.getInstance();
 
@@ -68,7 +68,7 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
      */
     @Override
     public void showMessage(String message) {
-        Toast.makeText(CreateAccountView.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(CreateAccountActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -204,8 +204,8 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
      * @param currentUser the current user
      */
     @Override
-    public void updateUI(User currentUser) {
-        Intent intent = new Intent(CreateAccountView.this, ProfilePicUploadActivity.class);
+    public void uploadProfilePicture(User currentUser) {
+        Intent intent = new Intent(CreateAccountActivity.this, ProfilePicUploadActivity.class);
         Log.d("DEBUGGING", "updateUI: " + (currentUser == null ? "User is NULL" : "User is not NULL"));
         intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
         startActivity(intent);
@@ -218,7 +218,7 @@ public class CreateAccountView extends AppCompatActivity implements CreateAccoun
      * @param view the current view (createAccountView)
      */
     private void showLoginView(View view) {
-        Intent intent = new Intent(CreateAccountView.this, LoginActivity.class);
+        Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
