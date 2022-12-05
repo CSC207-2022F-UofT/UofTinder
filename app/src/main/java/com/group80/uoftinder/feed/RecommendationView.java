@@ -1,7 +1,5 @@
 package com.group80.uoftinder.feed;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,13 +9,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.ContactsActivity;
 import com.group80.uoftinder.R;
-
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.login_use_case.LoginActivity;
+import com.group80.uoftinder.logout.LogOutInteractor;
+import com.group80.uoftinder.logout.LogOutPresenter;
+import com.group80.uoftinder.logout.LogOutViewInterface;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ import java.util.Set;
  * Public class that extends AppCompatActivity and implements RecViewInterface.
  * This class displays the most compatible users to currentUser.
  */
-public class RecommendationView extends AppCompatActivity implements RecViewInterface {
+public class RecommendationView extends AppCompatActivity implements RecViewInterface, LogOutViewInterface {
     private User currentUser;
     private RecommendationPresenter recPresenter;
     private User displayedUser;
@@ -43,6 +44,8 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     private List<Set<Integer>> filters = new ArrayList<>();
     private int minAge = Constants.MIN_AGE;
     private int maxAge = Constants.MAX_AGE;
+
+    private LogOutPresenter logOutPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,10 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
             buttonClick(false);
         });
 
+        logOutPresenter = new LogOutPresenter(RecommendationView.this);
+        LogOutInteractor logOutInteractor = new LogOutInteractor(logOutPresenter);
+        logOutPresenter.setLogOutInteractor(logOutInteractor);
+
         Button logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             /**
@@ -94,8 +101,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
              */
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(RecommendationView.this, LoginActivity.class));
+                logOutPresenter.signOut();
             }
         });
 
@@ -129,6 +135,14 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void showLogin() {
+        Toast.makeText(RecommendationView.this, "You have signed out!",
+                Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(RecommendationView.this, LoginActivity.class));
+        finish();
     }
 
     /**

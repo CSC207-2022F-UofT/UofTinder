@@ -40,9 +40,13 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput {
      * @param password login password input
      */
     public void loginUser(String email, String password) {
-        if (TextUtils.isEmpty(email)) { // no email input, user == null
+
+        boolean emailEmpty = checkEmail(email);
+        boolean passwordEmpty = checkPassword(password);
+
+        if (emailEmpty) { // no email input, user == null
             loginPresenter.prepareEmailFailureView("Email is required!");
-        } else if (TextUtils.isEmpty(password)) { // no password input, user == null
+        } else if (passwordEmpty) { // no password input, user == null
             loginPresenter.preparePasswordFailureView("Password is required!");
         } else { // user == null, signing in with email and password
             Task<AuthResult> task = FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password);
@@ -87,6 +91,14 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput {
                 loginPresenter.prepareLoginFailureView("Login Unsuccessful :(");
             }
         }
+    }
+
+    public static boolean checkEmail(String email) {
+        return TextUtils.isEmpty(email);
+    }
+
+    public static boolean checkPassword(String password) {
+        return TextUtils.isEmpty(password);
     }
 
     public User getCurrentUser() {
