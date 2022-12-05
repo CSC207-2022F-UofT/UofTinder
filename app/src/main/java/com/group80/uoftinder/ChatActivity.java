@@ -2,6 +2,7 @@ package com.group80.uoftinder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -65,18 +66,17 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
         Toolbar toolbar = findViewById(R.id.chatActivityToolBar);
         setSupportActionBar(toolbar);
 
+        // Setup message display container
+        List<Message> messageList = new ArrayList<>();
+        messageAdapter = new MessageAdapter(messageList);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         messagesRecyclerView.setLayoutManager(linearLayoutManager);
         messagesRecyclerView.setAdapter(messageAdapter);
 
-        // Setup message display container
-        List<Message> messageList = new ArrayList<>();
-        messageAdapter = new MessageAdapter(ChatActivity.this, messageList);
-
-        String selfUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String contactUid = getIntent().getStringExtra("contactUid");
-        String chatRoom = ChatView.getChatRoom(selfUid, contactUid);
+        String chatRoom = ChatView.getChatRoom(FirebaseAuth.getInstance().getCurrentUser().getUid(), contactUid);
 
         ChatPresenter presenter = new ChatPresenter(this, messageList, chatRoom);
         presenter.showContactInfo(getIntent().getStringExtra("name"), contactUid);
@@ -125,11 +125,7 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
     @Override
     public void showContactInfo(String contactName, String contactUid) {
         this.contactName.setText(contactName);
-        ImageViewImagePresenter.downloadBitmapToImageView(
-                new String[]{contactUid, "img", "_profile_img.jpg"},
-                this.contactProfilePic,
-                AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_account_circle_24)
-        );
+        ImageViewImagePresenter.downloadBitmapToImageView(new String[]{contactUid, "img", "_profile_img.jpg"}, this.contactProfilePic, AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_account_circle_24));
     }
 
     /**
@@ -137,6 +133,7 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
      */
     @Override
     public void notifyMessageAdded() {
+        Log.d("DEBUGGING", "notifyMessageAdded: get new message! Totally: " + messageAdapter.getItemCount());
         messageAdapter.notifyItemInserted(messageAdapter.getItemCount() - 1);
     }
 
@@ -150,6 +147,7 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
         if (message == null || message.isEmpty())
             return;
         messageEditText.setText(null);
+        Log.d("DEBUGGING", "displayNewMessage: " + message);
         this.notifyMessageAdded();
     }
 

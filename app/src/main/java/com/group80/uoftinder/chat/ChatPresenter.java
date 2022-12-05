@@ -1,5 +1,7 @@
 package com.group80.uoftinder.chat;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -67,7 +69,7 @@ public class ChatPresenter {
      * @param senderUid  the UID of the sender of the message
      */
     public void updateChatMessage(String newMessage, String senderUid) {
-        view.displayNewMessage(newMessage);
         chatMessageWriter.write(MessageFactory.createMessage(newMessage, senderUid));
+        view.displayNewMessage(newMessage);
     }
 }
