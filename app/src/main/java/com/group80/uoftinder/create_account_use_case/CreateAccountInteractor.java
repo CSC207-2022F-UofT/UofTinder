@@ -21,9 +21,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class CreateAccountInteractor extends AppCompatActivity implements CreateAccountInput {
-    final CreateAccountPresenter createAccountPresenter;
+    final CreateAccountPresenterInterface createAccountPresenter;
 
-    public CreateAccountInteractor(CreateAccountPresenter createAccountPresenter) {
+    public CreateAccountInteractor(CreateAccountPresenterInterface createAccountPresenter) {
         this.createAccountPresenter = createAccountPresenter;
     }
 
@@ -164,7 +164,7 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
             // stores User into Firebase Firestore
             FirestoreDbWriter.uploadUser(currentUser);
 
-            createAccountPresenter.prepareRecommendationView(currentUser);
+            createAccountPresenter.prepareProfilePicUploadActivity(currentUser);
         } else {
             createAccountPresenter.prepareCreateAccountFailureView(
                     "Please enter your information correctly!");
@@ -203,7 +203,7 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
             // stores User into Firebase Firestore
             FirestoreDbWriter.uploadUser(currentUser);
 
-            createAccountPresenter.prepareRecommendationView(currentUser);
+            createAccountPresenter.prepareProfilePicUploadActivity(currentUser);
         } else {
             createAccountPresenter.prepareCreateAccountFailureView(
                     "Please enter your information correctly!");
@@ -246,7 +246,7 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
             // stores User into Firebase Firestore
             FirestoreDbWriter.uploadUser(currentUser);
 
-            createAccountPresenter.prepareRecommendationView(currentUser);
+            createAccountPresenter.prepareProfilePicUploadActivity(currentUser);
         } else {
             createAccountPresenter.prepareCreateAccountFailureView("Please enter your information correctly!");
         }

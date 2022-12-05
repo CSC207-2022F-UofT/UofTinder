@@ -31,10 +31,9 @@ public class FirestoreDbWriter {
      * @param user1 the uid of one user
      * @param user2 the uid of the other user
      */
-//    public static void updateContactsLists(User currentUser, User newContact) {
     public static void updateContactsLists(String user1, String user2) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Users").document(user1).update("contacts", FieldValue.arrayUnion(user2));
-        db.collection("Users").document(user2).update("contacts", FieldValue.arrayUnion(user1));
+        db.collection("Users").document(user1).update("matches", FieldValue.arrayUnion(user2));
+        db.collection("Users").document(user2).update("matches", FieldValue.arrayUnion(user1));
     }
 }
