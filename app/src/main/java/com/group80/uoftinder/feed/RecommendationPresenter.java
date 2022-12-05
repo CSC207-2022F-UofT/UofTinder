@@ -1,5 +1,6 @@
 package com.group80.uoftinder.feed;
 
+import com.group80.uoftinder.MatchInteractor;
 import com.group80.uoftinder.entities.User;
 
 import java.util.List;
@@ -13,11 +14,13 @@ import java.util.Set;
 public class RecommendationPresenter {
     private GenerateCompatibilityList genCompatibilityList;
     private RecViewInterface recViewInterface;
+    private User currUser;
 
     /**
      * Initialize the attributes of a RecommendationPresenter instance
      */
     public RecommendationPresenter(User currUser, RecViewInterface recViewInterface) {
+        this.currUser = currUser;
         this.genCompatibilityList = new GenerateCompatibilityList(currUser);
         this.recViewInterface = recViewInterface;
     }
@@ -81,6 +84,27 @@ public class RecommendationPresenter {
     public void displayNoCompatibleUser() {
         recViewInterface.setDisplayedUser(null);
         recViewInterface.noCompatibleUser();
+    }
+
+    /**
+     * Use the MatchInteractor static method checkforMatchAndCreate in order to determine if a match
+     * can be created between the current user and the displayed user
+     */
+    public void useMatchCreator() {
+        boolean matchCreated = MatchInteractor.checkForMatchAndCreate(currUser,
+                recViewInterface.getDisplayedUser());
+        if (matchCreated) { // if we have successfully created a match, we display a pop-up using
+            // the recViewInterface
+            recViewInterface.createPopUp();
+        }
+    }
+
+    /**
+     * Use the MatchInteractor to update the current user's displayed and liked lists
+     * @param liked: whether currUser likes the displayed user
+     */
+    public void updateLists(boolean liked) {
+        MatchInteractor.addToList(currUser, recViewInterface.getDisplayedUser(), liked);
     }
 
     /**

@@ -13,6 +13,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.firebase.firestore.FirestoreDbWriter;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
@@ -20,9 +21,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class CreateAccountInteractor extends AppCompatActivity implements CreateAccountInput {
-    final CreateAccountPresenter createAccountPresenter;
+    final CreateAccountPresenterInterface createAccountPresenter;
 
-    public CreateAccountInteractor(CreateAccountPresenter createAccountPresenter) {
+    public CreateAccountInteractor(CreateAccountPresenterInterface createAccountPresenter) {
         this.createAccountPresenter = createAccountPresenter;
     }
 
@@ -158,10 +159,12 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
             answers.add(majors);
             answers.add(Collections.singletonList(campus));
             currentUser.setAnswers((answers));
-            //store User into database
+            //store User into realtime database
             UserRealtimeDbFacade.uploadUser(currentUser);
+            // stores User into Firebase Firestore
+            FirestoreDbWriter.uploadUser(currentUser);
 
-            createAccountPresenter.prepareRecommendationView(currentUser);
+            createAccountPresenter.prepareProfilePicUploadActivity(currentUser);
         } else {
             createAccountPresenter.prepareCreateAccountFailureView(
                     "Please enter your information correctly!");
@@ -195,10 +198,12 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
             answers.add(interests);
             answers.add(colours);
             currentUser.setAnswers((answers));
-            //store User into database
+            //store User into realtime database
             UserRealtimeDbFacade.uploadUser(currentUser);
+            // stores User into Firebase Firestore
+            FirestoreDbWriter.uploadUser(currentUser);
 
-            createAccountPresenter.prepareRecommendationView(currentUser);
+            createAccountPresenter.prepareProfilePicUploadActivity(currentUser);
         } else {
             createAccountPresenter.prepareCreateAccountFailureView(
                     "Please enter your information correctly!");
@@ -236,9 +241,10 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
             answers.add(Collections.singletonList(distance));
             answers.add(Collections.singletonList(relationship));
             currentUser.setAnswers((answers));
-            //store User into database
+            //store User into realtime database
             UserRealtimeDbFacade.uploadUser(currentUser);
-            createAccountPresenter.prepareRecommendationView(currentUser);
+
+            createAccountPresenter.prepareProfilePicUploadActivity(currentUser);
         } else {
             createAccountPresenter.prepareCreateAccountFailureView("Please enter your information correctly!");
         }
