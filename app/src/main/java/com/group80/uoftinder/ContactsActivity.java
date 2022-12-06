@@ -3,14 +3,12 @@ package com.group80.uoftinder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,8 +18,6 @@ import com.group80.uoftinder.chat.ContactPresenter;
 import com.group80.uoftinder.chat.ContactViewHolder;
 import com.group80.uoftinder.chat.ContactsView;
 import com.group80.uoftinder.feed.RecommendationView;
-
-import java.util.Objects;
 
 /**
  * A window that displays all the contacts to chat with
@@ -58,15 +54,14 @@ public class ContactsActivity extends AppCompatActivity implements ContactsView 
         contactAdapter = new FirestoreRecyclerAdapter<ContactModel, ContactViewHolder>(presenter.setRecyclerAdapterOption()) {
             @Override
             protected void onBindViewHolder(@NonNull ContactViewHolder holder, int position, @NonNull ContactModel contactModel) {
-                presenter.setContactInfo(holder, contactModel, Objects.requireNonNull(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_account_circle_24)));
+                holder.displayContactInfo(getApplicationContext(), contactModel);
                 holder.itemView.setOnClickListener(view -> presenter.enterChatActivity(contactModel));
             }
 
             @NonNull
             @Override
             public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.uoftinder_contact_list_contact_layout, parent, false);
-                return new ContactViewHolder(view);
+                return new ContactViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.uoftinder_contact_list_contact_layout, parent, false));
             }
         };
 

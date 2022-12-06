@@ -33,7 +33,7 @@ public class GenerateCompatibilityList {
         this.type = this.curUser.getUserType();
         this.usf = new UserScoreFacade(curUser);
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
-//        calculateCompatibilityList();
+        // calculateCompatibilityList();
         filteredCompatibilityList = new ArrayList<>();
     }
 
@@ -149,9 +149,7 @@ public class GenerateCompatibilityList {
         List<String> visitedList = curUser.getViewed();
         for (String visitedUserId : visitedList) {
             UserRealtimeDbFacade.getUser(type, visitedUserId, this::setAlrVisitedUser);
-            if (compatibilityList.contains(alrVisitedUser)) {
-                compatibilityList.remove(alrVisitedUser);
-            }
+            compatibilityList.remove(alrVisitedUser);
         }
     }
 

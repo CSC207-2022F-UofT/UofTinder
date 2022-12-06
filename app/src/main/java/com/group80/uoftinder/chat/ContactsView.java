@@ -5,14 +5,14 @@ package com.group80.uoftinder.chat;
  */
 public interface ContactsView {
     /**
-     * Enters the `ChatActivity` with the given contact
+     * Enters the {@link com.group80.uoftinder.ChatActivity} with the given contact
      *
      * @param contactModel a model storing the information of a contact
      */
     void enterChatView(ContactModel contactModel);
 
     /**
-     * Enters the recommendation view
+     * Enters the {@link com.group80.uoftinder.feed.RecommendationView}
      */
     void enterRecommendationView();
 }
