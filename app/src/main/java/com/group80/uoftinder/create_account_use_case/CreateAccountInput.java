@@ -10,8 +10,6 @@ public interface CreateAccountInput {
 
     void setBasicInfo(String name, String age, String identity, String type, User currentUser);
 
-    boolean checkBasicInput(String name, String age, String identity, String type);
-
     void setAcademicInfo(User currentUser, int year, List<Integer> majors, int campus);
 
     void setFriendshipInfo(User currentUser, int year, List<Integer> majors, int campus,
