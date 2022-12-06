@@ -1,6 +1,6 @@
 package com.group80.uoftinder.logout;
 
-public class LogOutPresenter {
+public class LogOutPresenter implements LogOutPresenterInterface{
     private final LogOutViewInterface logOutViewInterface;
     private LogOutInteractor logOutInteractor;
 
@@ -22,6 +22,7 @@ public class LogOutPresenter {
     /**
      * Show the Login screen
      */
+    @Override
     public void showLogin() {
         logOutViewInterface.showLogin();
     }

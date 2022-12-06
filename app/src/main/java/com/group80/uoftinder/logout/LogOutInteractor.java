@@ -3,9 +3,9 @@ package com.group80.uoftinder.logout;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LogOutInteractor {
-    final LogOutPresenter logOutPresenter;
+    final LogOutPresenterInterface logOutPresenter;
 
-    public LogOutInteractor(LogOutPresenter logOutPresenter) {
+    public LogOutInteractor(LogOutPresenterInterface logOutPresenter) {
         this.logOutPresenter = logOutPresenter;
     }
 
