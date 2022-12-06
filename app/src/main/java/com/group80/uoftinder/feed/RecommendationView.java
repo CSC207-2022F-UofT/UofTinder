@@ -2,6 +2,8 @@ package com.group80.uoftinder.feed;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,11 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.ContactsActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.firebase.ProfileImagePresenter;
+import com.group80.uoftinder.firebase.ProfileImageViewInterface;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 import com.group80.uoftinder.logout.LogOutInteractor;
 import com.group80.uoftinder.logout.LogOutPresenter;
@@ -29,7 +34,7 @@ import java.util.Set;
  * Public class that extends AppCompatActivity and implements RecViewInterface.
  * This class displays the most compatible users to currentUser.
  */
-public class RecommendationView extends AppCompatActivity implements RecViewInterface, LogOutViewInterface {
+public class RecommendationView extends AppCompatActivity implements RecViewInterface, ProfileImageViewInterface, LogOutViewInterface {
     private User currentUser;
     private RecommendationPresenter recPresenter;
     private User displayedUser;
@@ -189,7 +194,12 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
      */
     @Override
     public void showUser() {
-        profilePicture.setImageURI(displayedUser.getPhotoUrl());
+        // profilePicture.setImageURI(displayedUser.getPhotoUrl());
+        ProfileImagePresenter presenter = new ProfileImagePresenter(this);
+        presenter.downloadBitmapToImageView(
+                new String[]{displayedUser.getUid(), "img", "_profile_img.jpg"},
+                ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_account_circle_24)
+        );
         name.setText(displayedUser.getName());
         age.setText(Integer.toString(displayedUser.getAge()));
         gender.setText(displayedUser.getGender());
@@ -219,5 +229,15 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         Toast.makeText(RecommendationView.this,
                 "You matched with " + getDisplayedUser().getName() + "!",
                 Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setProfileImage(Bitmap bm) {
+        this.profilePicture.setImageBitmap(bm);
+    }
+
+    @Override
+    public void setProfileImage(Drawable drawable) {
+        this.profilePicture.setImageDrawable(drawable);
     }
 }

@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.group80.uoftinder.firebase.ImageViewImagePresenter;
+import com.group80.uoftinder.firebase.ProfileImagePresenter;
 import com.group80.uoftinder.firebase.firestore.FirestoreDbReader;
 
 /**
@@ -37,9 +37,9 @@ public class ContactPresenter {
                                @NonNull Drawable defaultProfilePic) {
         holder.setContactName(contactModel.getName());
 
-        ImageViewImagePresenter.downloadBitmapToImageView(
+        ProfileImagePresenter profileImagePresenter = new ProfileImagePresenter(holder);
+        profileImagePresenter.downloadBitmapToImageView(
                 new String[]{contactModel.getUid(), "img", "_profile_img.jpg"},
-                holder.getContactPic(),
                 defaultProfilePic
         );
     }

@@ -1,5 +1,7 @@
 package com.group80.uoftinder.chat;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,8 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.group80.uoftinder.R;
+import com.group80.uoftinder.firebase.ProfileImageViewInterface;
 
-public class ContactViewHolder extends RecyclerView.ViewHolder {
+public class ContactViewHolder extends RecyclerView.ViewHolder implements ProfileImageViewInterface {
     private final TextView contactName;
     private final ImageView contactPic;
 
@@ -23,7 +26,13 @@ public class ContactViewHolder extends RecyclerView.ViewHolder {
         this.contactName.setText(contactName);
     }
 
-    public ImageView getContactPic() {
-        return this.contactPic;
+    @Override
+    public void setProfileImage(Bitmap bm) {
+        this.contactPic.setImageBitmap(bm);
+    }
+
+    @Override
+    public void setProfileImage(Drawable drawable) {
+        this.contactPic.setImageDrawable(drawable);
     }
 }
