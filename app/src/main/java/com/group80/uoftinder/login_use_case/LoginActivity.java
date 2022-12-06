@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
         Intent intent = new Intent(LoginActivity.this, RecommendationView.class);
         intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
         startActivity(intent);
+        finish();
     }
 
     /**
