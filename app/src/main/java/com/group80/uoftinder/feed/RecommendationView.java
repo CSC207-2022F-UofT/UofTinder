@@ -137,6 +137,9 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         });
     }
 
+    /**
+     * Switches UI to Login screen after user has signed out
+     */
     @Override
     public void showLogin() {
         Toast.makeText(RecommendationView.this, "You have signed out!",

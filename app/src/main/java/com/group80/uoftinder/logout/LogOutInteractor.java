@@ -9,6 +9,9 @@ public class LogOutInteractor {
         this.logOutPresenter = logOutPresenter;
     }
 
+    /**
+     * Signs out the user, switches UI back to LoginActivity
+     */
     public void signOut() {
         FirebaseAuth.getInstance().signOut();
         logOutPresenter.showLogin();

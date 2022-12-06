@@ -12,10 +12,16 @@ public class LogOutPresenter {
         this.logOutInteractor = logOutInteractor;
     }
 
+    /**
+     * Calls interactor's signOut() method to log out the user
+     */
     public void signOut() {
         logOutInteractor.signOut();
     }
 
+    /**
+     * Show the Login screen
+     */
     public void showLogin() {
         logOutViewInterface.showLogin();
     }
