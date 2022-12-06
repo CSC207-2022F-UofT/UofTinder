@@ -146,7 +146,16 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     }
 
     /**
+     * Returns displayedUser that is currently being displayed to currentUser.
+     */
+    @Override
+    public User getDisplayedUser() {
+        return this.displayedUser;
+    }
+
+    /**
      * Initializes displayedUser to the first User in currentUser's most compatible list.
+     *
      * @param displayedUser is the user displayed currently to currentUser.
      */
     @Override
@@ -155,15 +164,9 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     }
 
     /**
-     * Returns displayedUser that is currently being displayed to currentUser.
-     */
-    @Override
-    public User getDisplayedUser() { return this.displayedUser; }
-
-
-    /**
      * helper method for onClickListener method that listens
      * when the 'Yes' and 'No' button is clicked
+     *
      * @param liked If true, currentUser 'likes' displayedUser, false otherwise
      */
     protected void buttonClick(boolean liked) {
