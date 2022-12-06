@@ -1,6 +1,7 @@
 package com.group80.uoftinder.chat;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,10 +30,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private final int ITEM_RECEIVED = 1;
 
     /**
-     * Global information about the application environment.
-     */
-    private final Context context;
-    /**
      * List of messages to be displayed
      */
     private final List<Message> messageList;
@@ -40,11 +37,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     /**
      * Constructor, creates the message adapter
      *
-     * @param context     the application context
      * @param messageList the list of messages
      */
-    public MessageAdapter(Context context, List<Message> messageList) {
-        this.context = context;
+    public MessageAdapter(List<Message> messageList) {
         this.messageList = messageList;
     }
 
@@ -59,11 +54,12 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("DEBUGGING", "onCreateViewHolder: " + parent);
         if (viewType == ITEM_SENT) { // sent by this
-            View view = LayoutInflater.from(context).inflate(R.layout.uoftinder_sent_message_layout, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.uoftinder_sent_message_layout, parent, false);
             return new SentMessageViewHolder(view);
         } else { // sent by other
-            View view = LayoutInflater.from(context).inflate(R.layout.uoftinder_received_nessage_layout, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.uoftinder_received_nessage_layout, parent, false);
             return new ReceivedMessageViewHolder(view);
         }
     }
@@ -80,6 +76,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Message message = this.messageList.get(position);
+        Log.d("DEBUGGING", "onBindViewHolder: " + message.getMessage());
 
         if (holder.getClass() == SentMessageViewHolder.class) { // sent by this
             SentMessageViewHolder viewHolder = (SentMessageViewHolder) holder;
@@ -134,7 +131,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     /**
      * A RecyclerView.ViewHolder for holding messages sent
      */
-    class SentMessageViewHolder extends RecyclerView.ViewHolder {
+    static class SentMessageViewHolder extends RecyclerView.ViewHolder {
         protected TextView message_text;
         protected TextView message_time;
 
