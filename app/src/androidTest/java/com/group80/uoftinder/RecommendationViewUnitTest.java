@@ -25,21 +25,28 @@ import org.junit.Test;
 
 public class RecommendationViewUnitTest extends LoginActivity {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        Intent intent = new Intent(new LoginActivity(), RecommendationView.class);
-        startActivity(intent);
-
-        likeUserTest();
-    }
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//
+//
+//        likeUserTest();
+//    }
 
     @Test
     public void likeUserTest() {
         LoginActivity loginActivity = new LoginActivity();
         LoginPresenter loginPresenter = new LoginPresenter(RecommendationView.class, loginActivity);
         LoginInteractor loginInteractor = new LoginInteractor(loginPresenter);
+
+        Thread thread = new Thread();
+
+        Intent intent = new Intent(new LoginActivity(), RecommendationView.class);
+        Looper.prepare();
+        startActivity(intent);
+
+
 
         String email = "test@mail.utoronto.ca";
         String password = "12345678";
