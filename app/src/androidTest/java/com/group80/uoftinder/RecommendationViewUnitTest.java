@@ -4,8 +4,14 @@ import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.matcher.RootMatchers;
@@ -17,7 +23,17 @@ import com.group80.uoftinder.login_use_case.LoginPresenter;
 
 import org.junit.Test;
 
-public class RecommendationViewUnitTest {
+public class RecommendationViewUnitTest extends LoginActivity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Intent intent = new Intent(new LoginActivity(), RecommendationView.class);
+        startActivity(intent);
+
+        likeUserTest();
+    }
 
     @Test
     public void likeUserTest() {
