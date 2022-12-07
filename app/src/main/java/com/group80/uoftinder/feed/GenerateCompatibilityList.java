@@ -17,7 +17,7 @@ import java.util.Set;
 public class GenerateCompatibilityList {
     private User curUser;
     private List<User> compatibilityList;
-    private UserScoreFacade usf;
+    private UserScoreInterface usf;
     private Map<User, Integer> compScores;
     private Comparator<User> userScoreComparator;
     private List<User> filteredCompatibilityList;
@@ -33,7 +33,7 @@ public class GenerateCompatibilityList {
         this.type = this.curUser.getUserType();
         this.usf = new UserScoreFacade(curUser);
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
-//         calculateCompatibilityList();
+//        calculateCompatibilityList();
         filteredCompatibilityList = new ArrayList<>();
     }
 
@@ -162,7 +162,7 @@ public class GenerateCompatibilityList {
      *
      * @param newUsf: what to set usf to
      */
-    public void setUsf(UserScoreFacade newUsf) {
+    public void setUsf(UserScoreInterface newUsf) {
         this.usf = newUsf;
     }
 
