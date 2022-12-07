@@ -11,7 +11,7 @@ public interface ChatView extends ProfileImageViewInterface {
      * @return the chat room identifier between the two users
      */
     static String getChatRoom(String uid1, String uid2) {
-        return uid1.compareTo(uid2) < 0 ? uid1 + uid2 : uid2 + uid2;
+        return uid1.compareTo(uid2) < 0 ? uid1 + uid2 : uid2 + uid1;
     }
 
     /**
