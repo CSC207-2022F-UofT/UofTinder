@@ -43,6 +43,7 @@ public class UserScoreFacade implements UserScoreInterface {  // using Facade De
      *
      * @return the generated compatibility score
      */
+    @Override
     public int generateCompatibilityScore() {
         return this.usCalc.generateCompatibilityScore();
     }
@@ -52,6 +53,7 @@ public class UserScoreFacade implements UserScoreInterface {  // using Facade De
      *
      * @return an integer that represents the similarity of the two scores (higher value signals higher similarity)
      */
+    @Override
     public int compare(int score2) {
         return this.usComp.compare(score2);
     }
