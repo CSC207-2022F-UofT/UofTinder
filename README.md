@@ -34,9 +34,9 @@ Some design patterns that we implemented within our project are Model View Prese
 5. Once you filled out the questionnaire, you can optionally upload an image as your profile picture [(0:57)](https://youtu.be/EKVf1XHtWYk?t=57).
 6. Next, the Recommendation Feed is shown, where you can click 'yes' or 'no' on the profiles that are displayed [(1:38)](https://youtu.be/EKVf1XHtWYk?t=98). Whichever option you decide to click will determine if a match is created.
 7. If a match is created, a small pop-up at the bottom will appear [(1:54)](https://youtu.be/EKVf1XHtWYk?t=114).
-8. You can enter the chat function at the top right button of the Recommendation Feed. [(1:57)](https://youtu.be/EKVf1XHtWYk?t=117). If you have any matches, they will appear in the list and you can send them messages [(2:02)](https://youtu.be/EKVf1XHtWYk?t=122).
+8. You can enter the chat function at the top right button of the Recommendation Feed [(1:57)](https://youtu.be/EKVf1XHtWYk?t=117). If you have any matches, they will appear in the list and you can send them messages [(2:02)](https://youtu.be/EKVf1XHtWYk?t=122).
 9. If you want to filter your matches by age, program of study, year of study, or campus, you can click the middle top button of the Recommendation Feed to select filters [(2:13)](https://youtu.be/EKVf1XHtWYk?t=133). This will filter out your generated compatible matches by the criteria selected.
-10. Once you run out of compatible matches, a screen will appear saying that there are no new recommendations[(2:27)](https://youtu.be/EKVf1XHtWYk?t=147).
+10. Once you run out of compatible matches, a screen will appear saying that there are no new recommendations [(2:27)](https://youtu.be/EKVf1XHtWYk?t=147).
 11. There is also the option to logout of your profile at the top left button of Recommendation View [(1:07)](https://youtu.be/EKVf1XHtWYk?t=67).
 
 # Core Functionalities
