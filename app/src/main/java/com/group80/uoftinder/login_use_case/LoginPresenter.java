@@ -8,29 +8,36 @@ import com.group80.uoftinder.entities.User;
  */
 public class LoginPresenter implements LoginPresenterInterface {
 
-    final LoginViewInterface loginViewModel;
+    final LoginViewInterface loginViewInterface;
 
+    /**
+     * Creates the presenter object to interact with the view and use case layers.
+     * @param loginViewInterface    LoginViewInterface so the presenter can update view
+     */
     public LoginPresenter(LoginViewInterface loginViewInterface) {
-        this.loginViewModel = loginViewInterface;
+        this.loginViewInterface = loginViewInterface;
     }
 
     /**
      * Pop-ups a message indicating login was successful and changes view to recommendation view
      *
-     * @param currentUser current User
+     * @param success       the success message for the toast to display
+     * @param currentUser   the current user object
      */
     @Override
     public void prepareSuccessView(String success, User currentUser) {
-        loginViewModel.showMessageToast(success);
-        loginViewModel.updateUI(currentUser);
+        loginViewInterface.showMessageToast(success);
+        loginViewInterface.updateUI(currentUser);
     }
+
 
     /**
      * If email and password combination do not match, pop-ups a message indicating login failure
+     * @param unsuccessful  the error message for the toast to display
      */
     @Override
     public void prepareLoginFailureView(String unsuccessful) {
-        loginViewModel.showMessageToast(unsuccessful);
+        loginViewInterface.showMessageToast(unsuccessful);
     }
 
     /**
@@ -40,7 +47,7 @@ public class LoginPresenter implements LoginPresenterInterface {
      */
     @Override
     public void prepareEmailFailureView(String error) {
-        loginViewModel.showEmailMessage(error);
+        loginViewInterface.showEmailMessage(error);
     }
 
     /**
@@ -50,6 +57,6 @@ public class LoginPresenter implements LoginPresenterInterface {
      */
     @Override
     public void preparePasswordFailureView(String error) {
-        loginViewModel.showPasswordMessage(error);
+        loginViewInterface.showPasswordMessage(error);
     }
 }

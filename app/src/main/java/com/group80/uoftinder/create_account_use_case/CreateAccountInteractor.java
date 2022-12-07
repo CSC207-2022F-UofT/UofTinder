@@ -30,10 +30,11 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
     }
 
     /**
-     * Returns the number of answers to each question
+     * Returns the number of answers to each question.
      *
-     * @return returns an array of integers representing the number of answers for each
-     * question in the correct order of questions
+     * @param type  String representing the user type
+     * @return      An array of integers representing the number of answers for each
+     *              question (order of questions same as the map in Constants.java)
      */
     public static int[] getAnswerSchema(String type) {
         if (type.equals("Academic")) {
@@ -48,10 +49,10 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
     }
 
     /**
-     * Returns whether each question is mulitselect or not
-     *
-     * @return returns an array of booleans representing whether each question is multiselect
-     * in the correct order of questions
+     * Returns whether each question is mulitselect or not.
+     * @param type  String representing the user type
+     * @return      An array of booleans representing whether each question is multiselect
+     *              (order of questions same as the map in Constants.java)
      */
     public static boolean[] getIsMultiSelect(String type) {
         if (type.equals("Academic")) {
@@ -95,8 +96,7 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
      *               multi-select question
      * @param campus an int representing the index of the campus selected (out of all possible
      *               campuses) that the user chose
-     * @return returns a boolean representing whether all arguments are not 0 or not
-     * selected
+     * @return returns a boolean representing whether all arguments are not 0 or not selected
      */
     public static boolean checkAcademicInput(int year, List<Integer> majors, int campus) {
         boolean checkYear = year != -1;
@@ -357,6 +357,5 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
         } else {
             createAccountPresenter.prepareCreateAccountFailureView("Please enter your information correctly!");
         }
-
     }
 }

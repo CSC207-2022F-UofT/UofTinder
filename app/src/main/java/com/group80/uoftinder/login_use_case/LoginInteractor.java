@@ -111,10 +111,18 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput {
         }
     }
 
+    /**
+     * Retrieves the current user object representing the logged in user
+     * @return  the current user object
+     */
     public User getCurrentUser() {
         return currentUser;
     }
 
+    /**
+     * Sets the logged in user as the current user
+     * @param currentUser   the user to be set as current user
+     */
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
