@@ -1,17 +1,15 @@
 package com.group80.uoftinder;
 
-import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.UserScoreFacade;
+import com.group80.uoftinder.feed.UserScoreInterface;
 
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Unit tests for the UserScoreFacade class
@@ -34,7 +32,7 @@ public class UserScoreFacadeUnitTest {
         currUser.setAnswers(userAnswers);
         currUser.setUserType("Romantic");
 
-        UserScoreFacade usf = new UserScoreFacade(currUser);
+        UserScoreInterface usf = new UserScoreFacade(currUser);
         int userScore = currUser.getScore();
         // binary: 001-110100-10-00110100-00-01
         // decimal: 1909569
@@ -58,7 +56,7 @@ public class UserScoreFacadeUnitTest {
         user2.setAnswers(userAnswers);
         user2.setUserType("Romantic");
 
-        UserScoreFacade usf = new UserScoreFacade(user2);
+        UserScoreInterface usf = new UserScoreFacade(user2);
         int userScore = user2.getScore();
         // binary: 010-110000-10-01100000-10-01
         // decimal: 2893321
@@ -82,7 +80,7 @@ public class UserScoreFacadeUnitTest {
         user2.setAnswers(userAnswers);
         user2.setUserType("Romantic");
 
-        UserScoreFacade usf = new UserScoreFacade(user2);
+        UserScoreInterface usf = new UserScoreFacade(user2);
         int userScore = user2.getScore();
         assert userScore == 3354610;
     }
@@ -104,7 +102,7 @@ public class UserScoreFacadeUnitTest {
         currUser.setAnswers(userAnswers);
         currUser.setUserType("Romantic");
 
-        UserScoreFacade usf = new UserScoreFacade(currUser);
+        UserScoreInterface usf = new UserScoreFacade(currUser);
         // binary: 001-110100-10-00110100-00-01
         // decimal: 1909569
         int userScore2 = 2893321;
@@ -132,7 +130,7 @@ public class UserScoreFacadeUnitTest {
         currUser.setAnswers(userAnswers);
         currUser.setUserType("Romantic");
 
-        UserScoreFacade usf = new UserScoreFacade(currUser);
+        UserScoreInterface usf = new UserScoreFacade(currUser);
         // binary: 001-110100-10-00110100-00-01
         // decimal: 1909569
         int userScore2 = 3354610;
