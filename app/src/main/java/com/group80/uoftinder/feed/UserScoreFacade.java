@@ -3,9 +3,7 @@ package com.group80.uoftinder.feed;
 import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
 import com.group80.uoftinder.entities.User;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Facade class that contains methods to calculate user score and compare two user scores

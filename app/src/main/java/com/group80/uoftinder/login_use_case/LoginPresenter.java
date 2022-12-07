@@ -1,21 +1,16 @@
+package com.group80.uoftinder.login_use_case;
+
+import com.group80.uoftinder.entities.User;
+
+// Interface Adapter Layer
 /**
  * Updates view according to user logging in successfully or unsuccessfully
  */
-
-package com.group80.uoftinder.login_use_case;
-
-// Interface Adapter Layer
-
-import com.group80.uoftinder.entities.User;
-import com.group80.uoftinder.feed.RecommendationView;
-
 public class LoginPresenter implements LoginPresenterInterface {
 
-    final Class<RecommendationView> recommendationViewClass;
     final LoginViewInterface loginViewModel;
 
-    public LoginPresenter(Class<RecommendationView> recommendationViewClass, LoginViewInterface loginViewInterface) {
-        this.recommendationViewClass = recommendationViewClass;
+    public LoginPresenter(LoginViewInterface loginViewInterface) {
         this.loginViewModel = loginViewInterface;
     }
 

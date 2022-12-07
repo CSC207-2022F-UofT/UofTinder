@@ -1,10 +1,4 @@
-/**
- * Creates a new user by and sets user information
- */
-
 package com.group80.uoftinder.create_account_use_case;
-
-// Application Business Rules Layer
 
 import android.text.TextUtils;
 
@@ -24,6 +18,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// Application Business Rules Layer
+/**
+ * Creates a new user by and sets user information
+ */
 public class CreateAccountInteractor extends AppCompatActivity implements CreateAccountInput {
     final CreateAccountPresenterInterface createAccountPresenter;
 

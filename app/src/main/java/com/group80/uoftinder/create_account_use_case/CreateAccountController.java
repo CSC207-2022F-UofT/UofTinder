@@ -1,10 +1,4 @@
-/**
- * Responsible for responding to user interaction when they input email, passwords, and
- * answer questionnaires
- */
 package com.group80.uoftinder.create_account_use_case;
-
-// Interface adapter layer
 
 import android.widget.EditText;
 
@@ -14,7 +8,11 @@ import com.group80.uoftinder.entities.User;
 
 import java.util.LinkedList;
 import java.util.List;
-
+// Interface adapter layer
+/**
+ * Responsible for responding to user interaction when they input email, passwords, and
+ * answer questionnaires
+ */
 public class CreateAccountController {
     final CreateAccountInput createAccountInput;
 

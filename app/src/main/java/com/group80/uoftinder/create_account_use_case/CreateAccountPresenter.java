@@ -10,12 +10,9 @@ import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 
 public class CreateAccountPresenter implements CreateAccountPresenterInterface {
-    final Class<RecommendationView> recommendationViewClass;
     final CreateAccountViewInterface createAccountViewModel;
 
-    public CreateAccountPresenter(Class<RecommendationView> recommendationViewClass,
-                                  CreateAccountViewInterface createAccountViewModel) {
-        this.recommendationViewClass = recommendationViewClass;
+    public CreateAccountPresenter(CreateAccountViewInterface createAccountViewModel) {
         this.createAccountViewModel = createAccountViewModel;
     }
 

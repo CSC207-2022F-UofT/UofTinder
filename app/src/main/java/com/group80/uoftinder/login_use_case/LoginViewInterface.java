@@ -1,11 +1,10 @@
-/**
- * Provides methods to update view
- */
-
 package com.group80.uoftinder.login_use_case;
 
 import com.group80.uoftinder.entities.User;
 
+/**
+ * Provides methods to update view
+ */
 public interface LoginViewInterface {
     void updateUI(User currentUser);
 
