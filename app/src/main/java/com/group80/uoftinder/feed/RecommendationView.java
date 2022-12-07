@@ -94,9 +94,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
             buttonClick(false);
         });
 
-        logOutPresenter = new LogOutPresenter(RecommendationView.this);
-        LogOutInteractor logOutInteractor = new LogOutInteractor(logOutPresenter);
-        logOutPresenter.setLogOutInteractor(logOutInteractor);
+        logOutPresenter = new LogOutPresenter(RecommendationView.this, new LogOutInteractor());
 
         Button logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {

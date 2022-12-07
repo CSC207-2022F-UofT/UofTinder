@@ -1,3 +1,7 @@
+/**
+ * Updates view according to user logging in successfully or unsuccessfully
+ */
+
 package com.group80.uoftinder.login_use_case;
 
 // Interface Adapter Layer

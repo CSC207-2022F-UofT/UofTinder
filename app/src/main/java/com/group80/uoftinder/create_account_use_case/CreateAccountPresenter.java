@@ -1,3 +1,7 @@
+/**
+ * Updates view
+ */
+
 package com.group80.uoftinder.create_account_use_case;
 
 // Interface adapter layer

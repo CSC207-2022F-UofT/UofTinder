@@ -1,3 +1,7 @@
+/**
+ * Provides methods to creating a new user, setting up user information
+ */
+
 package com.group80.uoftinder.create_account_use_case;
 
 import com.group80.uoftinder.entities.User;

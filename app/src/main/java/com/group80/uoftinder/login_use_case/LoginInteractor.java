@@ -5,7 +5,7 @@
 
 package com.group80.uoftinder.login_use_case;
 
-// Use case layer
+// Application Business Rules Layer
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -29,6 +29,26 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput {
 
     public LoginInteractor(LoginPresenterInterface loginPresenter) {
         this.loginPresenter = loginPresenter;
+    }
+
+    /**
+     * Checks if email input is empty
+     *
+     * @param email String that user inputs
+     * @return whether email is empty
+     */
+    public static boolean checkEmail(String email) {
+        return TextUtils.isEmpty(email);
+    }
+
+    /**
+     * Checks if password input is empty
+     *
+     * @param password String that user inputs
+     * @return whether password is empty
+     */
+    public static boolean checkPassword(String password) {
+        return TextUtils.isEmpty(password);
     }
 
     /**
@@ -91,14 +111,6 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput {
                 loginPresenter.prepareLoginFailureView("Login Unsuccessful :(");
             }
         }
-    }
-
-    public static boolean checkEmail(String email) {
-        return TextUtils.isEmpty(email);
-    }
-
-    public static boolean checkPassword(String password) {
-        return TextUtils.isEmpty(password);
     }
 
     public User getCurrentUser() {

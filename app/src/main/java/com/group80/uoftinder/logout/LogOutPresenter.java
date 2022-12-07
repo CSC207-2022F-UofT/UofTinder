@@ -1,29 +1,25 @@
+/**
+ * Responsible for responding to user interaction of logging out and updating the view
+ */
+
 package com.group80.uoftinder.logout;
 
-public class LogOutPresenter implements LogOutPresenterInterface{
+public class LogOutPresenter implements LogOutPresenterInterface {
     private final LogOutViewInterface logOutViewInterface;
-    private LogOutInteractor logOutInteractor;
+    private final LogOutInteractor logOutInteractor;
 
-    public LogOutPresenter(LogOutViewInterface logOutViewInterface) {
+    public LogOutPresenter(LogOutViewInterface logOutViewInterface, LogOutInteractor logOutInteractor) {
         this.logOutViewInterface = logOutViewInterface;
-    }
-
-    public void setLogOutInteractor(LogOutInteractor logOutInteractor) {
         this.logOutInteractor = logOutInteractor;
+
     }
 
     /**
-     * Calls interactor's signOut() method to log out the user
-     */
-    public void signOut() {
-        logOutInteractor.signOut();
-    }
-
-    /**
-     * Show the Login screen
+     * Calls interactor's signOut() method to log out the user, changes to the Login screen
      */
     @Override
-    public void showLogin() {
+    public void signOut() {
+        logOutInteractor.signOut();
         logOutViewInterface.showLogin();
     }
 }

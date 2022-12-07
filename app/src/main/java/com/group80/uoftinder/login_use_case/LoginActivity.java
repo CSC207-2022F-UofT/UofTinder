@@ -1,7 +1,5 @@
 /**
  * Logs in a user so they can use the app
- * <p>
- * View layer
  */
 
 package com.group80.uoftinder.login_use_case;
@@ -22,6 +20,7 @@ import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
+// Frameworks & Drivers Layer
 
 public class LoginActivity extends AppCompatActivity implements LoginViewInterface {
 
@@ -53,6 +52,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
     /**
      * Update the UI to the logged in user's recommendation view
      * and passes the current user to the next class
+     *
      * @param currentUser current signed in User
      */
     @Override
@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
 
     /**
      * Toast a message that will pop up when a user attempts to sign in
+     *
      * @param message display message
      */
     @Override
@@ -74,6 +75,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
 
     /**
      * Pop up if email input is null when signing in
+     *
      * @param error error message
      */
     @Override
@@ -84,6 +86,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
 
     /**
      * Pop up if password input is null when signing in
+     *
      * @param error error message
      */
     @Override
@@ -94,6 +97,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
 
     /**
      * Switches UI to create account when the create account button is clicked
+     *
      * @param view current view
      */
     public void showCreateAccountView(View view) {
