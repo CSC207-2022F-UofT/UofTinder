@@ -1,6 +1,5 @@
 package com.group80.uoftinder;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import com.group80.uoftinder.entities.User;

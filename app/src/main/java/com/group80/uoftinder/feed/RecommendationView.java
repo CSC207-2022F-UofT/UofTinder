@@ -31,10 +31,11 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Public class that extends AppCompatActivity and implements RecViewInterface.
  * This class displays the most compatible users to currentUser.
+ * This serves as the central page of the app with connections
+ * to the chat, logging out, and filtering functionality.
  */
-public class RecommendationView extends AppCompatActivity implements RecViewInterface, ProfileImageViewInterface, LogOutViewInterface {
+public class RecommendationView extends AppCompatActivity implements RecommendationViewInterface, ProfileImageViewInterface, LogOutViewInterface {
     private User currentUser;
     private RecommendationPresenter recPresenter;
     private User displayedUser;
@@ -192,7 +193,6 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
      */
     @Override
     public void showUser() {
-        // profilePicture.setImageURI(displayedUser.getPhotoUrl());
         ProfileImagePresenter presenter = new ProfileImagePresenter(this);
         presenter.downloadBitmapToImageView(
                 new String[]{displayedUser.getUid(), "img", "_profile_img.jpg"},
@@ -205,7 +205,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     }
 
     /**
-     * displays a screen that tells currentUsers that there are no more compatible users.
+     * Displays a screen that tells currentUsers that there are no more compatible users.
      */
     @Override
     public void noCompatibleUser() {

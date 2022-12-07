@@ -1,6 +1,5 @@
 package com.group80.uoftinder;
 
-import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.UserScoreFacade;
 
@@ -9,9 +8,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Unit tests for the UserScoreFacade class

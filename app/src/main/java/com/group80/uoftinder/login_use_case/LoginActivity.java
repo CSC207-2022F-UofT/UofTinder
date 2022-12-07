@@ -1,7 +1,3 @@
-/**
- * Logs in a user so they can use the app
- */
-
 package com.group80.uoftinder.login_use_case;
 
 import android.content.Intent;
@@ -21,7 +17,9 @@ import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 // Frameworks & Drivers Layer
-
+/**
+ * Logs in a user so they can use the app
+ */
 public class LoginActivity extends AppCompatActivity implements LoginViewInterface {
 
     EditText loginEmail;
@@ -41,7 +39,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
 
-        LoginPresenterInterface loginPresenter = new LoginPresenter(RecommendationView.class, LoginActivity.this);
+        LoginPresenterInterface loginPresenter = new LoginPresenter(LoginActivity.this);
         LoginInput loginInteractor = new LoginInteractor(loginPresenter);
         LoginController loginController = new LoginController(loginInteractor);
 

@@ -33,7 +33,7 @@ public class GenerateCompatibilityList {
         this.type = this.curUser.getUserType();
         this.usf = new UserScoreFacade(curUser);
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
-        // calculateCompatibilityList();
+//         calculateCompatibilityList();
         filteredCompatibilityList = new ArrayList<>();
     }
 
@@ -133,7 +133,9 @@ public class GenerateCompatibilityList {
     }
 
     /**
-     * Calculate compatibilityList
+     * Calculate compatibilityList by retrieving all users, removing the current
+     * user and visited users from that list of, and finally order the remaining
+     * users in the list based on compatibility scores.
      */
     public void calculateCompatibilityList() {
         getAllUsers();

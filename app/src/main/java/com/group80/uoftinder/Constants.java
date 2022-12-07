@@ -3,6 +3,11 @@ package com.group80.uoftinder;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Stores static final variables that represent constants shared across more than one class.
+ * This reduces the clutter, repetition, and redundancy of
+ * having to define the same final variables in each class.
+ */
 public class Constants {
     public static final String CURRENT_USER_STRING = "currentUser";
     public static final String SHOULD_FILTER_STRING = "shouldFilter";

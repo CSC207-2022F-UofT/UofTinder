@@ -1,12 +1,9 @@
 package com.group80.uoftinder;
+
 import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
 import org.junit.Test;
-
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import kotlin.collections.ArrayDeque;
 
 /**
  * Unit tests for testing that ensures the current user trying to create a new account enters all
@@ -53,7 +50,6 @@ public class CheckInfoEmptyTest {
         assert !test2;
         assert !test3;
         assert test4;
-
     }
 
     /**
@@ -94,13 +90,11 @@ public class CheckInfoEmptyTest {
         int campus4 = -1;
         boolean test4 = CreateAccountInteractor.checkAcademicInput(year4, majors4, campus4);
 
-
         assert test0;
         assert !test1;
         assert test2;
         assert !test3;
         assert !test4;
-
     }
 
     /**
