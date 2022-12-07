@@ -1,108 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/recProfileDisplayButtonsLinearLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/logoutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="10dp"
-            android:gravity="right"
-            android:text="Logout"/>
+            android:layout_marginHorizontal="3dp"
+            android:text="Logout" />
 
         <Button
             android:id="@+id/filterButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="10dp"
-            android:gravity="right"
-            android:text="Edit Filters"/>
+            android:layout_marginHorizontal="3dp"
+            android:text="Edit Filters" />
 
         <Button
             android:id="@+id/chatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="10dp"
-            android:gravity="right"
-            android:text="Enter Chat"/>
+            android:layout_marginHorizontal="3dp"
+            android:text="Enter Chat" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/profilePicture"
-        android:layout_width="444dp"
-        android:layout_height="462dp"
-        android:layout_weight="1"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/name"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="0.25"
-        android:baselineAligned="false"
-        android:text="TextView"
-        android:textSize="20sp" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/recProfileDisplayButtonsLinearLayout"
+        android:layout_marginHorizontal="16dp">
 
-    <TextView
-        android:id="@+id/gender"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="0.25"
-        android:text="TextView"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/age"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:text="TextView"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/info"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:text="TextView"
-        android:textSize="14sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/noButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:text="No"
-            app:cornerRadius="20dp"
-            app:icon="@android:drawable/ic_delete" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/yesButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:text="Yes"
-            app:cornerRadius="20dp"
-            app:icon="@android:drawable/ic_input_add" />
-    </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/recProfileDisplayPicConstraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp">
 
-</LinearLayout>
+                <ImageView
+                    android:id="@+id/profilePicture"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:baselineAligned="false"
+                android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="TextView"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="TextView"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="TextView"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/noButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="No"
+                    app:cornerRadius="20dp"
+                    app:icon="@android:drawable/ic_delete" />
+
+                <Button
+                    android:id="@+id/yesButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="Yes"
+                    app:cornerRadius="20dp"
+                    app:icon="@android:drawable/ic_input_add" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
