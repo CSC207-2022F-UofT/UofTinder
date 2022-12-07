@@ -1,6 +1,8 @@
 package com.group80.uoftinder.chat;
 
-public interface ChatView {
+import com.group80.uoftinder.firebase.ProfileImageViewInterface;
+
+public interface ChatView extends ProfileImageViewInterface {
     /**
      * Returns the chat room identifier between the two users
      *

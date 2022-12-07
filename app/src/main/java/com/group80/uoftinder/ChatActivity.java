@@ -1,6 +1,8 @@
 package com.group80.uoftinder;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -9,9 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +22,7 @@ import com.group80.uoftinder.chat.ChatPresenter;
 import com.group80.uoftinder.chat.ChatView;
 import com.group80.uoftinder.chat.Message;
 import com.group80.uoftinder.chat.MessageAdapter;
-import com.group80.uoftinder.firebase.ImageViewImagePresenter;
+import com.group80.uoftinder.firebase.ProfileImagePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,7 +127,8 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
     @Override
     public void showContactInfo(String contactName, String contactUid) {
         this.contactName.setText(contactName);
-        ImageViewImagePresenter.downloadBitmapToImageView(new String[]{contactUid, "img", "_profile_img.jpg"}, this.contactProfilePic, AppCompatResources.getDrawable(getApplicationContext(), R.drawable.ic_baseline_account_circle_24));
+        ProfileImagePresenter presenter = new ProfileImagePresenter(this);
+        presenter.downloadBitmapToImageView(new String[]{contactUid, "img", "_profile_img.jpg"}, ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_account_circle_24));
     }
 
     /**
@@ -148,7 +151,6 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
             return;
         messageEditText.setText(null);
         Log.d("DEBUGGING", "displayNewMessage: " + message);
-        this.notifyMessageAdded();
     }
 
     /**
@@ -169,5 +171,15 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
     private void recalculateMessagePosition() {
         if (messagesRecyclerView.getAdapter() != null && messagesRecyclerView.getAdapter().getItemCount() > 0)
             messagesRecyclerView.smoothScrollToPosition(messagesRecyclerView.getAdapter().getItemCount() - 1);
+    }
+
+    @Override
+    public void setProfileImage(Bitmap bm) {
+        this.contactProfilePic.setImageBitmap(bm);
+    }
+
+    @Override
+    public void setProfileImage(Drawable drawable) {
+        this.contactProfilePic.setImageDrawable(drawable);
     }
 }
