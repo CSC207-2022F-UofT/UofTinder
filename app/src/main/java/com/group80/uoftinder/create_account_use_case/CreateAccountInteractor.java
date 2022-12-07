@@ -243,6 +243,8 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
             currentUser.setAnswers((answers));
             //store User into realtime database
             UserRealtimeDbFacade.uploadUser(currentUser);
+            // stores User into Firebase Firestore
+            FirestoreDbWriter.uploadUser(currentUser);
 
             createAccountPresenter.prepareProfilePicUploadActivity(currentUser);
         } else {
@@ -261,8 +263,7 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
      * @param type     a string representing the account type the user chose (only academic for now)
      * @return returns a boolean representing whether all arguments are non-empty
      */
-    @Override
-    public boolean checkBasicInput(String name, String age, String identity, String type) {
+    public static boolean checkBasicInput(String name, String age, String identity, String type) {
         boolean checkName = name.compareTo("") != 0;
         boolean checkAge = age.compareTo("") != 0;
         boolean checkIdentity = identity.compareTo("") != 0;
@@ -285,7 +286,7 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
      * @return returns a boolean representing whether all arguments are not 0 or not
      * selected
      */
-    public boolean checkAcademicInput(int year, List<Integer> majors, int campus) {
+    public static boolean checkAcademicInput(int year, List<Integer> majors, int campus) {
         boolean checkYear = year != -1;
         boolean checkMajors = !(majors.isEmpty());
         boolean checkCampus = campus != -1;
@@ -293,7 +294,7 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
     }
 
     /**
-     * Checks if the information entered in friendship_questionnaire.xml was entered correctly.
+     * Checks if the information entered in questionnaire_friendship.xml was entered correctly.
      * Checks if all fields are non-empty or if an answer was chosen correctly (i.e. the int given
      * is within the index of possible selected answers.
      *
@@ -313,7 +314,7 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
      * @return returns a boolean representing whether all arguments are not 0 or not
      * selected
      */
-    public boolean checkFriendshipInput(int year, List<Integer> majors, int campus, List<Integer>
+    public static boolean checkFriendshipInput(int year, List<Integer> majors, int campus, List<Integer>
             interests, List<Integer> colours) {
         boolean checkYear = year != -1;
         boolean checkMajors = !(majors.isEmpty());
@@ -324,7 +325,7 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
     }
 
     /**
-     * Checks if the information entered in romantic_questionnaire.xml was entered correctly.
+     * Checks if the information entered in questionnaire_romantic.xml was entered correctly.
      * Checks if all fields are non-empty or if an answer was chosen correctly (i.e. the int given
      * is within the index of possible selected answers.
      *
@@ -345,7 +346,7 @@ public class CreateAccountInteractor extends AppCompatActivity implements Create
      * @return returns a boolean representing whether all arguments are not 0 or not
      * selected
      */
-    public boolean checkRomanticInput(int sexuality, List<Integer> majors, int campus,
+    public static boolean checkRomanticInput(int sexuality, List<Integer> majors, int campus,
                                       List<Integer> interests, int distance, int relationship) {
         boolean checkYear = sexuality != -1;
         boolean checkMajors = !(majors.isEmpty());

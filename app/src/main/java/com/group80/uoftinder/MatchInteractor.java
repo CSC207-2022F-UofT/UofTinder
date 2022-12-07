@@ -6,6 +6,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.group80.uoftinder.chat.MessageFactory;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.firebase.firestore.FirestoreDbWriter;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import com.group80.uoftinder.firebase.realtime.*;
@@ -41,8 +42,10 @@ public class MatchInteractor {
             UserRealtimeDbFacade.uploadUser(user2); // re-upload users to the database
             UserRealtimeDbFacade.uploadUser(currentUser);
 
-            sendIntroMessage(currentUser.getUid(),
-                    user2.getUid(), "Hey! We matched with each other!"); // send a message from currentUser to user2
+            // send a message from currentUser to user2
+            sendIntroMessage(currentUser.getUid(), user2.getUid(), "Hey! We matched with each other!");
+            // update contact lists so that user2 shows up in contact list
+            FirestoreDbWriter.updateContactsLists(currentUser.getUid(), user2.getUid());
             return true;
         }
         return false;
