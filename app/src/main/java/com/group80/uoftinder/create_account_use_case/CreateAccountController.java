@@ -1,3 +1,7 @@
+/**
+ * Responsible for responding to user interaction when they input email, passwords, and
+ * answer questionnaires
+ */
 package com.group80.uoftinder.create_account_use_case;
 
 // Interface adapter layer

@@ -1,6 +1,5 @@
 /**
- * Class that calls loginUser method of LoginInteractor through LoginInput interface to
- * login the User
+ * Responds to user activity when they try to sign into their account
  */
 
 package com.group80.uoftinder.login_use_case;

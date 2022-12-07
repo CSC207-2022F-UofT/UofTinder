@@ -1,6 +1,10 @@
+/**
+ * Responsible for responding to user interaction of logging out and updating the view
+ */
+
 package com.group80.uoftinder.logout;
 
-public class LogOutPresenter implements LogOutPresenterInterface{
+public class LogOutPresenter implements LogOutPresenterInterface {
     private final LogOutViewInterface logOutViewInterface;
     private final LogOutInteractor logOutInteractor;
 

@@ -1,3 +1,7 @@
+/**
+ * Code for all the views that the user will go through to create a user
+ */
+
 package com.group80.uoftinder.create_account_use_case;
 
 import android.content.Intent;
@@ -19,9 +23,8 @@ import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 
-/**
- * Code for all the views that the user will go through to create a user
- */
+// Frameworks & Drivers Layer
+
 public class CreateAccountActivity extends AppCompatActivity implements CreateAccountViewInterface {
 
     private final CreateAccountPresenterInterface presenter = new CreateAccountPresenter(RecommendationView.class,

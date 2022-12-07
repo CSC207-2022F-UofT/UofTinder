@@ -1,3 +1,7 @@
+/**
+ * Provides methods to prepare view changes
+ */
+
 package com.group80.uoftinder.login_use_case;
 
 import com.group80.uoftinder.entities.User;

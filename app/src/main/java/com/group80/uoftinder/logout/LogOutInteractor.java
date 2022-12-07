@@ -1,3 +1,7 @@
+/**
+ * Signs out the current user
+ */
+
 package com.group80.uoftinder.logout;
 
 import com.google.firebase.auth.FirebaseAuth;
