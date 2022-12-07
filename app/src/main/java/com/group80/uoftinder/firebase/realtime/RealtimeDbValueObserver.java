@@ -13,7 +13,7 @@ public interface RealtimeDbValueObserver {
     /**
      * Triggered when the realtime database has successfully changed.
      *
-     * @param snapshot a snapshot of the realtime database fater the change
+     * @param snapshot a snapshot of the realtime database after the change
      */
     void onRealtimeDbDataChange(@NonNull DataSnapshot snapshot);
 

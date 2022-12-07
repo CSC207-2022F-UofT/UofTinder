@@ -48,15 +48,6 @@ public class ucUserReader {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-//        t.addOnSuccessListener(dataSnapshot -> {
-//            Log.d("SUCCESS", dataSnapshot.toString());
-//            List<User> userList = new LinkedList<>();
-//            for (DataSnapshot child : dataSnapshot.getChildren())
-//                userList.add(child.getValue(User.class));
-//
-//            callBack.onData(userList);
-//        }).addOnFailureListener(Exception::printStackTrace);
     }
 
     /**
@@ -93,12 +84,5 @@ public class ucUserReader {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(userType);
-//        try {
-//            reference.child(uid).get().addOnSuccessListener(dataSnapshot -> callback.onData(dataSnapshot.getValue(User.class)));
-//        } catch (NullPointerException e) { // data does not exist in given location
-//            e.printStackTrace();
-//        }
     }
 }

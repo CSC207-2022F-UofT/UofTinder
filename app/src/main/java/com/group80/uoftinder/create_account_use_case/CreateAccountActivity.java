@@ -42,21 +42,11 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
         createAccountPassword2 = findViewById(R.id.createAccountViewReEnterPasswordEditText);
 
         Button buttonShowLoginView = findViewById(R.id.createAccountViewRetLoginButton);
-        buttonShowLoginView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showLoginView();
-            }
-        });
+        buttonShowLoginView.setOnClickListener(v -> showLoginView());
 
         Button enter = findViewById(R.id.createAccountViewCreateAccountButton);
         // creating account and uploading to the FirebaseAuth
-        enter.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                controller.createAccount(createAccountEmail, createAccountPassword1, createAccountPassword2);
-
-            }
-        });
+        enter.setOnClickListener(v -> controller.createAccount(createAccountEmail, createAccountPassword1, createAccountPassword2));
     }
 
     /**
@@ -118,11 +108,7 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
         ChipGroup identityGroup = findViewById(R.id.identityGroup);
         ChipGroup typeGroup = findViewById(R.id.typeGroup);
 
-        enter.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                controller.setBasicInfo(currentUser, userName, userAge, identityGroup, typeGroup);
-            }
-        });
+        enter.setOnClickListener(v -> controller.setBasicInfo(currentUser, userName, userAge, identityGroup, typeGroup));
     }
 
     /**
@@ -139,11 +125,7 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
         ChipGroup majorGroup = findViewById(R.id.majorgroup);
         ChipGroup campusGroup = findViewById(R.id.campusgroup);
 
-        enter.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                controller.setAcademicInfo(currentUser, yearGroup, majorGroup, campusGroup);
-            }
-        });
+        enter.setOnClickListener(v -> controller.setAcademicInfo(currentUser, yearGroup, majorGroup, campusGroup));
     }
 
     /**
@@ -162,12 +144,8 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
         ChipGroup interestsGroup = findViewById(R.id.interestsgroup);
         ChipGroup colourGroup = findViewById(R.id.colourgroup);
 
-        enter.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                controller.setFriendshipInfo(currentUser, yearGroup, majorGroup,
-                        campusGroup, interestsGroup, colourGroup);
-            }
-        });
+        enter.setOnClickListener(v -> controller.setFriendshipInfo(currentUser, yearGroup, majorGroup,
+                campusGroup, interestsGroup, colourGroup));
     }
 
     /**
@@ -187,12 +165,8 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
         ChipGroup distanceGroup = findViewById(R.id.distancegroup);
         ChipGroup relationshipGroup = findViewById(R.id.relationshipgroup);
 
-        enter.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                controller.setRomanticInfo(currentUser, sexualityGroup, majorGroup,
-                        campusGroup, interestsGroup, distanceGroup, relationshipGroup);
-            }
-        });
+        enter.setOnClickListener(v -> controller.setRomanticInfo(currentUser, sexualityGroup, majorGroup,
+                campusGroup, interestsGroup, distanceGroup, relationshipGroup));
     }
 
     /**
