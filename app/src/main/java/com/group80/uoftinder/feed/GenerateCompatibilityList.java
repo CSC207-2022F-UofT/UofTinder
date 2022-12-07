@@ -149,7 +149,9 @@ public class GenerateCompatibilityList {
         List<String> visitedList = curUser.getViewed();
         for (String visitedUserId : visitedList) {
             UserRealtimeDbFacade.getUser(type, visitedUserId, this::setAlrVisitedUser);
-            compatibilityList.remove(alrVisitedUser);
+            if (compatibilityList.contains(alrVisitedUser)) {
+                compatibilityList.remove(alrVisitedUser);
+            }
         }
     }
 
