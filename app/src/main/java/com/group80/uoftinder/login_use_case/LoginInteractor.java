@@ -31,10 +31,20 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput {
         this.loginPresenter = loginPresenter;
     }
 
+    /**
+     * Checks if email input is empty
+     * @param email String that user inputs
+     * @return whether email is empty
+     */
     public static boolean checkEmail(String email) {
         return TextUtils.isEmpty(email);
     }
 
+    /**
+     * Checks if password input is empty
+     * @param password String that user inputs
+     * @return whether password is empty
+     */
     public static boolean checkPassword(String password) {
         return TextUtils.isEmpty(password);
     }
