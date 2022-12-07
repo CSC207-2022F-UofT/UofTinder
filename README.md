@@ -24,7 +24,7 @@ Some design patterns that we implemented within our project are Model View Prese
 6. Once the project is opened, gradle should start syncing the files. Wait until it is done.
 7. In the menu bar, Android studio should already selected the app configuration and Pixel_3a_API_33_x86_64 for device (OK to select different device, as long as it's a cellphone and API is not lower than 23). Click the hammer to the left of app to build the project.
 8. Open the Device Manager tab to the right of the screen, find your virtual device, and click the triangle in the Actions tab to launch the device.
-9. The app should now be launched. Please watch our demo video to see the functionality of the app.
+9. The app should now be launched. Please watch our demo video (https://youtu.be/EKVf1XHtWYk) to see an overview of the app's functionalities and/or continue reading for a written summary.
 
 # Core Functionalities
 **1. User login**
