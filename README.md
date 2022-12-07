@@ -12,12 +12,14 @@ Some design patterns that we implemented within our project are Model View Prese
 1. Download and install Android studio (https://developer.android.com/studio). Select Android Virtual Device.
 2. On first launch, select 'do not import settings' and 'standard installation type' when prompted. Accept both android-sdk-license and android-sdk-preview- license.
 3. Navigate to the folder you would like to store the code in a terminal that recognizes git. Type the following command:
-    - git clone https://github.com/CSC207-2022F-UofT/course-project-group-80.git
-    - Optionally, type: git clone https://github.com/CSC207-2022F-UofT/course-project-group-80.git ./UofTinder
+    - `git clone https://github.com/CSC207-2022F-UofT/course-project-group-80.git`
+    - Optionally, type: `git clone https://github.com/CSC207-2022F-UofT/course-project-group-80.git ./UofTinder`
       - Note: the ./UofTinder part tells git to rename the cloned folder to UofTinder
 4. Navigate to the folder and convert to the following branch
-  - cd ./UofTinder
-  - git checkout main
+```
+  cd ./UofTinder
+  git checkout main
+```
 5. Launch Android Studio, and select Open. Navigate to and select the folder where the repo is cloned locally.
 6. Once the project is opened, gradle should start syncing the files. Wait until it is done.
 7. In the menu bar, Android studio should already selected the app configuration and Pixel_3a_API_33_x86_64 for device (OK to select different device, as long as it's a cellphone and API is not lower than 23). Click the hammer to the left of app to build the project.
