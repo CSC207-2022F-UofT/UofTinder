@@ -11,7 +11,7 @@ public class ContactPresenter {
     private final ContactsView view;
 
     /**
-     * Constructor, coreates the presenter
+     * Constructor, creates the presenter
      *
      * @param view the view this presenter is responsible for
      */

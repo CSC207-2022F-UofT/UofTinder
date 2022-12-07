@@ -1,11 +1,4 @@
-/**
- * Interactor that will check if a correct email and password combination is input to login a user
- * Depending on result, either error or success will be shown
- */
-
 package com.group80.uoftinder.login_use_case;
-
-// Application Business Rules Layer
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,6 +15,11 @@ import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.concurrent.ExecutionException;
 
+// Application Business Rules Layer
+/**
+ * Interactor that will check if a correct email and password combination is input to login a user
+ * Depending on result, either error or success will be shown
+ */
 public class LoginInteractor extends AppCompatActivity implements LoginInput {
 
     final LoginPresenterInterface loginPresenter;
@@ -113,10 +111,18 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput {
         }
     }
 
+    /**
+     * Retrieves the current user object representing the logged in user
+     * @return  the current user object
+     */
     public User getCurrentUser() {
         return currentUser;
     }
 
+    /**
+     * Sets the logged in user as the current user
+     * @param currentUser   the user to be set as current user
+     */
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }

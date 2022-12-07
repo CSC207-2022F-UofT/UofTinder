@@ -1,7 +1,5 @@
 package com.group80.uoftinder.chat;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;

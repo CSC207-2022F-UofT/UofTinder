@@ -13,13 +13,13 @@ import java.util.Set;
  */
 public class RecommendationPresenter {
     private GenerateCompatibilityList genCompatibilityList;
-    private RecViewInterface recViewInterface;
+    private RecommendationViewInterface recViewInterface;
     private User currUser;
 
     /**
      * Initialize the attributes of a RecommendationPresenter instance
      */
-    public RecommendationPresenter(User currUser, RecViewInterface recViewInterface) {
+    public RecommendationPresenter(User currUser, RecommendationViewInterface recViewInterface) {
         this.currUser = currUser;
         this.genCompatibilityList = new GenerateCompatibilityList(currUser);
         this.recViewInterface = recViewInterface;
@@ -105,13 +105,6 @@ public class RecommendationPresenter {
      */
     public void updateLists(boolean liked) {
         MatchInteractor.addToList(currUser, recViewInterface.getDisplayedUser(), liked);
-    }
-
-    /**
-     * Regenerate the compatibilityList to curUser so that it is up to date
-     */
-    public void regenerate() {
-        genCompatibilityList.calculateCompatibilityList();
     }
 
     /**

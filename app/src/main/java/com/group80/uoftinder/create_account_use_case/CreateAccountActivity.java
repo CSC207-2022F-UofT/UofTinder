@@ -1,12 +1,7 @@
-/**
- * Code for all the views that the user will go through to create a user
- */
-
 package com.group80.uoftinder.create_account_use_case;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,15 +15,15 @@ import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.ProfilePicUploadActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.User;
-import com.group80.uoftinder.feed.RecommendationView;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 
 // Frameworks & Drivers Layer
-
+/**
+ * Code for all the views that the user will go through to create a user
+ */
 public class CreateAccountActivity extends AppCompatActivity implements CreateAccountViewInterface {
 
-    private final CreateAccountPresenterInterface presenter = new CreateAccountPresenter(RecommendationView.class,
-            CreateAccountActivity.this);
+    private final CreateAccountPresenterInterface presenter = new CreateAccountPresenter(CreateAccountActivity.this);
     private final CreateAccountInput interactor = new CreateAccountInteractor(presenter);
     private final CreateAccountController controller = new CreateAccountController(interactor);
     private EditText createAccountEmail;
@@ -47,21 +42,11 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
         createAccountPassword2 = findViewById(R.id.createAccountViewReEnterPasswordEditText);
 
         Button buttonShowLoginView = findViewById(R.id.createAccountViewRetLoginButton);
-        buttonShowLoginView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showLoginView(v);
-            }
-        });
+        buttonShowLoginView.setOnClickListener(v -> showLoginView());
 
         Button enter = findViewById(R.id.createAccountViewCreateAccountButton);
         // creating account and uploading to the FirebaseAuth
-        enter.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                controller.createAccount(createAccountEmail, createAccountPassword1, createAccountPassword2);
-
-            }
-        });
+        enter.setOnClickListener(v -> controller.createAccount(createAccountEmail, createAccountPassword1, createAccountPassword2));
     }
 
     /**
@@ -123,11 +108,7 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
         ChipGroup identityGroup = findViewById(R.id.identityGroup);
         ChipGroup typeGroup = findViewById(R.id.typeGroup);
 
-        enter.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                controller.setBasicInfo(currentUser, userName, userAge, identityGroup, typeGroup);
-            }
-        });
+        enter.setOnClickListener(v -> controller.setBasicInfo(currentUser, userName, userAge, identityGroup, typeGroup));
     }
 
     /**
@@ -144,11 +125,7 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
         ChipGroup majorGroup = findViewById(R.id.majorgroup);
         ChipGroup campusGroup = findViewById(R.id.campusgroup);
 
-        enter.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                controller.setAcademicInfo(currentUser, yearGroup, majorGroup, campusGroup);
-            }
-        });
+        enter.setOnClickListener(v -> controller.setAcademicInfo(currentUser, yearGroup, majorGroup, campusGroup));
     }
 
     /**
@@ -167,12 +144,8 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
         ChipGroup interestsGroup = findViewById(R.id.interestsgroup);
         ChipGroup colourGroup = findViewById(R.id.colourgroup);
 
-        enter.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                controller.setFriendshipInfo(currentUser, yearGroup, majorGroup,
-                        campusGroup, interestsGroup, colourGroup);
-            }
-        });
+        enter.setOnClickListener(v -> controller.setFriendshipInfo(currentUser, yearGroup, majorGroup,
+                campusGroup, interestsGroup, colourGroup));
     }
 
     /**
@@ -192,12 +165,8 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
         ChipGroup distanceGroup = findViewById(R.id.distancegroup);
         ChipGroup relationshipGroup = findViewById(R.id.relationshipgroup);
 
-        enter.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                controller.setRomanticInfo(currentUser, sexualityGroup, majorGroup,
-                        campusGroup, interestsGroup, distanceGroup, relationshipGroup);
-            }
-        });
+        enter.setOnClickListener(v -> controller.setRomanticInfo(currentUser, sexualityGroup, majorGroup,
+                campusGroup, interestsGroup, distanceGroup, relationshipGroup));
     }
 
     /**
@@ -209,7 +178,6 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
     @Override
     public void uploadProfilePicture(User currentUser) {
         Intent intent = new Intent(CreateAccountActivity.this, ProfilePicUploadActivity.class);
-        Log.d("DEBUGGING", "updateUI: " + (currentUser == null ? "User is NULL" : "User is not NULL"));
         intent.putExtra(Constants.CURRENT_USER_STRING, currentUser);
         startActivity(intent);
         finish();
@@ -217,10 +185,8 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
 
     /**
      * Returns view back to loginView
-     *
-     * @param view the current view (createAccountView)
      */
-    private void showLoginView(View view) {
+    private void showLoginView() {
         Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
