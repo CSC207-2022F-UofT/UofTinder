@@ -33,7 +33,7 @@ public class GenerateCompatibilityList {
         this.type = this.curUser.getUserType();
         this.usf = new UserScoreFacade(curUser);
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
-        // calculateCompatibilityList();
+//         calculateCompatibilityList();
         filteredCompatibilityList = new ArrayList<>();
     }
 

@@ -31,8 +31,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Public class that extends AppCompatActivity and implements RecommendationViewInterface.
  * This class displays the most compatible users to currentUser.
+ * This serves as the central page of the app with connections
+ * to the chat, logging out, and filtering functionality.
  */
 public class RecommendationView extends AppCompatActivity implements RecommendationViewInterface, ProfileImageViewInterface, LogOutViewInterface {
     private User currentUser;
