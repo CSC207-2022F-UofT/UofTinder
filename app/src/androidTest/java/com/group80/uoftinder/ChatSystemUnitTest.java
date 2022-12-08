@@ -10,8 +10,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.group80.uoftinder.chat.Message;
-import com.group80.uoftinder.chat.MessageFactory;
+import com.group80.uoftinder.chat.chat.Message;
+import com.group80.uoftinder.chat.chat.MessageFactory;
 import com.group80.uoftinder.firebase.realtime.RealtimeDbValueObserver;
 import com.group80.uoftinder.firebase.realtime.ucChatMessageWriter;
 
