@@ -1,7 +1,7 @@
 package com.group80.uoftinder.firebase.realtime;
 
 /**
- * An interface handles successful / failed uploads to the realtim database
+ * An interface handles successful / failed uploads to the realtime database
  */
 public interface RealtimeDbWriteListener {
     /**

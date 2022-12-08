@@ -1,9 +1,9 @@
 package com.group80.uoftinder.feed;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,13 +11,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.group80.uoftinder.Constants;
-import com.group80.uoftinder.ContactsActivity;
-import com.group80.uoftinder.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import com.group80.uoftinder.Constants;
+import com.group80.uoftinder.chat.contacts_list.ContactsActivity;
+import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.firebase.ProfileImagePresenter;
+import com.group80.uoftinder.firebase.ProfileImageViewInterface;
 import com.group80.uoftinder.login_use_case.LoginActivity;
+import com.group80.uoftinder.logout.LogOutInteractor;
+import com.group80.uoftinder.logout.LogOutPresenter;
+import com.group80.uoftinder.logout.LogOutViewInterface;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,10 +31,11 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Public class that extends AppCompatActivity and implements RecViewInterface.
  * This class displays the most compatible users to currentUser.
+ * This serves as the central page of the app with connections
+ * to the chat, logging out, and filtering functionality.
  */
-public class RecommendationView extends AppCompatActivity implements RecViewInterface {
+public class RecommendationView extends AppCompatActivity implements RecommendationViewInterface, ProfileImageViewInterface, LogOutViewInterface {
     private User currentUser;
     private RecommendationPresenter recPresenter;
     private User displayedUser;
@@ -43,6 +50,8 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     private List<Set<Integer>> filters = new ArrayList<>();
     private int minAge = Constants.MIN_AGE;
     private int maxAge = Constants.MAX_AGE;
+
+    private LogOutPresenter logOutPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +95,8 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
             buttonClick(false);
         });
 
+        logOutPresenter = new LogOutPresenter(RecommendationView.this, new LogOutInteractor());
+
         Button logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             /**
@@ -94,8 +105,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
              */
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(RecommendationView.this, LoginActivity.class));
+                logOutPresenter.signOut();
             }
         });
 
@@ -132,7 +142,27 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     }
 
     /**
+     * Switches UI to Login screen after user has signed out
+     */
+    @Override
+    public void showLogin() {
+        Toast.makeText(RecommendationView.this, "You have signed out!",
+                Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(RecommendationView.this, LoginActivity.class));
+        finish();
+    }
+
+    /**
+     * Returns displayedUser that is currently being displayed to currentUser.
+     */
+    @Override
+    public User getDisplayedUser() {
+        return this.displayedUser;
+    }
+
+    /**
      * Initializes displayedUser to the first User in currentUser's most compatible list.
+     *
      * @param displayedUser is the user displayed currently to currentUser.
      */
     @Override
@@ -141,15 +171,9 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     }
 
     /**
-     * Returns displayedUser that is currently being displayed to currentUser.
-     */
-    @Override
-    public User getDisplayedUser() { return this.displayedUser; }
-
-
-    /**
      * helper method for onClickListener method that listens
      * when the 'Yes' and 'No' button is clicked
+     *
      * @param liked If true, currentUser 'likes' displayedUser, false otherwise
      */
     protected void buttonClick(boolean liked) {
@@ -169,7 +193,11 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
      */
     @Override
     public void showUser() {
-        profilePicture.setImageURI(displayedUser.getPhotoUrl());
+        ProfileImagePresenter presenter = new ProfileImagePresenter(this);
+        presenter.downloadBitmapToImageView(
+                new String[]{displayedUser.getUid(), "img", "_profile_img.jpg"},
+                ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_account_circle_24)
+        );
         name.setText(displayedUser.getName());
         age.setText(Integer.toString(displayedUser.getAge()));
         gender.setText(displayedUser.getGender());
@@ -177,7 +205,7 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
     }
 
     /**
-     * displays a screen that tells currentUsers that there are no more compatible users.
+     * Displays a screen that tells currentUsers that there are no more compatible users.
      */
     @Override
     public void noCompatibleUser() {
@@ -199,5 +227,15 @@ public class RecommendationView extends AppCompatActivity implements RecViewInte
         Toast.makeText(RecommendationView.this,
                 "You matched with " + getDisplayedUser().getName() + "!",
                 Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setProfileImage(Bitmap bm) {
+        this.profilePicture.setImageBitmap(bm);
+    }
+
+    @Override
+    public void setProfileImage(Drawable drawable) {
+        this.profilePicture.setImageDrawable(drawable);
     }
 }
