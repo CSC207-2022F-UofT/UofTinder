@@ -7,10 +7,11 @@ import com.google.firebase.database.DatabaseError;
 import com.group80.uoftinder.firebase.realtime.RealtimeDbValueObserver;
 import com.group80.uoftinder.firebase.realtime.ucChatMessageWriter;
 
+/**
+ * A presenter corroborating with {@link ChatView}
+ */
 public class ChatPresenter {
     private final ChatView view;
-    //    private final List<Message> msgLst;
-    private final MessageController controller;
 
     private final ucChatMessageWriter chatMessageWriter;
 
@@ -23,7 +24,6 @@ public class ChatPresenter {
      */
     public ChatPresenter(ChatView view, MessageController controller, String chatRoom) {
         this.view = view;
-        this.controller = controller;
 
         // Register database value chane observer behaviour
         this.chatMessageWriter = new ucChatMessageWriter(new RealtimeDbValueObserver() {

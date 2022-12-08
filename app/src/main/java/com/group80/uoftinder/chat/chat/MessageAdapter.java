@@ -12,8 +12,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.R;
 
 /**
- * An RecyclerView.Adapter that provide a binding from Message to views that is displayed in the
- * recycler view for the messages
+ * An {@link RecyclerView.Adapter} that provide a binding from Message to views that is displayed in
+ * the {@link RecyclerView} for the messages
  */
 public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     /**

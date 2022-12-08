@@ -169,6 +169,10 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
             messagesRecyclerView.smoothScrollToPosition(messagesRecyclerView.getAdapter().getItemCount() - 1);
     }
 
+    /**
+     * Sets the profile image
+     * @param bm
+     */
     @Override
     public void setProfileImage(Bitmap bm) {
         this.contactProfilePic.setImageBitmap(bm);
