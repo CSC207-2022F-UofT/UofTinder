@@ -16,8 +16,10 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -58,6 +60,11 @@ public class FilterViewUnitTest {
         onView(withId(R.id.filterButton)).perform(click());
     }
 
+    @After
+    public void afterTestSwitchToFilterPage() {
+        FirebaseAuth.getInstance().signOut();
+    }
+
     /**
      * Test that the program switches to the recommendation view after clicking the 'reset' button.
      */
@@ -72,6 +79,11 @@ public class FilterViewUnitTest {
 
         onView(withId(R.id.resetButton)).perform(click());
         onView(withText("Logout")).check(matches(isDisplayed()));
+    }
+
+    @After
+    public void afterTestResetFilters() {
+        FirebaseAuth.getInstance().signOut();
     }
 
     /**
@@ -120,6 +132,11 @@ public class FilterViewUnitTest {
         onView(withId(R.id.scarboroughBox)).check(matches(isChecked()));
     }
 
+    @After
+    public void afterTestFilterButtons() {
+        FirebaseAuth.getInstance().signOut();
+    }
+
     /**
      * Test that the program switches to the recommendation view after clicking the 'Filter' button
      * on the filter page.
@@ -135,6 +152,11 @@ public class FilterViewUnitTest {
 
         onView(withId(R.id.filterButton)).perform(click());
         onView(withText("Logout")).check(matches(isDisplayed()));
+    }
+
+    @After
+    public void AfterTestApplyFilters() {
+        FirebaseAuth.getInstance().signOut();
     }
 
     /**
