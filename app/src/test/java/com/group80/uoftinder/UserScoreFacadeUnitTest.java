@@ -92,7 +92,8 @@ public class UserScoreFacadeUnitTest {
     }
 
     /**
-     * Testing to see compare method returns the correct similarity scores for two users
+     * Testing to see if the compare method returns the correct similarity score for
+     * user1 and user2, whose compatibility scores are tested above
      */
     @Test
     public void compareTest1() {
@@ -119,7 +120,8 @@ public class UserScoreFacadeUnitTest {
     }
 
     /**
-     * Testing to see compare method returns the correct similarity scores for two users
+     * Testing to see if the compare method returns the correct similarity score for
+     * user1 and user3, whose compatibility scores are tested above
      */
     @Test
     public void compareTest2() {
@@ -138,10 +140,10 @@ public class UserScoreFacadeUnitTest {
         UserScoreInterface usf = new UserScoreFacade(currUser);
         // binary: 001-110100-10-00110100-00-01
         // decimal: 1909569
-        int userScore2 = 3354610;
+        int userScore3 = 3354610;
         // binary: 011-001100-10-11111111-00-10
 
-        int similarity = usf.compare(userScore2);
+        int similarity = usf.compare(userScore3);
         assert similarity == 6;
     }
 }
