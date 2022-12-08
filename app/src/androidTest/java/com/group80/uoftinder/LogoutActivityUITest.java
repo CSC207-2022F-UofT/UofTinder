@@ -12,7 +12,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.group80.uoftinder.login_use_case.LoginActivity;
+import com.group80.uoftinder.view_layer.login.LoginActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

@@ -2,7 +2,7 @@ package com.group80.uoftinder;
 
 import static org.junit.Assert.assertEquals;
 
-import com.group80.uoftinder.login_use_case.LoginInteractor;
+import com.group80.uoftinder.use_case_layer.login.LoginInteractor;
 
 import org.junit.Test;
 

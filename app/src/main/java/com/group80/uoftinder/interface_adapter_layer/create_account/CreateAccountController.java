@@ -1,9 +1,10 @@
-package com.group80.uoftinder.create_account_use_case;
+package com.group80.uoftinder.interface_adapter_layer.create_account;
 
 import android.widget.EditText;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.group80.uoftinder.use_case_layer.create_account.CreateAccountInput;
 import com.group80.uoftinder.entities_layer.User;
 
 import java.util.LinkedList;

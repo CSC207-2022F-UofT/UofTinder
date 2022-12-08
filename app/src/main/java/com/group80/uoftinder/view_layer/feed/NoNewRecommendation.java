@@ -12,7 +12,7 @@ import com.group80.uoftinder.chat.contacts_list.ContactsActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.entities_layer.User;
-import com.group80.uoftinder.login_use_case.LoginActivity;
+import com.group80.uoftinder.view_layer.login.LoginActivity;
 
 import java.io.Serializable;
 import java.util.List;

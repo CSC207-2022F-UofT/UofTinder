@@ -1,6 +1,8 @@
-package com.group80.uoftinder.login_use_case;
+package com.group80.uoftinder.interface_adapter_layer.login;
 
 import android.widget.EditText;
+
+import com.group80.uoftinder.use_case_layer.login.LoginInput;
 
 // Interface Adapter Layer
 /**

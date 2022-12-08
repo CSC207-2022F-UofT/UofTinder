@@ -1,4 +1,4 @@
-package com.group80.uoftinder.create_account_use_case;
+package com.group80.uoftinder.view_layer.create_account;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.Constants;
-import com.group80.uoftinder.presenter_layer.create_account.CreateAccountPresenter;
+import com.group80.uoftinder.interface_adapter_layer.create_account.CreateAccountController;
+import com.group80.uoftinder.use_case_layer.create_account.CreateAccountInput;
+import com.group80.uoftinder.use_case_layer.create_account.CreateAccountPresenterInterface;
+import com.group80.uoftinder.interface_adapter_layer.create_account.CreateAccountViewInterface;
+import com.group80.uoftinder.interface_adapter_layer.create_account.CreateAccountPresenter;
 import com.group80.uoftinder.use_case_layer.create_account.CreateAccountInteractor;
 import com.group80.uoftinder.view_layer.ProfilePicUploadActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities_layer.User;
-import com.group80.uoftinder.login_use_case.LoginActivity;
+import com.group80.uoftinder.view_layer.login.LoginActivity;
 
 // Frameworks & Drivers Layer
 /**

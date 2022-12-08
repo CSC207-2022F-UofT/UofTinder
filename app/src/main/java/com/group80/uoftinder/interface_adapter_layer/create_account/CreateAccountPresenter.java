@@ -1,12 +1,11 @@
-package com.group80.uoftinder.presenter_layer.create_account;
+package com.group80.uoftinder.interface_adapter_layer.create_account;
 
-import com.group80.uoftinder.create_account_use_case.CreateAccountPresenterInterface;
-import com.group80.uoftinder.create_account_use_case.CreateAccountViewInterface;
+import com.group80.uoftinder.use_case_layer.create_account.CreateAccountPresenterInterface;
 import com.group80.uoftinder.entities_layer.User;
 
 // Interface adapter layer
 /**
- * Updates CreatAccountActivity view.
+ * Updates CreateAccountActivity view.
  */
 public class CreateAccountPresenter implements CreateAccountPresenterInterface {
     final CreateAccountViewInterface createAccountViewModel;

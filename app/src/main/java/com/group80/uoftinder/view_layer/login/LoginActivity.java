@@ -1,4 +1,4 @@
-package com.group80.uoftinder.login_use_case;
+package com.group80.uoftinder.view_layer.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.R;
-import com.group80.uoftinder.create_account_use_case.CreateAccountActivity;
+import com.group80.uoftinder.interface_adapter_layer.login.LoginController;
+import com.group80.uoftinder.use_case_layer.login.LoginInput;
+import com.group80.uoftinder.use_case_layer.login.LoginInteractor;
+import com.group80.uoftinder.interface_adapter_layer.login.LoginPresenter;
+import com.group80.uoftinder.use_case_layer.login.LoginPresenterInterface;
+import com.group80.uoftinder.interface_adapter_layer.login.LoginViewInterface;
+import com.group80.uoftinder.view_layer.create_account.CreateAccountActivity;
 import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.view_layer.feed.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;

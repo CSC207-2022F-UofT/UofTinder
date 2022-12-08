@@ -20,7 +20,7 @@ import androidx.test.filters.LargeTest;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.group80.uoftinder.create_account_use_case.CreateAccountActivity;
+import com.group80.uoftinder.view_layer.create_account.CreateAccountActivity;
 
 import org.junit.After;
 import org.junit.AfterClass;

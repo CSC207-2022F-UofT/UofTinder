@@ -1,4 +1,4 @@
-package com.group80.uoftinder.presenter_layer.feed;
+package com.group80.uoftinder.interface_adapter_layer.feed;
 
 import com.group80.uoftinder.use_case_layer.feed.MatchInteractor;
 import com.group80.uoftinder.entities_layer.User;

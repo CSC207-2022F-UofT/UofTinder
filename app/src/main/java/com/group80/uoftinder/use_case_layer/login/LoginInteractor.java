@@ -1,4 +1,4 @@
-package com.group80.uoftinder.login_use_case;
+package com.group80.uoftinder.use_case_layer.login;
 
 import android.text.TextUtils;
 import android.util.Log;

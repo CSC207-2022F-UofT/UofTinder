@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login_use_case.LoginActivity">
+    tools:context=".view_layer.login.LoginActivity">
 
     <TextView
         android:id="@+id/LoginText"
