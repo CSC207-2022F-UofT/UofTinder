@@ -2,7 +2,7 @@ package com.group80.uoftinder.firebase.firestore;
 
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.group80.uoftinder.chat.ContactModel;
+import com.group80.uoftinder.chat.contacts_list.ContactModel;
 import com.group80.uoftinder.entities.User;
 
 import java.util.ArrayList;

@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.group80.uoftinder.Constants;
-import com.group80.uoftinder.ContactsActivity;
+import com.group80.uoftinder.chat.contacts_list.ContactsActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.ProfileImagePresenter;

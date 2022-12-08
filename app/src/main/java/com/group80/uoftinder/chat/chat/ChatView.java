@@ -1,7 +1,11 @@
-package com.group80.uoftinder.chat;
+package com.group80.uoftinder.chat.chat;
 
+import com.group80.uoftinder.chat.contacts_list.ContactsActivity;
 import com.group80.uoftinder.firebase.ProfileImageViewInterface;
 
+/**
+ * A view for chat window the provides abstraction of behaviours
+ */
 public interface ChatView extends ProfileImageViewInterface {
     /**
      * Returns the chat room identifier between the two users
@@ -35,7 +39,7 @@ public interface ChatView extends ProfileImageViewInterface {
     void displayNewMessage(String message);
 
     /**
-     * Enters the {@link com.group80.uoftinder.ContactsActivity}
+     * Enters the {@link ContactsActivity}
      */
     void enterContactView();
 }

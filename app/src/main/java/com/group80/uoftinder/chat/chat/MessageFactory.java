@@ -1,4 +1,4 @@
-package com.group80.uoftinder.chat;
+package com.group80.uoftinder.chat.chat;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

@@ -1,6 +1,5 @@
-package com.group80.uoftinder.chat;
+package com.group80.uoftinder.chat.chat;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.R;
 
-import java.util.List;
-
 /**
- * An RecyclerView.Adapter that provide a binding from Message to views that is displayed in the
- * recycler view for the messages
+ * An {@link RecyclerView.Adapter} that provide a binding from Message to views that is displayed in
+ * the {@link RecyclerView} for the messages
  */
 public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     /**
@@ -29,17 +26,17 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private final int ITEM_RECEIVED = 1;
 
     /**
-     * List of messages to be displayed
+     * A controller that controls chat messages
      */
-    private final List<Message> messageList;
+    private final MessageController controller;
 
     /**
      * Constructor, creates the message adapter
      *
-     * @param messageList the list of messages
+     * @param controller a controller that controls chat
      */
-    public MessageAdapter(List<Message> messageList) {
-        this.messageList = messageList;
+    public MessageAdapter(MessageController controller) {
+        this.controller = controller;
     }
 
     /**
@@ -53,7 +50,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d("DEBUGGING", "onCreateViewHolder: " + parent);
         if (viewType == ITEM_SENT) { // sent by this
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.uoftinder_sent_message_layout, parent, false);
             return new SentMessageViewHolder(view);
@@ -62,7 +58,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return new ReceivedMessageViewHolder(view);
         }
     }
-
 
     /**
      * Called by RecyclerView to display the data at the specified position, and update the contents
@@ -74,18 +69,14 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      */
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Message message = this.messageList.get(position);
-        Log.d("DEBUGGING", "onBindViewHolder: " + message.getMessage());
+        MessageViewHolder viewHolder;
 
-        if (holder.getClass() == SentMessageViewHolder.class) { // sent by this
-            SentMessageViewHolder viewHolder = (SentMessageViewHolder) holder;
-            viewHolder.message_text.setText(message.getMessage());
-            viewHolder.message_time.setText(message.getCurrentTime());
-        } else { // sent by other
-            ReceivedMessageViewHolder viewHolder = (ReceivedMessageViewHolder) holder;
-            viewHolder.message_text.setText(message.getMessage());
-            viewHolder.message_time.setText(message.getCurrentTime());
-        }
+        if (holder.getClass() == SentMessageViewHolder.class)  // sent by this
+            viewHolder = (SentMessageViewHolder) holder;
+        else  // sent by other
+            viewHolder = (ReceivedMessageViewHolder) holder;
+
+        viewHolder.displayMessage(controller.getMessageText(position), controller.getMessageTime(position));
     }
 
     /**
@@ -97,10 +88,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      */
     @Override
     public int getItemViewType(int position) {
-        Message message = this.messageList.get(position);
-        if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(message.getSenderId()))
-            return ITEM_SENT;
-        return ITEM_RECEIVED;
+        return controller.isSent(position, FirebaseAuth.getInstance().getCurrentUser().getUid()) ? ITEM_SENT : ITEM_RECEIVED;
     }
 
     /**
@@ -110,16 +98,27 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      */
     @Override
     public int getItemCount() {
-        return messageList.size();
+        return controller.getMessageCount();
+    }
+
+    static abstract class MessageViewHolder extends RecyclerView.ViewHolder {
+        protected TextView message_text;
+        protected TextView message_time;
+
+        public MessageViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+
+        public void displayMessage(String text, String time) {
+            this.message_text.setText(text);
+            this.message_time.setText(time);
+        }
     }
 
     /**
      * A RecyclerView.ViewHolder for holding messages received
      */
-    static class ReceivedMessageViewHolder extends RecyclerView.ViewHolder {
-        protected TextView message_text;
-        protected TextView message_time;
-
+    static class ReceivedMessageViewHolder extends MessageViewHolder {
         public ReceivedMessageViewHolder(@NonNull View itemView) {
             super(itemView);
             this.message_text = itemView.findViewById(R.id.uoftinder_other_message_text);
@@ -130,10 +129,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     /**
      * A RecyclerView.ViewHolder for holding messages sent
      */
-    static class SentMessageViewHolder extends RecyclerView.ViewHolder {
-        protected TextView message_text;
-        protected TextView message_time;
-
+    static class SentMessageViewHolder extends MessageViewHolder {
         public SentMessageViewHolder(@NonNull View itemView) {
             super(itemView);
             this.message_text = itemView.findViewById(R.id.uoftinder_self_message_text);

@@ -27,7 +27,7 @@
             android:name=".feed.AcademicFilterActivity"
             android:exported="true" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".chat.chat.ChatActivity"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
@@ -67,7 +67,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ContactsActivity"
+            android:name=".chat.contacts_list.ContactsActivity"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>

@@ -1,4 +1,4 @@
-package com.group80.uoftinder.chat;
+package com.group80.uoftinder.chat.chat;
 
 import androidx.annotation.NonNull;
 
@@ -7,32 +7,31 @@ import com.google.firebase.database.DatabaseError;
 import com.group80.uoftinder.firebase.realtime.RealtimeDbValueObserver;
 import com.group80.uoftinder.firebase.realtime.ucChatMessageWriter;
 
-import java.util.List;
-
+/**
+ * A presenter corroborating with {@link ChatView}
+ */
 public class ChatPresenter {
     private final ChatView view;
-    private final List<Message> msgLst;
 
     private final ucChatMessageWriter chatMessageWriter;
 
     /**
      * Constructor, initializes the presenter
      *
-     * @param view        the view this presenter is interacting with
-     * @param messageList the messages between the two users
-     * @param chatRoom    the identifier of the chat room between the two users
+     * @param view       the view this presenter is interacting with
+     * @param controller the controller that controls chat messages
+     * @param chatRoom   the identifier of the chat room between the two users
      */
-    public ChatPresenter(ChatView view, List<Message> messageList, String chatRoom) {
+    public ChatPresenter(ChatView view, MessageController controller, String chatRoom) {
         this.view = view;
-        this.msgLst = messageList;
 
         // Register database value chane observer behaviour
         this.chatMessageWriter = new ucChatMessageWriter(new RealtimeDbValueObserver() {
             @Override
             public void onRealtimeDbDataChange(@NonNull DataSnapshot snapshot) {
-                msgLst.clear();
+                controller.clearMessagesList();
                 for (DataSnapshot childSnapshot : snapshot.getChildren())
-                    msgLst.add(childSnapshot.getValue(Message.class));
+                    controller.addMessage(childSnapshot.getValue(Message.class));
                 view.notifyMessageAdded();
             }
 
@@ -44,7 +43,7 @@ public class ChatPresenter {
     }
 
     /**
-     * Enters the {@link com.group80.uoftinder.ChatActivity}
+     * Enters the {@link ChatActivity}
      */
     public void enterChatActivity() {
         view.enterContactView();

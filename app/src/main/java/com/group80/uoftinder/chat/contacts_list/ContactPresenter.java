@@ -1,4 +1,4 @@
-package com.group80.uoftinder.chat;
+package com.group80.uoftinder.chat.contacts_list;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
