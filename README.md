@@ -88,9 +88,14 @@ Some design patterns that we implemented within our project include Model View P
 - logoutTest: tests that the logout button works in Recommendation View.
 
 **Filter Activity**
-
+- testSwitchToFilterPage: tests that the program switches to the filter page after clicking on the 'Edit Filters' button
+- testResetFilters: tests that the program unchecks all the filters and switches to the recommendation view after clicking the 'reset' button.
+- testFilterButtons: tests that the program's filter check boxes work.
+- testApplyFilters: tests that the program switches to the recommendation view after clicking the 'Filter' button on the filter page.
+- 
 **Chat Activity**
-
+- testSwitchContactPage: tests that the program switches to the contact page after clicking the 'Enter Chat' button on the filter page and that the right contacts are displayed.
+- testBackButton: tests that the program switches back to the recommendation view after clicking the back button in the contact view.
 ## In the `test` folder
 **Filter Recommendation Feed** 
 - filterFeedTestFilters: tests that we can apply filters to the feed.
