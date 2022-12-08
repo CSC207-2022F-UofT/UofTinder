@@ -1,15 +1,14 @@
 package com.group80.uoftinder;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
-
 import static org.junit.Assert.assertNull;
 
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.GenerateCompatibilityList;
 import com.group80.uoftinder.feed.UserScoreFacade;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
+
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -171,7 +170,7 @@ public class GenerateCompatibilityListUnitTest {
         List<User> compList = new ArrayList<>(Arrays.asList(user2, user3));
         genCompatibilityList.setCompatibilityList(compList);
         genCompatibilityList.removeMostCompUser();
-        List<User> expected = new ArrayList<>(Arrays.asList(user3));
+        List<User> expected = new ArrayList<>(Collections.singletonList(user3));
         List<User> actual = genCompatibilityList.getCompatibilityList();
         assertEquals(actual, expected);
     }

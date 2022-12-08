@@ -34,6 +34,8 @@ import org.junit.runner.RunWith;
 public class ContactUnitTest {
     private static String inputEmail;
     private static String inputPassword;
+    @Rule
+    public ActivityScenarioRule<LoginActivity> activityRule = new ActivityScenarioRule<>(LoginActivity.class);
 
     /**
      * Initialize the expectedEmail and expectedPassword
@@ -52,9 +54,6 @@ public class ContactUnitTest {
         Log.i("ContactUnitTest", "Done test");
     }
 
-    @Rule
-    public ActivityScenarioRule<LoginActivity> activityRule = new ActivityScenarioRule<>(LoginActivity.class);
-
     @Before
     public void login() {
         onView(withId(R.id.loginEmail)).perform(replaceText(inputEmail), closeSoftKeyboard());
@@ -63,7 +62,7 @@ public class ContactUnitTest {
     }
 
     @After
-    public void afterTestSwitchContactPage() {
+    public void logoutUser() {
         FirebaseAuth.getInstance().signOut();
     }
 

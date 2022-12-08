@@ -1,6 +1,5 @@
 package com.group80.uoftinder;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import com.group80.uoftinder.entities.User;
@@ -66,7 +65,7 @@ public class MatchInteractorUnitTest {
     public void currUserSkipsDisplayedUserLocal() {
         // set the currentUser and displayedUser
         User currentUser = new User("currUser");
-        User displayedUser  = new User("displayedUser");
+        User displayedUser = new User("displayedUser");
         currentUser.setUserType("Academic");
         displayedUser.setUserType("Academic");
 
@@ -96,7 +95,7 @@ public class MatchInteractorUnitTest {
     public void currUserLikesDisplayedUserLocal() {
         // set the currentUser and displayedUser
         User currentUser = new User("currUser");
-        User displayedUser  = new User("displayedUser");
+        User displayedUser = new User("displayedUser");
         currentUser.setUserType("Academic");
         displayedUser.setUserType("Academic");
 
@@ -117,6 +116,7 @@ public class MatchInteractorUnitTest {
         assertEquals(expectedLikedList, actualLikedList);
         assertEquals(expectedVisitedList, actualVisitedList);
     }
+
     /**
      * Test to see if the viewed and liked lists of the current user are updated in the database
      * when the currentUser does not 'like' the displayedUser
@@ -140,6 +140,7 @@ public class MatchInteractorUnitTest {
                 }
         );
     }
+
     /**
      * Test to see if the viewed and liked lists of the current user are updated in the database
      * when the currentUser does not 'like' the displayedUser
