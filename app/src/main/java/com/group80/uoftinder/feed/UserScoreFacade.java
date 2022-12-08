@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class UserScoreFacade implements UserScoreInterface {  // using Facade Design Principle to delegate tasks
     private final UserScoreCalculator usCalc; // instance of class designed for calculating user scores
-    private final UserScoreComparator usComp; // instance of class designed for comparing user scores
+    private final UserScoreSimChecker usComp; // instance of class designed for comparing user scores
     private List<List<Integer>> userAnswers; // List of HashSets, where index i is a
     // HashSet representing the indices of the answers selected by the currentUser for question i
     private final int[] answerSchema; // array where index i tells us the number of options for
@@ -33,7 +33,7 @@ public class UserScoreFacade implements UserScoreInterface {  // using Facade De
         // allocated for question i in the user score
 
         this.usCalc = new UserScoreCalculator(this.userAnswers, this.isMultiSelect, answerBitLengths);
-        this.usComp = new UserScoreComparator(currentUser, this.isMultiSelect, answerBitLengths);
+        this.usComp = new UserScoreSimChecker(currentUser, this.isMultiSelect, answerBitLengths);
 
         currentUser.setScore(generateCompatibilityScore());
     }
@@ -55,7 +55,7 @@ public class UserScoreFacade implements UserScoreInterface {  // using Facade De
      */
     @Override
     public int compare(int score2) {
-        return this.usComp.compare(score2);
+        return this.usComp.computeSimilarity(score2);
     }
 
     /**

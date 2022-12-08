@@ -37,14 +37,14 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
 
         FirebaseAuth.getInstance();
 
-        createAccountEmail = findViewById(R.id.createAccountViewEmailEditText);
-        createAccountPassword1 = findViewById(R.id.createAccountViewPasswordEditText);
-        createAccountPassword2 = findViewById(R.id.createAccountViewReEnterPasswordEditText);
+        createAccountEmail = findViewById(R.id.createActViewEmailEdtTxt);
+        createAccountPassword1 = findViewById(R.id.createActViewPasswordEdtTxt);
+        createAccountPassword2 = findViewById(R.id.createActViewReEnterPasswordEdtTxt);
 
         Button buttonShowLoginView = findViewById(R.id.createAccountViewRetLoginButton);
         buttonShowLoginView.setOnClickListener(v -> showLoginView());
 
-        Button enter = findViewById(R.id.createAccountViewCreateAccountButton);
+        Button enter = findViewById(R.id.createActViewCreateActBtn);
         // creating account and uploading to the FirebaseAuth
         enter.setOnClickListener(v -> controller.createAccount(createAccountEmail, createAccountPassword1, createAccountPassword2));
     }

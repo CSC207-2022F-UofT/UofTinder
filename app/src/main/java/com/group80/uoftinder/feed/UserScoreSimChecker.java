@@ -2,7 +2,7 @@ package com.group80.uoftinder.feed;
 
 import com.group80.uoftinder.entities.User;
 
-public class UserScoreComparator {
+public class UserScoreSimChecker {
     private final int answerLen;
     private final boolean[] isMultiSelect;
     private final int[] answerBitLengths;
@@ -16,7 +16,7 @@ public class UserScoreComparator {
      * @param answerBitLengths is an array where index i tells us the number of options for
      *                         question i
      */
-    public UserScoreComparator(User currentUser, boolean[] isMultiSelect, int[] answerBitLengths) {
+    public UserScoreSimChecker(User currentUser, boolean[] isMultiSelect, int[] answerBitLengths) {
         this.answerLen = isMultiSelect.length;
         this.isMultiSelect = isMultiSelect;
         this.answerBitLengths = answerBitLengths;
@@ -43,7 +43,7 @@ public class UserScoreComparator {
      *
      * @return an integer that represents the similarity of the two scores (higher value signals higher similarity)
      */
-    public int compare(Integer score2) {
+    public int computeSimilarity(Integer score2) {
         int score1 = currentUser.getScore();
         String score1Binary = String.format("%" + this.scoreLength + "s", Integer.toBinaryString(score1)).replace(' ', '0'); // convert score1 and score2
         // to binary, filling in leading zeroes as necessary

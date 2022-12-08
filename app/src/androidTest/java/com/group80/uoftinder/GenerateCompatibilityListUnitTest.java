@@ -1,15 +1,14 @@
 package com.group80.uoftinder;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
-
 import static org.junit.Assert.assertNull;
 
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.feed.GenerateCompatibilityList;
 import com.group80.uoftinder.feed.UserScoreFacade;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
+
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,18 +36,21 @@ public class GenerateCompatibilityListUnitTest {
         userAnswers.add(Collections.singletonList(0)); // single
         userAnswers.add(Collections.singletonList(1)); // single
 
-        User curUser = new User("curUser");
+        User curUser = new User("Alice");
+        curUser.setName("Alice");
         curUser.setAnswers(userAnswers);
         curUser.setUserType("Romantic");
 
         GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
         genCompatibilityList.setUsf(new UserScoreFacade(curUser));
 
-        User user2 = new User("user2");
+        User user2 = new User("Benjamin");
         int user2Score = 2893321; // User 2 similarity score = 5
+        user2.setName("Benjamin");
 
-        User user3 = new User("user3");
+        User user3 = new User("Clark");
         int user3Score = 3354610; // User 3 similarity score = 6
+        user3.setName("Clark");
 
         user2.setScore(user2Score);
         user3.setScore(user3Score);
@@ -77,7 +79,8 @@ public class GenerateCompatibilityListUnitTest {
         userAnswers.add(Collections.singletonList(0)); // single
         userAnswers.add(Collections.singletonList(1)); // single
 
-        User curUser = new User("curUser");
+        User curUser = new User("Alice");
+        curUser.setName("Alice");
         curUser.setAnswers(userAnswers);
         curUser.setUserType("Romantic");
 
@@ -106,13 +109,16 @@ public class GenerateCompatibilityListUnitTest {
         userAnswers.add(Collections.singletonList(0)); // single
         userAnswers.add(Collections.singletonList(1)); // single
 
-        User curUser = new User("curUser");
+        User curUser = new User("Alice");
+        curUser.setName("Alice");
         curUser.setAnswers(userAnswers);
         curUser.setUserType("Romantic");
 
         GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
-        User user2 = new User("user2");
-        User user3 = new User("user3");
+        User user2 = new User("Benjamin");
+        user2.setName("Benjamin");
+        User user3 = new User("Clark");
+        user3.setName("Clark");
         List<User> compList = new ArrayList<>(Arrays.asList(user3, user2));
         genCompatibilityList.setCompatibilityList(compList);
         User expected = user3;
@@ -134,7 +140,8 @@ public class GenerateCompatibilityListUnitTest {
         userAnswers.add(Collections.singletonList(0)); // single
         userAnswers.add(Collections.singletonList(1)); // single
 
-        User curUser = new User("curUser");
+        User curUser = new User("Alice");
+        curUser.setName("Alice");
         curUser.setAnswers(userAnswers);
         curUser.setUserType("Romantic");
 
@@ -160,18 +167,21 @@ public class GenerateCompatibilityListUnitTest {
         userAnswers.add(Collections.singletonList(0)); // single
         userAnswers.add(Collections.singletonList(1)); // single
 
-        User curUser = new User("curUser");
+        User curUser = new User("Alice");
+        curUser.setName("Alice");
         curUser.setAnswers(userAnswers);
         curUser.setUserType("Romantic");
 
         GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
 
-        User user2 = new User("user2");
-        User user3 = new User("user3");
+        User user2 = new User("Benjamin");
+        user2.setName("Benjamin");
+        User user3 = new User("Clark");
+        user3.setName("Clark");
         List<User> compList = new ArrayList<>(Arrays.asList(user2, user3));
         genCompatibilityList.setCompatibilityList(compList);
         genCompatibilityList.removeMostCompUser();
-        List<User> expected = new ArrayList<>(Arrays.asList(user3));
+        List<User> expected = new ArrayList<>(Collections.singletonList(user3));
         List<User> actual = genCompatibilityList.getCompatibilityList();
         assertEquals(actual, expected);
     }
@@ -182,7 +192,8 @@ public class GenerateCompatibilityListUnitTest {
      */
     @Test
     public void removeCurrentUserTest() {
-        User curUser = new User("curUser");
+        User curUser = new User("Alice");
+        curUser.setName("Alice");
         int curUserScore = 1909569;
         curUser.setScore(curUserScore);
         curUser.setUserType("Romantic");
@@ -198,12 +209,14 @@ public class GenerateCompatibilityListUnitTest {
 
         GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
 
-        User user2 = new User("user2");
+        User user2 = new User("Benjamin");
+        user2.setName("Benjamin");
         int user2Score = 2893321;
         user2.setScore(user2Score);
         user2.setUserType("Romantic");
 
-        User user3 = new User("user3");
+        User user3 = new User("Clark");
+        user3.setName("Clark");
         int user3Score = 3891;
         user3.setScore(user3Score);
         user2.setUserType("Romantic");
@@ -224,7 +237,8 @@ public class GenerateCompatibilityListUnitTest {
      */
     @Test
     public void removeVisitedUsersTest() {
-        User curUser = new User("curUser");
+        User curUser = new User("Alice");
+        curUser.setName("Alice");
         int curUserScore = 1909569;
         curUser.setScore(curUserScore);
         curUser.setUserType("Romantic");
@@ -240,17 +254,20 @@ public class GenerateCompatibilityListUnitTest {
 
         GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
 
-        User user2 = new User("user2");
+        User user2 = new User("Benjamin");
+        user2.setName("Benjamin");
         int user2Score = 2893321;
         user2.setScore(user2Score);
         user2.setUserType("Romantic");
 
-        User user3 = new User("user3");
+        User user3 = new User("Clark");
+        user3.setName("Clark");
         int user3Score = 3891;
         user3.setScore(user3Score);
         user3.setUserType("Romantic");
 
-        User user4 = new User("user4");
+        User user4 = new User("Ester");
+        user4.setName("Ester");
         int user4Score = 18643;
         user4.setScore(user4Score);
         user4.setUserType("Romantic");
@@ -259,7 +276,7 @@ public class GenerateCompatibilityListUnitTest {
         UserRealtimeDbFacade.uploadUser(user3);
         UserRealtimeDbFacade.uploadUser(user4);
 
-        List<String> visitedList = new ArrayList<>(Arrays.asList("user4", "user3"));
+        List<String> visitedList = new ArrayList<>(Arrays.asList("Ester", "Clark"));
 
         curUser.setViewed(visitedList);
 

@@ -7,7 +7,7 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.group80.uoftinder.chat.Message;
+import com.group80.uoftinder.chat.chat.Message;
 import com.group80.uoftinder.entities.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
@@ -28,7 +28,9 @@ public class MatchInteractorUnitTest {
     @Test
     public void checkMatchListsUpdatedLocal() {
         User user1 = new User("user1");
+        user1.setName("Alice");
         User user2 = new User("user2");
+        user2.setName("Benjamin");
         user1.setUserType("Romantic");
         user2.setUserType("Romantic");
         user1.getLiked().add(user2.getUid());
@@ -44,7 +46,9 @@ public class MatchInteractorUnitTest {
     @Test
     public void checkMatchListsUpdatedRemote() {
         User user1 = new User("user1");
+        user1.setName("Alice");
         User user2 = new User("user2");
+        user2.setName("Benjamin");
         user1.setUserType("Romantic");
         user2.setUserType("Romantic");
         user1.getLiked().add(user2.getUid());
@@ -72,7 +76,9 @@ public class MatchInteractorUnitTest {
     public void currUserSkipsDisplayedUserLocal() {
         // set the currentUser and displayedUser
         User currentUser = new User("currUser");
-        User displayedUser  = new User("displayedUser");
+        currentUser.setName("Alice");
+        User displayedUser = new User("displayedUser");
+        displayedUser.setName("Benjamin");
         currentUser.setUserType("Academic");
         displayedUser.setUserType("Academic");
 
@@ -102,7 +108,9 @@ public class MatchInteractorUnitTest {
     public void currUserLikesDisplayedUserLocal() {
         // set the currentUser and displayedUser
         User currentUser = new User("currUser");
-        User displayedUser  = new User("displayedUser");
+        currentUser.setName("Alice");
+        User displayedUser = new User("displayedUser");
+        displayedUser.setName("Benjamin");
         currentUser.setUserType("Academic");
         displayedUser.setUserType("Academic");
 
@@ -123,6 +131,7 @@ public class MatchInteractorUnitTest {
         assertEquals(expectedLikedList, actualLikedList);
         assertEquals(expectedVisitedList, actualVisitedList);
     }
+
     /**
      * Test to see if the viewed list of the current user is updated in the database
      * when the currentUser does not 'like' the displayedUser
@@ -130,7 +139,9 @@ public class MatchInteractorUnitTest {
     @Test
     public void currUserSkipsDisplayedUserRemote() {
         User currentUser = new User("user1");
+        currentUser.setName("Alice");
         User displayedUser = new User("user2");
+        displayedUser.setName("Benjamin");
         currentUser.setUserType("Romantic");
         displayedUser.setUserType("Romantic");
         MatchInteractor.addToList(currentUser, displayedUser, false);
@@ -146,6 +157,7 @@ public class MatchInteractorUnitTest {
                 }
         );
     }
+
     /**
      * Test to see if the liked and viewed lists of the current user are updated in the database
      * when the currentUser 'likes' the displayedUser
@@ -153,7 +165,9 @@ public class MatchInteractorUnitTest {
     @Test
     public void currUserLikesDisplayedUserRemote() {
         User currentUser = new User("user1");
+        currentUser.setName("Alice");
         User displayedUser = new User("user2");
+        displayedUser.setName("Benjamin");
         currentUser.setUserType("Romantic");
         displayedUser.setUserType("Romantic");
         MatchInteractor.addToList(currentUser, displayedUser, true);
@@ -180,7 +194,9 @@ public class MatchInteractorUnitTest {
         String selfUid = "user1";
         String contactUid = "user2";
         User user1 = new User(selfUid);
+        user1.setName("Alice");
         User user2 = new User(contactUid);
+        user2.setName("Benjamin");
         user1.setUserType("Romantic");
         user2.setUserType("Romantic");
         String chatRoom = selfUid + contactUid;

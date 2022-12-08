@@ -25,7 +25,11 @@
         </activity>
         <activity
             android:name=".feed.AcademicFilterActivity"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".chat.chat.ChatActivity"
             android:exported="true"
@@ -58,7 +62,12 @@
         </activity>
         <activity
             android:name=".feed.NoNewRecommendation"
-            android:exported="true" />
+            android:exported="true" >
+
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".feed.RecommendationView"
             android:exported="true">
@@ -73,6 +82,10 @@
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+
+        <activity android:name="androidx.test.core.app.InstrumentationActivityInvoker.BootstrapActivity">
+
         </activity>
     </application>
 </manifest>
