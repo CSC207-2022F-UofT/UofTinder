@@ -116,7 +116,7 @@ public class FilterViewUnitTest {
     }
 
     /**
-     * Test that the program's filter check boxes work.
+     * Test that the all program's filter check boxes can be selected.
      */
     @Test
     public void testFilterButtons() {
