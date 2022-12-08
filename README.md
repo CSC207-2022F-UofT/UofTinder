@@ -49,6 +49,7 @@ Some design patterns that we implemented within our project include Model View P
 **2. Create new account**
 - User can choose between three different types of users when registering: Romantic, Academic, and Friendship
 - An email and password are required to identify each user
+- Password needs to be at least 6 characters long
 
 **3. Profile setup/questionnaire**
 - The user cannot continue before answering profile setup questions
@@ -81,18 +82,37 @@ Some design patterns that we implemented within our project include Model View P
 # Unit Tests Implemented for Functionalities
 ## Android User Interface specific tests
 **Create Account Activity**
+- testChangeToLogin: checks if view switched activity_login.xml correctly
+- testNoEmail: check if no email, no passwords are input that createActViewEmailEdtTxt has focus
+- testNoPasswords: check if with email, no passwords are input that createActViewEmailEdtTxt has focus
+- testNoFirstPassword: check if the first password is not input, but re-enter password has input that createActViewPasswordEdtTxt has focus
+- testNoReEnterPassword: check if with email, and only one password are input that createActViewReEnterPasswordEdtTxt has focus
+- testPasswordsNotMatching: check if with email and two passwords are input, but the passwords do not match, createActViewReEnterPasswordEdtTxt has focus
+- testCreateAccountFailure: check if with email and two passwords are input, and the passwords do match but the user already exists, no user is created
+- testCreateAccountSuccess: check if with email and two passwords are input, and the passwords match, and the user does not exist in the database, a user is created 
+    - Created user is deleted afterwards
 
 **Login Activity**
+- testChangeToCreateAccount: checks if view switched activity_create_account.xml correctly
+- testNoEmailNoPassword: check if no email, no password is input that loginEmail has focus
+- testNoEmailWithPassword: check if no email, with password is input that loginEmail has focus
+- testWithEmailNoPassword: check if with email, no password is input that loginPassword has focus
+- testIncorrectEmailPasswordLogin: check if with incorrect email and password combination that current user is null
+- testCorrectEmailPasswordLogin: check if with correct email and password combination that current user is not null
 
 **Logout**
-- logoutTest: tests that the logout button works in Recommendation View.
+- logoutTest: tests that the logout button works in Recommendation View
 
 **Filter Activity**
-- testSwitchToFilterPage: tests that the program switches to the filter page after clicking on the 'Edit Filters' button
-- testResetFilters: tests that the program unchecks all the filters and switches to the recommendation view after clicking the 'reset' button.
-- testFilterButtons: tests that the program's filter check boxes work.
-- testApplyFilters: tests that the program switches to the recommendation view after clicking the 'Filter' button on the filter page.
-- 
+- testSwitchToFilterPage: test that the program switches to the filter page after clicking on the 'Edit Filters' button
+- testResetChangeToRecommendation: test that the program switches to the recommendation view after clicking the 'reset' button
+- testResetFilters: test that the program 'reset' button properly deselects all options
+- testFilterButtons: test that all the program's filter check boxes can be selected
+- testApplyFiltersChangeView: test that the program switches to the recommendation view after clicking the 'Filter' button on the filter page
+- testApplyFiltersStay: test that the keeps the selected filters after clicking the 'Filter' button and switching to Recommendation view page.
+- testDeselect: test that the program's filter check boxes can be deselected
+- testTwoSelectOneDeselect: test that the program's filter check boxes can be deselected and other selected boxes will not be affected
+
 **Chat Activity**
 - testSwitchContactPage: tests that the program switches to the contact page after clicking the 'Enter Chat' button on the filter page and that the right contacts are displayed.
 - testBackButton: tests that the program switches back to the recommendation view after clicking the back button in the contact view.
@@ -142,7 +162,7 @@ Some design patterns that we implemented within our project include Model View P
 - getUser_isCorrect: test that we can get the correct user without error.
 
 **Login Interactor**
-- tests to verify appropriate and correct inputs for email and password fields of the login user story.
+- tests to verify appropriate and correct inputs for email and password fields of the login user story
 
 **Chatting**
 - tests to ensure that users can send and receive chat messages from each other.
