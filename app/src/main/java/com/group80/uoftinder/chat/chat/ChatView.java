@@ -1,5 +1,6 @@
-package com.group80.uoftinder.chat;
+package com.group80.uoftinder.chat.chat;
 
+import com.group80.uoftinder.chat.contacts_list.ContactsActivity;
 import com.group80.uoftinder.firebase.ProfileImageViewInterface;
 
 public interface ChatView extends ProfileImageViewInterface {
@@ -35,7 +36,7 @@ public interface ChatView extends ProfileImageViewInterface {
     void displayNewMessage(String message);
 
     /**
-     * Enters the {@link com.group80.uoftinder.ContactsActivity}
+     * Enters the {@link ContactsActivity}
      */
     void enterContactView();
 }

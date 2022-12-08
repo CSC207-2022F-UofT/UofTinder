@@ -1,4 +1,4 @@
-package com.group80.uoftinder.chat;
+package com.group80.uoftinder.chat.contacts_list;
 
 import android.content.Context;
 import android.graphics.Bitmap;

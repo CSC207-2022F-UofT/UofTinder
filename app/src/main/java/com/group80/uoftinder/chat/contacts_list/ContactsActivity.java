@@ -1,4 +1,4 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.chat.contacts_list;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.group80.uoftinder.chat.ContactModel;
-import com.group80.uoftinder.chat.ContactPresenter;
-import com.group80.uoftinder.chat.ContactViewHolder;
-import com.group80.uoftinder.chat.ContactsView;
+import com.group80.uoftinder.Constants;
+import com.group80.uoftinder.R;
+import com.group80.uoftinder.chat.chat.ChatActivity;
 import com.group80.uoftinder.feed.RecommendationView;
 
 /**

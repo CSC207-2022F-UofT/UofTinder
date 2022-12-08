@@ -1,4 +1,4 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.chat.chat;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -18,14 +18,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.group80.uoftinder.chat.ChatPresenter;
-import com.group80.uoftinder.chat.ChatView;
-import com.group80.uoftinder.chat.Message;
-import com.group80.uoftinder.chat.MessageAdapter;
+import com.group80.uoftinder.Constants;
+import com.group80.uoftinder.R;
+import com.group80.uoftinder.chat.contacts_list.ContactsActivity;
 import com.group80.uoftinder.firebase.ProfileImagePresenter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The chat window to a specific contact
@@ -69,8 +65,8 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
         setSupportActionBar(toolbar);
 
         // Setup message display container
-        List<Message> messageList = new ArrayList<>();
-        messageAdapter = new MessageAdapter(messageList);
+        MessageController controller = new MessageController();
+        messageAdapter = new MessageAdapter(controller);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
@@ -80,7 +76,7 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
         String contactUid = getIntent().getStringExtra("contactUid");
         String chatRoom = ChatView.getChatRoom(FirebaseAuth.getInstance().getCurrentUser().getUid(), contactUid);
 
-        ChatPresenter presenter = new ChatPresenter(this, messageList, chatRoom);
+        ChatPresenter presenter = new ChatPresenter(this, controller, chatRoom);
         presenter.showContactInfo(getIntent().getStringExtra("name"), contactUid);
 
         backButton.setOnClickListener(view -> presenter.enterChatActivity());
@@ -154,7 +150,7 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
     }
 
     /**
-     * Enters the {@link com.group80.uoftinder.ContactsActivity}
+     * Enters the {@link ContactsActivity}
      */
     @Override
     public void enterContactView() {

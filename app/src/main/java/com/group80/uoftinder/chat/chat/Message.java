@@ -1,4 +1,4 @@
-package com.group80.uoftinder.chat;
+package com.group80.uoftinder.chat.chat;
 
 /**
  * An entity class, stores the essential chat message data to be written to the database
@@ -38,6 +38,8 @@ public class Message {
 
     /**
      * Explicit no-argument constructor to avoid errors
+     * <p>
+     * Important: DO NOT REMOVE EVEN IF IT'S NEVER USED
      */
     public Message() {
 

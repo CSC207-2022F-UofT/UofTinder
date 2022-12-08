@@ -7,7 +7,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.group80.uoftinder.chat.Message;
+import com.group80.uoftinder.chat.chat.Message;
 
 /**
  * A class that writes chat messages to the database
