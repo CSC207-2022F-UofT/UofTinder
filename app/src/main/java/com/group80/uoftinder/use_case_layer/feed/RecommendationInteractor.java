@@ -1,7 +1,7 @@
 package com.group80.uoftinder.use_case_layer.feed;
 
 import com.group80.uoftinder.entities_layer.User;
-import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
+import com.group80.uoftinder.use_case_layer.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
 import java.util.Collections;

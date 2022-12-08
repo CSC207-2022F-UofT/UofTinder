@@ -4,12 +4,13 @@ import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.group80.uoftinder.chat.chat.MessageFactory;
+import com.group80.uoftinder.use_case_layer.chat.MessageFactory;
 import com.group80.uoftinder.entities_layer.User;
-import com.group80.uoftinder.firebase.firestore.FirestoreDbWriter;
-import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
+import com.group80.uoftinder.use_case_layer.firebase.firestore.FirestoreDbWriter;
+import com.group80.uoftinder.use_case_layer.firebase.realtime.RealtimeDbValueObserver;
+import com.group80.uoftinder.use_case_layer.firebase.realtime.UserRealtimeDbFacade;
 
-import com.group80.uoftinder.firebase.realtime.*;
+import com.group80.uoftinder.use_case_layer.firebase.realtime.ChatMessageWriter;
 
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class MatchInteractor {
     private static void sendIntroMessage(String selfUid, String contactUid, String message) {
         String chatRoom = selfUid.compareTo(contactUid) < 0 ? selfUid + contactUid : contactUid + selfUid;
 
-        ucChatMessageWriter chatMessageWriter = new ucChatMessageWriter(new RealtimeDbValueObserver() {
+        ChatMessageWriter chatMessageWriter = new ChatMessageWriter(new RealtimeDbValueObserver() {
             @Override
             public void onRealtimeDbDataChange(@NonNull DataSnapshot snapshot) {
             }

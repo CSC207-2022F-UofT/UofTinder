@@ -20,7 +20,7 @@ import com.group80.uoftinder.interface_adapter_layer.login.LoginViewInterface;
 import com.group80.uoftinder.view_layer.create_account.CreateAccountActivity;
 import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.view_layer.feed.RecommendationView;
-import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
+import com.group80.uoftinder.use_case_layer.firebase.realtime.UserRealtimeDbFacade;
 
 // Frameworks & Drivers Layer
 /**

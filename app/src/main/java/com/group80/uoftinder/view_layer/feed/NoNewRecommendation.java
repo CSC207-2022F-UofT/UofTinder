@@ -8,7 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.group80.uoftinder.chat.contacts_list.ContactsActivity;
+import com.group80.uoftinder.view_layer.chat.ContactsActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.entities_layer.User;

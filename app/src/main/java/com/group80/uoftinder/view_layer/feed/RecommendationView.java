@@ -15,15 +15,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.group80.uoftinder.Constants;
-import com.group80.uoftinder.chat.contacts_list.ContactsActivity;
+import com.group80.uoftinder.view_layer.chat.ContactsActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities_layer.User;
-import com.group80.uoftinder.firebase.ProfileImagePresenter;
-import com.group80.uoftinder.firebase.ProfileImageViewInterface;
+import com.group80.uoftinder.interface_adapter_layer.firebase.ProfileImagePresenter;
+import com.group80.uoftinder.interface_adapter_layer.firebase.ProfileImageViewInterface;
 import com.group80.uoftinder.view_layer.login.LoginActivity;
-import com.group80.uoftinder.logout.LogOutInteractor;
-import com.group80.uoftinder.logout.LogOutPresenter;
-import com.group80.uoftinder.logout.LogOutViewInterface;
+import com.group80.uoftinder.use_case_layer.logout.LogoutInteractor;
+import com.group80.uoftinder.interface_adapter_layer.logout.LogoutPresenter;
+import com.group80.uoftinder.interface_adapter_layer.logout.LogoutViewInterface;
 import com.group80.uoftinder.interface_adapter_layer.feed.RecommendationPresenter;
 
 import java.io.Serializable;
@@ -36,7 +36,7 @@ import java.util.Set;
  * This serves as the central page of the app with connections
  * to the chat, logging out, and filtering functionality.
  */
-public class RecommendationView extends AppCompatActivity implements RecommendationViewInterface, ProfileImageViewInterface, LogOutViewInterface {
+public class RecommendationView extends AppCompatActivity implements RecommendationViewInterface, ProfileImageViewInterface, LogoutViewInterface {
     private User currentUser;
     private RecommendationPresenter recPresenter;
     private User displayedUser;
@@ -52,7 +52,7 @@ public class RecommendationView extends AppCompatActivity implements Recommendat
     private int minAge = Constants.MIN_AGE;
     private int maxAge = Constants.MAX_AGE;
 
-    private LogOutPresenter logOutPresenter;
+    private LogoutPresenter logOutPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +96,7 @@ public class RecommendationView extends AppCompatActivity implements Recommendat
             buttonClick(false);
         });
 
-        logOutPresenter = new LogOutPresenter(RecommendationView.this, new LogOutInteractor());
+        logOutPresenter = new LogoutPresenter(RecommendationView.this, new LogoutInteractor());
 
         Button logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {

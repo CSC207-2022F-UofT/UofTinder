@@ -17,7 +17,7 @@ import com.group80.uoftinder.use_case_layer.create_account.CreateAccountPresente
 import com.group80.uoftinder.interface_adapter_layer.create_account.CreateAccountViewInterface;
 import com.group80.uoftinder.interface_adapter_layer.create_account.CreateAccountPresenter;
 import com.group80.uoftinder.use_case_layer.create_account.CreateAccountInteractor;
-import com.group80.uoftinder.view_layer.ProfilePicUploadActivity;
+import com.group80.uoftinder.view_layer.profile_pic_upload.ProfilePicUploadActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.view_layer.login.LoginActivity;

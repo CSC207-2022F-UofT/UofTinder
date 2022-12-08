@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view_layer.ProfilePicUploadActivity">
+    tools:context=".view_layer.profile_pic_upload.ProfilePicUploadActivity">
 
     <TextView
         android:id="@+id/profileUploadActivityTitleTextView"

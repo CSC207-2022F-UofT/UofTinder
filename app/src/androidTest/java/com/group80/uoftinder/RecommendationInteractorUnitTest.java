@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNull;
 import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.use_case_layer.feed.RecommendationInteractor;
 import com.group80.uoftinder.use_case_layer.feed.UserScoreFacade;
-import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
+import com.group80.uoftinder.use_case_layer.firebase.realtime.UserRealtimeDbFacade;
 
 import org.junit.Test;
 
