@@ -84,7 +84,8 @@ Some design patterns that we implemented within our project include Model View P
 
 **Login Activity**
 
-**Recommendation View Activity**
+**Logout**
+- logoutTest: tests that the logout button works in Recommendation View.
 
 **Filter Activity**
 
