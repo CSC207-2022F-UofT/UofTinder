@@ -17,6 +17,8 @@ import java.util.List;
 public class UserScoreFacadeUnitTest {
     /**
      * Testing to see whether the correct compatibility gets generated for current user
+     * Creates first sample user - we repeat this thrice to have three unique users with
+     * different userAnswers
      */
     @Test
     public void generateCompatibilityScoreTest1() {
@@ -41,6 +43,7 @@ public class UserScoreFacadeUnitTest {
 
     /**
      * Testing to see whether the correct compatibility gets generated for current user
+     * Creates second sample user
      */
     @Test
     public void generateCompatibilityScoreTest2() {
@@ -65,6 +68,7 @@ public class UserScoreFacadeUnitTest {
 
     /**
      * Testing to see whether the correct compatibility gets generated for current user
+     * Creates third sample user
      */
     @Test
     public void generateCompatibilityScoreTest3() {
@@ -76,17 +80,20 @@ public class UserScoreFacadeUnitTest {
         userAnswers.add(Collections.singletonList(0)); // single
         userAnswers.add(Collections.singletonList(2)); // single
 
-        User user2 = new User("user2");
-        user2.setAnswers(userAnswers);
-        user2.setUserType("Romantic");
+        User user3 = new User("user3");
+        user3.setAnswers(userAnswers);
+        user3.setUserType("Romantic");
 
-        UserScoreInterface usf = new UserScoreFacade(user2);
-        int userScore = user2.getScore();
+        UserScoreInterface usf = new UserScoreFacade(user3);
+        int userScore = user3.getScore();
+        // binary: 011-001100-10-11111111-00-10
+        // decimal: 3354610
         assert userScore == 3354610;
     }
 
     /**
-     * Testing to see compare method returns the correct similarity scores for two users
+     * Testing to see if the compare method returns the correct similarity score for
+     * user1 and user2, whose compatibility scores are tested above
      */
     @Test
     public void compareTest1() {
@@ -107,14 +114,14 @@ public class UserScoreFacadeUnitTest {
         // decimal: 1909569
         int userScore2 = 2893321;
         // binary: 010-110000-10-01100000-10-01
-        // single-multi-single-multi-single-single
 
         int similarity = usf.compare(userScore2);
         assert similarity == 5; // 0 + 2 + 1 + 1 + 0 + 1
     }
 
     /**
-     * Testing to see compare method returns the correct similarity scores for two users
+     * Testing to see if the compare method returns the correct similarity score for
+     * user1 and user3, whose compatibility scores are tested above
      */
     @Test
     public void compareTest2() {
@@ -133,9 +140,10 @@ public class UserScoreFacadeUnitTest {
         UserScoreInterface usf = new UserScoreFacade(currUser);
         // binary: 001-110100-10-00110100-00-01
         // decimal: 1909569
-        int userScore2 = 3354610;
+        int userScore3 = 3354610;
+        // binary: 011-001100-10-11111111-00-10
 
-        int similarity = usf.compare(userScore2);
+        int similarity = usf.compare(userScore3);
         assert similarity == 6;
     }
 }
