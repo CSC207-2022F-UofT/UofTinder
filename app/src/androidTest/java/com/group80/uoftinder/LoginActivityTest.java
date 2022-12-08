@@ -12,11 +12,8 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasFocus;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-
-import android.util.Log;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -25,7 +22,7 @@ import androidx.test.filters.LargeTest;
 import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 
-import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -46,18 +43,13 @@ public class LoginActivityTest {
         inputPassword = "12345678";
     }
 
-    @AfterClass
-    public static void tearDown() {
-        Log.i("LoginActivityTest", "Done test");
-    }
-
     /**
      * Checks if view switched activity_create_account.xml correctly
      */
     @Test
     public void testChangeToCreateAccount() {
         onView(withId(R.id.accountButton)).perform(click());
-        onView(withText("Create An Account:")).check(matches(isDisplayed()));
+        onView(withId(R.id.CreateAccountTitle)).check(matches(isDisplayed()));
     }
 
     /**
@@ -97,7 +89,7 @@ public class LoginActivityTest {
      */
     @Test
     public void testIncorrectEmailPasswordLogin() {
-        onView(withId(R.id.loginEmail)).perform(replaceText("random@mail.com"), closeSoftKeyboard());
+        onView(withId(R.id.loginEmail)).perform(replaceText("hellothere"), closeSoftKeyboard());
         onView(withId(R.id.loginPassword)).perform(replaceText("12345678"), closeSoftKeyboard());
         onView(withId(R.id.EnterLogin)).perform(click());
 
@@ -114,6 +106,10 @@ public class LoginActivityTest {
         onView(withId(R.id.EnterLogin)).perform(click());
 
         assertNotNull(FirebaseAuth.getInstance().getCurrentUser());
+    }
+    @After
+    public void afterTestCorrectEmailPasswordLogin() {
+        FirebaseAuth.getInstance().signOut();
     }
 
 }
