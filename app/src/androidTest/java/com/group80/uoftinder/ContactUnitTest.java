@@ -20,6 +20,7 @@ import com.group80.uoftinder.login_use_case.LoginActivity;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -43,21 +44,22 @@ public class ContactUnitTest {
         inputPassword = "000000";
     }
 
+    /**
+     * Logs that the ContactUnitTest is over.
+     */
+    @AfterClass
+    public static void tearDown() {
+        Log.i("ContactUnitTest", "Done test");
+    }
+
     @Rule
     public ActivityScenarioRule<LoginActivity> activityRule = new ActivityScenarioRule<>(LoginActivity.class);
 
-    /**
-     * Test that the program switches to the contact page after clicking the 'Enter Chat' button
-     * on the filter page and that the right contacts are displayed.
-     */
-    @Test
-    public void testSwitchContactPage() {
+    @Before
+    public void login() {
         onView(withId(R.id.loginEmail)).perform(replaceText(inputEmail), closeSoftKeyboard());
         onView(withId(R.id.loginPassword)).perform(replaceText(inputPassword), closeSoftKeyboard());
         onView(withId(R.id.EnterLogin)).perform(click());
-
-        onView(withId(R.id.chatButton)).perform(click());
-        onView(withText("Grad Student")).check(matches(isDisplayed()));
     }
 
     @After
@@ -66,31 +68,24 @@ public class ContactUnitTest {
     }
 
     /**
+     * Test that the program switches to the contact page after clicking the 'Enter Chat' button
+     * on the filter page and that the right contacts are displayed.
+     */
+    @Test
+    public void testSwitchContactPage() {
+        onView(withId(R.id.chatButton)).perform(click());
+        onView(withText("Grad Student")).check(matches(isDisplayed()));
+    }
+
+    /**
      * Test that the program switches back to the recommendation view after clicking the back button
      * in the contact view.
      */
     @Test
     public void testBackButton() {
-        onView(withId(R.id.loginEmail)).perform(replaceText(inputEmail), closeSoftKeyboard());
-        onView(withId(R.id.loginPassword)).perform(replaceText(inputPassword), closeSoftKeyboard());
-        onView(withId(R.id.EnterLogin)).perform(click());
-
         onView(withId(R.id.chatButton)).perform(click());
         onView(withId(R.id.contactsActivityBackButton)).perform(click());
 
         onView(withId(R.id.logoutButton)).check(matches(isDisplayed()));
-    }
-
-    @After
-    public void afterTestBackButton() {
-        FirebaseAuth.getInstance().signOut();
-    }
-
-    /**
-     * Logs that the ContactUnitTest is over.
-     */
-    @AfterClass
-    public static void tearDown() {
-        Log.i("ContactUnitTest", "Done test");
     }
 }
