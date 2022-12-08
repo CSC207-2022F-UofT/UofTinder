@@ -104,14 +104,14 @@ Some design patterns that we implemented within our project include Model View P
 
 ## In the `androidTest` folder
 ### Backend specific tests
-**Generate Compatibility List**
-- orderCompatibilityListTest1: tests that GenerateCompatibilityList.orderCompatibilityList reorders the compatibility list from most compatible user to least compatible user when there are 3 total users.
-- orderCompatibilityListTest2: tests that GenerateCompatibilityList.orderCompatibilityListTest2 does nothing to the compatibility list when there are no other users in the database (besides the current user).
-- showMostCompUser2UsersTest: tests that GenerateCompatibilityList.showMostCompUser returns the most compatible user when there are 2 other users.
-- showMostCompUserNoUsersTest: tests that GenerateCompatibilityList.showMostCompUser returns null when there are no other compatible users
-- removeMostCompUserTest: tests that GenerateCompatibilityList.removeMostCompUser removes the most compatible user in the compatibility list.
-- removeCurrentUserTest:  tests that GenerateCompatibilityList.removeCurrentUser removes the current user from the current user's compatibility list.
-- removeVisitedUsersTest: tests that GenerateCompatibilityList.removeVisitedUsers removes the visited users from the current user's compatibility list.
+**Recommendation Interactor**
+- orderCompatibilityListTest1: tests that RecommendationInteractor.orderCompatibilityList reorders the compatibility list from most compatible user to least compatible user when there are 3 total users.
+- orderCompatibilityListTest2: tests that RecommendationInteractor.orderCompatibilityListTest2 does nothing to the compatibility list when there are no other users in the database (besides the current user).
+- showMostCompUser2UsersTest: tests that RecommendationInteractor.showMostCompUser returns the most compatible user when there are 2 other users.
+- showMostCompUserNoUsersTest: tests that RecommendationInteractor.showMostCompUser returns null when there are no other compatible users
+- removeMostCompUserTest: tests that RecommendationInteractor.removeMostCompUser removes the most compatible user in the compatibility list.
+- removeCurrentUserTest:  tests that RecommendationInteractor.removeCurrentUser removes the current user from the current user's compatibility list.
+- removeVisitedUsersTest: tests that RecommendationInteractor.removeVisitedUsers removes the visited users from the current user's compatibility list.
 
 **Match Interactor** 
 - checkMatchListsUpdatedLocal: test to see if the match lists for two users are both updated in the local User classes.

@@ -61,7 +61,7 @@ public class ProfileUploadPresenter {
     }
 
     /**
-     * Proceeds to the next view, while passing on the current {@link com.group80.uoftinder.entities.User}
+     * Proceeds to the next view, while passing on the current {@link com.group80.uoftinder.entities_layer.User}
      * as a {@link Serializable}
      *
      * @param currUser the information of the currently logged in User

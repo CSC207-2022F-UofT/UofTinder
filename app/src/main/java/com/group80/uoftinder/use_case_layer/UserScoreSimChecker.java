@@ -1,6 +1,6 @@
-package com.group80.uoftinder.feed;
+package com.group80.uoftinder.use_case_layer;
 
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 
 public class UserScoreSimChecker {
     private final int answerLen;

@@ -16,7 +16,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.chat.chat.ChatActivity;
-import com.group80.uoftinder.feed.RecommendationView;
+import com.group80.uoftinder.view_layer.RecommendationView;
 
 /**
  * A window that displays all the contacts to chat with

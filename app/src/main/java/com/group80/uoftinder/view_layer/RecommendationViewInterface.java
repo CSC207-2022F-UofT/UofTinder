@@ -1,6 +1,6 @@
-package com.group80.uoftinder.feed;
+package com.group80.uoftinder.view_layer;
 
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 
 /**
  * A public interface that is implemented by RecommendationView.

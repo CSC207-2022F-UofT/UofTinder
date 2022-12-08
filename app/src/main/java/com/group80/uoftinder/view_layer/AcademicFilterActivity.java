@@ -1,4 +1,4 @@
-package com.group80.uoftinder.feed;
+package com.group80.uoftinder.view_layer;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -13,7 +13,7 @@ import android.widget.NumberPicker;
 import com.google.android.material.snackbar.Snackbar;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.Constants;
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;

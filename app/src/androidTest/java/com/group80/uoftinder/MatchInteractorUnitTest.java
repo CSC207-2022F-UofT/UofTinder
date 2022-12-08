@@ -8,8 +8,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.group80.uoftinder.chat.chat.Message;
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
+import com.group80.uoftinder.use_case_layer.MatchInteractor;
 
 import org.junit.Test;
 

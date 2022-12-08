@@ -11,7 +11,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.firebase.realtime.RealtimeDbWriteListener;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 

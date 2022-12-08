@@ -1,7 +1,10 @@
-package com.group80.uoftinder.feed;
+package com.group80.uoftinder.presenter_layer;
 
-import com.group80.uoftinder.MatchInteractor;
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.use_case_layer.MatchInteractor;
+import com.group80.uoftinder.entities_layer.User;
+import com.group80.uoftinder.use_case_layer.RecommendationFilterInputData;
+import com.group80.uoftinder.use_case_layer.RecommendationInteractor;
+import com.group80.uoftinder.view_layer.RecommendationViewInterface;
 
 import java.util.List;
 import java.util.Set;
@@ -12,7 +15,7 @@ import java.util.Set;
  * recViewInterface
  */
 public class RecommendationPresenter {
-    private GenerateCompatibilityList genCompatibilityList;
+    private RecommendationInteractor genCompatibilityList;
     private RecommendationViewInterface recViewInterface;
     private User currUser;
 
@@ -21,7 +24,7 @@ public class RecommendationPresenter {
      */
     public RecommendationPresenter(User currUser, RecommendationViewInterface recViewInterface) {
         this.currUser = currUser;
-        this.genCompatibilityList = new GenerateCompatibilityList(currUser);
+        this.genCompatibilityList = new RecommendationInteractor(currUser);
         this.recViewInterface = recViewInterface;
     }
 
@@ -111,7 +114,7 @@ public class RecommendationPresenter {
      * Get the genCompatibilityList attribute
      * @return this.genCompatibilityList
      */
-    public GenerateCompatibilityList getGenCompatibilityList() {
+    public RecommendationInteractor getGenCompatibilityList() {
         return this.genCompatibilityList;
     }
 }

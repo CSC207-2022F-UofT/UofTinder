@@ -1,4 +1,4 @@
-package com.group80.uoftinder.feed;
+package com.group80.uoftinder.view_layer;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,13 +17,14 @@ import androidx.core.content.ContextCompat;
 import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.chat.contacts_list.ContactsActivity;
 import com.group80.uoftinder.R;
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.firebase.ProfileImagePresenter;
 import com.group80.uoftinder.firebase.ProfileImageViewInterface;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 import com.group80.uoftinder.logout.LogOutInteractor;
 import com.group80.uoftinder.logout.LogOutPresenter;
 import com.group80.uoftinder.logout.LogOutViewInterface;
+import com.group80.uoftinder.presenter_layer.RecommendationPresenter;
 
 import java.io.Serializable;
 import java.util.ArrayList;

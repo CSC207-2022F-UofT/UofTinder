@@ -10,7 +10,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.firebase.firestore.FirestoreDbWriter;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 

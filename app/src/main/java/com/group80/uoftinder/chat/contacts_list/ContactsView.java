@@ -1,6 +1,7 @@
 package com.group80.uoftinder.chat.contacts_list;
 
 import com.group80.uoftinder.chat.chat.ChatActivity;
+import com.group80.uoftinder.view_layer.RecommendationView;
 
 /**
  * A view for the list of contacts
@@ -14,7 +15,7 @@ public interface ContactsView {
     void enterChatView(ContactModel contactModel);
 
     /**
-     * Enters the {@link com.group80.uoftinder.feed.RecommendationView}
+     * Enters the {@link RecommendationView}
      */
     void enterRecommendationView();
 }

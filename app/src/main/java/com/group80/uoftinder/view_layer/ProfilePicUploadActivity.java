@@ -1,4 +1,4 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.view_layer;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,7 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.group80.uoftinder.feed.RecommendationView;
+import com.group80.uoftinder.Constants;
+import com.group80.uoftinder.R;
 import com.group80.uoftinder.profile_upload.ProfileUploadPresenter;
 import com.group80.uoftinder.profile_upload.ProfileUploadView;
 

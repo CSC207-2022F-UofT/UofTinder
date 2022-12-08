@@ -33,7 +33,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class LoginActivityTest {
+public class LoginActivityUITest {
     private static String inputEmail;
     private static String inputPassword;
     @Rule
@@ -47,7 +47,7 @@ public class LoginActivityTest {
     }
 
     /**
-     * Logs that the LoginActivityTest is over.
+     * Logs that the LoginActivityUITest is over.
      */
     @AfterClass
     public static void tearDown() {

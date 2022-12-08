@@ -1,6 +1,6 @@
-package com.group80.uoftinder.feed;
+package com.group80.uoftinder.use_case_layer;
 
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * A use case class that generates a list of compatible users for the current user
  */
-public class GenerateCompatibilityList {
+public class RecommendationInteractor {
     private User curUser;
     private List<User> compatibilityList;
     private UserScoreInterface usf;
@@ -26,9 +26,9 @@ public class GenerateCompatibilityList {
     private String type;
 
     /**
-     * Initialize the attributes of a GenerateCompatibilityList instance
+     * Initialize the attributes of a RecommendationInteractor instance
      */
-    public GenerateCompatibilityList(User currUser) {
+    public RecommendationInteractor(User currUser) {
         this.curUser = currUser;
         this.type = this.curUser.getUserType();
         this.usf = new UserScoreFacade(curUser);

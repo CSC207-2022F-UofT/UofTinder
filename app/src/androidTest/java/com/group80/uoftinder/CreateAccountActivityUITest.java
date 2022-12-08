@@ -1,7 +1,3 @@
-/**
- * Testing various aspects of the view of CreateAccountActivity.java
- */
-
 package com.group80.uoftinder;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -33,9 +29,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * Testing various aspects of the view of CreateAccountActivity.java
+ */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class CreateAccountTest {
+public class CreateAccountActivityUITest {
     private static String inputEmail;
     private static String inputPassword;
 
@@ -50,7 +49,7 @@ public class CreateAccountTest {
     }
 
     /**
-     * Logs that the CreateAccountTest is over.
+     * Logs that the CreateAccountActivityUITest is over.
      */
     @AfterClass
     public static void tearDown() {

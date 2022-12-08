@@ -7,7 +7,7 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 
 import java.util.LinkedList;
 import java.util.List;

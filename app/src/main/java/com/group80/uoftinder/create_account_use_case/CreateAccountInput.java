@@ -1,6 +1,6 @@
 package com.group80.uoftinder.create_account_use_case;
 
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 
 import java.util.List;
 

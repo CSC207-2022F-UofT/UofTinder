@@ -1,6 +1,6 @@
 package com.group80.uoftinder.firebase.realtime;
 
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.group80.uoftinder.feed;
+package com.group80.uoftinder.view_layer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.chat.contacts_list.ContactsActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.Constants;
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 
 import java.io.Serializable;

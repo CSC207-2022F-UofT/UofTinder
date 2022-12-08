@@ -1,11 +1,11 @@
-package com.group80.uoftinder;
+package com.group80.uoftinder.use_case_layer;
 
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.group80.uoftinder.chat.chat.MessageFactory;
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.firebase.firestore.FirestoreDbWriter;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 

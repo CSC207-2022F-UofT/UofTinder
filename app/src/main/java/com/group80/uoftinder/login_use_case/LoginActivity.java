@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.create_account_use_case.CreateAccountActivity;
-import com.group80.uoftinder.entities.User;
-import com.group80.uoftinder.feed.RecommendationView;
+import com.group80.uoftinder.entities_layer.User;
+import com.group80.uoftinder.view_layer.RecommendationView;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 // Frameworks & Drivers Layer

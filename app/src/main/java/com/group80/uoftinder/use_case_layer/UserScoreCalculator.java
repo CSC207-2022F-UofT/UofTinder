@@ -1,4 +1,4 @@
-package com.group80.uoftinder.feed;
+package com.group80.uoftinder.use_case_layer;
 
 import java.util.List;
 

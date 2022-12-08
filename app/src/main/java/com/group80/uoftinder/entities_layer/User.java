@@ -1,4 +1,4 @@
-package com.group80.uoftinder.entities;
+package com.group80.uoftinder.entities_layer;
 
 import android.net.Uri;
 

@@ -28,11 +28,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * A FilterViewUnitTest that tests the activity_academic_filter view.
+ * A FilterActivityUITest that tests the activity_academic_filter view.
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class FilterViewUnitTest {
+public class FilterActivityUITest {
     private static String inputEmail;
     private static String inputPassword;
     @Rule
@@ -48,7 +48,7 @@ public class FilterViewUnitTest {
     }
 
     /**
-     * Logs that the FilterViewUnitTest is over.
+     * Logs that the FilterActivityUITest is over.
      */
     @AfterClass
     public static void tearDown() {

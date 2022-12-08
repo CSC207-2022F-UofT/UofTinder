@@ -3,9 +3,9 @@ package com.group80.uoftinder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-import com.group80.uoftinder.entities.User;
-import com.group80.uoftinder.feed.GenerateCompatibilityList;
-import com.group80.uoftinder.feed.UserScoreFacade;
+import com.group80.uoftinder.entities_layer.User;
+import com.group80.uoftinder.use_case_layer.RecommendationInteractor;
+import com.group80.uoftinder.use_case_layer.UserScoreFacade;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import org.junit.Test;
@@ -16,13 +16,13 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * A GenerateCompatibilityListUnitTest class that tests the functionality of the
- * GenerateCompatibilityList class
+ * A RecommendationInteractorUnitTest class that tests the functionality of the
+ * RecommendationInteractor class
  */
-public class GenerateCompatibilityListUnitTest {
+public class RecommendationInteractorUnitTest {
 
     /**
-     * Test that GenerateCompatibilityList.orderCompatibilityList reorders the
+     * Test that RecommendationInteractor.orderCompatibilityList reorders the
      * compatibility list from most compatible user to least compatible user when there are
      * 3 total users
      */
@@ -41,7 +41,7 @@ public class GenerateCompatibilityListUnitTest {
         curUser.setAnswers(userAnswers);
         curUser.setUserType("Romantic");
 
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
+        RecommendationInteractor genCompatibilityList = new RecommendationInteractor(curUser);
         genCompatibilityList.setUsf(new UserScoreFacade(curUser));
 
         User user2 = new User("Benjamin");
@@ -66,7 +66,7 @@ public class GenerateCompatibilityListUnitTest {
     }
 
     /**
-     * Test that GenerateCompatibilityList.orderCompatibilityList does nothing to the compatibility
+     * Test that RecommendationInteractor.orderCompatibilityList does nothing to the compatibility
      * list when there are no other users in the database (besides the current user)
      */
     @Test
@@ -84,7 +84,7 @@ public class GenerateCompatibilityListUnitTest {
         curUser.setAnswers(userAnswers);
         curUser.setUserType("Romantic");
 
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
+        RecommendationInteractor genCompatibilityList = new RecommendationInteractor(curUser);
         genCompatibilityList.setUsf(new UserScoreFacade(curUser));
 
         List<User> userList = new ArrayList<>();
@@ -96,7 +96,7 @@ public class GenerateCompatibilityListUnitTest {
     }
 
     /**
-     * Test that GenerateCompatibilityList.showMostCompUser returns the most compatible user when
+     * Test that RecommendationInteractor.showMostCompUser returns the most compatible user when
      * there are 2 other users
      */
     @Test
@@ -114,7 +114,7 @@ public class GenerateCompatibilityListUnitTest {
         curUser.setAnswers(userAnswers);
         curUser.setUserType("Romantic");
 
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
+        RecommendationInteractor genCompatibilityList = new RecommendationInteractor(curUser);
         User user2 = new User("Benjamin");
         user2.setName("Benjamin");
         User user3 = new User("Clark");
@@ -127,7 +127,7 @@ public class GenerateCompatibilityListUnitTest {
     }
 
     /**
-     * Test that GenerateCompatibilityList.showMostCompUser returns null when there are no other
+     * Test that RecommendationInteractor.showMostCompUser returns null when there are no other
      * compatible users
      */
     @Test
@@ -145,7 +145,7 @@ public class GenerateCompatibilityListUnitTest {
         curUser.setAnswers(userAnswers);
         curUser.setUserType("Romantic");
 
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
+        RecommendationInteractor genCompatibilityList = new RecommendationInteractor(curUser);
 
         List<User> compList = new ArrayList<>();
         genCompatibilityList.setCompatibilityList(compList);
@@ -154,7 +154,7 @@ public class GenerateCompatibilityListUnitTest {
     }
 
     /**
-     * Test that GenerateCompatibilityList.removeMostCompUser removes the most compatible user
+     * Test that RecommendationInteractor.removeMostCompUser removes the most compatible user
      * in the compatibility list
      */
     @Test
@@ -172,7 +172,7 @@ public class GenerateCompatibilityListUnitTest {
         curUser.setAnswers(userAnswers);
         curUser.setUserType("Romantic");
 
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
+        RecommendationInteractor genCompatibilityList = new RecommendationInteractor(curUser);
 
         User user2 = new User("Benjamin");
         user2.setName("Benjamin");
@@ -187,7 +187,7 @@ public class GenerateCompatibilityListUnitTest {
     }
 
     /**
-     * Test that GenerateCompatibilityList.removeCurrentUser removes the current user
+     * Test that RecommendationInteractor.removeCurrentUser removes the current user
      * from the current user's compatibility list
      */
     @Test
@@ -207,7 +207,7 @@ public class GenerateCompatibilityListUnitTest {
         userAnswers.add(Collections.singletonList(1)); // single
         curUser.setAnswers(userAnswers);
 
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
+        RecommendationInteractor genCompatibilityList = new RecommendationInteractor(curUser);
 
         User user2 = new User("Benjamin");
         user2.setName("Benjamin");
@@ -232,7 +232,7 @@ public class GenerateCompatibilityListUnitTest {
     }
 
     /**
-     * Test that GenerateCompatibilityList.removeVisitedUsers removes the visited users from
+     * Test that RecommendationInteractor.removeVisitedUsers removes the visited users from
      * the current user's compatibility list
      */
     @Test
@@ -252,7 +252,7 @@ public class GenerateCompatibilityListUnitTest {
         userAnswers.add(Collections.singletonList(1)); // single
         curUser.setAnswers(userAnswers);
 
-        GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
+        RecommendationInteractor genCompatibilityList = new RecommendationInteractor(curUser);
 
         User user2 = new User("Benjamin");
         user2.setName("Benjamin");

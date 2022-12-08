@@ -27,11 +27,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * A ContactUnitTest that tests the activity_contacts view.
+ * A ContactActivityUITest that tests the activity_contacts view.
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class ContactUnitTest {
+public class ContactActivityUITest {
     private static String inputEmail;
     private static String inputPassword;
     @Rule
@@ -47,11 +47,11 @@ public class ContactUnitTest {
     }
 
     /**
-     * Logs that the ContactUnitTest is over.
+     * Logs that the ContactActivityUITest is over.
      */
     @AfterClass
     public static void tearDown() {
-        Log.i("ContactUnitTest", "Done test");
+        Log.i("ContactActivityUITest", "Done test");
     }
 
     @Before
