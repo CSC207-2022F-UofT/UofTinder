@@ -1,6 +1,6 @@
 package com.group80.uoftinder;
 
-import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
+import com.group80.uoftinder.use_case_layer.create_account.CreateAccountInteractor;
 import org.junit.Test;
 import java.util.LinkedList;
 import java.util.List;

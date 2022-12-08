@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.Constants;
+import com.group80.uoftinder.presenter_layer.create_account.CreateAccountPresenter;
+import com.group80.uoftinder.use_case_layer.create_account.CreateAccountInteractor;
 import com.group80.uoftinder.view_layer.ProfilePicUploadActivity;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.entities_layer.User;

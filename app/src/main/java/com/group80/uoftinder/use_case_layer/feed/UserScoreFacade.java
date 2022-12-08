@@ -1,6 +1,6 @@
 package com.group80.uoftinder.use_case_layer.feed;
 
-import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
+import com.group80.uoftinder.use_case_layer.create_account.CreateAccountInteractor;
 import com.group80.uoftinder.entities_layer.User;
 
 import java.util.List;

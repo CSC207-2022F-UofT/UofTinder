@@ -1,4 +1,4 @@
-package com.group80.uoftinder.create_account_use_case;
+package com.group80.uoftinder.use_case_layer.create_account;
 
 import android.text.TextUtils;
 
@@ -10,6 +10,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.group80.uoftinder.create_account_use_case.CreateAccountInput;
+import com.group80.uoftinder.create_account_use_case.CreateAccountPresenterInterface;
 import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.firebase.firestore.FirestoreDbWriter;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
