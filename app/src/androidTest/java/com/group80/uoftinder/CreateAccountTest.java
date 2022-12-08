@@ -49,9 +49,21 @@ public class CreateAccountTest {
         inputPassword = "000000";
     }
 
+    /**
+     * Logs that the CreateAccountTest is over.
+     */
     @AfterClass
     public static void tearDown() {
-        Log.i("CreateAccountActivityTest", "Done test");
+        Log.i("CreateAccountTests", "Done test");
+    }
+
+    @After
+    public void deleteUser() {
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(inputEmail, inputPassword);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            user.delete();
+        }
     }
 
     /**
@@ -67,7 +79,7 @@ public class CreateAccountTest {
      * Check if no email, no passwords are input that createActViewEmailEdtTxt has focus
      */
     @Test
-    public void testNoEmailNoPassword1NoPassword2() {
+    public void testNoEmail() {
         onView(withId(R.id.createActViewCreateActBtn)).perform(click());
         onView(withId(R.id.createActViewEmailEdtTxt)).check(matches(hasFocus()));
     }
@@ -76,8 +88,23 @@ public class CreateAccountTest {
      * Check if with email, no passwords are input that createActViewEmailEdtTxt has focus
      */
     @Test
-    public void testWithEmailNoPassword1NoPassword2() {
+    public void testNoPasswords() {
         onView(withId(R.id.createActViewEmailEdtTxt)).perform(replaceText(inputEmail),
+                closeSoftKeyboard());
+
+        onView(withId(R.id.createActViewCreateActBtn)).perform(click());
+        onView(withId(R.id.createActViewPasswordEdtTxt)).check(matches(hasFocus()));
+    }
+
+    /**
+     * Check if the first password is not input, but re-enter password has input that
+     * createActViewPasswordEdtTxt has focus
+     */
+    @Test
+    public void testNoFirstPassword() {
+        onView(withId(R.id.createActViewEmailEdtTxt)).perform(replaceText(inputEmail),
+                closeSoftKeyboard());
+        onView(withId(R.id.createActViewReEnterPasswordEdtTxt)).perform(replaceText(inputPassword),
                 closeSoftKeyboard());
 
         onView(withId(R.id.createActViewCreateActBtn)).perform(click());
@@ -89,7 +116,7 @@ public class CreateAccountTest {
      * has focus
      */
     @Test
-    public void testWithEmailWithPassword1NoPassword2() {
+    public void testNoReEnterPassword() {
         onView(withId(R.id.createActViewEmailEdtTxt)).perform(replaceText(inputEmail),
                 ViewActions.closeSoftKeyboard());
         onView(withId(R.id.createActViewPasswordEdtTxt)).perform(replaceText(inputPassword),
@@ -104,7 +131,7 @@ public class CreateAccountTest {
      * createActViewReEnterPasswordEdtTxt has focus
      */
     @Test
-    public void testWithEmailWithPassword1WithPassword2NotMatching() {
+    public void testPasswordsNotMatching() {
         onView(withId(R.id.createActViewEmailEdtTxt)).perform(replaceText(inputEmail),
                 closeSoftKeyboard());
         onView(withId(R.id.createActViewPasswordEdtTxt)).perform(replaceText(inputPassword),
@@ -123,7 +150,7 @@ public class CreateAccountTest {
      * already exists, no user is created
      */
     @Test
-    public void testWithExistingEmailWithPassword1WithPassword2Matching() {
+    public void testCreateAccountFailure() {
         onView(withId(R.id.createActViewEmailEdtTxt)).perform(replaceText(
                         "csc207.group80.uoftinder.bot@gmail.com"),
                 closeSoftKeyboard());
@@ -140,11 +167,12 @@ public class CreateAccountTest {
     }
 
     /**
-     * Check if with email and two passwords are input, and the passwords do match, and the user
+     * Check if with email and two passwords are input, and the passwords match, and the user
      * does not exist in the database, a user is created
+     * Created user is deleted afterwards
      */
     @Test
-    public void testSuccessfulWithEmailWithPassword1WithPassword2Matching() {
+    public void testCreateAccountSuccess() {
         onView(withId(R.id.createActViewEmailEdtTxt)).perform(replaceText(inputEmail),
                 closeSoftKeyboard());
         onView(withId(R.id.createActViewPasswordEdtTxt)).perform(replaceText(inputPassword),
@@ -169,14 +197,6 @@ public class CreateAccountTest {
         }
 
         assertNotNull(FirebaseAuth.getInstance().getCurrentUser());
-    }
-
-    @After
-    public void deleteUser() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            user.delete();
-        }
     }
 
 }

@@ -15,6 +15,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import android.util.Log;
+
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -23,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.group80.uoftinder.login_use_case.LoginActivity;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -41,6 +44,14 @@ public class LoginActivityTest {
     public static void setUp() {
         inputEmail = "csc207.group80.uoftinder.bot@gmail.com";
         inputPassword = "12345678";
+    }
+
+    /**
+     * Logs that the LoginActivityTest is over.
+     */
+    @AfterClass
+    public static void tearDown() {
+        Log.i("LoginActivityTests", "Done test");
     }
 
     /**
@@ -107,6 +118,7 @@ public class LoginActivityTest {
 
         assertNotNull(FirebaseAuth.getInstance().getCurrentUser());
     }
+
     @After
     public void afterTestCorrectEmailPasswordLogin() {
         FirebaseAuth.getInstance().signOut();
