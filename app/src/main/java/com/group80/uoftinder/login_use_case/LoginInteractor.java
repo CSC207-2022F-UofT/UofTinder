@@ -1,11 +1,4 @@
-/**
- * Interactor that will check if a correct email and password combination is input to login a user
- * Depending on result, either error or success will be shown
- */
-
 package com.group80.uoftinder.login_use_case;
-
-// Use case layer
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,6 +15,11 @@ import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import java.util.concurrent.ExecutionException;
 
+// Application Business Rules Layer
+/**
+ * Interactor that will check if a correct email and password combination is input to login a user
+ * Depending on result, either error or success will be shown
+ */
 public class LoginInteractor extends AppCompatActivity implements LoginInput {
 
     final LoginPresenterInterface loginPresenter;
@@ -29,6 +27,26 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput {
 
     public LoginInteractor(LoginPresenterInterface loginPresenter) {
         this.loginPresenter = loginPresenter;
+    }
+
+    /**
+     * Checks if email input is empty
+     *
+     * @param email String that user inputs
+     * @return whether email is empty
+     */
+    public static boolean checkEmail(String email) {
+        return TextUtils.isEmpty(email);
+    }
+
+    /**
+     * Checks if password input is empty
+     *
+     * @param password String that user inputs
+     * @return whether password is empty
+     */
+    public static boolean checkPassword(String password) {
+        return TextUtils.isEmpty(password);
     }
 
     /**
@@ -40,9 +58,13 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput {
      * @param password login password input
      */
     public void loginUser(String email, String password) {
-        if (TextUtils.isEmpty(email)) { // no email input, user == null
+
+        boolean emailEmpty = checkEmail(email);
+        boolean passwordEmpty = checkPassword(password);
+
+        if (emailEmpty) { // no email input, user == null
             loginPresenter.prepareEmailFailureView("Email is required!");
-        } else if (TextUtils.isEmpty(password)) { // no password input, user == null
+        } else if (passwordEmpty) { // no password input, user == null
             loginPresenter.preparePasswordFailureView("Password is required!");
         } else { // user == null, signing in with email and password
             Task<AuthResult> task = FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password);
@@ -89,10 +111,18 @@ public class LoginInteractor extends AppCompatActivity implements LoginInput {
         }
     }
 
+    /**
+     * Retrieves the current user object representing the logged in user
+     * @return  the current user object
+     */
     public User getCurrentUser() {
         return currentUser;
     }
 
+    /**
+     * Sets the logged in user as the current user
+     * @param currentUser   the user to be set as current user
+     */
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }

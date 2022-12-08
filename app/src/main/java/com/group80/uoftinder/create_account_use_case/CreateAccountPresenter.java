@@ -1,17 +1,15 @@
 package com.group80.uoftinder.create_account_use_case;
 
-// Interface adapter layer
-
 import com.group80.uoftinder.entities.User;
-import com.group80.uoftinder.feed.RecommendationView;
 
+// Interface adapter layer
+/**
+ * Updates CreatAccountActivity view.
+ */
 public class CreateAccountPresenter implements CreateAccountPresenterInterface {
-    final Class<RecommendationView> recommendationViewClass;
     final CreateAccountViewInterface createAccountViewModel;
 
-    public CreateAccountPresenter(Class<RecommendationView> recommendationViewClass,
-                                  CreateAccountViewInterface createAccountViewModel) {
-        this.recommendationViewClass = recommendationViewClass;
+    public CreateAccountPresenter(CreateAccountViewInterface createAccountViewModel) {
         this.createAccountViewModel = createAccountViewModel;
     }
 
@@ -119,6 +117,4 @@ public class CreateAccountPresenter implements CreateAccountPresenterInterface {
     public void prepareProfilePicUploadActivity(User currentUser) {
         createAccountViewModel.uploadProfilePicture(currentUser);
     }
-
-
 }

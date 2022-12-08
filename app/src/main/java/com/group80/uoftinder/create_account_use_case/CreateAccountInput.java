@@ -4,6 +4,9 @@ import com.group80.uoftinder.entities.User;
 
 import java.util.List;
 
+/**
+ * Provides methods to creating a new user, setting up user information
+ */
 public interface CreateAccountInput {
     void createAccount(String email, String password1, String password2);
 

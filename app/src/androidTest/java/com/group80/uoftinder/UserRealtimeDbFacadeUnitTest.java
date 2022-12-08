@@ -103,17 +103,10 @@ public class UserRealtimeDbFacadeUnitTest {
     @Test
     public void getAllUsers_isCorrect() {
         StringBuilder namesBuilder = new StringBuilder();
+        // refer to Java lambda expression for more details on the following syntax
         UserRealtimeDbFacade.getAllUsers("Academic", userList -> {
             userList.forEach(user -> namesBuilder.append(user.getUid()).append("_"));
             assertEquals("lisinan2_test1_test2_test3_", namesBuilder.toString());
-            // this line is equivalent to the following code chunk -- please refer to Java lambda expressions for more details
-            /* userList.forEach(new Consumer<User>() {
-             *    @Override
-             *    public void accept(User user) {
-             *        namesBuilder.append(user.getUserType()).append("_");
-             *    }
-             *});
-             */
         });
     }
 

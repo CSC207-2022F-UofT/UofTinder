@@ -2,6 +2,9 @@ package com.group80.uoftinder.create_account_use_case;
 
 import com.group80.uoftinder.entities.User;
 
+/**
+ * Provides methods to notify of user interaction
+ */
 public interface CreateAccountViewInterface {
     void showMessage(String message);
 

@@ -2,6 +2,9 @@ package com.group80.uoftinder.create_account_use_case;
 
 import com.group80.uoftinder.entities.User;
 
+/**
+ * Provides methods for updating the view
+ */
 public interface CreateAccountPresenterInterface {
 
     // Email and Password Setup

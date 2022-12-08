@@ -1,14 +1,11 @@
-/**
- * Class that calls loginUser method of LoginInteractor through LoginInput interface to
- * login the User
- */
-
 package com.group80.uoftinder.login_use_case;
-
-// Interface Adapter Layer
 
 import android.widget.EditText;
 
+// Interface Adapter Layer
+/**
+ * Responds to user activity when they try to sign into their account
+ */
 public class LoginController {
     final LoginInput loginInput;
 

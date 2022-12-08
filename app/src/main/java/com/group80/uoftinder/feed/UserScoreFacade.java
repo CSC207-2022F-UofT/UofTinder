@@ -3,14 +3,13 @@ package com.group80.uoftinder.feed;
 import com.group80.uoftinder.create_account_use_case.CreateAccountInteractor;
 import com.group80.uoftinder.entities.User;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Facade class that contains methods to calculate user score and compare two user scores
+ * Implements UserScoreInterface
  */
-public class UserScoreFacade {  // using Facade Design Principle to delegate tasks
+public class UserScoreFacade implements UserScoreInterface {  // using Facade Design Principle to delegate tasks
     private final UserScoreCalculator usCalc; // instance of class designed for calculating user scores
     private final UserScoreComparator usComp; // instance of class designed for comparing user scores
     private List<List<Integer>> userAnswers; // List of HashSets, where index i is a
@@ -44,6 +43,7 @@ public class UserScoreFacade {  // using Facade Design Principle to delegate tas
      *
      * @return the generated compatibility score
      */
+    @Override
     public int generateCompatibilityScore() {
         return this.usCalc.generateCompatibilityScore();
     }
@@ -53,6 +53,7 @@ public class UserScoreFacade {  // using Facade Design Principle to delegate tas
      *
      * @return an integer that represents the similarity of the two scores (higher value signals higher similarity)
      */
+    @Override
     public int compare(int score2) {
         return this.usComp.compare(score2);
     }
