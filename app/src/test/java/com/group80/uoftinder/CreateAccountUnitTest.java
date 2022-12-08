@@ -9,7 +9,7 @@ import java.util.List;
  * Unit tests for testing that ensures the current user trying to create a new account enters all
  * information on the questionnaires.
  */
-public class CheckInfoEmptyTest {
+public class CreateAccountUnitTest {
     /**
      * Test inputs for checkBasicInput
      */
