@@ -58,6 +58,8 @@ public class FilterViewUnitTest {
         onView(withId(R.id.EnterLogin)).perform(click());
 
         onView(withId(R.id.filterButton)).perform(click());
+
+        onView(withId(R.id.resetButton)).check(matches(isDisplayed()));
     }
 
     @After
@@ -78,7 +80,7 @@ public class FilterViewUnitTest {
         onView(withId(R.id.computerScienceBox)).perform(click());
 
         onView(withId(R.id.resetButton)).perform(click());
-        onView(withText("Logout")).check(matches(isDisplayed()));
+        onView(withId(R.id.logoutButton)).check(matches(isDisplayed()));
     }
 
     @After
@@ -151,7 +153,7 @@ public class FilterViewUnitTest {
         onView(withId(R.id.computerScienceBox)).perform(click());
 
         onView(withId(R.id.filterButton)).perform(click());
-        onView(withText("Logout")).check(matches(isDisplayed()));
+        onView(withId(R.id.logoutButton)).check(matches(isDisplayed()));
     }
 
     @After
