@@ -1,4 +1,4 @@
-package com.group80.uoftinder.view_layer;
+package com.group80.uoftinder.view_layer.feed;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;

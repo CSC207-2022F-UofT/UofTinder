@@ -1,7 +1,7 @@
 package com.group80.uoftinder.chat.contacts_list;
 
 import com.group80.uoftinder.chat.chat.ChatActivity;
-import com.group80.uoftinder.view_layer.RecommendationView;
+import com.group80.uoftinder.view_layer.feed.RecommendationView;
 
 /**
  * A view for the list of contacts

@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import com.group80.uoftinder.entities_layer.User;
-import com.group80.uoftinder.use_case_layer.RecommendationInteractor;
-import com.group80.uoftinder.use_case_layer.UserScoreFacade;
+import com.group80.uoftinder.use_case_layer.feed.RecommendationInteractor;
+import com.group80.uoftinder.use_case_layer.feed.UserScoreFacade;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
 
 import org.junit.Test;

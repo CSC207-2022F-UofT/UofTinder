@@ -1,10 +1,10 @@
-package com.group80.uoftinder.presenter_layer;
+package com.group80.uoftinder.presenter_layer.feed;
 
-import com.group80.uoftinder.use_case_layer.MatchInteractor;
+import com.group80.uoftinder.use_case_layer.feed.MatchInteractor;
 import com.group80.uoftinder.entities_layer.User;
-import com.group80.uoftinder.use_case_layer.RecommendationFilterInputData;
-import com.group80.uoftinder.use_case_layer.RecommendationInteractor;
-import com.group80.uoftinder.view_layer.RecommendationViewInterface;
+import com.group80.uoftinder.use_case_layer.feed.RecommendationFilterInputData;
+import com.group80.uoftinder.use_case_layer.feed.RecommendationInteractor;
+import com.group80.uoftinder.view_layer.feed.RecommendationViewInterface;
 
 import java.util.List;
 import java.util.Set;

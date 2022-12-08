@@ -1,4 +1,4 @@
-package com.group80.uoftinder.use_case_layer;
+package com.group80.uoftinder.use_case_layer.feed;
 
 import com.group80.uoftinder.entities_layer.User;
 

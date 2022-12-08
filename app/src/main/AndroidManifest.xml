@@ -24,7 +24,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view_layer.AcademicFilterActivity"
+            android:name=".view_layer.feed.AcademicFilterActivity"
             android:exported="true" >
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -61,7 +61,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view_layer.NoNewRecommendation"
+            android:name=".view_layer.feed.NoNewRecommendation"
             android:exported="true" >
 
             <intent-filter>
@@ -69,7 +69,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view_layer.RecommendationView"
+            android:name=".view_layer.feed.RecommendationView"
             android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />

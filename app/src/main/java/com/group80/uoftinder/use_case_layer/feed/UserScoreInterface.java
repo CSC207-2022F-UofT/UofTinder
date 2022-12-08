@@ -1,4 +1,4 @@
-package com.group80.uoftinder.use_case_layer;
+package com.group80.uoftinder.use_case_layer.feed;
 
 /**
  * Interface class that contains methods to calculate user score and compare two user scores

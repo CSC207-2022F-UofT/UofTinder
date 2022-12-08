@@ -1,4 +1,4 @@
-package com.group80.uoftinder.view_layer;
+package com.group80.uoftinder.view_layer.feed;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +24,7 @@ import com.group80.uoftinder.login_use_case.LoginActivity;
 import com.group80.uoftinder.logout.LogOutInteractor;
 import com.group80.uoftinder.logout.LogOutPresenter;
 import com.group80.uoftinder.logout.LogOutViewInterface;
-import com.group80.uoftinder.presenter_layer.RecommendationPresenter;
+import com.group80.uoftinder.presenter_layer.feed.RecommendationPresenter;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.group80.uoftinder.view_layer;
+package com.group80.uoftinder.view_layer.feed;
 
 import com.group80.uoftinder.entities_layer.User;
 

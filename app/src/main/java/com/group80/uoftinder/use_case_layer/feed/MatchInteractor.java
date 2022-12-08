@@ -1,4 +1,4 @@
-package com.group80.uoftinder.use_case_layer;
+package com.group80.uoftinder.use_case_layer.feed;
 
 import androidx.annotation.NonNull;
 

@@ -21,6 +21,7 @@ import com.group80.uoftinder.Constants;
 import com.group80.uoftinder.R;
 import com.group80.uoftinder.profile_upload.ProfileUploadPresenter;
 import com.group80.uoftinder.profile_upload.ProfileUploadView;
+import com.group80.uoftinder.view_layer.feed.RecommendationView;
 
 import java.io.IOException;
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package com.group80.uoftinder.view_layer;
+package com.group80.uoftinder.view_layer.feed;
 
 import android.content.Intent;
 import android.os.Bundle;

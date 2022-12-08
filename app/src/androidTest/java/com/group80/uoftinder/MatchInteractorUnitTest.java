@@ -10,7 +10,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.group80.uoftinder.chat.chat.Message;
 import com.group80.uoftinder.entities_layer.User;
 import com.group80.uoftinder.firebase.realtime.UserRealtimeDbFacade;
-import com.group80.uoftinder.use_case_layer.MatchInteractor;
+import com.group80.uoftinder.use_case_layer.feed.MatchInteractor;
 
 import org.junit.Test;
 

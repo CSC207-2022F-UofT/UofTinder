@@ -1,8 +1,8 @@
 package com.group80.uoftinder;
 
 import com.group80.uoftinder.entities_layer.User;
-import com.group80.uoftinder.use_case_layer.RecommendationFilterInputData;
-import com.group80.uoftinder.use_case_layer.RecommendationInteractor;
+import com.group80.uoftinder.use_case_layer.feed.RecommendationFilterInputData;
+import com.group80.uoftinder.use_case_layer.feed.RecommendationInteractor;
 
 import org.junit.Test;
 
