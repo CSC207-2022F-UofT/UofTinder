@@ -36,18 +36,18 @@ public class MatchInteractorUnitTest {
      */
     @Test
     public void checkMatchListsUpdatedRemote() {
-        User user1 = new User("user2");
-        User user2 = new User("user3");
+        User user1 = new User("user1");
+        User user2 = new User("user2");
         user1.setUserType("Romantic");
         user2.setUserType("Romantic");
         user1.getLiked().add(user2.getUid());
         user2.getLiked().add(user1.getUid());
         MatchInteractor.checkForMatchAndCreate(user1, user2);
         UserRealtimeDbFacade.getUser(
-                "Romantic", "user2",
+                "Romantic", "user1",
                 u1 -> {
                     UserRealtimeDbFacade.getUser(
-                            "Romantic", "user3",
+                            "Romantic", "user2",
                             u2 -> {
                                 assert u1.getMatches().contains(u2.getUid());
                                 assert u2.getMatches().contains(u1.getUid());
@@ -72,7 +72,7 @@ public class MatchInteractorUnitTest {
         // add displayedUser to viewedList but not likedList
         MatchInteractor.addToList(currentUser, displayedUser, false);
 
-        // expected results:  displayedUser in currentUser's visited list but not liked list.
+        // expected results: displayedUser in currentUser's visited list but not liked list.
         List<String> expectedLikedList = new ArrayList<>();
         List<String> expectedVisitedList = new ArrayList<>(Collections.singletonList(
                 displayedUser.getUid()));
@@ -122,16 +122,16 @@ public class MatchInteractorUnitTest {
      */
     @Test
     public void currUserSkipsDisplayedUserRemote() {
-        User currentUser = new User("user2");
-        User displayedUser = new User("user3");
+        User currentUser = new User("user1");
+        User displayedUser = new User("user2");
         currentUser.setUserType("Romantic");
         displayedUser.setUserType("Romantic");
         MatchInteractor.addToList(currentUser, displayedUser, false);
         UserRealtimeDbFacade.getUser(
-                "Romantic", "user2",
+                "Romantic", "user1",
                 u1 -> {
                     UserRealtimeDbFacade.getUser(
-                            "Romantic", "user3",
+                            "Romantic", "user2",
                             u2 -> {
                                 assert u1.getViewed().contains(u2.getUid());
                             }
@@ -145,16 +145,16 @@ public class MatchInteractorUnitTest {
      */
     @Test
     public void currUserLikesDisplayedUserRemote() {
-        User currentUser = new User("user2");
-        User displayedUser = new User("user3");
+        User currentUser = new User("user1");
+        User displayedUser = new User("user2");
         currentUser.setUserType("Romantic");
         displayedUser.setUserType("Romantic");
-        MatchInteractor.addToList(currentUser, displayedUser, false);
+        MatchInteractor.addToList(currentUser, displayedUser, true);
         UserRealtimeDbFacade.getUser(
-                "Romantic", "user2",
+                "Romantic", "user1",
                 u1 -> {
                     UserRealtimeDbFacade.getUser(
-                            "Romantic", "user3",
+                            "Romantic", "user2",
                             u2 -> {
                                 assert u1.getViewed().contains(u2.getUid());
                                 assert u1.getLiked().contains(u2.getUid());
