@@ -80,7 +80,59 @@ Some design patterns that we implemented within our project include Model View P
 - Whenever the current user's internal data is updated as they use the app, we synchronize these changes with the database.
 
 # Unit Tests Implemented for Functionalities
-## Android User Interface specific tests
+## In the `test` folder
+**Filter Recommendation Feed** 
+- filterFeedTestFilters: tests that we can apply filters to the feed.
+- filterFeedTestAge: tests that we can filter by age.
+- filterFeedTestNoFilters: tests that we can see the fee without any filters.
+- filterFeedTestFiltersAndAge: test that we can filter by age and other filters.
+
+**User Score Facade**
+- generateCompatibilityScoreTest1: tests to see whether the correct compatibility gets generated for current user (User 1).
+- generateCompatibilityScoreTest2: tests to see whether the correct compatibility gets generated for current user (User 2).
+- generateCompatibilityScoreTest3: tests to see whether the correct compatibility gets generated for current user (User 3).
+- compareTest1: tests to see compare method returns the correct similarity scores for two users (User 1 and User 2).
+- compareTest2: tests to see compare method returns the correct similarity scores for two users (User 3 and User 2).
+
+**User Entity Methods**
+- infoStringTestAcademicUser: tests to get the correct display information string for an academic user.
+- infoStringTestRomanticUser: tests to get the correct display information string for a romantic user. Also tests the case of not providing answers for several questions.
+- infoStringTestFriendshipUser: tests for getting the correct display information string for a friendship user. Also tests the case of not providing an answer for a question between two questions with answers provided.
+
+**Create Account**
+- tests to ensure that the current user trying to create a new account enters information to answer all questions on the provided questionnaires.
+
+## In the `androidTest` folder
+### Backend specific tests
+**Generate Compatibility List**
+- orderCompatibilityListTest1: tests that GenerateCompatibilityList.orderCompatibilityList reorders the compatibility list from most compatible user to least compatible user when there are 3 total users.
+- orderCompatibilityListTest2: tests that GenerateCompatibilityList.orderCompatibilityListTest2 does nothing to the compatibility list when there are no other users in the database (besides the current user).
+- showMostCompUser2UsersTest: tests that GenerateCompatibilityList.showMostCompUser returns the most compatible user when there are 2 other users.
+- showMostCompUserNoUsersTest: tests that GenerateCompatibilityList.showMostCompUser returns null when there are no other compatible users
+- removeMostCompUserTest: tests that GenerateCompatibilityList.removeMostCompUser removes the most compatible user in the compatibility list.
+- removeCurrentUserTest:  tests that GenerateCompatibilityList.removeCurrentUser removes the current user from the current user's compatibility list.
+- removeVisitedUsersTest: tests that GenerateCompatibilityList.removeVisitedUsers removes the visited users from the current user's compatibility list.
+
+**Match Interactor** 
+- checkMatchListsUpdatedLocal: test to see if the match lists for two users are both updated in the local User classes.
+- checkMatchListsUpdatedRemote: test to see if the match lists for two users are both updated in the database upon match.
+- currUserSkipsDisplayedUserLocal: test to see if the local User viewed and liked lists are updated when the currentUser does not 'like' the displayedUser.
+- currUserLikesDisplayedUserLocal: test to see if the local User viewed and liked lists are updated when the currentUser 'likes' the displayedUser.
+- currUserSkipsDisplayedUserRemote: test to see if the viewed and liked lists of the current user are updated in the database when the currentUser does not 'like' the displayedUser.
+- currUserLikesDisplayedUserRemote: test to see if the viewed and liked lists of the current user are updated in the database when the currentUser does not 'like' the displayedUser.
+
+**Realtime Database**
+- uploadUser_isCorrect: test if the upload task can be done without error.
+- getAllUsers_isCorrect: test if we can get all users without error.
+- getUser_isCorrect: test that we can get the correct user without error.
+
+**Login Interactor**
+- tests to verify appropriate and correct inputs for email and password fields of the login user story
+
+**Chatting**
+- tests to ensure that users can send and receive chat messages from each other.
+
+### Android User Interface specific tests
 **Create Account Activity**
 - testChangeToLogin: checks if view switched activity_login.xml correctly
 - testNoEmail: check if no email, no passwords are input that createActViewEmailEdtTxt has focus
@@ -116,56 +168,6 @@ Some design patterns that we implemented within our project include Model View P
 **Chat Activity**
 - testSwitchContactPage: tests that the program switches to the contact page after clicking the 'Enter Chat' button on the filter page and that the right contacts are displayed.
 - testBackButton: tests that the program switches back to the recommendation view after clicking the back button in the contact view.
-## In the `test` folder
-**Filter Recommendation Feed** 
-- filterFeedTestFilters: tests that we can apply filters to the feed.
-- filterFeedTestAge: tests that we can filter by age.
-- filterFeedTestNoFilters: tests that we can see the fee without any filters.
-- filterFeedTestFiltersAndAge: test that we can filter by age and other filters.
-
-**User Score Facade**
-- generateCompatibilityScoreTest1: tests to see whether the correct compatibility gets generated for current user (User 1).
-- generateCompatibilityScoreTest2: tests to see whether the correct compatibility gets generated for current user (User 2).
-- generateCompatibilityScoreTest3: tests to see whether the correct compatibility gets generated for current user (User 3).
-- compareTest1: tests to see compare method returns the correct similarity scores for two users (User 1 and User 2).
-- compareTest2: tests to see compare method returns the correct similarity scores for two users (User 3 and User 2).
-
-**User Entity Methods**
-- infoStringTestAcademicUser: tests to get the correct display information string for an academic user.
-- infoStringTestRomanticUser: tests to get the correct display information string for a romantic user. Also tests the case of not providing answers for several questions.
-- infoStringTestFriendshipUser: tests for getting the correct display information string for a friendship user. Also tests the case of not providing an answer for a question between two questions with answers provided.
-
-**Create Account**
-- tests to ensure that the current user trying to create a new account enters information to answer all questions on the provided questionnaires.
-
-## In the `androidTest` folder
-**Generate Compatibility List**
-- orderCompatibilityListTest1: tests that GenerateCompatibilityList.orderCompatibilityList reorders the compatibility list from most compatible user to least compatible user when there are 3 total users.
-- orderCompatibilityListTest2: tests that GenerateCompatibilityList.orderCompatibilityListTest2 does nothing to the compatibility list when there are no other users in the database (besides the current user).
-- showMostCompUser2UsersTest: tests that GenerateCompatibilityList.showMostCompUser returns the most compatible user when there are 2 other users.
-- showMostCompUserNoUsersTest: tests that GenerateCompatibilityList.showMostCompUser returns null when there are no other compatible users
-- removeMostCompUserTest: tests that GenerateCompatibilityList.removeMostCompUser removes the most compatible user in the compatibility list.
-- removeCurrentUserTest:  tests that GenerateCompatibilityList.removeCurrentUser removes the current user from the current user's compatibility list.
-- removeVisitedUsersTest: tests that GenerateCompatibilityList.removeVisitedUsers removes the visited users from the current user's compatibility list.
-
-**Match Interactor** 
-- checkMatchListsUpdatedLocal: test to see if the match lists for two users are both updated in the local User classes.
-- checkMatchListsUpdatedRemote: test to see if the match lists for two users are both updated in the database upon match.
-- currUserSkipsDisplayedUserLocal: test to see if the local User viewed and liked lists are updated when the currentUser does not 'like' the displayedUser.
-- currUserLikesDisplayedUserLocal: test to see if the local User viewed and liked lists are updated when the currentUser 'likes' the displayedUser.
-- currUserSkipsDisplayedUserRemote: test to see if the viewed and liked lists of the current user are updated in the database when the currentUser does not 'like' the displayedUser.
-- currUserLikesDisplayedUserRemote: test to see if the viewed and liked lists of the current user are updated in the database when the currentUser does not 'like' the displayedUser.
-
-**Realtime Database**
-- uploadUser_isCorrect: test if the upload task can be done without error.
-- getAllUsers_isCorrect: test if we can get all users without error.
-- getUser_isCorrect: test that we can get the correct user without error.
-
-**Login Interactor**
-- tests to verify appropriate and correct inputs for email and password fields of the login user story
-
-**Chatting**
-- tests to ensure that users can send and receive chat messages from each other.
 
 # Next steps for UofTinder
 Given more time, we would create prettier layout for viewing other user profiles on the recommendation feed and also add filter layouts for romantic and friendship users.
