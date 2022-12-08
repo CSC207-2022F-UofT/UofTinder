@@ -37,7 +37,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/createAccountViewEmailEditText"
+        android:id="@+id/createActViewEmailEdtTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/createAccountViewEmailTextView"
@@ -50,7 +50,7 @@
         android:id="@+id/createAccountViewPasswordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/createAccountViewEmailEditText"
+        android:layout_below="@id/createActViewEmailEdtTxt"
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
         android:text="Password:"
@@ -59,7 +59,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/createAccountViewPasswordEditText"
+        android:id="@+id/createActViewPasswordEdtTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/createAccountViewPasswordTextView"
@@ -72,7 +72,7 @@
         android:id="@+id/createAccountViewReEnterPasswordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/createAccountViewPasswordEditText"
+        android:layout_below="@id/createActViewPasswordEdtTxt"
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
         android:text="Re-enter Password:"
@@ -81,7 +81,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/createAccountViewReEnterPasswordEditText"
+        android:id="@+id/createActViewReEnterPasswordEdtTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/createAccountViewReEnterPasswordTextView"
@@ -92,10 +92,10 @@
         android:textColor="@color/black" />
 
     <Button
-        android:id="@+id/createAccountViewCreateAccountButton"
+        android:id="@+id/createActViewCreateActBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/createAccountViewReEnterPasswordEditText"
+        android:layout_below="@id/createActViewReEnterPasswordEdtTxt"
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
         android:text="Create your Account" />
