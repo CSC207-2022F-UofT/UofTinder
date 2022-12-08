@@ -30,8 +30,6 @@ public class UserRealtimeDbFacadeUnitTest {
     /**
      * Test if the upload task can be done without error
      * <p>
-     * FIXME: the test succeeded even though the Users were not uploaded. However the upload task
-     *  can be done outside the texting environment.
      */
     @Test
     public void uploadUser_isCorrect() {
@@ -72,41 +70,31 @@ public class UserRealtimeDbFacadeUnitTest {
         UserRealtimeDbFacade.uploadUser(lisinan2, listener);
         UserRealtimeDbFacade.uploadUser(vgvg, listener);
 
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     * The realtime database must contain the following entries:
-     * - users
-     * <p>
-     * _ - test
-     * <p>
-     * _ _ - lisinan2
-     * <p>
-     * _ _ _ - firstName: "Lance"
-     * <p>
-     * _ _ _ - lastName:  "Li"
-     * <p>
-     * _ _ _ - uid:       "lisinan2"
-     * <p>
-     * _ _ _ - userType:  "test"
-     * <p>
-     * _ _ - vgvg
-     * <p>
-     * _ _ _ - firstName: "Vedant"
-     * <p>
-     * _ _ _ - lastName:  "Goel"
-     * <p>
-     * _ _ _ - uid:       "vgvg"
-     * <p>
-     * _ _ _ - userType:  "test"
+     * Test if the db can get all users of a given user type
      */
     @Test
     public void getAllUsers_isCorrect() {
         StringBuilder namesBuilder = new StringBuilder();
         // refer to Java lambda expression for more details on the following syntax
-        UserRealtimeDbFacade.getAllUsers("Academic", userList -> {
+        UserRealtimeDbFacade.getAllUsers("test", userList -> {
             userList.forEach(user -> namesBuilder.append(user.getUid()).append("_"));
-            assertEquals("lisinan2_test1_test2_test3_", namesBuilder.toString());
+            assertEquals("lisinan2_vgvg_", namesBuilder.toString());
         });
     }
 
