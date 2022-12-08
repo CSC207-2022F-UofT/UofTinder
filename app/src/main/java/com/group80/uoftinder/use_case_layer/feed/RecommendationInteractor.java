@@ -15,15 +15,15 @@ import java.util.Set;
  * A use case class that generates a list of compatible users for the current user
  */
 public class RecommendationInteractor {
-    private User curUser;
+    private final User curUser;
     private List<User> compatibilityList;
     private UserScoreInterface usf;
     private Map<User, Integer> compScores;
-    private Comparator<User> userScoreComparator;
+    private final Comparator<User> userScoreComparator;
     private List<User> filteredCompatibilityList;
     private boolean showFilteredList;
     private User alrVisitedUser;
-    private String type;
+    private final String type;
 
     /**
      * Initialize the attributes of a RecommendationInteractor instance
@@ -33,7 +33,7 @@ public class RecommendationInteractor {
         this.type = this.curUser.getUserType();
         this.usf = new UserScoreFacade(curUser);
         this.userScoreComparator = Comparator.comparing(user -> compScores.get(user));
-//        calculateCompatibilityList();
+        calculateCompatibilityList();
         filteredCompatibilityList = new ArrayList<>();
     }
 
@@ -151,9 +151,7 @@ public class RecommendationInteractor {
         List<String> visitedList = curUser.getViewed();
         for (String visitedUserId : visitedList) {
             UserRealtimeDbFacade.getUser(type, visitedUserId, this::setAlrVisitedUser);
-            if (compatibilityList.contains(alrVisitedUser)) {
-                compatibilityList.remove(alrVisitedUser);
-            }
+            compatibilityList.remove(alrVisitedUser);
         }
     }
 
