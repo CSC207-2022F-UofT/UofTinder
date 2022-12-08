@@ -1,12 +1,13 @@
 # Overview and Inspiration 
 
 Introducing UofTinder, a social networking Android application built by a group of UofT students.
+Inspired by Tinder, we wanted to create an application with more options in terms of the type of relationships people may want to build with others. 
 
-The program allows users to match with other users based on their compatibility. Our program gives the user the option to either look for a romantic partner, a friend, or an academic friend. Then, a compatibility algorithm analyzes age, location, sexual orientation, hobbies, academic focus, and similar metrics to recommend potential matches to people, depending on the mode the user selects. If two people match with each other through this selection process, they proceed to a chat feature where they have the opportunity to talk and get to know each other in further depth. Users are able to send and react to text messages and pictures to facilitate getting to know each other.
+The program offers users the opportunity to either look for their significant other, friends, or academic partners. 
+Then, a compatibility algorithm analyzes certain profile metrics (e.g., hobbies and interests, sexual orientation, academic focuses) to recommend potential matches to people based on their calculated compatibility. 
+If two people match with each other through this selection process, they proceed to a chat feature where they have the opportunity to talk and get to know each other more.
 
-We were inspired by the dating app Tinder and wanted to create an app with more options in what kind of relationships one wants to build.
-
-Some design patterns that we implemented within our project are Model View Presenter (MVP), Façade Design Pattern, Observer Design Pattern, Dependency Injection Design Pattern.
+Some design patterns that we implemented within our project include Model View Presenter (MVP), Façade, Observer, and Dependency Injection.
 
 # Installation/Execution Instructions
 1. Download and install Android studio (https://developer.android.com/studio). Select Android Virtual Device.
@@ -77,7 +78,7 @@ Some design patterns that we implemented within our project are Model View Prese
 - As soon as the user has registered their account and answered the questionnaire, a ```User``` object containing their information is pushed to Firebase
 - Whenever the current user's internal data is updated as they use the app, we synchronize these changes with the database.
 
-# Unit Tests we've implemented
+# Unit Tests Implemented for Functionalities
 - **Generate Compatibility List**
   - orderCompatibilityListTest1: tests that GenerateCompatibilityList.orderCompatibilityList reorders the compatibility list from most compatible user to least compatible user when there are 3 total users.
   - orderCompatibilityListTest2: tests that GenerateCompatibilityList.orderCompatibilityListTest2 does nothing to the compatibility list when there are no other users in the database (besides the current user).
@@ -93,22 +94,22 @@ Some design patterns that we implemented within our project are Model View Prese
   - currUserLikesDisplayedUserLocal: test to see if the local User viewed and liked lists are updated when the currentUser 'likes' the displayedUser.
   - currUserSkipsDisplayedUserRemote: test to see if the viewed and liked lists of the current user are updated in the database when the currentUser does not 'like' the displayedUser.
   - currUserLikesDisplayedUserRemote: test to see if the viewed and liked lists of the current user are updated in the database when the currentUser does not 'like' the displayedUser.
-- **UserRealTimeDbFacade**
+- **RealTime Database**
   - uploadUser_isCorrect: test if the upload task can be done without error.
   - getAllUsers_isCorrect: test if we can get all users without error.
   - getUser_isCorrect: test that we can get the correct user without error.
-- **Filter** 
+- **Filter Recommendation Feed** 
   - filterFeedTestFilters: tests that we can apply filters to the feed.
   - filterFeedTestAge: tests that we can filter by age.
   - filterFeedTestNoFilters: tests that we can see the fee without any filters.
   - filterFeedTestFiltersAndAge: test that we can filter by age and other filters.
-- **UserScoreFacade**
+- **User Score Facade**
   - generateCompatibilityScoreTest1: tests to see whether the correct compatibility gets generated for current user (User 1).
   - generateCompatibilityScoreTest2: tests to see whether the correct compatibility gets generated for current user (User 2).
   - generateCompatibilityScoreTest3: tests to see whether the correct compatibility gets generated for current user (User 3).
   - compareTest1: tests to see compare method returns the correct similarity scores for two users (User 1 and User 2).
   - compareTest2: tests to see compare method returns the correct similarity scores for two users (User 3 and User 2).
-- **UserUnit**
+- **User Entity Methods**
   - infoStringTestAcademicUser: tests to get the correct display information string for an academic user.
   - infoStringTestRomanticUser: tests to get the correct display information string for a romantic user. Also tests the case of not providing answers for several questions.
   - infoStringTestFriendshipUser: tests for getting the correct display information string for a friendship user. Also tests the case of not providing an answer for a question between two questions with answers provided.
@@ -116,9 +117,6 @@ Some design patterns that we implemented within our project are Model View Prese
 # Next steps for UofTinder
 Given more time, we would create prettier viewing of user profiles (UI changes) and also add a filter UI option for romantic and friendship users.
 We would also add the ability to view and edit one's own profile.
-
-
-# 
 
 [//]: # ()
 [//]: # (# Project Template)
