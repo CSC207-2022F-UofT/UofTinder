@@ -35,17 +35,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    // testing
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-    androidTestImplementation 'androidx.test:runner:1.5.1'
-    androidTestImplementation 'androidx.test:rules:1.5.0'
-
     // Firebase - begins here
     implementation 'com.google.firebase:firebase-auth:21.1.0'
     implementation 'com.google.firebase:firebase-database:20.1.0'
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
     implementation 'com.google.firebase:firebase-storage:20.1.0'
-    implementation 'com.firebaseui:firebase-ui-database:8.0.2'  // FirebaseUI for Firebase Realtime Database
+    implementation 'com.firebaseui:firebase-ui-database:8.0.2'
+    // FirebaseUI for Firebase Realtime Database
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.2' // FirebaseUI for Cloud Firestore
     implementation 'com.firebaseui:firebase-ui-auth:8.0.2'      // FirebaseUI for Firebase Auth
     implementation 'com.firebaseui:firebase-ui-storage:8.0.2'   // FirebaseUI for Cloud Storage
@@ -59,23 +55,16 @@ dependencies {
 
     // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation "androidx.test:runner:testRunnerVersion"
-//    androidTestImplementation "androidx.test:rules:testRulesVersion"
 
     // Assertions
     androidTestImplementation "androidx.test.ext:junit:testJunitVersion"
-//    androidTestImplementation "androidx.test.ext:truth:truthVersion"
+
+    // testing
+    androidTestImplementation 'androidx.test:runner:1.5.1'
+    androidTestImplementation 'androidx.test:rules:1.5.0'
 
     // Espresso dependencies
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     androidTestImplementation "androidx.test.espresso:espresso-core:espressoVersion"
-//    androidTestImplementation "androidx.test.espresso:espresso-contrib:espressoVersion"
-//    androidTestImplementation "androidx.test.espresso:espresso-intents:espressoVersion"
-//    androidTestImplementation "androidx.test.espresso:espresso-accessibility:espressoVersion"
-//    androidTestImplementation "androidx.test.espresso:espresso-web:espressoVersion"
-//    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:espressoVersion"
-
-    // The following Espresso dependency can be either "implementation",
-    // or "androidTestImplementation", depending on whether you want the
-    // dependency to appear on your APK’"s compile classpath or the test APK
-    // classpath.
     androidTestImplementation "androidx.test.espresso:espresso-idling-resource:espressoVersion"
 }
