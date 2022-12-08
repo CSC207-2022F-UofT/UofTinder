@@ -210,7 +210,7 @@ public class GenerateCompatibilityListUnitTest {
         GenerateCompatibilityList genCompatibilityList = new GenerateCompatibilityList(curUser);
 
         User user2 = new User("Benjamin");
-        curUser.setName("Benjamin");
+        user2.setName("Benjamin");
         int user2Score = 2893321;
         user2.setScore(user2Score);
         user2.setUserType("Romantic");
