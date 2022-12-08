@@ -59,7 +59,9 @@ public class ChatSystemUnitTest {
                 List<Message> chatList = new ArrayList<>();
                 for (DataSnapshot child : snapshot.getChildren())
                     chatList.add(child.getValue(Message.class));
+                // remove messages that existed in original message list
                 chatList.removeAll(originalList);
+                // check that the new message equals the message sent
                 Log.d("CHAT_TEST", chatList.get(0).getMessage());
                 assert chatList.get(0).getMessage().equals("Test message!");
             }
