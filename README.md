@@ -115,6 +115,8 @@ Some design patterns that we implemented within our project are Model View Prese
 
 # Next steps for UofTinder
 Given more time, we would create prettier viewing of user profiles (UI changes) and also add a filter UI option for romantic and friendship users.
+We would also add the ability to view and edit one's own profile.
+
 
 # 
 
