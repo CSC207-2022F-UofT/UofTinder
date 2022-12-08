@@ -13,7 +13,7 @@
         android:theme="@style/Theme.UofTinder"
         tools:targetApi="31">
         <activity
-            android:name=".ProfilePicUploadActivity"
+            android:name=".view_layer.profile_pic_upload.ProfilePicUploadActivity"
             android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -24,14 +24,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".feed.AcademicFilterActivity"
-            android:exported="true" >
+            android:name=".view_layer.feed.AcademicFilterActivity"
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".chat.chat.ChatActivity"
+            android:name=".view_layer.chat.ChatActivity"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
@@ -42,14 +42,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".create_account_use_case.CreateAccountActivity"
+            android:name=".view_layer.create_account.CreateAccountActivity"
             android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".login_use_case.LoginActivity"
+            android:name=".view_layer.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,31 +61,27 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".feed.NoNewRecommendation"
-            android:exported="true" >
+            android:name=".view_layer.feed.NoNewRecommendation"
+            android:exported="true">
 
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".feed.RecommendationView"
+            android:name=".view_layer.feed.RecommendationView"
             android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".chat.contacts_list.ContactsActivity"
+            android:name=".view_layer.chat.ContactsActivity"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-
-        <activity android:name="androidx.test.core.app.InstrumentationActivityInvoker.BootstrapActivity">
-
         </activity>
     </application>
 </manifest>

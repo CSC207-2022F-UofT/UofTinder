@@ -10,10 +10,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.group80.uoftinder.chat.chat.Message;
-import com.group80.uoftinder.chat.chat.MessageFactory;
-import com.group80.uoftinder.firebase.realtime.RealtimeDbValueObserver;
-import com.group80.uoftinder.firebase.realtime.ucChatMessageWriter;
+import com.group80.uoftinder.entities_layer.Message;
+import com.group80.uoftinder.use_case_layer.chat.MessageFactory;
+import com.group80.uoftinder.use_case_layer.firebase.realtime.RealtimeDbValueObserver;
+import com.group80.uoftinder.use_case_layer.firebase.realtime.ChatMessageWriter;
 
 import org.junit.Test;
 
@@ -53,7 +53,7 @@ public class ChatSystemUnitTest {
             e.printStackTrace();
         }
 
-        ucChatMessageWriter chatMessageWriter = new ucChatMessageWriter(new RealtimeDbValueObserver() {
+        ChatMessageWriter chatMessageWriter = new ChatMessageWriter(new RealtimeDbValueObserver() {
             @Override
             public void onRealtimeDbDataChange(@NonNull DataSnapshot snapshot) {
                 List<Message> chatList = new ArrayList<>();

@@ -1,8 +1,8 @@
 package com.group80.uoftinder;
 
-import com.group80.uoftinder.entities.User;
-import com.group80.uoftinder.feed.UserScoreFacade;
-import com.group80.uoftinder.feed.UserScoreInterface;
+import com.group80.uoftinder.entities_layer.User;
+import com.group80.uoftinder.use_case_layer.feed.UserScoreFacade;
+import com.group80.uoftinder.use_case_layer.feed.UserScoreInterface;
 
 import org.junit.Test;
 

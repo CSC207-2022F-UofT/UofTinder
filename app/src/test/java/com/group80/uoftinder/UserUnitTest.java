@@ -1,6 +1,6 @@
 package com.group80.uoftinder;
 
-import com.group80.uoftinder.entities.User;
+import com.group80.uoftinder.entities_layer.User;
 
 import org.junit.Test;
 
